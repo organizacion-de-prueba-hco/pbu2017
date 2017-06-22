@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
+    //return view('welcome');
     return view('welcome');
 });
+//Asistenta Social
+Route::resource('asfichasocial','AsistentSocialFichasocialController');
+Route::resource('asdeclaracionjurada','AsistentSocialDeclaracionjuradaController');
+Route::resource('asvisitadomc1','AsistentSocialVdc1Controller');
+Route::resource('asvisitadomc2','AsistentSocialVdc2Controller');
+Route::resource('asvisitadomc3','AsistentSocialVdc3Controller');
+Route::resource('asvisitadomc4','AsistentSocialVdc4Controller');
+Route::resource('asvisitahosp1','AsistentSocialVhd1Controller');
+Route::resource('asvisitahosp2','AsistentSocialVhd2Controller');
+Route::resource('asvisitahosp3','AsistentSocialVhd3Controller');
+Route::resource('asvisitahosp4','AsistentSocialVhd4Controller');
+Route::resource('asexpagocentmed','AsistentSocialEpagoController');
