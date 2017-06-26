@@ -28,6 +28,7 @@ class AuthController extends Controller
      *
      * @return void
      */
+    //protected $username='dni';
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFichaSocialsTable extends Migration
+class CreateExoneracionPagoCentMedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateFichaSocialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ficha_socials', function (Blueprint $table) {
+        Schema::create('exoneracion_pago_cent_meds', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('expediente_id')->unsigned();
+            $table->integer('estudiante')->unsigned();
             $table->integer('asistenta_social')->unsigned();
-            $table->string('opinion_');
-            $table->string('archivo');
+            $table->string('opinion');
 
-            $table->foreign('expediente_id')->references('expediente')->on('expedientes')->onDelete('cascade');
+            $table->foreign('estudiante')->references('user_id')
+                  ->on('estudiantes')->onDelete('cascade');
             $table->foreign('asistenta_social')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateFichaSocialsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ficha_socials');
+        Schema::drop('exoneracion_pago_cent_meds');
     }
 }

@@ -7,12 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AsistentsocialFichaSocialController extends Controller
+class SuperuserController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('asistentsocial');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +16,7 @@ class AsistentsocialFichaSocialController extends Controller
      */
     public function index()
     {
-        return view('users.asistentSocial.fichaSocEcon');
+        //return view('master.')
     }
 
     /**

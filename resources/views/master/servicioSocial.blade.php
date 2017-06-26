@@ -141,8 +141,8 @@
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="assets/images/avatars/avatar5.png" alt="Jason's Photo" />
 								<span class="user-info">
-									<small>Nombre1 Nombre2,</small>
-									Apellido1 Apellido 2
+									<small>{{Auth::user()->nombres}}</small>
+									{{Auth::user()->apellidos}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -166,7 +166,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="{{url('log')}}">
 										<i class="ace-icon fa fa-power-off"></i>
 										Salir
 									</a>

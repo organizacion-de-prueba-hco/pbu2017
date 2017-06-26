@@ -13,8 +13,11 @@
 
 Route::get('/', function () {
     //return view('welcome');
-    return view('welcome');
+    return view('login');
 });
+Route::resource('log','LogController');
+//Super user
+Route::resource('superuser','SuperuserController');
 //Asistenta Social
 Route::resource('asfichasocial','AsistentSocialFichasocialController');
 Route::resource('asdeclaracionjurada','AsistentSocialDeclaracionjuradaController');

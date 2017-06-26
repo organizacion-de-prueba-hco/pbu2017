@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEscuelasTable extends Migration
+class CreateMIngresosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateEscuelasTable extends Migration
      */
     public function up()
     {
-        Schema::create('escuelas', function (Blueprint $table) {
+        Schema::create('m_ingresos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('escuela');
-            $table->integer('facultad_id')->unsigned();
-            $table->foreign('facultad_id')->references('id')->on('facultads')->onDelete('cascade');
+            $table->string('modalidad');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateEscuelasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('escuelas');
+        Schema::drop('m_ingresos');
     }
 }
