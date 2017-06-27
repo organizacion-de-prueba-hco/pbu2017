@@ -72,4 +72,17 @@ class User extends Model implements AuthenticatableContract,
       return $this->hasOne('App\Estudiante','user_id', 'id');
       //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
     }
+
+    public function directivo(){
+        return $this->hasOne('App\Directivo','user_id','id');
+    }
+
+    public function egresofamiliares(){
+        return $this->hasMany('App\EgresoFamiliar');
+    }
+
+    public function estcivil(){
+        return $this->belongsto('App\EstCivil');
+    }
+
 }

@@ -25,5 +25,9 @@ class EgresoFamiliar extends Model
     'n'
 
     ];
+
+    public function user(){
+        return $this->belongsto('App\User');
+    }
     
 }
