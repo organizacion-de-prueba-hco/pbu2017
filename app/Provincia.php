@@ -12,7 +12,13 @@ class Provincia extends Model
     'departamento_id'
     ];
 
-    public function distrito() {
+    public function distritos() {
       return $this->hasMany('App\Distrito');
+  }
+
+  	public function departamento(){
+  		return $this->belongsto('App\Departamento');
+
+  	}
 
 }

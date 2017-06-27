@@ -13,5 +13,11 @@ class Distrito extends Model
     'provincia_id'
     ];
 
+    public functions provincia()
+    {
+    	return $this->belongsto('App\Provincia');
+
+    }
+
     
 }
