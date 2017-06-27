@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SuperuserController extends Controller
 {
@@ -48,7 +49,7 @@ class SuperuserController extends Controller
      */
     public function show($id)
     {
-        //
+        //return "Hola";
     }
 
     /**
@@ -83,5 +84,14 @@ class SuperuserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function cargar(){
+        
+        Excel::load('public/archivo.xlsx',function($archivo){
+            $result=$archivo->get();
+            foreach ($result as $key => $value) {
+                echo $value->dni.' - '.$value->nombres.' - '.$value->paterno.'<br>';
+            }
+        });
     }
 }

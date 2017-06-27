@@ -14,6 +14,10 @@ class AsistentSocialVdc2Controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('asistentsocial');
+    }
     public function index()
     {
         return view('users.asistentSocial.visitaDomic.pDocente');

@@ -19,7 +19,9 @@ class CreateEstudiantesTable extends Migration
             $table->integer('cod_univ')->unsigned();
             $table->integer('m_ingreso_id')->unsigned();
             $table->string('ciclo_academ');
-            $table->date('f_term_colegio');
+            $table->integer('f_term_colegio');
+            $table->integer('dist_colegio_id')->unsigned();
+            $table->string('colegio');
             $table->string('tipo_familia'); //Organizada, desintegrada, armon, conf
             $table->string('trato_padres'); //Buena, regular, mala
             $table->string('cubre_gastos'); //ud, padres, padre, madre, otros
@@ -30,6 +32,8 @@ class CreateEstudiantesTable extends Migration
                   ->on('escuelas')->onDelete('cascade');
             $table->foreign('m_ingreso_id')->references('id')
                   ->on('m_ingresos')->onDelete('cascade');
+            $table->foreign('dist_colegio_id')->references('id')
+                  ->on('distritos')->onDelete('cascade');
 
             $table->timestamps();
         });

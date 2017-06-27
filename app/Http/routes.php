@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::resource('log','LogController');
 //Super user
 Route::resource('superuser','SuperuserController');
+Route::get('cargardatos','SuperuserController@cargar');
 //Asistenta Social
 Route::resource('asfichasocial','AsistentSocialFichasocialController');
 Route::resource('asdeclaracionjurada','AsistentSocialDeclaracionjuradaController');
@@ -30,3 +31,5 @@ Route::resource('asvisitahosp2','AsistentSocialVhd2Controller');
 Route::resource('asvisitahosp3','AsistentSocialVhd3Controller');
 Route::resource('asvisitahosp4','AsistentSocialVhd4Controller');
 Route::resource('asexpagocentmed','AsistentSocialEpagoController');
+//Asistenta Social
+Route::resource('jusuexpediente','JusuExpedienteController');

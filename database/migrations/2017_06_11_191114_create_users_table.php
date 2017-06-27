@@ -15,24 +15,27 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('dni', 8)->unique();
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
             $table->string('nombres');
-            $table->string('apellidos');
             $table->string('genero'); //0 = femenino 1=masculino
             $table->integer('est_civil_id')->default('1')->unsigned();
+            $table->string('domicilio');
+            $table->string('n_domicilio');
             $table->integer('n_hijos');
+            $table->string('telefono');
             $table->integer('distrito_nac')->default('887')->unsigned();
             $table->string('nacionalidad');
             $table->date('f_nac');
-            $table->string('domicilio');
+            
             $table->integer('religion_id')->default('1')->unsigned();
-            $table->string('telefono');
             $table->string('tipo_sangre');
             $table->date('f_unheval');//FEcha de ingreso a la Uheval
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('estado_login')->default('0');
             $table->string('tipo_user')->default('5');
-            $table->string('foto');
+            $table->string('foto')->default('user.png');
                 /*
                     0=nosotros, super usuarios
                     1=Directivos (Rector, Vicerrector, Dra. BU)

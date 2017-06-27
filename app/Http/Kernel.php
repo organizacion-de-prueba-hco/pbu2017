@@ -31,5 +31,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         //Nuestros Midellware
         'asistentsocial' => \App\Http\Middleware\Asistentsocial::class,
+        'jusu' => \App\Http\Middleware\Jusu::class,
     ];
 }

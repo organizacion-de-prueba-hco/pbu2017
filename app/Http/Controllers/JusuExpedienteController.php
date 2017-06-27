@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class AsistentSocialVhd1Controller extends Controller
+class JusuExpedienteController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('jusu');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('asistentsocial');
-    }
     public function index()
     {
-        return view('users.asistentSocial.visitaHosp.estudiante');
+        return view('users.jusu.expediente');
     }
 
     /**

@@ -28,13 +28,15 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['dni','nombres', 'apellidos', 'genero' ,     
+    protected $fillable = [
+            'dni','nombres', 'apellido_paterno','apellido_materno', 'genero' ,     
            'est_civil_id',
            'n_hijos',
            'distrito_nac',
             'nacionalidad',
             'f_nac',
             'domicilio',
+            'n_domicilio',
            'religion_id',
             'telefono',
             'tipo_sangre',
@@ -65,4 +67,9 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function estudiante() {
+      return $this->hasOne('App\Estudiante','user_id', 'id');
+      //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
+    }
 }

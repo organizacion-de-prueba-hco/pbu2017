@@ -56,6 +56,9 @@ class LogController extends Controller
                     case '1':
                         return Redirect::to('docenteproyecto');
                         break;
+                    case '2':
+                        return Redirect::to('jusuexpediente');
+                        break;
                     case '2-1':
                         return Redirect::to('asfichasocial');
                         break;
