@@ -14,7 +14,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000000',
                 'nombres' => 'Super',
-                'apellidos' => 'Usuario',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Usuario',
                 'email' => 'admi@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '0',
@@ -24,7 +25,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000001',
                 'nombres' => 'Dr. Ewer',
-                'apellidos' => 'Portocarrero Merino',
+                'apellido_paterno' => 'Portocarrero',
+                'apellido_materno' => 'Merino',
                 'email' => 'vicerrector@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '1',
@@ -34,7 +36,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000002',
                 'nombres' => 'Dra. Maruja',
-                'apellidos' => 'Manzano Tarazona',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Usuario',
                 'email' => 'dbu@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '1',
@@ -55,7 +58,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000004',
                 'nombres' => 'Sra. Selma',
-                'apellidos' => 'Apellido',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Usuario',
                 'email' => 'jusu@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '2',
@@ -65,7 +69,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000005',
                 'nombres' => 'Asistenta',
-                'apellidos' => 'Social',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Usuario',
                 'email' => 'asitsoc@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '2-1',
@@ -75,7 +80,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000006',
                 'nombres' => 'consesionario',
-                'apellidos' => 'Comedor',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Usuario',
                 'email' => 'ccomedor@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '2-2',
@@ -90,7 +96,8 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000007',
                 'nombres' => 'Personal',
-                'apellidos' => 'Nutricion',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Usuario',
                 'email' => 'pnutricion@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '2-3',
