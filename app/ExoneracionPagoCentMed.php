@@ -8,6 +8,8 @@ class ExoneracionPagoCentMed extends Model
 {
     protected $table='';
     protected $fillable=[
-
+    'estudiante',
+    'asistenta_social',
+    'opinion'
     ];
 }

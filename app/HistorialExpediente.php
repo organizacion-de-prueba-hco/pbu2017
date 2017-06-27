@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class HistorialExpediente extends Model
 {
-    protected $table='';
+    protected $table='historial_expedientes';
     protected $fillable=[
+    'expediente_id',
+    'tipo_beca',
+    'resultado'
 
     ];
 }

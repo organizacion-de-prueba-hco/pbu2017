@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Religion extends Model
 {
-    protected $table='';
+    protected $table='religions';
     protected $fillable=[
+    'religion'
+
 
     ];
 }

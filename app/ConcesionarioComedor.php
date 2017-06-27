@@ -8,8 +8,9 @@ class ConcesionarioComedor extends Model
 {
     protected $table='concesionario_comedors';
     protected $fillable=[
-    'concesionario',
-    'estado'
+    'responsable',
+    'empresa',
+    'ruc'
 
     ];
 

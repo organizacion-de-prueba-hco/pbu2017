@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Facultad extends Model
 {
-    protected $table='';
+    protected $table='facultads';
     protected $fillable=[
+    'facultad'
 
     ];
+
+    
 }

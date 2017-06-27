@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class FichaSocial extends Model
 {
-    protected $table='';
+    protected $table='ficha_socials';
     protected $fillable=[
+    'expediente_id',
+    'asistenta_social',
+    'opinion_',
+    'archivo'
 
     ];
+    
 }
+
