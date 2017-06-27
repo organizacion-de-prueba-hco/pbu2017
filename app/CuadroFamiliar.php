@@ -26,6 +26,18 @@ class CuadroFamiliar extends Model
     'trabajo_fin'
     ];
 
+    public function visitadomiciliarias(){
+        return $this->hasMany('App\VisitaDomiciliaria');
+
+    }
+    public function datossaludes(){
+        return $this->hasMany('App\DatosSalud');
+    }
+
+    public function declaracionjuradas(){
+        return $this->hasMany('App\DeclaracionJurada');
+    }
+
 
     
 }

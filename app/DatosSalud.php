@@ -12,8 +12,11 @@ class DatosSalud extends Model
     'diagnostico',
 	'seguro_medico',
 	'lugar_atencion'
-
-
     ];
-}
+
+    public function cuadrofamiliar(){
+    	return $this->belongsto('App\CuadroFamiliar');
+    }
+
+
 }

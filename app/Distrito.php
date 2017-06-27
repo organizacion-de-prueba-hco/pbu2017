@@ -13,9 +13,15 @@ class Distrito extends Model
     'provincia_id'
     ];
 
-    public functions provincia()
+    public function provincia()
     {
     	return $this->belongsto('App\Provincia');
+
+    }
+
+    public function declaracionjuradas(){
+    	return $this->hasMany('DeclaracionJurada');
+
 
     }
 

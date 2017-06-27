@@ -12,5 +12,9 @@ class Facultad extends Model
 
     ];
 
+    public function escuelas(){
+    	return $this->hasMany('App\Escuela');
+    }
+
     
 }

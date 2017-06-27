@@ -18,6 +18,19 @@ class DeclaracionJurada extends Model
     'otros_gastos'
     ];
 
+    public function distrito(){
+    	return $this->belongsto('App\Distrito');
+    }
+
+    public function cuadrofamiliar(){
+    	return $this->belongsto('App\CuadroFamiliar');
+    }
+
+    public function user(){
+    	return $this->belongsto('App\User')
+    }
+
+
 
     
 }

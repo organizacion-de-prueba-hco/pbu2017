@@ -16,4 +16,7 @@ class Escuela extends Model
     public function estudiantes(){
         return $this->hasMany('App\Estudiante');
     }
+    public function facultad(){
+    	return $this->belongsto('App\Facultad');
+    }
 }

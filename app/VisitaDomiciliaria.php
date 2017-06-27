@@ -17,4 +17,9 @@ class VisitaDomiciliaria extends Model
     'fecha'
 
     ];
+
+    public function cuadrofamiliar(){
+        return $this->belongsto('App/CuadroFamiliar');
+    }
+
 }
