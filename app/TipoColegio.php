@@ -12,9 +12,13 @@ class TipoColegio extends Model
     
     ];
 
-    //revisar colegios con tipo de colegios
+   
 
-    public function colegios(){
+    public function v_colegios(){
+    	return $this->hasMany('App\Colegio');
+    }
+
+    public function vi_colegios(){
     	return $this->hasMany('App\Colegio');
     }
 

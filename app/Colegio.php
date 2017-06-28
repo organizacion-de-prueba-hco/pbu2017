@@ -18,18 +18,24 @@ class Colegio extends Model
     'v_fecha',
     'v_pension'
     ];
-    public function tipo_colegio(){
+    public function v_tipocolegio(){
     	
     	return $this->belongsto('App\TipoColegio');
     }
 
+    public function vi_tipocolegio(){
+        
+        return $this->belongsto('App\TipoColegio');
+    }
 
-    public function distrito(){
+
+    public function v_distrito(){
     	return $this->belongsto('App\Distrito');
     }
 
+    public function vi_distrito(){
+        return $this->belongsto('App\Distrito');
+    }
+
     
-
-
-
 }

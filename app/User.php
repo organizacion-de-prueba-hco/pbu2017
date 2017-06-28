@@ -105,8 +105,17 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\FichaSocial');
     }
 
-     public function informenutriciones(){
-        return $this->hasMany('App\InformeNutricion');
+    public function fichasociales(){
+        return $this->hasMany('App\FichaSocial');
+    }
+
+
+     public function visitasdomiciliarias(){
+        return $this->hasMany('App\VisitaDomiciliaria');
+    }
+
+    public function visitashospitalarias(){
+        return $this->hasMany('App\VisitaHospitalaria');
     }
 
     public function estcivil(){

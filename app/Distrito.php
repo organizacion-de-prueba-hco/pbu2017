@@ -19,6 +19,14 @@ class Distrito extends Model
 
     }
 
+    public function v_colegios(){
+        return $this->hasMany('App\Colegio');
+    }
+
+    public function vi_colegios(){
+        return $this->hasMany('App\Colegio');
+    }
+
     public function declaracionjuradas(){
     	return $this->hasMany('App\DeclaracionJurada');
     }
