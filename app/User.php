@@ -104,12 +104,6 @@ class User extends Model implements AuthenticatableContract,
     public function fichasociales(){
         return $this->hasMany('App\FichaSocial');
     }
-
-    public function fichasociales(){
-        return $this->hasMany('App\FichaSocial');
-    }
-
-
      public function visitasdomiciliarias(){
         return $this->hasMany('App\VisitaDomiciliaria');
     }
@@ -125,7 +119,7 @@ class User extends Model implements AuthenticatableContract,
     public function docente() {
       return $this->hasOne('App\Docente','user_id', 'id');
       //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
-
+    }
     public function religion(){
         return $this->belongsto('App\Religion');
     }
