@@ -22,4 +22,8 @@ class VisitaDomiciliaria extends Model
         return $this->belongsto('App/CuadroFamiliar');
     }
 
+    public function user(){
+        return $this->belongsto('App/User');
+    }
+
 }

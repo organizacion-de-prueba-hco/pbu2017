@@ -13,9 +13,11 @@ class InformeNutricion extends Model
     'subtitulo',
     'contenido',
     'archivo'
-
-
     ];
+
+    public function user(){
+    	return $this->belongsto('App\User');
+    }
 
     
     

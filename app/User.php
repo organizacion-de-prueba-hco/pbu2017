@@ -86,6 +86,14 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\ConcesionarioComedor','responsable','id');
     }
 
+    public function personaldocente(){
+        return $this->hasOne('App\PersonalDocente','user_id','id');
+    }
+
+    public function personalnodocente(){
+        return $this->hasOne('App\PersonalNoDocente','user_id','id');
+    }
+
     public function egresofamiliares(){
         return $this->hasMany('App\EgresoFamiliar');
     }
@@ -97,6 +105,19 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\FichaSocial');
     }
 
+    public function fichasociales(){
+        return $this->hasMany('App\FichaSocial');
+    }
+
+
+     public function visitasdomiciliarias(){
+        return $this->hasMany('App\VisitaDomiciliaria');
+    }
+
+    public function visitashospitalarias(){
+        return $this->hasMany('App\VisitaHospitalaria');
+    }
+
     public function estcivil(){
         return $this->belongsto('App\EstCivil');
     }
@@ -104,6 +125,9 @@ class User extends Model implements AuthenticatableContract,
     public function docente() {
       return $this->hasOne('App\Docente','user_id', 'id');
       //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
+
+    public function religion(){
+        return $this->belongsto('App\Religion');
     }
 
 }

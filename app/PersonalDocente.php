@@ -12,4 +12,16 @@ class PersonalDocente extends Model
     'escuela_id'
 
     ];
+
+    public function user(){
+    	return $this->belongsto('App\User');
+    }
+
+    public function escuela(){
+    	return $this->belongsto('App\Escuelas');
+    }
+
+
+
+
 }

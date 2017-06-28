@@ -10,6 +10,18 @@ class TipoColegio extends Model
     protected $fillable=[
     'tipo'
     
-
     ];
+
+   
+
+    public function v_colegios(){
+    	return $this->hasMany('App\Colegio');
+    }
+
+    public function vi_colegios(){
+    	return $this->hasMany('App\Colegio');
+    }
+
+
+
 }

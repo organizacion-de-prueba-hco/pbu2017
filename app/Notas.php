@@ -15,4 +15,7 @@ class Notas extends Model
     'modalidad'
 
     ];
+
+
+    
 }

@@ -17,4 +17,13 @@ class VisitaHospitalaria extends Model
     'fecha'
 
     ];
+
+    public function cuadrofamiliar(){
+        return $this->belongsto('App/CuadroFamiliar');
+    }
+
+    public function user(){
+        return $this->belongsto('App/User');
+    }
+
 }

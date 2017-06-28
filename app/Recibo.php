@@ -16,4 +16,6 @@ class Recibo extends Model
     ];
 
     
+
+    
 }
