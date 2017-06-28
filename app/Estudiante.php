@@ -12,7 +12,7 @@ class Estudiante extends Model
         'escuela_id',
         'cod_univ',
         'm_ingreso_id',
-        'ciclo_academ',
+        'anio_estudio',
         'f_term_colegio',
         'dist_colegio_id',
         'colegio',

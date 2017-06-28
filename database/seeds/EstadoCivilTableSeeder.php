@@ -12,10 +12,10 @@ class EstadoCivilTableSeeder extends Seeder
     public function run()
     {
         DB::table('est_civils')->insert([
-                'est_civil' => 'Soltero',
+                'est_civil' => 'Soltero(a)',
         	]);
         DB::table('est_civils')->insert([
-                'est_civil' => 'Casado',
+                'est_civil' => 'Casado(a)',
         	]);
         DB::table('est_civils')->insert([
                 'est_civil' => 'Conviviente',
@@ -24,10 +24,13 @@ class EstadoCivilTableSeeder extends Seeder
                 'est_civil' => 'Separado',
         	]);
         DB::table('est_civils')->insert([
-                'est_civil' => 'Divorsiado',
+                'est_civil' => 'Divorciado(a)',
         	]);
         DB::table('est_civils')->insert([
                 'est_civil' => 'Viudo',
         	]);
+        DB::table('est_civils')->insert([
+                'est_civil' => 'No Especifica',
+            ]);
     }
 }

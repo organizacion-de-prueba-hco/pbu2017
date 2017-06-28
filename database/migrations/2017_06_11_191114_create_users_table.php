@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('nombres');
             $table->string('genero'); //0 = femenino 1=masculino
             $table->integer('est_civil_id')->default('1')->unsigned();
-            $table->string('domicilio');
-            $table->string('n_domicilio');
+            $table->string('domicilio')->default('--------');
+            $table->string('n_domicilio')->default('--------');
             $table->integer('n_hijos');
             $table->string('telefono');
             $table->integer('distrito_nac')->default('887')->unsigned();

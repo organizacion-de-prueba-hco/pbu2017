@@ -898,7 +898,7 @@ class DistritosTableSeeder extends Seeder
 				'SAN MARCOS DE ROCCHAC',
 				'SURCUBAMBA',
 				'TINTAY PUNCU',
-				'HUÁNUCO',
+				'HUANUCO',
 				'AMARILIS',
 				'CHINCHAO',
 				'CHURUBAMBA',

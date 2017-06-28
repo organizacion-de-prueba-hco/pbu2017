@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FacultadTableSeeder::class);
         $this->call(EscuelaTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        $this->call(TipoColegio::class);
         Model::reguard();
     }
 }
