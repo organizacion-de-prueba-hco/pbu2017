@@ -27,4 +27,9 @@ class Colegio extends Model
     public function distrito(){
     	return $this->belongsto('App\Distrito');
     }
+
+    
+
+
+
 }

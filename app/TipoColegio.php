@@ -10,6 +10,14 @@ class TipoColegio extends Model
     protected $fillable=[
     'tipo'
     
-
     ];
+
+    //revisar colegios con tipo de colegios
+
+    public function colegios(){
+    	return $this->hasMany('App\Colegio');
+    }
+
+
+
 }
