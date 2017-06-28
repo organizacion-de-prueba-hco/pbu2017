@@ -86,6 +86,14 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\ConcesionarioComedor','responsable','id');
     }
 
+    public function personaldocente(){
+        return $this->hasOne('App\PersonalDocente','user_id','id');
+    }
+
+    public function personalnodocente(){
+        return $this->hasOne('App\PersonalNoDocente','user_id','id');
+    }
+
     public function egresofamiliares(){
         return $this->hasMany('App\EgresoFamiliar');
     }
@@ -95,6 +103,10 @@ class User extends Model implements AuthenticatableContract,
 
     public function fichasociales(){
         return $this->hasMany('App\FichaSocial');
+    }
+
+     public function informenutriciones(){
+        return $this->hasMany('App\InformeNutricion');
     }
 
     public function estcivil(){

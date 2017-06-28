@@ -12,4 +12,9 @@ class PersonalNoDocente extends Model
     'cargo_funcion'
 
     ];
+
+    public function user(){
+    	return $this->belongsto('App\User');
+    }
+
 }

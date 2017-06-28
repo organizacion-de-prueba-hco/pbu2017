@@ -14,4 +14,6 @@ class MIngreso extends Model
     public function Estudiantes(){
         return $this->hasMany('App\Estudiante');
     }
+
+    
 }

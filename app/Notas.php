@@ -14,4 +14,7 @@ class Notas extends Model
     'semestre'
 
     ];
+
+
+    
 }
