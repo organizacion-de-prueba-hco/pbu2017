@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 class Colegio extends Model
 {
     protected $table='colegios';
+
     protected $fillable=['estudiante_id',
+
     'iv_colegio',
     'iv_tipo',
     'iv_distrito',
@@ -20,6 +22,8 @@ class Colegio extends Model
     	
     	return $this->belongsto('App\TipoColegio');
     }
+
+
     public function distrito(){
     	return $this->belongsto('App\Distrito');
     }
