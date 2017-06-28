@@ -16,5 +16,5 @@ class Facultad extends Model
     	return $this->hasMany('App\Escuela');
     }
 
-    
+        
 }

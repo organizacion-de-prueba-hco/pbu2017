@@ -77,12 +77,29 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\Directivo','user_id','id');
     }
 
+    public function expediente(){
+        return $this->hasOne('App\Expediente','expediente','id');
+    }
+
+
+    public function concesionariocomedor(){
+        return $this->hasOne('App\ConcesionarioComedor','responsable','id');
+    }
+
     public function egresofamiliares(){
         return $this->hasMany('App\EgresoFamiliar');
+    }
+    public function exoneracionpagocentmeds(){
+        return $this->hasMany('App\ExoneracionPagoCentMed');
+    }
+
+    public function fichasociales(){
+        return $this->hasMany('App\FichaSocial');
     }
 
     public function estcivil(){
         return $this->belongsto('App\EstCivil');
     }
+
 
 }

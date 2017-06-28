@@ -20,9 +20,10 @@ class Distrito extends Model
     }
 
     public function declaracionjuradas(){
-    	return $this->hasMany('DeclaracionJurada');
-
-
+    	return $this->hasMany('App\DeclaracionJurada');
+    }
+    public function estudiantes(){
+        return $this->hasMany('App\Estudiante');
     }
 
     

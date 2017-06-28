@@ -21,6 +21,9 @@ class Estudiante extends Model
         'cubre_gastos'
     ];
 
+    public function exoneracionpagocentmeds(){
+        return $this->hasMany('App\ExoneracionPagoCentMed');
+    }
     public function user(){
     	return $this->belongsto('App\User');
     }
@@ -29,5 +32,8 @@ class Estudiante extends Model
     }
     public function m_ingreso(){
     	return $this->belongsto('App\MIngreso');
+    }
+    public function distrito(){
+        return $this->belongsto('App\Distrito');
     }
 }

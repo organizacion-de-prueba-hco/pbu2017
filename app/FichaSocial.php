@@ -14,6 +14,16 @@ class FichaSocial extends Model
     'archivo'
 
     ];
+
+    public function expediente(){
+    	return $this->belongsto('App\Expediente');
+    }
+
+    public function user(){
+        return $this->belongsto('App\User');
+    }
+
+
     
 }
 

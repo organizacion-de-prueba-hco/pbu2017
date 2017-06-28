@@ -12,4 +12,13 @@ class ExoneracionPagoCentMed extends Model
     'asistenta_social',
     'opinion'
     ];
+
+    public function user()
+    {
+    	return $this->belongsto('App\User');
+    }
+
+    public function estudiante(){
+    	return $this->belongsto('App\Estudiante');
+    }
 }

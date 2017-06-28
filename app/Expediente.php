@@ -27,4 +27,34 @@ class Expediente extends Model
 
 
     ];
+
+    public function user(){
+        return $this->belongsto('App\User');
+    }
+
+    public function desayunos(){
+        return $this->hasMany('App\Desayuno');
+    }
+
+    public function almuerzos(){
+        return $this->hasMany('App\Almuerzo');
+    }
+
+    public function cenas(){
+        return $this->hasMany('App\Cena');
+    }
+
+    public function fichasociales(){
+        return $this->hasMany('App\FichaSocial');
+    }
+
+    public function historialexpedientes(){
+        return $this->hasMany('App\HistorialExpediente');
+    }
+
+
+
+
+
+
 }

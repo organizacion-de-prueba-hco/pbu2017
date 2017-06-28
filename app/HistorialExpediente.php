@@ -13,4 +13,8 @@ class HistorialExpediente extends Model
     'resultado'
 
     ];
+
+    public function expediente(){
+    	return this->belongsto('App\Expediente');
+    }
 }
