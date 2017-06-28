@@ -15,10 +15,26 @@ Route::get('/', function () {
     //return view('welcome');
     return view('login');
 });
+Route::get('provando', function () {
+	Excel::load('public/archivo.xlsx',function($archivo){
+            $result=$archivo->get();
+            foreach ($result as $key => $value) {
+    if(App\EStudiante::where('cod_univ',$value->id_alumno)->first()){
+    	continue;
+    	echo "Existe";
+    }
+    echo $value->id_alumno."No existe";
+    echo "<br>";
+	}
+});
+   
+});
 Route::resource('log','LogController');
 //Super user
 Route::resource('superuser','SuperuserController');
 Route::get('cargardatos','SuperuserController@cargar');
+Route::get('cargarnotas','SuperuserController@cargarnotas');
+Route::get('cargardocentes','SuperuserController@cargardocentes');
 //Asistenta Social
 Route::resource('asfichasocial','AsistentSocialFichasocialController');
 Route::resource('asdeclaracionjurada','AsistentSocialDeclaracionjuradaController');

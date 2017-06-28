@@ -101,5 +101,9 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsto('App\EstCivil');
     }
 
+    public function docente() {
+      return $this->hasOne('App\Docente','user_id', 'id');
+      //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
+    }
 
 }

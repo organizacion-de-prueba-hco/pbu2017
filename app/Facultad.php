@@ -15,6 +15,9 @@ class Facultad extends Model
     public function escuelas(){
     	return $this->hasMany('App\Escuela');
     }
+    public function docentes(){
+        return $this->hasMany('App\Docente');
+    }
 
         
 }

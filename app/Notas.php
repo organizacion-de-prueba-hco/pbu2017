@@ -11,7 +11,8 @@ class Notas extends Model
     'cod_univ',
     'curso',
     'nota',
-    'semestre'
+    'semestre',
+    'modalidad'
 
     ];
 }

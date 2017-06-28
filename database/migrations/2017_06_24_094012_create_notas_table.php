@@ -18,6 +18,7 @@ class CreateNotasTable extends Migration
             $table->string('curso');
             $table->float('nota');
             $table->string('semestre');
+            $table->string('modalidad');
             $table->timestamps();
         });
     }
