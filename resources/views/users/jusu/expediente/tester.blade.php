@@ -14,3 +14,9 @@
 </ul>
 @endsection
 @section('contenido')
+<h2>DNI: </h2><p>{{$estudiante->user->dni}}</p>
+	{{
+	$estudiante->escuela->facultad->facultad
+	}}
+
+@endsection

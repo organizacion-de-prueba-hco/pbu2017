@@ -100,6 +100,6 @@ class JusuExpedienteController extends Controller
 
         $cod=$request->get('cod-test');
         $estudiante=Estudiante::where('cod_univ',$cod)->first();
-        return $estudiante->user->nombres;
+        return view('users.jusu.expediente.tester',compact('estudiante'));
     }
 }
