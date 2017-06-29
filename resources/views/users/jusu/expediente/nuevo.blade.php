@@ -78,7 +78,8 @@ $e  = '';
 									</div><br>
 									<div class="form-group" >
 										<div class="col-sm-6">
-											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5">
+											<input type='hidde'>
+											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" >
 											<i class="ace-icon fa fa-plus"></i>
 											<span class="bigger-110">Registrar </span>
 											</button>

@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\Distrito;
-use App\Escuela;
-use App\Facultad;
-use App\MIngreso;
-use App\Colegio;
-use App\Notas;
 use App\Estudiante;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class JusuExpedienteController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('jusu');
     }
@@ -48,7 +41,11 @@ class JusuExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        return "Nuevo";
+
+        $expediente             = new Expediente;
+        $expediente->expediente = $request->get('cod_univ');
+        $expediente->save();
+        return view('users.jusu.expediente');
     }
 
     /**
@@ -96,17 +93,19 @@ class JusuExpedienteController extends Controller
         //
     }
 
-    public function postTesteador(Request $request){
+    public function postTesteador(Request $request)
+    {
 
-        $cod=$request->get('cod-test');
-        $estudiante=Estudiante::where('cod_univ',$cod)->first();
-        return view('users.jusu.expediente.tester',compact('estudiante'));
+        $cod        = $request->get('cod-test');
+        $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        return view('users.jusu.expediente.tester', compact('estudiante'));
     }
-     public function postNuevo(Request $request){
+    public function postNuevo(Request $request)
+    {
 
-        $cod=$request->get('cod-nuevo');
-        $estudiante=Estudiante::where('cod_univ',$cod)->first();
-        return view('users.jusu.expediente.nuevo',compact('estudiante'));
+        $cod        = $request->get('cod-nuevo');
+        $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        return view('users.jusu.expediente.nuevo', compact('estudiante'));
         //$estudiante=Estudiante::where('cod_univ',$cod)->first();
         //return view('users.jusu.expediente.tester',compact('estudiante'));
     }
