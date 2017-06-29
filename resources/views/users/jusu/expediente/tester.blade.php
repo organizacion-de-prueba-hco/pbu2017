@@ -24,7 +24,8 @@
 </ul>
 @endsection
 @section('contenido')
-<!--ccccccccccccccccccccccccccccccccccccccccccccccccccc-->
+
+@if($estudiante)
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								
@@ -240,4 +241,7 @@
 							</div>
 <!--bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-->
 <div class="space-12"></div>
+@else
+	<h3>¡Error! El Código ingresado no existe</h3><a href="{{url('jusuexpediente')}}">volver</a>
+@endif
 @endsection
