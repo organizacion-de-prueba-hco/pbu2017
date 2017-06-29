@@ -76,7 +76,7 @@
 
 											<div class="modal-body" align="center">
 												Ingrese Código Universitario del Estudiante<br>
-														<form class="form-search">
+													{!! Form::open(['url' => 'jusuexpedientes/testeador', 'method' => 'POST']) !!}
 															<span class="input-icon">
 																<input type="number" placeholder="Testear ..." class="nav-search-input" maxlength="10" 
 																required="required"  
@@ -88,8 +88,8 @@
 															<button class="btn btn-warning btn-sm btn-round submit">
 																<i class="ace-icon fa fa-share"></i>
 															</button>
-														</form>
-														<br>
+													{!!Form::close()!!}
+													<br>
 											</div>
 
 											<!-- <div class="modal-footer">
@@ -500,6 +500,11 @@
 			
 			
 			})
+
+		//Testeador
+		function testeador(cod_univ){
+
+		}
 		</script>
 
 		

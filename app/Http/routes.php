@@ -15,20 +15,7 @@ Route::get('/', function () {
     //return view('welcome');
     return view('login');
 });
-Route::get('provando', function () {
-	Excel::load('public/archivo.xlsx',function($archivo){
-            $result=$archivo->get();
-            foreach ($result as $key => $value) {
-    if(App\EStudiante::where('cod_univ',$value->id_alumno)->first()){
-    	continue;
-    	echo "Existe";
-    }
-    echo $value->id_alumno."No existe";
-    echo "<br>";
-	}
-});
-   
-});
+
 Route::resource('log','LogController');
 //Super user
 Route::resource('superuser','SuperuserController');
@@ -47,5 +34,6 @@ Route::resource('asvisitahosp2','AsistentSocialVhd2Controller');
 Route::resource('asvisitahosp3','AsistentSocialVhd3Controller');
 Route::resource('asvisitahosp4','AsistentSocialVhd4Controller');
 Route::resource('asexpagocentmed','AsistentSocialEpagoController');
-//Asistenta Social
+//JUSU
 Route::resource('jusuexpediente','JusuExpedienteController');
+Route::controller('jusuexpedientes','JusuExpedienteController');

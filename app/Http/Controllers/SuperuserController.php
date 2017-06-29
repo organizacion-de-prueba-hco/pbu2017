@@ -230,7 +230,7 @@ class SuperuserController extends Controller
             }
             
         });
-        return "Éxito, notas registrado";
+        return "Éxito, se han registrado correctamente las notas";
     }
 
     public function cargardocentes(){

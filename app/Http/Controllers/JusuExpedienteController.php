@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Distrito;
+use App\Escuela;
+use App\Facultad;
+use App\MIngreso;
+use App\Colegio;
+use App\Notas;
+use App\Estudiante;
 
 class JusuExpedienteController extends Controller
 {
@@ -41,7 +48,7 @@ class JusuExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "Testeador";
     }
 
     /**
@@ -87,5 +94,12 @@ class JusuExpedienteController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function postTesteador(Request $request){
+
+        $cod=$request->get('cod-test');
+        $estudiante=Estudiante::where('cod_univ',$cod)->first();
+        return $estudiante->user->nombres;
     }
 }
