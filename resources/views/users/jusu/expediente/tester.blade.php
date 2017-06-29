@@ -242,6 +242,6 @@
 <!--bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-->
 <div class="space-12"></div>
 @else
-	<h3>¡Error! El Código ingresado no existe</h3><a href="{{url('jusuexpediente')}}">volver</a>
+	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('jusuexpediente')}}">volver</a>
 @endif
 @endsection
