@@ -48,7 +48,7 @@ class JusuExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        return "Testeador";
+        return "Nuevo";
     }
 
     /**
@@ -101,5 +101,13 @@ class JusuExpedienteController extends Controller
         $cod=$request->get('cod-test');
         $estudiante=Estudiante::where('cod_univ',$cod)->first();
         return view('users.jusu.expediente.tester',compact('estudiante'));
+    }
+     public function postNuevo(Request $request){
+
+        $cod=$request->get('cod-nuevo');
+        $estudiante=Estudiante::where('cod_univ',$cod)->first();
+        return view('users.jusu.expediente.nuevo',compact('estudiante'));
+        //$estudiante=Estudiante::where('cod_univ',$cod)->first();
+        //return view('users.jusu.expediente.tester',compact('estudiante'));
     }
 }

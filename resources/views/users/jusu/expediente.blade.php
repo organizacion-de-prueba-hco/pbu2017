@@ -39,19 +39,19 @@
 
 											<div class="modal-body" align="center">
 												Ingrese Código Universitario del Estudiante<br>
-														<form class="form-search">
+													{!! Form::open(['url' => 'jusuexpedientes/nuevo', 'method' => 'POST']) !!}
 															<span class="input-icon">
 																<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" 
 																required="required"  
 																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod-test"
+																name="cod-nuevo"
 																>
 																<i class="ace-icon fa fa-search nav-search-icon"></i>
 															</span>
 															<button class="btn btn-success btn-sm btn-round submit">
 																<i class="ace-icon fa fa-plus"></i>
 															</button>
-														</form>
+														{!!Form::close()!!}
 														<br>
 											</div>
 
