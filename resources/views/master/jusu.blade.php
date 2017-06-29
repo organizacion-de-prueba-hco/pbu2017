@@ -197,7 +197,7 @@
 
 				<ul class="nav nav-list">
 					<li class="{{$oa}}">
-						<a href="asfichasocial">
+						<a href="jusuexpediente">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Expedientes </span>
 						</a>

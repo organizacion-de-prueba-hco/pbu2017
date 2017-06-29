@@ -18,9 +18,8 @@
 <h3>Nombre: </h3>{{$estudiante->user->nombres}}
 <h3>Apellido Paterno: </h3>{{$estudiante->user->apellido_paterno}}
 <h3>Apellido Materno: </h3>{{$estudiante->user->apellido_materno}}
-<h3>Escuela: </h3>{{$estudiante->escuela->escuela}}
 <h3>Facultad: </h3>{{$estudiante->escuela->facultad->facultad}}
-<hr>
+<h3>Escuela: </h3>{{$estudiante->escuela->escuela}}
 <h3>Estado: Apta </h3>
 <button>Más Detalles</button>
 
