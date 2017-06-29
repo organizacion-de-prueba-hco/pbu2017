@@ -37,6 +37,7 @@ $e  = '';
 	<li class="active">Nuevo</li>
 </ul>
 @endsection
+@if($estudiante)
 @section('contenido')
 <div class="hr dotted"></div>
 <div class="col-xs-12">
@@ -84,13 +85,15 @@ $e  = '';
 										</div>
 									</div>
 
-									
+
 			                    {!! Form::close() !!}
 
 
 								</div><!-- PAGE CONTENT ENDS -->
 
-
+@else
+	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('jusuexpediente')}}">volver</a>
+@endif
 
 
 @endsection
