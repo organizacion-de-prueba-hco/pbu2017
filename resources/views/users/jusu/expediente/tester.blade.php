@@ -1,8 +1,21 @@
 @extends('master.jusu')
 @section('activacion')
 	<?php
-		$oa='active';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
-	?>
+$oa = 'active';
+$a  = '';
+$b  = '';
+$c  = '';
+$c1 = '';
+$c2 = '';
+$c3 = '';
+$c4 = '';
+$d  = '';
+$d1 = '';
+$d2 = '';
+$d3 = '';
+$d4 = '';
+$e  = '';
+?>
 @endsection
 @section('titulo','Tester')
 @section('estilos')
@@ -19,16 +32,15 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>	
+	<i class="ace-icon fa fa-list-alt"></i>
 	<li class="active">Tester</li>
 </ul>
 @endsection
 @section('contenido')
-
 @if($estudiante)
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-								
+
 
 								<div class="hr dotted"></div>
 
@@ -65,49 +77,52 @@
 														{{$estudiante->anio_estudio}}
 													</p>
 
-													
+
 												</div>
 
 											</div>
 
-											
+
 										</div>
 
 										<div class="col-xs-12 col-sm-9">
-											<?php 
-												$notas=App\Notas::where('cod_univ',$estudiante->cod_univ)->get();
-												$cont=0; $lanota=0;
-												foreach ($notas as $key => $nota) {
-													$cont++;
-													$lanota=$lanota+$nota->nota;
-												}
-												if ($cont==0) {
-													$cont=1;
-												}
-												$promedionotas=round($lanota/$cont,2);
-												switch ($estudiante->m_ingreso_id) {
-													case '2':case '5':case '18':
-													$estadoa='succes';
-													default: $estadoa='';
-														break;
-												}
-												if ($promedionotas<=10.5) {
-													$estadob='danger';
-												}else if ($promedionotas>10.5 && $promedionotas<13.5){
-													$estadob='warning';
-												}else if ($promedionotas>=13.5 && $promedionotas<=20) {
-													$estadob='success';
-												}
-												else $estadob='';
-											?>
+											<?php
+$notas  = App\Notas::where('cod_univ', $estudiante->cod_univ)->get();
+$cont   = 0;
+$lanota = 0;
+foreach ($notas as $key => $nota) {
+    $cont++;
+    $lanota = $lanota + $nota->nota;
+}
+if ($cont == 0) {
+    $cont = 1;
+}
+$promedionotas = round($lanota / $cont, 2);
+switch ($estudiante->m_ingreso_id) {
+    case '2':case '5':case '18':
+        $estadoa         = 'succes';
+    default:$estadoa = '';
+        break;
+}
+if ($promedionotas <= 10.5) {
+    $estadob = 'danger';
+} else if ($promedionotas > 10.5 && $promedionotas < 13.5) {
+    $estadob = 'warning';
+} else if ($promedionotas >= 13.5 && $promedionotas <= 20) {
+    $estadob = 'success';
+} else {
+    $estadob = '';
+}
+
+?>
 											<div class="center">
 											<table class="table table-bordered">
 												<thead>
 													<td>
-													 Modalidad de Ingreso									
+													 Modalidad de Ingreso
 													</td>
 													<td>
-													 Promedio ponderado (último año cursado)									
+													 Promedio ponderado (último año cursado)
 													</td>
 												</thead>
 												<tbody>
@@ -117,20 +132,20 @@
 													</tr>
 												</tbody>
 											</table><br>
-											
+
 											<table class="table table-bordered">
 												<thead>
 													<td>
-														Curso									
+														Curso
 													</td>
 													<td>
-														Nota									
+														Nota
 													</td>
 													<td>
-														Semestre									
+														Semestre
 													</td>
 													<td>
-														Modalidad									
+														Modalidad
 													</td>
 												</thead>
 												<tbody>
@@ -143,7 +158,7 @@
 													</tr>
 													@endforeach
 												</tbody>
-											</table>																					
+											</table>
 											</div>
 
 											<div class="space-12"></div>
@@ -225,17 +240,17 @@
 													</div>
 												</div>
 
-												
+
 											</div>
 
-											
 
-											
+
+
 									</div>
 								</div>
 
-								
-								
+
+
 
 								<!-- PAGE CONTENT ENDS -->
 							</div>

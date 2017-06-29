@@ -37,8 +37,8 @@ $e  = '';
 	<li class="active">Nuevo</li>
 </ul>
 @endsection
-@if($estudiante)
 @section('contenido')
+@if($estudiante)
 <div class="hr dotted"></div>
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
