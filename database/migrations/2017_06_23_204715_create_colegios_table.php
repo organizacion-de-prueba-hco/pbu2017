@@ -18,12 +18,12 @@ class CreateColegiosTable extends Migration
             $table->string('iv_colegio');
             $table->integer('iv_tipo')->default('3')->unsigned();
             $table->integer('iv_distrito')->default('887')->unsigned();
-            $table->date('iv_fecha');
+            $table->integer('iv_fecha');
             $table->float('iv_pension');
             $table->string('v_colegio');
             $table->integer('v_tipo')->default('3')->unsigned();
             $table->integer('v_distrito')->default('887')->unsigned();
-            $table->date('v_fecha');
+            $table->integer('v_fecha');
             $table->float('v_pension');
 
             $table->foreign('estudiante_id')->references('user_id')

@@ -123,5 +123,8 @@ class User extends Model implements AuthenticatableContract,
     public function religion(){
         return $this->belongsto('App\Religion');
     }
+    public function distrito_naci(){
+        return $this->belongsto('App\Distrito','distrito_nac');
+    }
 
 }

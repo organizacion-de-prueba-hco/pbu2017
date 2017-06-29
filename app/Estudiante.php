@@ -36,4 +36,8 @@ class Estudiante extends Model
     public function distrito(){
         return $this->belongsto('App\Distrito');
     }
+    public function colegio() {
+      return $this->hasOne('App\Colegio','estudiante_id', 'user_id');
+      //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
+    }
 }

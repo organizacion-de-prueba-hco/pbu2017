@@ -130,7 +130,6 @@ class SuperuserController extends Controller
                         $usuario->est_civil_id='7'; 
                         break;
                 }
-                
                 if($value->desc_dir!=''){
                     $usuario->domicilio=$value->desc_dir;
                 }
@@ -183,6 +182,9 @@ class SuperuserController extends Controller
                 if($value->cole!=''){
                    $colegio->v_colegio=$value->cole;
                 }
+                if($value->termin_cole!=''){
+                   $colegio->v_fecha=$value->termin_cole;
+                }
 
                 if($value->dist_cole!=''){
                     $distritoCole=Distrito::where('distrito',$value->dist_cole)->first();
@@ -206,10 +208,10 @@ class SuperuserController extends Controller
         Excel::load('public/archivo2.xlsx',function($archivo){
             $result=$archivo->get();
             foreach ($result as $key => $value) {
-               $NotaExiste=Notas::where('cod_univ',$value->id_alumno)->where('curso',$value->curso)->where('nota',$value->nota)->where('semestre',$value->semestre)->where('modalidad',$value->modalidad)->first();
-               if($NotaExiste){
-                  continue;
-               }
+               // $NotaExiste=Notas::where('cod_univ',$value->id_alumno)->where('curso',$value->curso)->where('nota',$value->nota)->where('semestre',$value->semestre)->where('modalidad',$value->modalidad)->first();
+               // if($NotaExiste){
+               //    continue;
+               // }
                $notas=new Notas;
                if($value->id_alumno!=''){
                     $notas->cod_univ=$value->id_alumno;

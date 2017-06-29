@@ -29,12 +29,16 @@ class Colegio extends Model
     }
 
 
-    public function v_distrito(){
-    	return $this->belongsto('App\Distrito');
+    public function v_distrit(){
+    	return $this->belongsto('App\Distrito','v_distrito');
+        //return $this->belongsTo('App\User', 'llave_local');
     }
 
-    public function vi_distrito(){
-        return $this->belongsto('App\Distrito');
+    public function vi_distrit(){
+        return $this->belongsto('App\Distrito','iv_distrito');
+    }
+    public function estudiante(){
+        return $this->belongsto('App\Estudiante');
     }
 
     
