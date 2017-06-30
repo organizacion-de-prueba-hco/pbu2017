@@ -92,10 +92,12 @@ if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Tipo de Beca </label>
 										<div class="col-sm-9">
-<?php
-echo Form::select('TipoBeca', array('A', 'B', 'C'));
-?>
-
+										<select name="TipoBeca" class="col-xs-10 col-sm-5" required>
+											<option value="">Seleccione una opción</option>
+											<option value="A">A</option>
+											<option value="B">B</option>
+											<option value="C">C</option>
+										</select>
 										</div>
 									</div><br
 

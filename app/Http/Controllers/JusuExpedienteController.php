@@ -47,11 +47,12 @@ class JusuExpedienteController extends Controller
     {
 
         $expediente = new Expediente;
-
         $expediente->expediente = $request->get('id_univ');
         $expediente->jefe_usu=Auth::user()->id;
+        $expediente->tipo_beca=$request->get('TipoBeca');
+        $expediente->estado='1';
         $expediente->save();
-        return Redirect::to('jusuexpediente');
+        return Redirect::to('jusuexpediente')->with('verde','Se registro un nuevo expediente');
     }
 
     /**

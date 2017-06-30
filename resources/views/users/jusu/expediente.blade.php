@@ -14,7 +14,7 @@
 </ul>
 @endsection
 @section('contenido')
-
+@include('master.mensajes')
 <div class="row">
 	<div class="col-xs-12">
 										
