@@ -15,6 +15,6 @@ class HistorialExpediente extends Model
     ];
 
     public function expediente(){
-    	return this->belongsto('App\Expediente');
+    	return $this->belongsto('App\Expediente');
     }
 }

@@ -106,7 +106,7 @@
 										<!-- div.table-responsive -->
 
 										<!-- div.dataTables_borderWrap -->
-		<div>
+		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
@@ -130,7 +130,7 @@
 							<td class="hidden-480">{{$expediente->user->estudiante->escuela->facultad->facultad}}</td>
 							<td align="center">{{$expediente->tipo_beca}}
 							</td>
-							<td class="hidden-480">
+							<td class="hidden-480" align="center">
 								@if($expediente->estado=='1')
 								<span class="label label-sm label-success">	Aprobado
 								</span>
@@ -141,7 +141,7 @@
 							</td>
 							<td>
 							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="#">
+								<a class="blue" href="{{route('jusuexpediente.show',$expediente->expediente)}}" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
 								<a class="green" href="#">
@@ -149,41 +149,34 @@
 								</a>
 							</div>
 							<div class="hidden-md hidden-lg">
+							<!--Cuando se comprime la pantalla-->
 							<div class="inline pos-rel">
 								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
 									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
 								</button>
 
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
+								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+									<li>
+										<a href="{{route('jusuexpediente.show',$expediente->expediente)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
+											<span class="blue">
+												<i class="ace-icon fa fa-search-plus bigger-120"></i>
+											</span>
+										</a>
+									</li>
 
-																		<li>
-																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</td>
-													</tr>
-													@endforeach
+									<li>
+										<a href="#" class="tooltip-success" data-rel="tooltip" title="Editar">
+											<span class="green">
+												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+											</span>
+										</a>
+									</li>
+								</ul>
+								</div>
+							</div>
+						</td>
+					</tr>
+					@endforeach
 
 				</tbody>
 			</table>

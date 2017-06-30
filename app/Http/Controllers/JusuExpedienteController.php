@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Expediente;
 use Redirect;
+use App\HistorialExpediente;
 
 class JusuExpedienteController extends Controller
 {
@@ -45,7 +46,9 @@ class JusuExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-
+        if(Expediente::where('expediente',$request->get('id_univ'))->first()){
+            return Redirect::to('jusuexpediente')->with('rojo','El estudiante ya cuenta con un expediente');
+        }
         $expediente = new Expediente;
         $expediente->expediente = $request->get('id_univ');
         $expediente->jefe_usu=Auth::user()->id;
@@ -63,7 +66,10 @@ class JusuExpedienteController extends Controller
      */
     public function show($id)
     {
-        //
+        //return $id;
+        $hexpedientes=HistorialExpediente::where('expediente_id',$id)->get();
+        $estudiante = Estudiante::where('user_id', $id)->first();
+        return view('users.jusu.expediente.verMas', compact('estudiante','hexpedientes'));
     }
 
     /**
@@ -74,7 +80,7 @@ class JusuExpedienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        //return $id;
     }
 
     /**

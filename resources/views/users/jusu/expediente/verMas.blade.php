@@ -34,11 +34,12 @@ $e  = '';
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list-alt"></i>
 	<li class="active">Expedientes</li>
-	<li class="active">Tester</li>
+	<li class="active">Ver más</li>
 </ul>
 @endsection
 @section('contenido')
 @if($estudiante)
+
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
@@ -49,17 +50,23 @@ $e  = '';
 									<div id="user-profile-1" class="user-profile row">
 										<div class="col-xs-12 col-sm-3 center">
 											<div>
+												@if($estudiante->user->expediente->estado=='1')
+												<span class="label label-sm label-success">	Aprobado
+												</span>
+												@elseif($estudiante->user->expediente->estado=='0')
+												<span class="label label-sm label-warning">	Desaprobado
+												</span>
+												@endif
+												<br>
 												<span class="profile-picture">
 													<img id="avatar" alt="Alex's Avatar" src="{{URL::to('imagenes/avatar/'.$estudiante->user->foto)}}">
 												</span>
 
 												<div class="space-4"></div>
 
-												<div style="background-color:#6600ff; border-radius: 5px;">
+												<div style="background-color:#6600ff; border-radius: 10px 10px 0 0;">
 													<div class="inline position-relative">
-															<i class="ace-icon fa fa-circle light-green"></i>
-															&nbsp;
-															<span class="white">{{$estudiante->user->nombres}}<br>{{$estudiante->user->apellido_paterno.' '.$estudiante->user->apellido_materno}}</span>
+														<span class="white">{{$estudiante->user->nombres}}<br>{{$estudiante->user->apellido_paterno.' '.$estudiante->user->apellido_materno}}<br>({{$estudiante->cod_univ}})</span>
 													</div>
 												</div>
 											</div>
@@ -68,6 +75,10 @@ $e  = '';
 
 											<div class="profile-contact-info">
 												<div class="profile-contact-links align-left">
+													
+													<p><label><i class="ace-icon fa fa-hand-o-right">	</i> Tipo de Beca: </label>
+														{{$estudiante->user->expediente->tipo_beca}}
+													</p>
 													<p><label><i class="ace-icon fa fa-hand-o-right">	</i> Facultad: </label>
 														{{$estudiante->escuela->facultad->facultad}}
 													</p>
@@ -77,16 +88,44 @@ $e  = '';
 													<p><label><i class="ace-icon fa fa-hand-o-right">	</i> Año de Estudio: </label>
 														{{$estudiante->anio_estudio}}
 													</p>
-
-
 												</div>
-
 											</div>
+											<div class="space-6"></div>
 
+											<div class="profile-contact-info">
+												<div class="profile-contact-links align-left"  style="border-radius: 0 0 10px 10px;">
+													<p><label>
+														<a href="#" title="Ver más">&nbsp;
+															<i class="ace-icon fa fa-search-plus"></i> &nbsp;Ficha Socio Económica
+														</a>
+														 </label>
+													</p>
+													<p><label>
+														<a href="#" title="Ver más">&nbsp;
+															<i class="ace-icon fa fa-search-plus"></i> &nbsp;Declaración Jurada del Apoderado
+														</a>
+														 </label>
+													</p>
+													<p><label>
+														<a href="#" title="Ver más">&nbsp;
+															<i class="ace-icon fa fa-search-plus"></i> &nbsp;Visita Domiciliaria
+														</a>
+														 </label>
+													</p>
+													<p><label>
+														<a href="#" title="Ver más">&nbsp;
+															<i class="ace-icon fa fa-search-plus"></i> &nbsp;Visita Hospitalaria
+														</a>
+														 </label>
+													</p>								
+													
+												</div>
+											</div>
 
 										</div>
 
 										<div class="col-xs-12 col-sm-9">
+										<div class="space-6"></div>
 											<?php
 $notas  = App\Notas::where('cod_univ', $estudiante->cod_univ)->get();
 $cont   = 0;
@@ -116,25 +155,19 @@ if ($promedionotas <= 10.5) {
 }
 
 ?>
-											<div class="center">
-											<table class="table table-bordered">
-												<thead>
-													<td>
-													 Modalidad de Ingreso
-													</td>
-													<td>
-													 Promedio ponderado (último año cursado)
-													</td>
-												</thead>
-												<tbody>
-													<tr>
-														<td class="{{$estadoa}}">{{$estudiante->m_ingreso->modalidad}}</td>
-														<td class="{{$estadob}}">{{$promedionotas}}</td>
-													</tr>
-												</tbody>
-											</table><br>
 
-											<table class="table table-bordered">
+
+<!--Modal testear-->
+		<div id="detalleNotas" class="modal fade" tabindex="-1">
+								<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h3 class="smaller lighter blue no-margin">Detalles de Notas</h3>
+											</div>
+
+											<div class="modal-body" align="center" >
+												<table class="table table-bordered" style="background-color: white">
 												<thead>
 													<td>
 														Curso
@@ -160,11 +193,79 @@ if ($promedionotas <= 10.5) {
 													@endforeach
 												</tbody>
 											</table>
+													<br>
+											</div>
+
+											<!-- <div class="modal-footer">
+												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
+													<i class="ace-icon fa fa-times"></i>
+													Close
+												</button>
+											</div> -->
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+		</div>
+<!--Fin modal Testear-->
+											<div class="center">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<td colspan="3">Recibo</td>
+														<td rowspan="2" style="vertical-align: middle;">
+															Promedio ponderado <br>(último año cursado)
+														</td>
+													</tr>
+													<tr>
+														<td>Número</td>
+														<td>Fecha</td>
+														<td>Monto</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>#######</td>
+														<td>2017</td>
+														<td>50.8</td>
+														<td class="{{$estadob}}" href="#detalleNotas" data-toggle="modal" title="Clic para más detalles">{{$promedionotas}}</td>
+													</tr>
+												</tbody>
+											</table><br>
+
+											
 											</div>
 
 											<div class="space-12"></div>
+											
+											<label><b>Historial</b></label>
+											@if($hexpedientes!='[]')
+											<table class="table table-bordered">
+												<thead>
+													<td>
+														Fecha
+													</td>
+													<td>
+														Comedor
+													</td>
+													<td>
+														Tipo
+													</td>
+												<tbody>
+													@foreach($hexpedientes as $he)
+													<tr>
+														<td>{{$nota->nota}}</td>
+														<td>{{$nota->semestre}}</td>
+														<td>{{$nota->modalidad}}</td>
+													</tr>
+													@endforeach
+												</tbody>
+											</table>
+											@else
+												<p><i> Aún no se han registrado expedientes para el estudiante</i></p>
+											@endif
+
+											<div class="space-12"></div>
 											<label><b>&nbsp;&nbsp;Más Información</b></label>
-											<div</ class="profile-user-info profile-user-info-striped">
+											<div class="profile-user-info profile-user-info-striped">
 												<div class="profile-info-row">
 													<div class="profile-info-name"> Código Universitario </div>
 
@@ -240,23 +341,14 @@ if ($promedionotas <= 10.5) {
 														<span >{{$estudiante->user->domicilio.' '.$estudiante->user->n_domicilio}}</span>
 													</div>
 												</div>
-
-
 											</div>
-
-
-
-
+											<br><br><br><br><br><br>
 									</div>
 								</div>
-
-
-
-
 								<!-- PAGE CONTENT ENDS -->
 							</div>
 <!--bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb-->
-<div class="space-12"></div>
+
 @else
 	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('jusuexpediente')}}">volver</a>
 @endif

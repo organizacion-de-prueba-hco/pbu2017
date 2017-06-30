@@ -43,18 +43,19 @@ $e  = '';
 
 <?php
 if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
-    echo "El estudiante ya tiene un Expediente";
+    $mensajeCabecera= "¡El estudiante ya tiene un Expediente!";
     $estadoBoton = 'disabled';
 
 } else {
     $estadoBoton = '';
+    $mensajeCabecera='';
 }
 
 ?>
 
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-
+								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
 								{!! Form::open(['route' => 'jusuexpediente.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
