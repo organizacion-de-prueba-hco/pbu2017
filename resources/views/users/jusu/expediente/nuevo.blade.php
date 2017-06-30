@@ -41,13 +41,13 @@ $e  = '';
 @if($estudiante)
 <div class="hr dotted"></div>
 
-<?php  
-if (App\Expediente::where('expediente',$estudiante->user_id)->first()) {
-	echo "El estudiante ya tiene un Expediente";
-	$estadoBoton='disabled';
+<?php
+if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
+    echo "El estudiante ya tiene un Expediente";
+    $estadoBoton = 'disabled';
 
-}else{
-	$estadoBoton='';
+} else {
+    $estadoBoton = '';
 }
 
 ?>
@@ -87,7 +87,18 @@ if (App\Expediente::where('expediente',$estudiante->user_id)->first()) {
 										<div class="col-sm-9">
 											<input type="text" id="form-field-1-1" placeholder="Text Field" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->escuela->escuela}}">
 										</div>
-									</div><br>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Tipo de Beca </label>
+										<div class="col-sm-9">
+<?php
+echo Form::select('TipoBeca', array('A', 'B', 'C'));
+?>
+
+										</div>
+									</div><br
+
 									<div class="form-group" >
 										<div class="col-sm-6">
 											<input type='hidden' value="{{$estudiante->user_id}}" name="id_univ">
