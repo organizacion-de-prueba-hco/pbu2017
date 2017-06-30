@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Estudiante;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
+use App\Expediente;
+use Redirect;
 
 class JusuExpedienteController extends Controller
 {
@@ -20,7 +23,8 @@ class JusuExpedienteController extends Controller
      */
     public function index()
     {
-        return view('users.jusu.expediente');
+        $expedientes=Expediente::get();
+        return view('users.jusu.expediente', compact('expedientes'));
     }
 
     /**
@@ -42,10 +46,12 @@ class JusuExpedienteController extends Controller
     public function store(Request $request)
     {
 
-        $expediente             = new Expediente;
-        $expediente->expediente = $request->get('cod_univ');
+        $expediente = new Expediente;
+
+        $expediente->expediente = $request->get('id_univ');
+        $expediente->jefe_usu=Auth::user()->id;
         $expediente->save();
-        return view('users.jusu.expediente');
+        return Redirect::to('jusuexpediente');
     }
 
     /**

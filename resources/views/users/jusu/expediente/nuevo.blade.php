@@ -40,6 +40,18 @@ $e  = '';
 @section('contenido')
 @if($estudiante)
 <div class="hr dotted"></div>
+
+<?php  
+if (App\Expediente::where('expediente',$estudiante->user_id)->first()) {
+	echo "El estudiante ya tiene un Expediente";
+	$estadoBoton='disabled';
+
+}else{
+	$estadoBoton='';
+}
+
+?>
+
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
@@ -78,9 +90,9 @@ $e  = '';
 									</div><br>
 									<div class="form-group" >
 										<div class="col-sm-6">
-											<input type='hidde'>
-											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" >
-											<i class="ace-icon fa fa-plus"></i>
+											<input type='hidden' value="{{$estudiante->user_id}}" name="id_univ">
+											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" {{$estadoBoton}}>
+											<i class="ace-icon fa fa-plus" ></i>
 											<span class="bigger-110">Registrar </span>
 											</button>
 										</div>

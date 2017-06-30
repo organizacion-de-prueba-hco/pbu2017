@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expediente extends Model
 {
+    //protected $primarykey = 'expediente';
     protected $table='expedientes';
     protected $fillable=[
     'expediente',
@@ -29,7 +30,7 @@ class Expediente extends Model
     ];
 
     public function user(){
-        return $this->belongsto('App\User');
+        return $this->belongsto('App\User','expediente');
     }
 
     public function desayunos(){
