@@ -111,13 +111,10 @@
 				<thead>
 					<tr>
 						<th class="center">Cod. Univ</th>
-						<th>Nombres</th>
-						<th>Apellidos</th>
-						<th class="hidden-480">Escuela</th>
-
-						<th>
-															Facultad
-						</th>
+						<th>Nombres y Apellidos</th>
+						<th>Escuela</th>
+						<th class="hidden-480">Facultad</th>
+						<th>Beca</th>
 						<th class="hidden-480">Estado</th>
 
 						<th></th>
@@ -125,162 +122,37 @@
 				</thead>
 
 				<tbody>
-													<tr>
-														<td class="center">
-															2012110690
-														</td>
-
-														<td>
-															Nombres
-														</td>
-														<td>Apellidos</td>
-														<td class="hidden-480">Escuela</td>
-														<td>Facultad</td>
-
-														<td class="hidden-480">
-															<span class="label label-sm label-danger">Inactivo</span>
-														</td>
-
-														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="blue" href="#" title="Ver más">
-																	<i class="ace-icon fa fa-search-plus bigger-130"></i>
-																</a>
-
-																<a class="green" href="#" title="Editar">
-																	<i class="ace-icon fa fa-pencil bigger-130"></i>
-																</a>
-															</div>
-
-															<div class="hidden-md hidden-lg">
-																<div class="inline pos-rel">
-																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																	</button>
-
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-info" data-rel="tooltip" title="Ver más">
-																				<span class="blue">
-																					<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Editar">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																	</ul>
-																</div>
-															</div>
-														</td>
-													</tr>
-
-													<tr>
-														<td class="center">
-															2012110612
-														</td>
-
-														<td>
-															Saúl Escandón
-														</td>
-														<td>Munguía Lucas</td>
-														<td class="hidden-480">2,595</td>
-														<td>Feb 18</td>
-
-														<td class="hidden-480">
-															<span class="label label-sm label-success">Registered</span>
-														</td>
-
-														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="blue" href="#">
-																	<i class="ace-icon fa fa-search-plus bigger-130"></i>
-																</a>
-
-																<a class="green" href="#">
-																	<i class="ace-icon fa fa-pencil bigger-130"></i>
-																</a>
-															</div>
-
-															<div class="hidden-md hidden-lg">
-																<div class="inline pos-rel">
-																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																	</button>
-
-																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																		<li>
-																			<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-																				<span class="blue">
-																					<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-																				<span class="green">
-																					<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-
-																		<li>
-																			<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-																				<span class="red">
-																					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</td>
-													</tr>
-													@foreach($expedientes as $expediente)
-													<tr>
-														<td class="center">
-															{{$expediente->user->estudiante->cod_univ}}
-														</td>
-
-														<td>
-															{{$expediente->user->nombres}}
-														</td>
-														<td>{{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}
-														</td>
-														<td class="hidden-480">
-															{{$expediente->user->estudiante->escuela->escuela}}
-														</td>
-														<td>
-															{{$expediente->user->estudiante->escuela->facultad->facultad}}
-														</td>
-
-														<td class="hidden-480">
-															<span class="label label-sm label-success">Registered</span>
-														</td>
-
-														<td>
-															<div class="hidden-sm hidden-xs action-buttons">
-																<a class="blue" href="#">
-																	<i class="ace-icon fa fa-search-plus bigger-130"></i>
-																</a>
-
-																<a class="green" href="#">
-																	<i class="ace-icon fa fa-pencil bigger-130"></i>
-																</a>
-															</div>
-
-															<div class="hidden-md hidden-lg">
-																<div class="inline pos-rel">
-																	<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-																		<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																	</button>
+					@foreach($expedientes as $expediente)
+						<tr>
+							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
+							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
+							<td>{{$expediente->user->estudiante->escuela->escuela}}</td>
+							<td class="hidden-480">{{$expediente->user->estudiante->escuela->facultad->facultad}}</td>
+							<td align="center">{{$expediente->tipo_beca}}
+							</td>
+							<td class="hidden-480">
+								@if($expediente->estado=='1')
+								<span class="label label-sm label-success">	Aprobado
+								</span>
+								@elseif($expediente->estado=='0')
+								<span class="label label-sm label-warning">	Desaprobado
+								</span>
+								@endif
+							</td>
+							<td>
+							<div class="hidden-sm hidden-xs action-buttons">
+								<a class="blue" href="#">
+									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+								</a>
+								<a class="green" href="#">
+									<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
+							</div>
+							<div class="hidden-md hidden-lg">
+							<div class="inline pos-rel">
+								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+								</button>
 
 																	<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 																		<li>
