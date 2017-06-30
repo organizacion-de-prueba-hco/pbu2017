@@ -42,7 +42,7 @@ $e  = '';
 <div class="hr dotted"></div>
 
 <?php
-if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
+if ($expediente) {
     $mensajeCabecera = "¡El estudiante ya tiene un Expediente!";
     $estadoBoton     = 'disabled';
 
@@ -93,12 +93,7 @@ if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Tipo de Beca </label>
 										<div class="col-sm-9">
-										<select name="TipoBeca" class="col-xs-10 col-sm-5" required>
-											<option value="">Seleccione una opción</option>
-											<option value="A">A</option>
-											<option value="B">B</option>
-											<option value="C">C</option>
-										</select>
+										{!!Form::select('TipoBeca',['A'=>'A','B'=>'B','C'=>'C'],$expediente->tipo_beca,['required','id'=>'beca','class'=>'col-xs-10 col-sm-5','placeholder' => 'Seleccione'])!!}
 										</div>
 									</div><br
 

@@ -81,8 +81,9 @@ class JusuExpedienteController extends Controller
     public function edit($id)
     {
         //return $id;
-
-        return view('users.jusu.expediente.editar');
+        $estudiante = Estudiante::where('user_id', $id)->first();
+        $expediente=Expediente::where('expediente',$id)->first();
+        return view('users.jusu.expediente.editar',compact('estudiante','expediente'));
     }
 
     /**
