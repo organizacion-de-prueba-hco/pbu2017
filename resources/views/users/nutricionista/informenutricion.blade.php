@@ -1,4 +1,4 @@
-@extends('master.jusu')
+@extends('master.nutriUser')
 @section('activacion')
 	<?php
 $oa = 'active';
@@ -23,7 +23,7 @@ $e  = '';
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list-alt"></i>
-	<li class="active">Expedientes</li>
+	<li class="active">Informe Nutricionales</li>
 </ul>
 @endsection
 @section('contenido')
