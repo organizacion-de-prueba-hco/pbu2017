@@ -178,7 +178,7 @@ $e  = '';
 									</li>
 
 									<li>
-										<a href="#" class="tooltip-success" data-rel="tooltip" title="Editar">
+										<a href="{{route('jusuexpediente.edit',$expediente->expediente)}}" class="tooltip-success" data-rel="tooltip" title="Editar">
 											<span class="green">
 												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 											</span>

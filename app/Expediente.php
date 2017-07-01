@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Expediente extends Model
 {
     //protected $primarykey = 'expediente';
+
     protected $table='expedientes';
+    protected $primaryKey='expediente';
+    public $incrementing = false;
     protected $fillable=[
     'expediente',
     'jefe_usu',

@@ -41,22 +41,9 @@ $e  = '';
 @if($estudiante)
 <div class="hr dotted"></div>
 
-<?php
-if ($expediente) {
-    $mensajeCabecera = "¡El estudiante ya tiene un Expediente!";
-    $estadoBoton     = 'disabled';
-
-} else {
-    $estadoBoton     = '';
-    $mensajeCabecera = '';
-}
-
-?>
-
-<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
-{!! Form::model($expediente,['route' => ['jusuexpediente.edit', $expediente->expediente],'method' => 'PUT', 'class'=>'form-horizontal']) !!}
+							<!-- PAGE CONTENT BEGINS -->
+{!! Form::model($expediente,['route' => ['jusuexpediente.update', $expediente->expediente],'method' => 'PUT', 'class'=>'form-horizontal']) !!}
+<div class="col-xs-12">	
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
 
@@ -95,23 +82,27 @@ if ($expediente) {
 										<div class="col-sm-9">
 										{!!Form::select('TipoBeca',['A'=>'A','B'=>'B','C'=>'C'],$expediente->tipo_beca,['required','id'=>'beca','class'=>'col-xs-10 col-sm-5','placeholder' => 'Seleccione'])!!}
 										</div>
-									</div><br
-
-									<div class="form-group" >
-										<div class="col-sm-6">
-											<input type='hidden' value="{{$estudiante->user_id}}" name="id_univ">
-											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" {{$estadoBoton}}>
-											<i class="ace-icon fa fa-plus" ></i>
-											<span class="bigger-110">Registrar </span>
-											</button>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Estado </label>
+										<div class="col-sm-9">
+										{!!Form::select('estado',['1'=>'Aprobado','0'=>'Desaprobado'],$expediente->estado,['required','id'=>'beca','class'=>'col-xs-10 col-sm-5','placeholder' => 'Seleccione'])!!}
 										</div>
 									</div>
-
-
+									<br>
+									<div class="form-group">
+										<div class="col-sm-6">
+											<input type='hidden' value="{{$estudiante->user_id}}" name="id_univ">
+											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5">
+											<i class="ace-icon fa  fa-pencil-square-o" ></i>
+											<span class="bigger-110">Editar</span>
+											</button>
+										</div>										
+									</div>
+									
+</div>
 			                    {!! Form::close() !!}
-
-
-								</div><!-- PAGE CONTENT ENDS -->
+								<!-- PAGE CONTENT ENDS -->
 
 @else
 	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('jusuexpediente')}}">volver</a>

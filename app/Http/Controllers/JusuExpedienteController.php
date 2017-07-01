@@ -80,7 +80,9 @@ class JusuExpedienteController extends Controller
      */
     public function edit($id)
     {
-        //return $id;
+        if (!Expediente::where('expediente', $id)->first()) {
+            return Redirect::to('jusuexpediente')->with('naranja', 'Solo se puede editar expedientes registrados');
+        }
         $estudiante = Estudiante::where('user_id', $id)->first();
         $expediente=Expediente::where('expediente',$id)->first();
         return view('users.jusu.expediente.editar',compact('estudiante','expediente'));
@@ -95,7 +97,16 @@ class JusuExpedienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return Expediente::find($id);
+        $exped=Expediente::find($id);
+        if ($exped) {
+            $exped->estado=$request->get('estado');
+            $exped->tipo_beca=$request->get('TipoBeca');
+            $exped->save();
+            return Redirect::to('jusuexpediente')->with('verde', 'Se editó correctamente');
+        }else{
+            return Redirect::to('jusuexpediente')->with('naranja', 'ID no reconocido');
+        }
     }
 
     /**
