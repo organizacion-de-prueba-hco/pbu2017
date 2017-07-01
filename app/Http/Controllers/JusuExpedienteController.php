@@ -10,6 +10,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Redirect;
 
+
 class JusuExpedienteController extends Controller
 {
     public function __construct()
@@ -53,8 +54,17 @@ class JusuExpedienteController extends Controller
         $expediente->expediente = $request->get('id_univ');
         $expediente->jefe_usu   = Auth::user()->id;
         $expediente->tipo_beca  = $request->get('TipoBeca');
+        $expediente->obs  = $request->get('obs');
         $expediente->estado     = '1';
         $expediente->save();
+        //Lo registramos tambien en el Historial Expediente
+        $UltimoExpediente=Expediente::orderBy('expediente','desc')->first();
+        $HistorialExpediente= new HistorialExpediente;
+        $HistorialExpediente->expediente_id=$UltimoExpediente->expediente;
+        $HistorialExpediente->tipo_beca= $request->get('TipoBeca');
+        $HistorialExpediente->obs= $request->get('obs');
+        $HistorialExpediente->resultado= $UltimoExpediente->estado;
+        $HistorialExpediente->save();
         return Redirect::to('jusuexpediente')->with('verde', 'Se registro un nuevo expediente');
     }
 
@@ -102,7 +112,16 @@ class JusuExpedienteController extends Controller
         if ($exped) {
             $exped->estado=$request->get('estado');
             $exped->tipo_beca=$request->get('TipoBeca');
+            $exped->obs=$request->get('obs');
             $exped->save();
+
+            //Ahora también en el Registro
+            $HistorialExpediente= new HistorialExpediente;
+            $HistorialExpediente->expediente_id=$exped->expediente;
+            $HistorialExpediente->tipo_beca= $request->get('TipoBeca');
+            $HistorialExpediente->obs= $request->get('obs');
+            $HistorialExpediente->resultado= $request->get('estado');
+            $HistorialExpediente->save();
             return Redirect::to('jusuexpediente')->with('verde', 'Se editó correctamente');
         }else{
             return Redirect::to('jusuexpediente')->with('naranja', 'ID no reconocido');

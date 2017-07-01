@@ -88,6 +88,11 @@ $e  = '';
 													<p><label><i class="ace-icon fa fa-hand-o-right">	</i> Año de Estudio: </label>
 														{{$estudiante->anio_estudio}}
 													</p>
+													@if($estudiante->user->expediente->obs)
+													<p><label><i class="ace-icon fa fa-hand-o-right">	</i> Observaciones: </label>
+														{{$estudiante->user->expediente->obs}}
+													</p>
+													@endif
 												</div>
 											</div>
 											<div class="space-6"></div>
@@ -239,22 +244,34 @@ if ($promedionotas <= 10.5) {
 											<label><b>Historial</b></label>
 											@if($hexpedientes!='[]')
 											<table class="table table-bordered">
-												<thead>
+												<thead align="center">
 													<td>
 														Fecha
 													</td>
 													<td>
-														Comedor
+														Tipo Beca
 													</td>
 													<td>
-														Tipo
+														Resultado
 													</td>
-												<tbody>
+													<td>
+														Obs
+													</td>
+												<tbody align="center">
 													@foreach($hexpedientes as $he)
 													<tr>
-														<td>{{$nota->nota}}</td>
-														<td>{{$nota->semestre}}</td>
-														<td>{{$nota->modalidad}}</td>
+														<td>{{$he->created_at}}</td>
+														<td>{{$he->tipo_beca}}</td>
+														<td >
+														@if($he->resultado=='1')
+															<span class="label label-sm label-success">	Aprobado
+															</span>
+														@elseif($he->resultado=='0')
+															<span class="label label-sm label-warning">	Desaprobado
+															</span>
+														@endif
+														</td>
+														<td align="left">{{$he->obs}}</td>
 													</tr>
 													@endforeach
 												</tbody>

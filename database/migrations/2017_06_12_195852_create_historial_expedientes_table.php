@@ -17,6 +17,7 @@ class CreateHistorialExpedientesTable extends Migration
             $table->integer('expediente_id')->unsigned();
             $table->string('tipo_beca');
             $table->string('resultado');
+            $table->string('obs',500);
             $table->foreign('expediente_id')->references('expediente')->on('expedientes')->onDelete('cascade');
             $table->timestamps();
         });

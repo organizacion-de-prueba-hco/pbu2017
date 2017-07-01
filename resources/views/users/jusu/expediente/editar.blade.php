@@ -89,6 +89,12 @@ $e  = '';
 										{!!Form::select('estado',['1'=>'Aprobado','0'=>'Desaprobado'],$expediente->estado,['required','id'=>'beca','class'=>'col-xs-10 col-sm-5','placeholder' => 'Seleccione'])!!}
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Observaciones </label>
+										<div class="col-sm-9">
+										{!!Form::textArea('obs',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','rows'=>'5','placeholder' => 'De haber alguna observación escriba aquí...'])!!}
+										</div>
+									</div>
 									<br>
 									<div class="form-group">
 										<div class="col-sm-6">

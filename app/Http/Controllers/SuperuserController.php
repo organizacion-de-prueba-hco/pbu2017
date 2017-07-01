@@ -100,7 +100,12 @@ class SuperuserController extends Controller
             $result=$archivo->get();
             foreach ($result as $key => $value) {
                //---------- Si existe el DNI registrado 
-                  if(Estudiante::where('cod_univ',$value->id_alumno)->first()){
+                    $sensorEstudiante=Estudiante::where('cod_univ',$value->id_alumno)->first();
+                  if($sensorEstudiante){
+                     $usuario=Estudiante::find($sensorEstudiante->user_id);
+                     //Actualizamos sus datos
+                     $usuario->anio_estudio=$value->anio_est;
+                     $usuario->save();   
                      continue;
                   }
                //----------------
