@@ -39,8 +39,7 @@ $e  = '';
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Lista de los informes nutricionales &nbsp;&nbsp;&nbsp;
-			<a href="#testear" data-toggle="modal"><span class="btn btn-warning btn-xs btn-round">Testear Estudiante</span></a>
-		</div>
+			</div>
 										<!--Modal Nuevo-->
 		<div id="nuevo-exp" class="modal fade" tabindex="-1">
 								<div class="modal-dialog">
@@ -78,43 +77,7 @@ $e  = '';
 									</div><!-- /.modal-dialog -->
 		</div>
 										<!--Fin modal Nuevo-->
-										<!--Modal testear-->
-		<div id="testear" class="modal fade" tabindex="-1">
-								<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Testear estudiante</h3>
-											</div>
-
-											<div class="modal-body" align="center">
-												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'jusuexpedientes/testeador', 'method' => 'POST']) !!}
-															<span class="input-icon">
-																<input type="number" placeholder="Testear ..." class="nav-search-input" maxlength="10"
-																required="required"
-																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod-test"
-																>
-																<i class="ace-icon fa fa-search nav-search-icon"></i>
-															</span>
-															<button class="btn btn-warning btn-sm btn-round submit">
-																<i class="ace-icon fa fa-share"></i>
-															</button>
-													{!!Form::close()!!}
-													<br>
-											</div>
-
-											<!-- <div class="modal-footer">
-												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
-													<i class="ace-icon fa fa-times"></i>
-													Close
-												</button>
-											</div> -->
-										</div><!-- /.modal-content -->
-									</div><!-- /.modal-dialog -->
-								</div>
-										<!--Fin modal Testear-->
+										
 
 										<!-- div.table-responsive -->
 
