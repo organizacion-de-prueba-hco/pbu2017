@@ -159,27 +159,214 @@ class JusuExpedienteController extends Controller
     public function getReporte(){
       $titulo='Reporte de Becas del Comedor UNHEVAL - '.Carbon::now();
       $becarios=Expediente::where('estado','1')->get();
+
       Excel::create($titulo, function($excel) use($becarios) {
-         $excel->sheet('Beca A', function($sheet) use($becarios) {
+         $excel->sheet('Beca A', function($sheet){
+            $becariosA=Expediente::where('estado','1')
+               ->join('users','expedientes.expediente','=','users.id')
+               ->join('estudiantes','users.id','=','estudiantes.user_id')
+               ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
+               ->where('expedientes.tipo_beca','A')->orderBy('escuelas.id')->get();
             // Cabecera
-            $sheet->mergeCells('A1:H1');
-            $sheet->cells('A1:H200', function($cells) {
+            $sheet->mergeCells('B1:H1');
+            $sheet->cells('B1:H2', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('E2:E1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('B2:B1000', function($cells) {
                $cells->setAlignment('center'); //ALineación Horizontal
                $cells->setValignment('center');//Alineacion vertical
             });
 
-            $sheet->row(1, array(
-                         'Be'
-             ));
-                    $sheet->appendRow(2, array(
-                        'Dimenciones','Preguntas','% Totalmente en desacuerdo', '% En desacuerdo', '% Parcialmente en desacuerdo','% Parcialmente de acuerdo','% De acuerdo','% Totalmente de acuerdo'
-                    ));
+            $sheet->row(1, array('','Comensales con Beca A'));
+            $sheet->appendRow(2, array('','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres'));
+            $fila=3;
+            foreach ($becariosA as $key => $b) {
+               $sheet->row($fila, array('',
+                  $fila-2,
+                  $b->user->estudiante->escuela->facultad->facultad,
+                  $b->user->estudiante->escuela->escuela,
+                  $b->user->estudiante->cod_univ,
+                  $b->user->apellido_paterno,
+                  $b->user->apellido_materno,
+                  $b->user->nombres)); 
+               $fila++;
+            }
+            //Estilos----------------------------------------------------
+            $sheet->setBorder('B1:H'.($fila-1), 'thin'); //Bordes
+            $sheet->cells('B1:H2', function($cells) {
+               $cells->setBackground('#A9D0F5'); //Color de fondo
+               // Set font
+               $cells->setFont(array(
+                 'family'     => 'Calibri',
+                  //'size'       => '16',
+                  'bold'       =>  true
+               ));
+            });
+            $sheet->cells('B1:G1', function($cells) {
+               $cells->setFontSize(16);
+            });
          });
-         $excel->sheet('Beca B', function($sheet) use($becarios) {
+         $excel->sheet('Beca B', function($sheet){
+            $becariosB=Expediente::where('estado','1')
+               ->join('users','expedientes.expediente','=','users.id')
+               ->join('estudiantes','users.id','=','estudiantes.user_id')
+               ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
+               ->where('expedientes.tipo_beca','B')->orderBy('escuelas.id')->get();
+            // Cabecera
+            $sheet->mergeCells('B1:H1');
+            $sheet->cells('B1:H2', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('E2:E1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('B2:B1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+
+            $sheet->row(1, array('','Comensales con Beca B'));
+            $sheet->appendRow(2, array('','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres'));
+            $fila=3;
+            foreach ($becariosB as $key => $b) {
+               $sheet->row($fila, array('',
+                  $fila-2,
+                  $b->user->estudiante->escuela->facultad->facultad,
+                  $b->user->estudiante->escuela->escuela,
+                  $b->user->estudiante->cod_univ,
+                  $b->user->apellido_paterno,
+                  $b->user->apellido_materno,
+                  $b->user->nombres)); 
+               $fila++;
+            }
+            //Estilos----------------------------------------------------
+            $sheet->setBorder('B1:H'.($fila-1), 'thin'); //Bordes
+            $sheet->cells('B1:H2', function($cells) {
+               $cells->setBackground('#A9D0F5'); //Color de fondo
+               // Set font
+               $cells->setFont(array(
+                 'family'     => 'Calibri',
+                  //'size'       => '16',
+                  'bold'       =>  true
+               ));
+            });
+            $sheet->cells('B1:G1', function($cells) {
+               $cells->setFontSize(16);
+            });
          });
-         $excel->sheet('Beca C', function($sheet) use($becarios) {
+         $excel->sheet('Beca C', function($sheet){
+            $becariosC=Expediente::where('estado','1')
+               ->join('users','expedientes.expediente','=','users.id')
+               ->join('estudiantes','users.id','=','estudiantes.user_id')
+               ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
+               ->where('expedientes.tipo_beca','C')->orderBy('escuelas.id')->get();
+            // Cabecera
+            $sheet->mergeCells('B1:H1');
+            $sheet->cells('B1:H2', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('E2:E1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('B2:B1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+
+            $sheet->row(1, array('','Comensales con Beca C'));
+            $sheet->appendRow(2, array('','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres'));
+            $fila=3;
+            foreach ($becariosC as $key => $b) {
+               $sheet->row($fila, array('',
+                  $fila-2,
+                  $b->user->estudiante->escuela->facultad->facultad,
+                  $b->user->estudiante->escuela->escuela,
+                  $b->user->estudiante->cod_univ,
+                  $b->user->apellido_paterno,
+                  $b->user->apellido_materno,
+                  $b->user->nombres)); 
+               $fila++;
+            }
+            //Estilos----------------------------------------------------
+            $sheet->setBorder('B1:H'.($fila-1), 'thin'); //Bordes
+            $sheet->cells('B1:H2', function($cells) {
+               $cells->setBackground('#A9D0F5'); //Color de fondo
+               // Set font
+               $cells->setFont(array(
+                 'family'     => 'Calibri',
+                  //'size'       => '16',
+                  'bold'       =>  true
+               ));
+            });
+            $sheet->cells('B1:G1', function($cells) {
+               $cells->setFontSize(16);
+            });
          });
-         $excel->sheet('Todos', function($sheet) use($becarios) {
+
+
+         $excel->sheet('Todos', function($sheet){
+            $becariosA=Expediente::where('estado','1')
+               ->join('users','expedientes.expediente','=','users.id')
+               ->join('estudiantes','users.id','=','estudiantes.user_id')
+               ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
+               ->orderBy('escuelas.id')->get();
+            // Cabecera
+            $sheet->mergeCells('B1:I1');
+            $sheet->cells('B1:I2', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('E2:E1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('B2:B1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('I2:I1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+
+            $sheet->row(1, array('','Relación de los comensales'));
+            $sheet->appendRow(2, array('','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','Beca'));
+            $fila=3;
+            foreach ($becariosA as $key => $b) {
+               $sheet->row($fila, array('',
+                  $fila-2,
+                  $b->user->estudiante->escuela->facultad->facultad,
+                  $b->user->estudiante->escuela->escuela,
+                  $b->user->estudiante->cod_univ,
+                  $b->user->apellido_paterno,
+                  $b->user->apellido_materno,
+                  $b->user->nombres,
+                  $b->tipo_beca)); 
+               $fila++;
+            }
+            //Estilos----------------------------------------------------
+            $sheet->setBorder('B1:I'.($fila-1), 'thin'); //Bordes
+            $sheet->cells('B1:I2', function($cells) {
+               $cells->setBackground('#A9D0F5'); //Color de fondo
+               // Set font
+               $cells->setFont(array(
+                 'family'     => 'Calibri',
+                  //'size'       => '16',
+                  'bold'       =>  true
+               ));
+            });
+            $sheet->cells('B1:I1', function($cells) {
+               $cells->setFontSize(16);
+            });
          });
       })->export('xls');
     }
