@@ -135,7 +135,7 @@ $e  = '';
 				</thead>
 
 				<tbody>
-					@foreach($expedientes as $expediente)
+					@foreach($nutriformes as $nutriforme)
 						<tr>
 							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
 							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
