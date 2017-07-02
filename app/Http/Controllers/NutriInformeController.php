@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\InformeNutricion;
 use Illuminate\Http\Request;
 
 class NutriInformeController extends Controller
 {
 
-    $this->middleware('auth');
-    $this->middleware('nutricionista');
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('nutricionista');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +23,7 @@ class NutriInformeController extends Controller
     public function index()
     {
         $nutrinformes = InformeNutricion::get();
-        return view('users.nutricionista.informenutricion', compact('informenutricion'));
+        return 'hola';
     }
 
     /**
