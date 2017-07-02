@@ -143,7 +143,7 @@
 								alt="Foto" />
 								<span class="user-info">
 									<small>{{Auth::user()->nombres}}</small>
-									{{Auth::user()->apellidos}}
+									{{Auth::user()->apellido_paterno}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
