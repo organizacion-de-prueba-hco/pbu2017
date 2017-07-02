@@ -58,7 +58,7 @@ class LogController extends Controller
                         return Redirect::to('asfichasocial');
                         break;
                     case '2-3':
-                        return Redirect::to('informenutri');
+                        return Redirect::to('nutriforme');
                         break;
                     default:
                         return Redirect::to('/')->with('rojo', 'Algo salió mal');

@@ -38,4 +38,4 @@ Route::resource('asexpagocentmed', 'AsistentSocialEpagoController');
 Route::resource('jusuexpediente', 'JusuExpedienteController');
 Route::controller('jusuexpedientes', 'JusuExpedienteController');
 //nutricionista
-Route::resource('informenutri', 'NutriInformeController');
+Route::resource('nutriforme', 'NutriInformeController');

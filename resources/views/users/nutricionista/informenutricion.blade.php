@@ -23,7 +23,7 @@ $e  = '';
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list-alt"></i>
-	<li class="active">Informe Nutricionales</li>
+	<li class="active">Informe Nutricional</li>
 </ul>
 @endsection
 @section('contenido')
@@ -47,7 +47,7 @@ $e  = '';
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Registrar Nuevo Expediente</h3>
+												<h3 class="smaller lighter blue no-margin">Registrar Nuevo Informe</h3>
 											</div>
 
 											<div class="modal-body" align="center">
@@ -123,41 +123,26 @@ $e  = '';
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Cod. Univ</th>
-						<th>Nombres y Apellidos</th>
-						<th>Escuela</th>
-						<th class="hidden-480">Facultad</th>
-						<th>Beca</th>
-						<th class="hidden-480">Estado</th>
-
+						<th class="center">Título</th>
+						<th class="center">Subtitulo</th>
+						<th class="center" class="hidden-480">Archivo</th>
 						<th></th>
 					</tr>
 				</thead>
 
 				<tbody>
-					@foreach($expedientes as $expediente)
+					@foreach($nutriformes as $nutriforme)
 						<tr>
-							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
-							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
-							<td>{{$expediente->user->estudiante->escuela->escuela}}</td>
-							<td class="hidden-480">{{$expediente->user->estudiante->escuela->facultad->facultad}}</td>
-							<td align="center">{{$expediente->tipo_beca}}
-							</td>
-							<td class="hidden-480" align="center">
-								@if($expediente->estado=='1')
-								<span class="label label-sm label-success">	Aprobado
-								</span>
-								@elseif($expediente->estado=='0')
-								<span class="label label-sm label-warning">	Desaprobado
-								</span>
-								@endif
-							</td>
+							<td class="center">{{$nutriforme->titulo}}</td>
+							<td> {{$nutriforme->subtitulo}}</td>
+							<td>{{$nutriforme->archivo}}</td>
+
 							<td>
 							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="{{route('jusuexpediente.show',$expediente->expediente)}}" title="Ver más">
+								<a class="blue" href="#" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
-								<a class="green" href="{{route('jusuexpediente.edit',$expediente->expediente)}}">
+								<a class="green" href="#">
 									<i class="ace-icon fa fa-pencil bigger-130"></i>
 								</a>
 							</div>
@@ -170,7 +155,7 @@ $e  = '';
 
 								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 									<li>
-										<a href="{{route('jusuexpediente.show',$expediente->expediente)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
+										<a href="#" class="tooltip-info" data-rel="tooltip" title="Ver más">
 											<span class="blue">
 												<i class="ace-icon fa fa-search-plus bigger-120"></i>
 											</span>
@@ -178,7 +163,7 @@ $e  = '';
 									</li>
 
 									<li>
-										<a href="{{route('jusuexpediente.edit',$expediente->expediente)}}" class="tooltip-success" data-rel="tooltip" title="Editar">
+										<a href="#" class="tooltip-success" data-rel="tooltip" title="Editar">
 											<span class="green">
 												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 											</span>

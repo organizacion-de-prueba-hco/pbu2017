@@ -23,9 +23,10 @@ class NutriInformeController extends Controller
 
     public function index()
     {
-        $nutrinformes = InformeNutricion::get();
-        return 'hola';
+        $nutriformes = InformeNutricion::get();
+        return view('users.nutricionista.informenutricion', compact('nutriformes'));
     }
+
 
     /**
      * Show the form for creating a new resource.
