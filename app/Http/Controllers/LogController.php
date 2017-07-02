@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Auth;
+use Illuminate\Http\Request;
 use Redirect;
-use Input;
-use DB;
 
 class LogController extends Controller
 {
@@ -44,14 +39,14 @@ class LogController extends Controller
     public function store(Request $request)
     {
         //return $request['usuario'].'  -  '.$request['password'];
-        if (Auth::attempt(['dni' => $request['usuario'], 'password' => $request['password'] ])) {
+        if (Auth::attempt(['dni' => $request['usuario'], 'password' => $request['password']])) {
             //return Auth::user()->nombres;
-             if (Auth::user()->estado_login=='1'){
+            if (Auth::user()->estado_login == '1') {
                 //return Redirect::to('');//->with('message','store');
                 $mensaje = "ingresó correctamente";
                 switch (Auth::user()->tipo_user) {
                     case '0':
-                        return Redirect::to('super-usuario'); 
+                        return Redirect::to('super-usuario');
                         break;
                     case '1':
                         return Redirect::to('docenteproyecto');
@@ -62,17 +57,20 @@ class LogController extends Controller
                     case '2-1':
                         return Redirect::to('asfichasocial');
                         break;
+                    case '2-3':
+                        return Redirect::to('informenutri');
+                        break;
                     default:
                         return Redirect::to('/')->with('rojo', 'Algo salió mal');
                         break;
                 }
-             } else{
-               
-                    return Redirect::to('/');
-                }
-        }else{
+            } else {
+
+                return Redirect::to('/');
+            }
+        } else {
             $mensaje = "El usuario o contraseña Incorrecto ";
-                    return Redirect::to('/')->with('rojo', $mensaje);
+            return Redirect::to('/')->with('rojo', $mensaje);
         }
     }
 

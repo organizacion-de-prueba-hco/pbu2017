@@ -1,4 +1,4 @@
-@extends('master.nutriUser')
+@extends('master.nutri')
 @section('activacion')
 	<?php
 $oa = 'active';
