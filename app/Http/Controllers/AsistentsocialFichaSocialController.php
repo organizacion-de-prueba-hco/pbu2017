@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Estudiante;
+use App\Expediente;
 
 class AsistentsocialFichaSocialController extends Controller
 {
@@ -20,7 +22,8 @@ class AsistentsocialFichaSocialController extends Controller
      */
     public function index()
     {
-        return view('users.asistentSocial.fichaSocEcon');
+        $fichaSocEcon=Expediente::get();
+        return view('users.asistentSocial.fichaSocEcon',compact('fichaSocEcon'));
     }
 
     /**
@@ -50,7 +53,7 @@ class AsistentsocialFichaSocialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //Generar PDF
     {
         //
     }
@@ -63,7 +66,7 @@ class AsistentsocialFichaSocialController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('users.asistentSocial.fichaSocEcon.verMasEditar');
     }
 
     /**

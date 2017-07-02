@@ -27,7 +27,7 @@
   <br><br><br>
   	<h4>error 403</h4>
     <h1><b>Acceso restringido</b></h1><br>
-    <img src="{{URL::to('images/restringido.png')}}" class="img-circle}}" alt="Bird" width="250em">
+    <img src="{{URL::to('imagenes/restringido.png')}}" class="img-circle}}" alt="Bird" width="250em">
     <br><h2><a href="{{url('/')}}" id="url"> Volver a inicio</a></h2>
   </div>
 </div>

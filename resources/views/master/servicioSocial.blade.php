@@ -139,7 +139,8 @@
 						
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/images/avatars/avatar5.png" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="{{URL::to('imagenes/avatar/'.Auth::user()->foto)}}"
+								alt="Foto" />
 								<span class="user-info">
 									<small>{{Auth::user()->nombres}}</small>
 									{{Auth::user()->apellidos}}
@@ -196,7 +197,7 @@
 
 				<ul class="nav nav-list">
 					<li class="{{$a}}">
-						<a href="asfichasocial">
+						<a href="{{url('asfichasocial')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Ficha Socio Econ. </span>
 						</a>
