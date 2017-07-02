@@ -197,9 +197,9 @@
 
 				<ul class="nav nav-list">
 					<li class="{{$oa}}">
-						<a href="{{url('jusuexpediente')}}">
+						<a href="{{url('nutriforme')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Informes Nutricionales </span>
+							<span class="menu-text"> Informe Nutricional </span>
 						</a>
 						<b class="arrow"></b>
 					</li>
