@@ -104,7 +104,7 @@ if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Observaciones </label>
 										<div class="col-sm-9">
-										{!!Form::textArea('obs',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','rows'=>'5','placeholder' => 'De haber alguna observación escriba aquí...'])!!}
+										{!!Form::textArea('obs',null,['id'=>'obs','class'=>'col-xs-10 col-sm-5','rows'=>'5','placeholder' => 'De haber alguna observación escriba aquí...'])!!}
 										</div>
 									</div>
 

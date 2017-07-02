@@ -34,6 +34,8 @@ $e  = '';
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
+		<a href="{{url('jusuexpedientes/reporte')}}" style="position: fixed; margin-top: -45px; " class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
+		
 		<div class="table-header">
 			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
@@ -271,7 +273,7 @@ $e  = '';
 					buttons: [
 					  {
 						"extend": "colvis",
-						"text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+						"text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Mostrar/Ocultar columnas</span>",
 						"className": "btn btn-white btn-primary btn-bold",
 						columns: ':not(:first):not(:last)'
 					  },
@@ -449,10 +451,10 @@ $e  = '';
 
 			})
 
-		//Testeador
-		function testeador(cod_univ){
-
-		}
+		//Para que salga las letritas negras del title
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		});
 		</script>
 
 

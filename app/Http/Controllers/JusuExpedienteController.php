@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
 use Redirect;
-
+use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class JusuExpedienteController extends Controller
 {
@@ -154,5 +155,32 @@ class JusuExpedienteController extends Controller
         return view('users.jusu.expediente.nuevo', compact('estudiante'));
         //$estudiante=Estudiante::where('cod_univ',$cod)->first();
         //return view('users.jusu.expediente.tester',compact('estudiante'));
+    }
+    public function getReporte(){
+      $titulo='Reporte de Becas del Comedor UNHEVAL - '.Carbon::now();
+      $becarios=Expediente::where('estado','1')->get();
+      Excel::create($titulo, function($excel) use($becarios) {
+         $excel->sheet('Beca A', function($sheet) use($becarios) {
+            // Cabecera
+            $sheet->mergeCells('A1:H1');
+            $sheet->cells('A1:H200', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+
+            $sheet->row(1, array(
+                         'Be'
+             ));
+                    $sheet->appendRow(2, array(
+                        'Dimenciones','Preguntas','% Totalmente en desacuerdo', '% En desacuerdo', '% Parcialmente en desacuerdo','% Parcialmente de acuerdo','% De acuerdo','% Totalmente de acuerdo'
+                    ));
+         });
+         $excel->sheet('Beca B', function($sheet) use($becarios) {
+         });
+         $excel->sheet('Beca C', function($sheet) use($becarios) {
+         });
+         $excel->sheet('Todos', function($sheet) use($becarios) {
+         });
+      })->export('xls');
     }
 }

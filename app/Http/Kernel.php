@@ -32,5 +32,6 @@ class Kernel extends HttpKernel
         //Nuestros Midellware
         'asistentsocial' => \App\Http\Middleware\Asistentsocial::class,
         'jusu' => \App\Http\Middleware\Jusu::class,
+        'SuperUsuario' => \App\Http\Middleware\Jusu::class,
     ];
 }

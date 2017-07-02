@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\InformeNutricion;
 use Illuminate\Http\Request;
+use App\Auth;
 
 class NutriInformeController extends Controller
 {

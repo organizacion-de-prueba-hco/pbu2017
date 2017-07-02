@@ -19,6 +19,11 @@ use App\Notas;
 
 class SuperuserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('SuperUsuario');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -97,8 +102,13 @@ class SuperuserController extends Controller
     public function cargar(){
         
         Excel::load('public/archivo.xlsx',function($archivo){
-            $result=$archivo->get();
+            $result=$archivo->get(); 
+            //$contJohn=0;
             foreach ($result as $key => $value) {
+                //$contJohn++;
+                //if($contJohn==50){
+                //    break;
+                //}
                //---------- Si existe el DNI registrado 
                     $sensorEstudiante=Estudiante::where('cod_univ',$value->id_alumno)->first();
                   if($sensorEstudiante){
