@@ -35,12 +35,12 @@ $e  = '';
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-			<a href="nutriforme/create" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Lista de los informes nutricionales &nbsp;&nbsp;&nbsp;
 			</div>
-												
+										
 
 										<!-- div.table-responsive -->
 

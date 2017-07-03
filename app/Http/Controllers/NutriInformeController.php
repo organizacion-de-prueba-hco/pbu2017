@@ -35,7 +35,7 @@ class NutriInformeController extends Controller
      */
     public function create()
     {
-        //
+        return view("users.nutricionista.informenutricion.nuevo");
     }
 
     /**
