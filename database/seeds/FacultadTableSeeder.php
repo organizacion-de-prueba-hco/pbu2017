@@ -11,7 +11,7 @@ class FacultadTableSeeder extends Seeder
      */
     public function run()
     {
-    	$array = array('Ciencias Agrarias', 'Medicina','Psicología','Enfermería','Obstetricia','Ciencias Administrativas y Turismo','Ciencias Contables y Financieras','Economía','Ciencias Sociales','Ciencias de la Educación','Derecho y Ciencias Políticas','Ingeniería Civil Arquitectura','Ingeniería Industrial y de Sistemas','Medicina Veterinaria y Zootecnia');
+    	$array = array('Ciencias Agrarias', 'Medicina','Psicología','Enfermería','Obstetricia','Ciencias Administrativas y Turismo','Ciencias Contables y Financieras','Economía','Ciencias Sociales','Ciencias de la Educación','Derecho y Ciencias Políticas','Ingeniería Civil y Arquitectura','Ingeniería Industrial y de Sistemas','Medicina Veterinaria y Zootecnia');
 
         for ($i=0; $i<count($array); $i++) { 
     		DB::table('facultads')->insert([

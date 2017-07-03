@@ -2,6 +2,8 @@
 @section('activacion')
 	<?php  
 		$a='active'; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
+		use Carbon\Carbon;
+		Carbon::setLocale('es');
 	?>
 @endsection
 @section('title','Ficha Socio Económica')
@@ -69,13 +71,13 @@
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1">
-								<form class="form-horizontal" id="validation-form" method="get">
+								{!! Form::model($user,['route' => ['jusuexpediente.update', $user->id],'method' => 'PUT', 'class'=>'form-horizontal']) !!}
 
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Apellidos y Nombres:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" />
+												<input type="text" class="col-xs-12 col-sm-6" value="{{$user->apellido_paterno.' '.$user->apellido_materno.' '.$user->nombres}}" disabled="true"/>
 											</div>
 										</div>
 									</div>
@@ -86,7 +88,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Código:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" />
+												<input type="text" class="col-xs-12 col-sm-6" value="{{$user->estudiante->cod_univ}}" disabled="true"/>
 											</div>
 										</div>
 									</div>
@@ -97,7 +99,17 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fecha de Nacimiento (edad):</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<label><input type="date"/> (edad)</label>
+												<label>
+													{!!Form::date('f_nac',null,['class'=>'col-12'])!!} 
+													<?php $fn= Carbon::parse($user->f_nac); ?>
+													@if($user->f_nac<Carbon::now() && $user->f_nac!='0000-00-00' )
+														 ({{Carbon::createFromDate(
+															$fn->format('Y'),
+															$fn->format('m'),
+															$fn->format('d')
+														)->age}} años)
+													@endif
+												</label>
 											</div>
 										</div>
 									</div>
@@ -108,9 +120,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Departamento de Nacimiento:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<select class="col-xs-12 col-sm-6">
-													<option> Huanuco</option>
-												</select>
+												{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Departamento'])!!}
 											</div>
 										</div>
 									</div>
@@ -121,9 +131,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Provincia de Nacimiento:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<select class="col-xs-12 col-sm-6">
-													<option> Huanuco</option>
-												</select>
+												{!!Form::select('provincia',$provincias,$user->distrito_naci->provincia->id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Provincia'])!!}
 											</div>
 										</div>
 									</div>
@@ -134,9 +142,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Distrito de Nacimiento:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<select class="col-xs-12 col-sm-6">
-													<option> Huanuco</option>
-												</select>
+												{!!Form::select('distrito',$distritos,$user->distrito_nac,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Distrito'])!!}
 											</div>
 										</div>
 									</div>
@@ -147,7 +153,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Nacionalidad:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="email" class="col-xs-12 col-sm-6" />
+												{!!Form::text('nacionalidad', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
 											</div>
 										</div>
 									</div>
@@ -158,7 +164,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">E-mail:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="email" class="col-xs-12 col-sm-6" />
+												{!!Form::email('email', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
 											</div>
 										</div>
 									</div>
@@ -169,10 +175,10 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Domicilio Actual:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" placeholder="Nombre de la calle, Av. Jr, etc" />
+												{!!Form::text('domicilio', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Nombre de la calle, Av. Jr, etc'])!!}
 											</div>
 											<div class="clearfix">
-												<input type="text" class="col-xs-9 col-sm-6" placeholder="Número, Lt., Mz., etc" style="margin-top: 2px;" />
+												{!!Form::text('n_domicilio', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Número, Lt., Mz., etc','style'=>'margin-top: 2px;'])!!}
 											</div>
 										</div>
 									</div>
@@ -183,7 +189,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Fecha de Ingreso-UNHEVAL:</label>
 											<div class="col-xs-12 col-sm-9">
 												<div class="clearfix">
-													<input type="date" name="f_ingreso" class="col-xs-12 col-sm-4" />
+													{!!Form::date('f_unheval',null,['class'=>'col-12'])!!} 
 												</div>
 											</div>
 									</div>
@@ -194,7 +200,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Facultad:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="email" class="col-xs-12 col-sm-6" />
+												{!!Form::text('facultad', $user->estudiante->escuela->facultad->facultad,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...','disabled'=>'true'])!!}
 											</div>
 										</div>
 									</div>
@@ -205,7 +211,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Escuela Profesional:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" />
+												{!!Form::text('facultad', $user->estudiante->escuela->escuela,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...','disabled'=>'true'])!!}
 											</div>
 										</div>
 									</div>
@@ -216,7 +222,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Año de Estudio:</label>
 											<div class="col-xs-12 col-sm-9">
 												<div class="clearfix">
-													<input type="text" class="col-xs-12 col-sm-6" />
+													{!!Form::text('anio_estudio', $user->estudiante->anio_estudio,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
 												</div>
 											</div>
 									</div>
@@ -227,9 +233,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Religión:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<select class="col-xs-12 col-sm-6">
-													<option> Huanuco</option>
-												</select>
+												{!!Form::select('religion_id',$religiones,$user->religion_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
 											</div>
 										</div>
 									</div>
@@ -240,9 +244,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Estado Civil:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<select class="col-xs-12 col-sm-6">
-													<option> Huanuco</option>
-												</select>
+												{!!Form::select('est_civil_id',$est_civils,$user->est_civil_id,['required', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
 											</div>
 										</div>
 									</div>
@@ -288,43 +290,59 @@
 									<div class="form-group">
 										<div class="col-xs-12 col-sm-12">
 											<div class="clearfix">
-												<table class="table">
+												<table class="table table-bordered" style="background-color:	#F5FFFA">
 												<thead>
 													<tr>
-														<td>Grado de Instrución</td>
-														<td>Nombre del Colegio</td>
-														<td>Tipo de Colegio</td>
-														<td>Distrito / DEpartamento</td>
-														<td>Año</td>
-														<td>Pensión S/.</td>
+														<th>Grado de Instrución</th>
+														<th>Nombre del Colegio</th>
+														<th>Tipo de Colegio</th>
+														<th>Distrito / Departamento</th>
+														<th>Año</th>
+														<th>Pensión S/.</th>
 													</tr>
-													</thead>
-													<tbody>
+												</thead>
+												<tbody>
 													<tr>
 														<td>4to. Secundaria</td>
-														<td><input type="text" name=""></td>
-														<td><input type="text" name=""></td>
-														<td align="center">
-															<select >
-																<option >Estatal</option>
-																<option> Privado</option>
-															</select>
+														<td>
+															{!!Form::textArea('v_colegio', $user->estudiante->colegio->v_colegio,['cols'=>'auto','rows'=>'3', 'placeholder'=>'Escribir aquí...'])!!}
 														</td>
-														<td><input type="text" name=""></td>
-														<td><input type="text" name=""></td>
+														<td align="center">
+															{!!Form::select('tipo',$tipoColegios,$user->estudiante->colegio->v_tipo,['required','placeholder' => 'Provincia'])!!}
+														</td>
+														<td align="center">
+															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento','placeholder' =>'Departamento']) !!}
+															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}<br>
+															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}
+														</td>
+														<td>
+															{!!Form::text('v_fecha', $user->estudiante->colegio->v_fecha,['placeholder'=>'Escribir aquí...'])!!}
+														</td>
+														<td>
+															{!!Form::text('v_pension', $user->estudiante->colegio->v_pension,['placeholder'=>'Escribir aquí...'])!!}
+														</td>
 													</tr>
 													<tr>
 														<td>5to. Secundaria</td>
-														<td><input type="text" name=""></td>
-														<td><input type="text" name=""></td>
-														<td align="center">
-															<select>
-																<option >Estatal</option>
-																<option> Privado</option>
-															</select>
+														<td>
+															{!!Form::textArea('iv_colegio', $user->estudiante->colegio->iv_colegio,['cols'=>'auto','rows'=>'3', 'placeholder'=>'Escribir aquí...'])!!}
 														</td>
-														<td><input type="text" name=""></td>
-														<td><input type="text" name=""></td>
+														<td align="center">
+															{!!Form::select('tipo',$tipoColegios,$user->estudiante->colegio->iv_tipo,['required','placeholder' => 'Provincia'])!!}
+														</td>
+														<td align="center">
+															<div>
+															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento','placeholder' => 'Departamento'])!!}
+															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}<br>
+															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}
+															</div>
+														</td>
+														<td>
+															{!!Form::text('iv_fecha', $user->estudiante->colegio->iv_fecha,['placeholder'=>'Escribir aquí...'])!!}
+														</td>
+														<td>
+															{!!Form::text('iv_pension', $user->estudiante->colegio->iv_pension,['placeholder'=>'Escribir aquí...'])!!}
+														</td>
 													</tr>
 													</tbody>
 												</table>
@@ -339,26 +357,20 @@
 									<h3 class="lighter block green">1.2 Modalidad por la que logro el ingreso
 									</h3>
 									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Subscribe to</label>
+										
 										<div class="col-xs-12 col-sm-9">
-											<div>
-												<label>
-													<input name="subscription" value="1" type="checkbox" class="ace" />
-													<span class="lbl"> Latest news and announcements</span>
-												</label>
-											</div>
-											<div>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Product offers and discounts</span>
-												</label>
-											</div>
-										</div>
+										{!!Form::text('mi', $user->estudiante->m_ingreso->modalidad,['class'=> 'col-xs-12 col-sm-6','disabled'=>'true' ,'placeholder'=>'Escribir aquí...'])!!}
+										</div><br>
+										
+
+									</div>
+									<div class="hr hr-dotted"></div>
+									<div align="center" class="col-12">
+											<button class="submit">Actualizar</button>
 									</div>
 
 									<div class="space-2"></div>
-									
-								</form>
+								{!! Form::close() !!}
 							</div>
 
 							<div class="step-pane" data-step="2">
@@ -419,10 +431,10 @@
 					<div class="wizard-actions">
 						<button class="btn btn-prev">
 							<i class="ace-icon fa fa-arrow-left"></i>
-							Prev
+							Anterior
 						</button>
 						<button class="btn btn-success btn-next" data-last="Finish">
-							Next
+							Siguiente
 							<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
 						</button>
 					</div>

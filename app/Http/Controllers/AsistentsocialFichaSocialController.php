@@ -8,6 +8,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Estudiante;
 use App\Expediente;
+use App\Departamento;
+use App\Distrito;
+use App\Provincia;
+use App\User;
+use App\Religion;
+use App\EstCivil;
+use App\TipoColegio;
+use Redirect;
 
 class AsistentsocialFichaSocialController extends Controller
 {
@@ -65,8 +73,18 @@ class AsistentsocialFichaSocialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        return view('users.asistentSocial.fichaSocEcon.verMasEditar');
+    {   
+        if(!Expediente::find($id)){
+          return Redirect::to('asfichasocial')->with('naranja','Expediente No identificado');
+        }
+        $user=User::find($id);
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+        $religiones=Religion::lists('religion','id');
+        $est_civils=EstCivil::lists('est_civil','id');
+        $tipoColegios=TipoColegio::lists('tipo','id');
+        return view('users.asistentSocial.fichaSocEcon.verMasEditar', compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios'));
     }
 
     /**

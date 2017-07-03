@@ -32,30 +32,26 @@
 		</div>
 										<!--Modal Nuevo-->
 		<div id="nuevo-exp" class="modal fade" tabindex="-1">
-								<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Registrar Nuevo Expediente</h3>
-											</div>
-
-											<div class="modal-body" align="center">
-												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'jusuexpedientes/nuevo', 'method' => 'POST']) !!}
-															<span class="input-icon">
-																<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10"
-																required="required"
-																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod-nuevo"
-																>
-																<i class="ace-icon fa fa-search nav-search-icon"></i>
-															</span>
-															<button class="btn btn-success btn-sm btn-round submit">
-																<i class="ace-icon fa fa-plus"></i>
-															</button>
-														{!!Form::close()!!}
-														<br>
-											</div>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Expediente</h3>
+					</div>
+					<div class="modal-body" align="center">
+						Ingrese Código Universitario del Estudiante<br>
+						{!! Form::open(['url' => 'jusuexpedientes/nuevo', 'method' => 'POST']) !!}
+						<span class="input-icon">
+							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+									name="cod-nuevo">
+							<i class="ace-icon fa fa-search nav-search-icon"></i>
+						</span>
+						<button class="btn btn-success btn-sm btn-round submit">
+							<i class="ace-icon fa fa-plus"></i>
+						</button>
+							{!!Form::close()!!}
+						<br>
+					</div>
 
 											<!-- <div class="modal-footer">
 												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
@@ -63,8 +59,8 @@
 													Close
 												</button>
 											</div> -->
-										</div><!-- /.modal-content -->
-									</div><!-- /.modal-dialog -->
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
 		</div>
 										<!--Fin modal Nuevo-->
 										<!--Modal testear-->

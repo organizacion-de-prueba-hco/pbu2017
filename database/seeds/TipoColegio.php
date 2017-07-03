@@ -12,10 +12,10 @@ class TipoColegio extends Seeder
     public function run()
     {
         DB::table('tipo_colegios')->insert([
-            'tipo' => 'Privado',                
+            'tipo' => 'Particular',                
         ]);
         DB::table('tipo_colegios')->insert([
-            'tipo' => 'Público',                
+            'tipo' => 'Estatal',                
         ]);
         DB::table('tipo_colegios')->insert([
             'tipo' => 'No especifica',                
