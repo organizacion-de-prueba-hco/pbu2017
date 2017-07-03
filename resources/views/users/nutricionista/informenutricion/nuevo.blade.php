@@ -78,11 +78,13 @@ $e  = '';
 								</h4>
 								
 <!-- inicio formulario -->
+								
+								{!! Form::open(['route' => 'nutriforme.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Título: </label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="Escriba aquí" class="col-xs-10 col-sm-5" value="">
+											<input type="text" id="form-field-1" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
 										</div>
 								</div><br><br>
 
@@ -90,7 +92,7 @@ $e  = '';
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Subtítulo: </label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="Escriba aquí" class="col-xs-10 col-sm-5" value="">
+											<input type="text" id="form-field-1" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
 										</div>
 								</div><br><br>
 								
@@ -102,7 +104,8 @@ $e  = '';
 										</div>
 								</div><br><br>
 
-								<div  class="wysiwyg-editor" id="editor1" ></div>
+								<div  class="wysiwyg-editor" id="editor1">
+								</div>
 								
 								<div class="form-group" >
 										<div class="col-sm-6">
@@ -113,6 +116,7 @@ $e  = '';
 										</div>
 									</div>
 
+								 {!! Form::close() !!}
 
 								
 

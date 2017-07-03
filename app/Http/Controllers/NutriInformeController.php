@@ -46,7 +46,7 @@ class NutriInformeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'aqui editas para guardar';
     }
 
     /**
