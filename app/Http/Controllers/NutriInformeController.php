@@ -53,7 +53,7 @@ class NutriInformeController extends Controller
         $informenutricion->titulo=$request->get('titulo');
         $informenutricion->subtitulo=$request->get('subtitulo');
         $informenutricion->archivo=$request->get('archivo');
-        //$informenutricion->contenido=$request->get("d");
+        $informenutricion->contenido=$request->get("contenido-n");
         
         $informenutricion->save();
         return Redirect::to('nutriforme')->with('verde', 'Se registro un nuevo informe');
