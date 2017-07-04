@@ -48,7 +48,7 @@ $e  = '';
 								
 <!-- inicio formulario -->
 								
-								{!! Form::open(['route' => 'nutriforme.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+								{!! Form::model($informenutricion,['route' => ['nutriforme.update', $informenutricion->id], 'method' => 'PUT', 'class'=>'form-horizontal']) !!}
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Título: </label>
 										<div class="col-sm-9">
@@ -72,13 +72,13 @@ $e  = '';
 								</div><br><br>
 								<!-- pegar el editor-->
 								
-									<textarea id="contenido-n" name="contenido-n" >{{$informenutricion->contenido}}</textarea>
-								
+									<textarea id="contenido-n" name="contenido-n"></textarea>
+
 								
 
 								<div class="form-group" >
 										<div class="col-sm-6">
-										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" onclick="capturaNuevo()">
+										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" onclick="capturaActualizar()">
 											<i class="ace-icon fa fa-plus" ></i>
 											<span class="bigger-110">Guardar </span>
 											</button>
@@ -99,9 +99,10 @@ $e  = '';
   //TextArea Nuevo
   $(document).ready(function() {
         $("#contenido-n").Editor();
+       $("#contenido-n").Editor("setText", '<?php echo $informenutricion->contenido; ?>');
   });
   //Capturar texto con sus estilos Nuevo
-  function capturaNuevo(){
+  function capturaActualizar(){
     $('#contenido-n').val($("#contenido-n").Editor("getText"));
   }
 </script>

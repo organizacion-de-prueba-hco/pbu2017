@@ -93,7 +93,13 @@ class NutriInformeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $informenutricion=InformeNutricion::find($id);
+        $informenutricion->titulo=$request->get('titulo');
+        $informenutricion->subtitulo=$request->get('subtitulo');
+        $informenutricion->archivo=$request->get('archivo');
+        $informenutricion->contenido=$request->get('contenido-n');
+        $informenutricion->save();
+        return Redirect::to('nutriforme')->with('verde', 'Se actualizo el informe');
     }
 
     /**
