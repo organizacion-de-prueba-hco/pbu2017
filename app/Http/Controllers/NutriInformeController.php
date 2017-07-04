@@ -80,7 +80,8 @@ class NutriInformeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $informenutricion=InformeNutricion::where('id',$id)->first();
+        return view('users.nutricionista.informenutricion.editar', compact('informenutricion'));
     }
 
     /**

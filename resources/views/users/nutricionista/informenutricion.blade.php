@@ -17,7 +17,7 @@ $d4 = '';
 $e  = '';
 ?>
 @endsection
-@section('titulo','Editar Informe')
+@section('titulo','Informes')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -28,7 +28,7 @@ $e  = '';
 @endsection
 @section('contenido')
 @include('master.mensajes')
-<div class="row">
+
 	<div class="col-xs-12">
 
 		<div class="clearfix">
@@ -53,6 +53,7 @@ $e  = '';
 						<th class="center">Subtitulo</th>
 						<th class="center" class="hidden-480">Archivo</th>
 						<th class="center" class="hidden-480">Fecha de Creación</th>
+						
 						<th></th>
 					</tr>
 				</thead>
@@ -67,10 +68,10 @@ $e  = '';
 
 							<td>
 							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="#" title="Ver más">
+								<a class="blue" href="{{route('nutriforme.show',$nutriforme->id)}}" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
-								<a class="green" href="#">
+								<a class="green" href="{{route('nutriforme.edit',$nutriforme->id)}}">
 									<i class="ace-icon fa fa-pencil bigger-130"></i>
 								</a>
 							</div>
@@ -83,17 +84,17 @@ $e  = '';
 
 								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 									<li>
-										<a href="#" class="tooltip-info" data-rel="tooltip" title="Ver más">
+										<a href="{{route('nutriforme.show',$nutriforme->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
 											<span class="blue">
 												<i class="ace-icon fa fa-search-plus bigger-120"></i>
 											</span>
 										</a>
 									</li>
-
 									<li>
 										<a href="{{route('nutriforme.edit',$nutriforme->id)}}" class="tooltip-success" data-rel="tooltip" title="Editar">
 											<span class="green">
-												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+												<i class="ace-icon fa fa-pencil-square-o bigger-120">
+												</i>
 											</span>
 										</a>
 									</li>
@@ -108,7 +109,7 @@ $e  = '';
 			</table>
 		</div>
 	</div>
-</div>
+
 
 
 @endsection

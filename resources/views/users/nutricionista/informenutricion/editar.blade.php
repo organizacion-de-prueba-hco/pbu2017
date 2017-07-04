@@ -52,14 +52,14 @@ $e  = '';
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Título: </label>
 										<div class="col-sm-9">
-											<input type="text" name="titulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
+											<input type="text" name="titulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="{{$informenutricion->titulo}}">
 										</div>
 								</div><br><br>
 
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Subtítulo: </label>
 										<div class="col-sm-9">
-											<input type="text" name="subtitulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
+											<input type="text" name="subtitulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="{{$informenutricion->subtitulo}}">
 										</div>
 								</div><br><br>
 								
@@ -67,12 +67,12 @@ $e  = '';
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Adjunte archivo: </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="">
+											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="{{$informenutricion->archivo}}">
 										</div>
 								</div><br><br>
 								<!-- pegar el editor-->
 								
-									<textarea id="contenido-n" name="contenido-n" ></textarea>
+									<textarea id="contenido-n" name="contenido-n" >{{$informenutricion->contenido}}</textarea>
 								
 								
 
