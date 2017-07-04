@@ -130,36 +130,49 @@ class AsistentsocialFichaSocialController extends Controller
       return $this->recargarFormularios('formularios.step-22',$id);
     }
     public function postNuevocfamiliar(){
-         $cfamiliar->user_id=Input::get('user_id');
+        //Primero todos los campos deben estar llenos en caso contrario, retorna sin hacr nada
+        //return Input::get('parentesco');
+        if ( (Input::get('nombres')=='') && (Input::get('parentesco')=='') && (Input::get('dni')=='') && (Input::get('grado_instrucion')=='') && (Input::get('ocupacion')=='') && (Input::get('residencia')=='')) 
+        {
+                return $this->recargarFormularios('formularios.step-22',Input::get('user_id') );
+        }
         $cfamiliar= new Cuadrofamiliar;
-        if (Input::get('nombres')) {
-            $cfamiliar->nombres=Input::get('nombres');
-        }
-        if (Input::get('parentesco')) {
-            $cfamiliar->parentesco=Input::get('parentesco');
-        }
-        if (Input::get('f_nac')) {
-            $cfamiliar->f_nac=Input::get('f_nac');
-        }
-        if (Input::get('dni')) {
-            $cfamiliar->dni=Input::get('dni');
-        }
-        if (Input::get('grado_instrucion')) {
-            $cfamiliar->grado_instrucion=Input::get('grado_instrucion');
-        }
-        if (Input::get('ocupacion')) {
-            $cfamiliar->ocupacion=Input::get('ocupacion');
-        }
-        if (Input::get('residencia')) {
-            $cfamiliar->residencia=Input::get('residencia');
-        }
-        $cfamiliar->save();
+        // if (Input::get('nombres')!='') {
+        //     $cfamiliar->nombres=Input::get('nombres');
+        // }
+        // if (Input::get('parentesco')!='') {
+        //     $cfamiliar->parentesco=Input::get('parentesco');
+        // }
+        // if (Input::get('f_nac')!='') {
+        //     $cfamiliar->f_nac=Input::get('f_nac');
+        // }
+        // if (Input::get('dni')!='') {
+        //     $cfamiliar->dni=Input::get('dni');
+        // }
+        // if (Input::get('grado_instrucion')!='') {
+        //     $cfamiliar->grado_instrucion=Input::get('grado_instrucion');
+        // }
+        // if (Input::get('ocupacion')!='') {
+        //     $cfamiliar->ocupacion=Input::get('ocupacion');
+        // }
+        // if (Input::get('residencia')!='') {
+        //     $cfamiliar->residencia=Input::get('residencia');
+        // }
+        //$cfamiliar->user_id=Input::get('user_id');
+        
         $cfamiliar->fill(Input::all())->save();
+        $cfamiliar->save();
 
         //Para capturar la fecha modificación de la ficha
         $mensaje="Se creo nuevo integrante";
         return $this->recargarFormularios('formularios.step-22',Input::get('user_id') );
         //return back()->with('verde', $mensaje);
+    }
+    public function postRelacionesfamiliares(){
+        $rfamiliar=Estudiante::find(Input::get('id'));
+        $rfamiliar->fill(Input::all())->save();
+        return $this->recargarFormularios('formularios.step-22',Input::get('id'));
+        //return Redirect::to('estudiantefichasocial')->with('verde', $mensaje);
     }
      public function recargarFormularios($form,$id){
         $user=User::find($id);
@@ -170,7 +183,8 @@ class AsistentsocialFichaSocialController extends Controller
         $est_civils=EstCivil::lists('est_civil','id');
         $tipoColegios=TipoColegio::lists('tipo','id');
         $cfamiliares=Cuadrofamiliar::where('user_id',$id)->get();
-        $instruccion=array( '1'=>'Primaria completa',
+        $instruccion=array( ''=>'Seleccione una opción',
+                            '1'=>'Primaria completa',
                             '2'=>'Primaria incompleta',
                             '3'=>'Secundaria completa',
                             '4'=>'Secundaria incompleta',
@@ -179,7 +193,17 @@ class AsistentsocialFichaSocialController extends Controller
                             '7' =>'Universitario completo',
                             '8' =>'Universitario incompleta',
                             '9' =>'Posgrado');
+        $TipoFamilias=array( ''=>'Seleccione una opción',
+                            '1'=>'Organizada',
+                            '2'=>'Desintegrada',
+                            '3'=>'Armoniosa',
+                            '4'=>'Conflictiva',
+                            '5' =>'Otro');
+        $TratoPadres=array( ''=>'Seleccione una opción',
+                            '1'=>'Buena',
+                            '2'=>'Regular',
+                            '3'=>'Mala');
         
-        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion')); 
+        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres')); 
      }
 }

@@ -55,20 +55,19 @@ $e  = '';
 										<div class="col-sm-9">
 											<input type="text" name="titulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
 										</div>
-								</div><br><br>
+								</div>
 
 								<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Subtítulo: </label>
-										<div class="col-sm-9">
-											<input type="text" name="subtitulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
-										</div>
-								</div><br><br>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Subtítulo: </label>
+									<div class="col-sm-9">
+										<input type="text" name="subtitulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
+									</div>
+								</div>
 								
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Adjunte archivo: </label>
-
 										<div class="col-sm-9">
-											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="">
+											<input type="file" name="archivo" class="col-xs-10 col-sm-5">
 										</div>
 								</div>
 								<!-- pegar el editor-->
@@ -89,7 +88,7 @@ $e  = '';
 											<span class="bigger-110">Guardar </span>
 											</button>
 										</div>
-									</div>
+								</div>
 
 								 {!! Form::close() !!}
 

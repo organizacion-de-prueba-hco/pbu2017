@@ -41,6 +41,33 @@
                               </tbody>
                             </table>
                             </div><hr>
-                            <br><br>
-                            <!-- end user projects -->
+  <h3 class="lighter block green">2.1. Relaciones Familiares </h3>
+
+  {!! Form::open(['method'=>'post','id'=>'elformulario2-1-rf','class'=>'form-horizontal form-label-left']) !!}
+  
+                  <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Familia:</label>
+                    <div class="col-xs-12 col-sm-9">
+                      <div class="clearfix">
+                        {!!Form::select('tipo_familia',$TipoFamilias,$user->estudiante->tipo_familia,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Religión:</label>
+                    <div class="col-xs-12 col-sm-9">
+                      <div class="clearfix">
+                        {!!Form::select('trato_padres',$TratoPadres,$user->estudiante->trato_padres,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6'])!!}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="hr hr-dotted"></div>
+                  <div align="center" ><br>
+                                <input type="hidden" name="id" value="{{$user->id}}">
+                                <input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-22')"><br><br></div>
+
+                  <div class="space-2"></div>
+                {!! Form::close() !!}
 </div>

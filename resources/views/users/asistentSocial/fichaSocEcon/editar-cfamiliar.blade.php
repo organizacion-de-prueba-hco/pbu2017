@@ -41,7 +41,7 @@
                       <div class="item form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                             <label>GRADO DE INSTRUCCIÓN</label>
-                              {!!Form::select('grado_instrucion',$instruccion,null,['required','id'=>'cf_instruccion', 'class'=>'form-control unidad','placeholder' => 'Seleccione'])!!}
+                              {!!Form::select('grado_instrucion',$instruccion,null,['required','id'=>'cf_instruccion', 'class'=>'form-control unidad'])!!}
                             </div>
                       </div>
                       
