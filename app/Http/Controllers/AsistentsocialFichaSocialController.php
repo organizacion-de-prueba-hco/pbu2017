@@ -136,30 +136,7 @@ class AsistentsocialFichaSocialController extends Controller
         {
                 return $this->recargarFormularios('formularios.step-22',Input::get('user_id') );
         }
-        $cfamiliar= new Cuadrofamiliar;
-        // if (Input::get('nombres')!='') {
-        //     $cfamiliar->nombres=Input::get('nombres');
-        // }
-        // if (Input::get('parentesco')!='') {
-        //     $cfamiliar->parentesco=Input::get('parentesco');
-        // }
-        // if (Input::get('f_nac')!='') {
-        //     $cfamiliar->f_nac=Input::get('f_nac');
-        // }
-        // if (Input::get('dni')!='') {
-        //     $cfamiliar->dni=Input::get('dni');
-        // }
-        // if (Input::get('grado_instrucion')!='') {
-        //     $cfamiliar->grado_instrucion=Input::get('grado_instrucion');
-        // }
-        // if (Input::get('ocupacion')!='') {
-        //     $cfamiliar->ocupacion=Input::get('ocupacion');
-        // }
-        // if (Input::get('residencia')!='') {
-        //     $cfamiliar->residencia=Input::get('residencia');
-        // }
-        //$cfamiliar->user_id=Input::get('user_id');
-        
+        $cfamiliar= new Cuadrofamiliar;       
         $cfamiliar->fill(Input::all())->save();
         $cfamiliar->save();
 

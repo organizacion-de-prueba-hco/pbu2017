@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class InformeNutricion extends Model
 {
     protected $table='informe_nutricions';
+    protected $primaryKey='id';
     protected $fillable=[
+    
     'nutricionista',
     'titulo',
     'subtitulo',
