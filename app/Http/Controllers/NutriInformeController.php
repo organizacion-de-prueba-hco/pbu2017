@@ -52,7 +52,7 @@ class NutriInformeController extends Controller
         $informenutricion->titulo=$request->get('titulo');
         $informenutricion->subtitulo=$request->get('subtitulo');
         $informenutricion->archivo=$request->get('archivo');
-        $informenutricion->contenido=$request->getElementById("editor1").innerText;
+        $informenutricion->contenido=$request->get("d");
         
         $informenutricion->save();
         return view('users.nutricionista.informenutricion', compact('nutriformes'));

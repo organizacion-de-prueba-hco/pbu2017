@@ -103,6 +103,7 @@ $e  = '';
 								</div><br><br>
 
 								<div  class="wysiwyg-editor form-group" id="editor1" name="editor1">
+								{{$d}}
 								
 								</div>
 								<div class="form-group" >
@@ -184,6 +185,24 @@ $e  = '';
 		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
 	}
 
+//obtener dato del div
+var inputValue = $("#editor1").html;     
+    $.ajax( {
+        type : "POST",
+        cache : false,
+        async : true,
+        global : false,
+        url : "nutriforme/store",
+        data : {
+            editor1 : escape(inputValue),
+        }
+    } ).done( function ( data )
+    {   
+        //Handle event send done;
+    } )
+
+
+
 	//$('#editor1').ace_wysiwyg();//this will create the default editor will all buttons
 
 	//but we want to change a few buttons colors for the third style
@@ -259,6 +278,11 @@ $e  = '';
 	});
 	
 	
+
+
+
+
+
 
 
 	$('[data-toggle="buttons"] .btn').on('click', function(e){
