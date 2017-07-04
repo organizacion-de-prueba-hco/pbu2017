@@ -19,6 +19,7 @@
 @section('contenido')
 @include('master.mensajes')
 @include('users.asistentSocial.fichaSocEcon.editar-cfamiliar')
+@include('users.asistentSocial.fichaSocEcon.nuevo-cfamiliar')
 <div class="row">
 	<div class="col-xs-12">
 		<!-- PAGE CONTENT BEGINS -->

@@ -19,6 +19,7 @@ $e  = '';
 @endsection
 @section('titulo','Nuevo Informe')
 @section('estilos')
+	{!!Html::style('editor/editor.css',['rel'=>'stylesheet'])!!}
 	<style type="text/css">
 		label{
 			font-size: 14px;
@@ -69,16 +70,21 @@ $e  = '';
 										<div class="col-sm-9">
 											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="">
 										</div>
-								</div><br><br>
+								</div>
 								<!-- pegar el editor-->
-								
-									<textarea id="contenido-n" name="contenido-n"></textarea>
-								
-								
+								<div class="item form-group">
+                        			<div class="col-md-12 col-sm-12 col-xs-12">
+                          				<label>Contenido</label>
+                          					<div class="col-lg-12 nopadding">
+                           			 			<textarea id="contenido-n" name="contenido-n"></textarea> 
+                          					</div>
+                          				<br/>
+                        			</div>
+                     			 </div>
 
 								<div class="form-group" >
 										<div class="col-sm-6">
-										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5">
+										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" onclick="capturaNuevo()">
 											<i class="ace-icon fa fa-plus" ></i>
 											<span class="bigger-110">Guardar </span>
 											</button>
@@ -91,6 +97,7 @@ $e  = '';
 
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
+
 			
 @endsection
 @section('script')

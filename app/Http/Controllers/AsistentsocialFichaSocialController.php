@@ -129,6 +129,38 @@ class AsistentsocialFichaSocialController extends Controller
       CuadroFamiliar::destroy(Input::get('id'));
       return $this->recargarFormularios('formularios.step-22',$id);
     }
+    public function postNuevocfamiliar(){
+         $cfamiliar->user_id=Input::get('user_id');
+        $cfamiliar= new Cuadrofamiliar;
+        if (Input::get('nombres')) {
+            $cfamiliar->nombres=Input::get('nombres');
+        }
+        if (Input::get('parentesco')) {
+            $cfamiliar->parentesco=Input::get('parentesco');
+        }
+        if (Input::get('f_nac')) {
+            $cfamiliar->f_nac=Input::get('f_nac');
+        }
+        if (Input::get('dni')) {
+            $cfamiliar->dni=Input::get('dni');
+        }
+        if (Input::get('grado_instrucion')) {
+            $cfamiliar->grado_instrucion=Input::get('grado_instrucion');
+        }
+        if (Input::get('ocupacion')) {
+            $cfamiliar->ocupacion=Input::get('ocupacion');
+        }
+        if (Input::get('residencia')) {
+            $cfamiliar->residencia=Input::get('residencia');
+        }
+        $cfamiliar->save();
+        $cfamiliar->fill(Input::all())->save();
+
+        //Para capturar la fecha modificación de la ficha
+        $mensaje="Se creo nuevo integrante";
+        return $this->recargarFormularios('formularios.step-22',Input::get('user_id') );
+        //return back()->with('verde', $mensaje);
+    }
      public function recargarFormularios($form,$id){
         $user=User::find($id);
         $departamentos=Departamento::lists('departamento','id');
