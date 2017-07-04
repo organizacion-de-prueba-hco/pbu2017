@@ -82,17 +82,15 @@ $e  = '';
 								{!! Form::open(['route' => 'nutriforme.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Título: </label>
-
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
+											<input type="text" name="titulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
 										</div>
 								</div><br><br>
 
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Subtítulo: </label>
-
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
+											<input type="text" name="subtitulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
 										</div>
 								</div><br><br>
 								
@@ -100,13 +98,13 @@ $e  = '';
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Adjunte archivo: </label>
 
 										<div class="col-sm-9">
-											<input type="text" id="form-field-1" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="">
+											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="">
 										</div>
 								</div><br><br>
 
-								<div  class="wysiwyg-editor" id="editor1">
-								</div>
+								<div  class="wysiwyg-editor form-group" id="editor1" name="editor1">
 								
+								</div>
 								<div class="form-group" >
 										<div class="col-sm-6">
 										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5">

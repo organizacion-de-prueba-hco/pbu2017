@@ -52,6 +52,7 @@ $e  = '';
 						<th class="center">Título</th>
 						<th class="center">Subtitulo</th>
 						<th class="center" class="hidden-480">Archivo</th>
+						<th class="center" class="hidden-480">Fecha de Creación</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -62,6 +63,7 @@ $e  = '';
 							<td class="center">{{$nutriforme->titulo}}</td>
 							<td> {{$nutriforme->subtitulo}}</td>
 							<td>{{$nutriforme->archivo}}</td>
+							<td>{{$nutriforme->created_at}}</td>
 
 							<td>
 							<div class="hidden-sm hidden-xs action-buttons">

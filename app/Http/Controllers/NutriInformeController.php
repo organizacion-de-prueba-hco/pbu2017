@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\InformeNutricion;
 use Illuminate\Http\Request;
-use App\Auth;
+use Auth;
 
 class NutriInformeController extends Controller
 {
@@ -46,7 +46,18 @@ class NutriInformeController extends Controller
      */
     public function store(Request $request)
     {
-        return 'aqui editas para guardar';
+
+        $informenutricion=new InformeNutricion;
+        $informenutricion->nutricionista   = Auth::user()->id;
+        $informenutricion->titulo=$request->get('titulo');
+        $informenutricion->subtitulo=$request->get('subtitulo');
+        $informenutricion->archivo=$request->get('archivo');
+        $informenutricion->contenido=$request->getElementById("editor1").innerText;
+        
+        $informenutricion->save();
+        return view('users.nutricionista.informenutricion', compact('nutriformes'));
+
+       
     }
 
     /**
