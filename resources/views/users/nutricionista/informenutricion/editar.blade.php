@@ -43,7 +43,7 @@ $e  = '';
 			<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<h4 class="header green clearfix">
-									Nuevo Informe
+									Editar Informe
 								</h4>
 								
 <!-- inicio formulario -->
@@ -69,14 +69,14 @@ $e  = '';
 										<div class="col-sm-9">
 											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="{{$informenutricion->archivo}}">
 										</div>
-								</div><br><br>
+								</div><br>
 								<!-- pegar el editor-->
 								
-									<textarea id="contenido-n" name="contenido-n"></textarea>
-
+									<textarea id="contenido-n" name="contenido-n"></textarea><br><br>
+									<br><br><br>
 								
 
-								<div class="form-group" >
+								<div class="form-group">
 										<div class="col-sm-6">
 										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" onclick="capturaActualizar()">
 											<i class="ace-icon fa fa-plus" ></i>
