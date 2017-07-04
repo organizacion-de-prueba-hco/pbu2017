@@ -24,6 +24,7 @@ Route::get('cargarnotas', 'SuperuserController@cargarnotas');
 Route::get('cargardocentes', 'SuperuserController@cargardocentes');
 //Asistenta Social
 Route::resource('asfichasocial', 'AsistentSocialFichasocialController');
+Route::controller('fichasocial', 'AsistentSocialFichasocialController');
 Route::resource('asdeclaracionjurada', 'AsistentSocialDeclaracionjuradaController');
 Route::resource('asvisitadomc1', 'AsistentSocialVdc1Controller');
 Route::resource('asvisitadomc2', 'AsistentSocialVdc2Controller');

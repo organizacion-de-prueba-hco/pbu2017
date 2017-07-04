@@ -23,7 +23,7 @@ class Colegio extends Model
     	return $this->belongsto('App\TipoColegio');
     }
 
-    public function vi_tipocolegio(){
+    public function iv_tipocolegio(){
         
         return $this->belongsto('App\TipoColegio');
     }
@@ -34,7 +34,7 @@ class Colegio extends Model
         //return $this->belongsTo('App\User', 'llave_local');
     }
 
-    public function vi_distrit(){
+    public function iv_distrit(){
         return $this->belongsto('App\Distrito','iv_distrito');
     }
     public function estudiante(){

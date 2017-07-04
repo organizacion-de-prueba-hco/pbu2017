@@ -126,5 +126,8 @@ class User extends Model implements AuthenticatableContract,
     public function distrito_naci(){
         return $this->belongsto('App\Distrito','distrito_nac');
     }
+    public function cuadro_familiars(){
+        return $this->hasMany('App\CuadroFamiliar','user_id','id');
+    }
 
 }

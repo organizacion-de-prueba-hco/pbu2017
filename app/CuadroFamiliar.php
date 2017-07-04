@@ -10,11 +10,11 @@ class CuadroFamiliar extends Model
     protected $fillable=[
     'user_id',
     'nombres',
-    'parentesco'
+    'parentesco',
     'f_nac',
     'dni',
     'telefono',
-    'grado_instruccion',
+    'grado_instrucion',
     'ocupacion',
     'residencia',
     'sueldo',
@@ -36,6 +36,9 @@ class CuadroFamiliar extends Model
 
     public function declaracionjuradas(){
         return $this->hasMany('App\DeclaracionJurada');
+    }
+    public function user(){
+        return $this->belongsto('App\User');
     }
 
 

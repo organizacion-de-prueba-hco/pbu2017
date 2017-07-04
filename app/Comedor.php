@@ -28,7 +28,7 @@ class Comedor extends Model
     }
 
     public function concesionariocomedors(){
-    	retunr $this->belongsto('App\ConcesionarioComedor');
+    	return $this->belongsto('App\ConcesionarioComedor');
 
     }
 

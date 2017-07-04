@@ -15,7 +15,9 @@ use App\User;
 use App\Religion;
 use App\EstCivil;
 use App\TipoColegio;
+use App\CuadroFamiliar;
 use Redirect;
+use Input;
 
 class AsistentsocialFichaSocialController extends Controller
 {
@@ -74,17 +76,12 @@ class AsistentsocialFichaSocialController extends Controller
      */
     public function edit($id)
     {   
+
         if(!Expediente::find($id)){
           return Redirect::to('asfichasocial')->with('naranja','Expediente No identificado');
         }
-        $user=User::find($id);
-        $departamentos=Departamento::lists('departamento','id');
-        $provincias=Provincia::lists('provincia','id');
-        $distritos=Distrito::lists('distrito','id');
-        $religiones=Religion::lists('religion','id');
-        $est_civils=EstCivil::lists('est_civil','id');
-        $tipoColegios=TipoColegio::lists('tipo','id');
-        return view('users.asistentSocial.fichaSocEcon.verMasEditar', compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios'));
+        return $this->recargarFormularios('verMasEditar',$id);
+        
     }
 
     /**
@@ -109,4 +106,48 @@ class AsistentsocialFichaSocialController extends Controller
     {
         //
     }
+    public function postGeneral(){
+        return "PostGenral";
+    }
+    public function getCfamiliar($id){
+        return Cuadrofamiliar::find($id);
+    }
+    public function postEcfamiliar(){
+        $cfamiliar=CuadroFamiliar::find(Input::get('id'));
+        //Solo el usuario correcto puede editar
+        $cfamiliar->fill(Input::all())->save();
+        $id=$cfamiliar->user->id;
+        //Para capturar la fecha modificación de la ficha
+        $mensaje="Se actualizaron los datos";
+        return $this->recargarFormularios('formularios.step-22',$id);
+        //return Redirect::to('estudiantefichasocial')->with('verde', $mensaje);
+    }
+    public function postEliminarcfamiliar(){
+      //Solo el usuario correcto puede Eliminar
+      $cfamiliar=Cuadrofamiliar::find(Input::get('id'));
+      $id=$cfamiliar->user->id;
+      CuadroFamiliar::destroy(Input::get('id'));
+      return $this->recargarFormularios('formularios.step-22',$id);
+    }
+     public function recargarFormularios($form,$id){
+        $user=User::find($id);
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+        $religiones=Religion::lists('religion','id');
+        $est_civils=EstCivil::lists('est_civil','id');
+        $tipoColegios=TipoColegio::lists('tipo','id');
+        $cfamiliares=Cuadrofamiliar::where('user_id',$id)->get();
+        $instruccion=array( '1'=>'Primaria completa',
+                            '2'=>'Primaria incompleta',
+                            '3'=>'Secundaria completa',
+                            '4'=>'Secundaria incompleta',
+                            '5' =>'Superior técnica completa',
+                            '6' =>'Superior técnica incompleta',
+                            '7' =>'Universitario completo',
+                            '8' =>'Universitario incompleta',
+                            '9' =>'Posgrado');
+        
+        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion')); 
+     }
 }

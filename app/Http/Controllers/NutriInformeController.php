@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\InformeNutricion;
 use Illuminate\Http\Request;
 use Auth;
+use Redirect;
 
 class NutriInformeController extends Controller
 {
@@ -52,10 +53,10 @@ class NutriInformeController extends Controller
         $informenutricion->titulo=$request->get('titulo');
         $informenutricion->subtitulo=$request->get('subtitulo');
         $informenutricion->archivo=$request->get('archivo');
-        $informenutricion->contenido=$request->get("d");
+        //$informenutricion->contenido=$request->get("d");
         
         $informenutricion->save();
-        return view('users.nutricionista.informenutricion', compact('nutriformes'));
+        return Redirect::to('nutriforme')->with('verde', 'Se registro un nuevo informe');
 
        
     }

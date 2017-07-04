@@ -18,6 +18,7 @@
 @endsection
 @section('contenido')
 @include('master.mensajes')
+@include('users.asistentSocial.fichaSocEcon.editar-cfamiliar')
 <div class="row">
 	<div class="col-xs-12">
 		<!-- PAGE CONTENT BEGINS -->
@@ -71,348 +72,11 @@
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1">
-								{!! Form::model($user,['route' => ['jusuexpediente.update', $user->id],'method' => 'PUT', 'class'=>'form-horizontal']) !!}
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Apellidos y Nombres:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" value="{{$user->apellido_paterno.' '.$user->apellido_materno.' '.$user->nombres}}" disabled="true"/>
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Código:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" value="{{$user->estudiante->cod_univ}}" disabled="true"/>
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Fecha de Nacimiento (edad):</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												<label>
-													{!!Form::date('f_nac',null,['class'=>'col-12'])!!} 
-													<?php $fn= Carbon::parse($user->f_nac); ?>
-													@if($user->f_nac<Carbon::now() && $user->f_nac!='0000-00-00' )
-														 ({{Carbon::createFromDate(
-															$fn->format('Y'),
-															$fn->format('m'),
-															$fn->format('d')
-														)->age}} años)
-													@endif
-												</label>
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Departamento de Nacimiento:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Departamento'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Provincia de Nacimiento:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::select('provincia',$provincias,$user->distrito_naci->provincia->id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Provincia'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Distrito de Nacimiento:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::select('distrito',$distritos,$user->distrito_nac,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Distrito'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Nacionalidad:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::text('nacionalidad', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">E-mail:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::email('email', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Domicilio Actual:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::text('domicilio', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Nombre de la calle, Av. Jr, etc'])!!}
-											</div>
-											<div class="clearfix">
-												{!!Form::text('n_domicilio', null, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Número, Lt., Mz., etc','style'=>'margin-top: 2px;'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Fecha de Ingreso-UNHEVAL:</label>
-											<div class="col-xs-12 col-sm-9">
-												<div class="clearfix">
-													{!!Form::date('f_unheval',null,['class'=>'col-12'])!!} 
-												</div>
-											</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Facultad:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::text('facultad', $user->estudiante->escuela->facultad->facultad,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...','disabled'=>'true'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Escuela Profesional:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::text('facultad', $user->estudiante->escuela->escuela,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...','disabled'=>'true'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Año de Estudio:</label>
-											<div class="col-xs-12 col-sm-9">
-												<div class="clearfix">
-													{!!Form::text('anio_estudio', $user->estudiante->anio_estudio,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
-												</div>
-											</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Religión:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::select('religion_id',$religiones,$user->religion_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Estado Civil:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix">
-												{!!Form::select('est_civil_id',$est_civils,$user->est_civil_id,['required', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Vive con:</label>
-										<div class="col-xs-12 col-sm-9">
-											<div class="clearfix"><br>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Padre</span>
-												</label><br>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Madre</span>
-												</label><br>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Hermano</span>
-												</label><br>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Conyugue</span>
-												</label><br>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Pensión</span>
-												</label><br>
-												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
-													<span class="lbl"> Otros</span>
-												</label><br>
-												
-											</div>
-										</div>
-									</div>
-
-									<div class="hr hr-dotted"></div>
-									<h3 class="lighter block green">1.1 Colegio de Procedencia
-									</h3>
-									<div class="form-group">
-										<div class="col-xs-12 col-sm-12">
-											<div class="clearfix">
-												<table class="table table-bordered" style="background-color:	#F5FFFA">
-												<thead>
-													<tr>
-														<th>Grado de Instrución</th>
-														<th>Nombre del Colegio</th>
-														<th>Tipo de Colegio</th>
-														<th>Distrito / Departamento</th>
-														<th>Año</th>
-														<th>Pensión S/.</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>4to. Secundaria</td>
-														<td>
-															{!!Form::textArea('v_colegio', $user->estudiante->colegio->v_colegio,['cols'=>'auto','rows'=>'3', 'placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td align="center">
-															{!!Form::select('tipo',$tipoColegios,$user->estudiante->colegio->v_tipo,['required','placeholder' => 'Provincia'])!!}
-														</td>
-														<td align="center">
-															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento','placeholder' =>'Departamento']) !!}
-															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}<br>
-															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}
-														</td>
-														<td>
-															{!!Form::text('v_fecha', $user->estudiante->colegio->v_fecha,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td>
-															{!!Form::text('v_pension', $user->estudiante->colegio->v_pension,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-													</tr>
-													<tr>
-														<td>5to. Secundaria</td>
-														<td>
-															{!!Form::textArea('iv_colegio', $user->estudiante->colegio->iv_colegio,['cols'=>'auto','rows'=>'3', 'placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td align="center">
-															{!!Form::select('tipo',$tipoColegios,$user->estudiante->colegio->iv_tipo,['required','placeholder' => 'Provincia'])!!}
-														</td>
-														<td align="center">
-															<div>
-															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento','placeholder' => 'Departamento'])!!}
-															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}<br>
-															{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'placeholder' => 'Departamento'])!!}
-															</div>
-														</td>
-														<td>
-															{!!Form::text('iv_fecha', $user->estudiante->colegio->iv_fecha,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td>
-															{!!Form::text('iv_pension', $user->estudiante->colegio->iv_pension,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-													</tr>
-													</tbody>
-												</table>
-
-											</div>
-										</div>
-									</div>
-
-									<div class="space-2"></div>
-
-									<div class="hr hr-dotted"></div>
-									<h3 class="lighter block green">1.2 Modalidad por la que logro el ingreso
-									</h3>
-									<div class="form-group">
-										
-										<div class="col-xs-12 col-sm-9">
-										{!!Form::text('mi', $user->estudiante->m_ingreso->modalidad,['class'=> 'col-xs-12 col-sm-6','disabled'=>'true' ,'placeholder'=>'Escribir aquí...'])!!}
-										</div><br>
-										
-
-									</div>
-									<div class="hr hr-dotted"></div>
-									<div align="center" class="col-12">
-											<button class="submit">Actualizar</button>
-									</div>
-
-									<div class="space-2"></div>
-								{!! Form::close() !!}
+								@include('users.asistentSocial.fichaSocEcon.formularios.step-11')
 							</div>
 
-							<div class="step-pane" data-step="2">
-								<div>
-									<div class="alert alert-success">
-										<button type="button" class="close" data-dismiss="alert">
-											<i class="ace-icon fa fa-times"></i>
-										</button>
-										<strong><i class="ace-icon fa fa-check"></i>Well done!
-										</strong>
-										You successfully read this important alert message.
-										<br />
-									</div>
-									<div class="alert alert-danger">
-										<button type="button" class="close" data-dismiss="alert">
-											<i class="ace-icon fa fa-times"></i>
-										</button>
-										<strong>
-											<i class="ace-icon fa fa-times"></i>
-																	Oh snap!
-										</strong>
-
-																Change a few things up and try submitting again.
-										<br />
-									</div>
-									<div class="alert alert-warning">
-										<button type="button" class="close" data-dismiss="alert">
-											<i class="ace-icon fa fa-times"></i>
-										</button>
-											<strong>Warning!</strong>
-											Best check yo self, you're not looking too good.
-											<br />
-									</div>
-										<div class="alert alert-info">
-											<button type="button" class="close" data-dismiss="alert">
-												<i class="ace-icon fa fa-times"></i>
-											</button>
-											<strong>Heads up!</strong>
-																This alert needs your attention, but it's not super important.
-											<br />
-										</div>
-								</div>
+							<div class="step-pane" data-step="2" id="step-22">
+								@include('users.asistentSocial.fichaSocEcon.formularios.step-22')
 							</div>
 							<div class="step-pane" data-step="3">
 								<div class="center">
@@ -650,5 +314,55 @@
 					$('[class*=select2]').remove();
 				});
 			})
+
+//Formularios-------------------- step------------------------------
+      function lafuncion($laruta,$elformulario,$eldiv){
+        console.log($($elformulario).serialize());
+        var token=$("#token").val(); //El token solo en casos del tipo POST
+        var route = $laruta; //Esta ruta dirige al store, y xq no se confunde con el index? x el POST y los datos que recibe
+        //console.log("Encuesta:"+$('#encuesta').val()+" <> Pregunta:"+$('#pregunta').val());
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token}, 
+          data:  $($elformulario).serialize(),
+          url:   route,
+          type: 'post',
+          beforeSend: function () {
+          $($eldiv).html("<img src=\"{{URL::to('imagenes/cargar_2.gif')}}\" alt=\"Procesando, espere por favor...\" width=\"70%\">");
+
+          },
+          success:  function (response) {
+            //console.log(response);
+            $($eldiv).html(response);
+          }
+        });
+      }
+
+    //Editar 
+      function cargarModalCfamiliar(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/fichasocial/cfamiliar/"+id;
+            //console.log(id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+            console.log(result);
+            $('#cf_nombres').val(result.nombres);
+            $('#cf_parentesco').val(result.parentesco);
+            $('#cf_fecha_n').val(result.f_nac);
+            $("#cf_instruccion option[value='"+ result.grado_instrucion +"']").attr("selected",true);
+            // $("#e_estado option[value='"+ result.estado +"']").attr("selected",true);
+            $('#cf_ocupacion').val(result.ocupacion);
+            $('#cf_residencia').val(result.residencia);
+            $('#cf_id').val(result.id);                 
+          }                  
+        });
+      }    
+//FIN Formularios-------------------- step--------------------------
+
 		</script>
 @endsection

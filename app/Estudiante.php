@@ -16,7 +16,6 @@ class Estudiante extends Model
         'm_ingreso_id',
         'anio_estudio',
         'f_term_colegio',
-        'dist_colegio_id',
         'colegio',
         'tipo_familia',
         'trato_padres',
@@ -34,9 +33,6 @@ class Estudiante extends Model
     }
     public function m_ingreso(){
     	return $this->belongsto('App\MIngreso');
-    }
-    public function distrito(){
-        return $this->belongsto('App\Distrito');
     }
     public function colegio() {
       return $this->hasOne('App\Colegio','estudiante_id', 'user_id');
