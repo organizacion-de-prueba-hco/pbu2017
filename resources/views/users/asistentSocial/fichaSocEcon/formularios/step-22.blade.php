@@ -44,7 +44,7 @@
   <h3 class="lighter block green">2.1. Relaciones Familiares </h3>
 
   {!! Form::open(['method'=>'post','id'=>'elformulario2-1-rf','class'=>'form-horizontal form-label-left']) !!}
-  
+
                   <div class="form-group">
                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Familia:</label>
                     <div class="col-xs-12 col-sm-9">
@@ -66,7 +66,7 @@
                   <div class="hr hr-dotted"></div>
                   <div align="center" ><br>
                                 <input type="hidden" name="id" value="{{$user->id}}">
-                                <input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-22')"><br><br></div>
+                                <input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-22');lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-33')"><br><br></div>
 
                   <div class="space-2"></div>
                 {!! Form::close() !!}

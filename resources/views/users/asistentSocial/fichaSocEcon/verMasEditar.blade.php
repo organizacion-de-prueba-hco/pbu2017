@@ -20,6 +20,9 @@
 @include('master.mensajes')
 @include('users.asistentSocial.fichaSocEcon.editar-cfamiliar')
 @include('users.asistentSocial.fichaSocEcon.nuevo-cfamiliar')
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoIfamiliar"></div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
+
 <div class="row">
 	<div class="col-xs-12">
 		<!-- PAGE CONTENT BEGINS -->
@@ -79,10 +82,8 @@
 							<div class="step-pane" data-step="2" id="step-22">
 								@include('users.asistentSocial.fichaSocEcon.formularios.step-22')
 							</div>
-							<div class="step-pane" data-step="3">
-								<div class="center">
-									<h3 class="blue lighter">This is step 3</h3>
-								</div>
+							<div class="step-pane" data-step="3" id="step-33">
+								@include('users.asistentSocial.fichaSocEcon.formularios.step-33')
 							</div>
 							<div class="step-pane" data-step="4">
 								<div class="center">
@@ -363,6 +364,29 @@
           }                  
         });
       }    
+      function cargarModalIfamiliar(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/fichasocial/ingresofamiliar/"+id;
+        //console.log('El id es: '+id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){ 
+          	console.log(result);
+            // $("#if_cfamiliar_id option[value='"+ result.cfamiliar_id+"']").attr("selected",true);
+            // $('#if_sueldo').val(result.sueldo);
+            // $('#if_honorario').val(result.honorario);
+            // $('#if_ocupacion').val(result.ocupacion);
+            // $('#if_empresa').val(result.empresa);
+            // $('#if_id').val(result.id);
+              $('#EditarIfamiliar').html(result);
+          }                  
+        });
+      }
 //FIN Formularios-------------------- step--------------------------
 
 		</script>

@@ -80,10 +80,8 @@ class AsistentsocialFichaSocialController extends Controller
         if(!Expediente::find($id)){
           return Redirect::to('asfichasocial')->with('naranja','Expediente No identificado');
         }
-        return $this->recargarFormularios('verMasEditar',$id);
-        
+        return $this->recargarFormularios('verMasEditar',$id);   
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -151,6 +149,11 @@ class AsistentsocialFichaSocialController extends Controller
         return $this->recargarFormularios('formularios.step-22',Input::get('id'));
         //return Redirect::to('estudiantefichasocial')->with('verde', $mensaje);
     }
+    public function getIngresofamiliar($id){
+      $ingresoPariente=Cuadrofamiliar::find($id);
+      $OtrosParientes=Cuadrofamiliar::lists('parentesco','id');
+      return view('users.asistentSocial.fichaSocEcon.editar-ifamiliar',compact('ingresoPariente','OtrosParientes'));
+    }
      public function recargarFormularios($form,$id){
         $user=User::find($id);
         $departamentos=Departamento::lists('departamento','id');
@@ -180,6 +183,7 @@ class AsistentsocialFichaSocialController extends Controller
                             '1'=>'Buena',
                             '2'=>'Regular',
                             '3'=>'Mala');
+
         
         return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres')); 
      }
