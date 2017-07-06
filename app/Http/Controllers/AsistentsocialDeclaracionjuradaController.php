@@ -19,7 +19,7 @@ class AsistentsocialDeclaracionjuradaController extends Controller
     public function index()
     {
        $declaracionjuradas = DeclaracionJurada::get();
-        
+       
         return view('users.asistentSocial.declaracionJurada', compact('declaracionjuradas'));
     }
 

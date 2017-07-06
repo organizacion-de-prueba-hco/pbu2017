@@ -117,7 +117,7 @@
 						<th class="center">N° Declaración Jurada</th>
 						<th>Estudiante</th>
 						<th>Apoderado</th>
-
+						<th>Archivo</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -125,11 +125,10 @@
 				<tbody>
 					@foreach($declaracionjuradas as $declaracionjurada)
 						<tr>
-							<td class="center"></td>
-							<td> </td>
+							<td class="center">{{$declaracionjurada->id}}</td>
+							<td class="hidden-480">{{$declaracionjurada->cuadrofamiliar->user->nombres}} {{$declaracionjurada->cuadrofamiliar->user->apellido_paterno}} {{$declaracionjurada->cuadrofamiliar->user->apellido_materno}}</td>
+							<td class="hidden-480" align="center">{{$declaracionjurada->cuadrofamiliar->nombres}}</td>
 							<td></td>
-							<td class="hidden-480"></td>
-							<td class="hidden-480" align="center"></td>
 							<td>
 							<div class="hidden-sm hidden-xs action-buttons">
 								<a class="blue" href="#" title="Ver más">
