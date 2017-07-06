@@ -81,7 +81,9 @@ class User extends Model implements AuthenticatableContract,
     public function expediente(){
         return $this->hasOne('App\Expediente','expediente','id');
     }
-
+  public function cuadro_familiars(){
+        return $this->hasOne('App\CuadroFamiliar','user_id','id');
+    }
 
     public function concesionariocomedor(){
         return $this->hasOne('App\ConcesionarioComedor','responsable','id');
@@ -127,8 +129,6 @@ class User extends Model implements AuthenticatableContract,
     public function distrito_naci(){
         return $this->belongsto('App\Distrito','distrito_nac');
     }
-    public function cuadro_familiars(){
-        return $this->hasMany('App\CuadroFamiliar','user_id','id');
-    }
+   
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\DeclaracionJurada;
 use Carbon\Carbon;
 
 class AsistentsocialDeclaracionjuradaController extends Controller
@@ -17,7 +18,9 @@ class AsistentsocialDeclaracionjuradaController extends Controller
      */
     public function index()
     {
-        return view('users.asistentSocial.declaracionJurada');
+       $declaracionjuradas = DeclaracionJurada::get();
+        
+        return view('users.asistentSocial.declaracionJurada', compact('declaracionjuradas'));
     }
 
     /**

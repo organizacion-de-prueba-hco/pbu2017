@@ -27,7 +27,7 @@ class DeclaracionJurada extends Model
     }
 
     public function user(){
-    	return $this->belongsto('App\User')
+    	return $this->belongsto('App\User');
     }
 
 
