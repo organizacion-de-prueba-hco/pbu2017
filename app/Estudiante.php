@@ -19,7 +19,8 @@ class Estudiante extends Model
         'colegio',
         'tipo_familia',
         'trato_padres',
-        'cubre_gastos'
+        'cubre_gastos',
+        'desc_cubre_gastos'
     ];
 
     public function exoneracionpagocentmeds(){

@@ -59,7 +59,7 @@
          <div class="modal-footer">
             <input type="hidden" name="user_id" value="{{$user->id}}">
             <input type="button" class="btn btn-success" value="Agregar" 
-            data-dismiss="modal" onclick="lafuncion('/fichasocial/nuevocfamiliar','#elformulario2-nuevo','#step-22');">
+            data-dismiss="modal" onclick="lafuncion('/fichasocial/nuevocfamiliar','#elformulario2-nuevo','#step-22');lafuncion('/fichasocial/gastosyotrosdatos','#elformulario3-gastosyotrosdatos','#step-33');">
          </div>
          {!! Form::close() !!}
       </div>

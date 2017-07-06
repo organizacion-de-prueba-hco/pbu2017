@@ -16,6 +16,7 @@ use App\Religion;
 use App\EstCivil;
 use App\TipoColegio;
 use App\CuadroFamiliar;
+use App\EgresoFamiliar;
 use Redirect;
 use Input;
 
@@ -154,6 +155,29 @@ class AsistentsocialFichaSocialController extends Controller
       $OtrosParientes=Cuadrofamiliar::lists('parentesco','id');
       return view('users.asistentSocial.fichaSocEcon.editar-ifamiliar',compact('ingresoPariente','OtrosParientes'));
     }
+    public function postEditaringresofamiliar(){
+        $ifamiliar=Cuadrofamiliar::find(Input::get('id'));
+        $ifamiliar->fill(Input::all())->save();
+        $id= $ifamiliar->user_id;
+        return $this->recargarFormularios('formularios.step-33',$id);
+    }
+    public function postGastosyotrosdatos(){
+        $cubreGastos=Estudiante::find(Input::get('id'));
+        $cubreGastos->fill(Input::all())->save();
+        $egresos_id=EgresoFamiliar::where('user_id',Input::get('id'))->first();
+        $egresoFamiliar=EgresoFamiliar::find($egresos_id->id);
+        $egresoFamiliar->fill(Input::all())->save();
+        return $this->recargarFormularios('formularios.step-33',Input::get('id'));
+    }
+    public function getLtrabajosf($id){
+      return $Ltrabajosf=Cuadrofamiliar::find($id);
+    }
+    public function postEditarltrabajosf(){
+        $ifamiliar=Cuadrofamiliar::find(Input::get('id'));
+        $ifamiliar->fill(Input::all())->save();
+        $id= $ifamiliar->user_id;
+        return $this->recargarFormularios('formularios.step-33',$id);
+    }
      public function recargarFormularios($form,$id){
         $user=User::find($id);
         $departamentos=Departamento::lists('departamento','id');
@@ -162,7 +186,8 @@ class AsistentsocialFichaSocialController extends Controller
         $religiones=Religion::lists('religion','id');
         $est_civils=EstCivil::lists('est_civil','id');
         $tipoColegios=TipoColegio::lists('tipo','id');
-        $cfamiliares=Cuadrofamiliar::where('user_id',$id)->get();
+        $parientes=CuadroFamiliar::lists('parentesco','id');
+        $cfamiliares=CuadroFamiliar::where('user_id',$id)->get();
         $instruccion=array( ''=>'Seleccione una opción',
                             '1'=>'Primaria completa',
                             '2'=>'Primaria incompleta',
@@ -183,8 +208,14 @@ class AsistentsocialFichaSocialController extends Controller
                             '1'=>'Buena',
                             '2'=>'Regular',
                             '3'=>'Mala');
+        $cubreGastos=array( ''=>'Seleccione una opción',
+                            '1'=>'Padres',
+                            '2'=>'Solo Padre',
+                            '3'=>'Solo Madre',
+                            '4'=>'Otros');
+        $egresoFamiliar=EgresoFamiliar::where('user_id',$id)->first();
 
         
-        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres')); 
+        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar')); 
      }
 }

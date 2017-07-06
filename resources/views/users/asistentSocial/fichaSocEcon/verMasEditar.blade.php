@@ -20,7 +20,7 @@
 @include('master.mensajes')
 @include('users.asistentSocial.fichaSocEcon.editar-cfamiliar')
 @include('users.asistentSocial.fichaSocEcon.nuevo-cfamiliar')
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoIfamiliar"></div>
+@include('users.asistentSocial.fichaSocEcon.editar-ltrabajosf')
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
 
 <div class="row">
@@ -333,7 +333,7 @@
 
           },
           success:  function (response) {
-            //console.log(response);
+            console.log(response);
             $($eldiv).html(response);
           }
         });
@@ -352,7 +352,7 @@
           url:route,
           type:'GET',
           success: function(result){
-            console.log(result);
+            //console.log(result);
             $('#cf_nombres').val(result.nombres);
             $('#cf_parentesco').val(result.parentesco);
             $('#cf_fecha_n').val(result.f_nac);
@@ -364,6 +364,27 @@
           }                  
         });
       }    
+      function cargarModaLtrabajosf(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/fichasocial/ltrabajosf/"+id;
+            //console.log(id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+            //console.log(result);
+            $('#Ltrabajosf_id').val(result.id);
+            $('#lugar_trabajo').val(result.lugar_trabajo);
+            $('#trabajo_inicio').val(result.trabajo_inicio);
+            $('#trabajo_fin').val(result.trabajo_fin);
+            $('#Ltrabajosf_titulo').val(result.trabajo_fin);                 
+          }                  
+        });
+      }
       function cargarModalIfamiliar(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
@@ -376,7 +397,7 @@
           url:route,
           type:'GET',
           success: function(result){ 
-          	console.log(result);
+          	//console.log(result);
             // $("#if_cfamiliar_id option[value='"+ result.cfamiliar_id+"']").attr("selected",true);
             // $('#if_sueldo').val(result.sueldo);
             // $('#if_honorario').val(result.honorario);
@@ -386,8 +407,41 @@
               $('#EditarIfamiliar').html(result);
           }                  
         });
+     }
+      function resetearModalIfamiliar($laruta,$modal,$eldiv){
+        //console.log($laruta+$eldiv);
+        var token=$("#token").val();
+        var route = $laruta;
+        $.ajax({
+          data:  {'rutaModal':$modal},
+          headers:{'X-CSRF-TOKEN':token}, 
+          url:   route,
+          type: 'post',
+          beforeSend: function () {
+            $($eldiv).html("Procesando, espere por favor...");
+          },
+          success:  function (response) {
+            //console.log(response);
+            $($eldiv).html(response);
+          }
+        });
       }
+      //para el formulario 3.3 si es otro quien cubre los gastos
+      function desc_cubre_gasto($ids){
+    	var id=$ids;
+    	$('#desc_cubre_gastos').val("");
+
+    	if(id == '4'){
+        	//$('#div-especifiquen').show();
+        	 $('#div-especifiquen').removeClass('hidden');
+      		
+    	}else{
+      		//$('#div-especifiquen').hide();
+      		 $('#div-especifiquen').addClass('hidden');
+    	}
+  	  }
 //FIN Formularios-------------------- step--------------------------
+
 
 		</script>
 @endsection

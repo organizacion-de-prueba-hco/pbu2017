@@ -22,7 +22,8 @@ class CreateEstudiantesTable extends Migration
             
             $table->string('tipo_familia'); //Organizada, desintegrada, armon, conf
             $table->string('trato_padres'); //Buena, regular, mala
-            $table->string('cubre_gastos'); //ud, padres, padre, madre, otros
+            $table->string('cubre_gastos'); //ud, padres, padre, madre, 
+            $table->string('desc_cubre_gastos');
 
             $table->foreign('user_id')->references('id')
                   ->on('users')->onDelete('cascade');

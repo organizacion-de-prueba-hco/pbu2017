@@ -19,18 +19,19 @@
                               </thead>
                               <tbody>
                               @foreach($cfamiliares as $cfamiliar)
+                              <?php if($cfamiliar->parentesco=='YO') continue; ?>
                                 <tr data-toggle="modal" data-target="#EditarCfamiliar" onclick="cargarModalCfamiliar('{{$cfamiliar->id}}')">
                                   <td>{{$cfamiliar->nombres}}</td>
                                   <td>{{$cfamiliar->parentesco}}</td>
                                   <td>{{$cfamiliar->f_nac}} (<b>
                                   	<?php 
-										$fn= Carbon\Carbon::parse($cfamiliar->f_nac);
-										echo Carbon\Carbon::createFromDate(
-											$fn->format('Y'),
-											$fn->format('m'),
-											$fn->format('d')
-										)->age;
-									?> </b>)
+                  										$fn= Carbon\Carbon::parse($cfamiliar->f_nac);
+                  										echo Carbon\Carbon::createFromDate(
+                  											$fn->format('Y'),
+                  											$fn->format('m'),
+                  											$fn->format('d')
+                  										)->age;
+                  									?> </b>)
                                   </td>
                                   <td>{{$cfamiliar->dni}}</td>
                                   <td>{{$instruccion[$cfamiliar->grado_instrucion]}}</td>
@@ -44,7 +45,6 @@
   <h3 class="lighter block green">2.1. Relaciones Familiares </h3>
 
   {!! Form::open(['method'=>'post','id'=>'elformulario2-1-rf','class'=>'form-horizontal form-label-left']) !!}
-
                   <div class="form-group">
                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Familia:</label>
                     <div class="col-xs-12 col-sm-9">
@@ -66,8 +66,8 @@
                   <div class="hr hr-dotted"></div>
                   <div align="center" ><br>
                                 <input type="hidden" name="id" value="{{$user->id}}">
-                                <input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-22');lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-33')"><br><br></div>
+                                <input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/relacionesfamiliares','#elformulario2-1-rf','#step-22');""><br><br></div>
 
                   <div class="space-2"></div>
-                {!! Form::close() !!}
+{!! Form::close() !!}
 </div>
