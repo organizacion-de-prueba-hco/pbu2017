@@ -26,7 +26,7 @@
 		<a href="{{url('asdeclaracionjurada')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
 		
 		<div class="table-header">
-			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="{{url('asdeclaracionjurada/create')}}" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Lista de Declaraciones Juradas &nbsp;&nbsp;&nbsp;
