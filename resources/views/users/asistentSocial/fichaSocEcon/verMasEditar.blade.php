@@ -62,11 +62,11 @@
 									<span class="step">IV</span>
 									<span class="title">DATOS DE VIVIENDA</span>
 								</li>
-								<li data-step="4">
+								<li data-step="5">
 									<span class="step">V</span>
 									<span class="title">DATOS DE SALUD</span>
 								</li>
-								<li data-step="4">
+								<li data-step="6">
 									<span class="step">VI</span>
 									<span class="title">OPINIÓN DE TRABAJADORA SOCIAL</span>
 								</li>
@@ -85,11 +85,17 @@
 							<div class="step-pane" data-step="3" id="step-33">
 								@include('users.asistentSocial.fichaSocEcon.formularios.step-33')
 							</div>
-							<div class="step-pane" data-step="4">
-								<div class="center">
-									<h3 class="green">Congrats!</h3>
-															Your product is ready to ship! Click finish to continue!
-								</div>
+							<div class="step-pane" data-step="4" id="step-44">
+								@include('users.asistentSocial.fichaSocEcon.formularios.step-44')
+							</div>
+							<div class="step-pane" data-step="5" id="step-55">
+								<h1>soy el 5</h1>
+							</div>
+							<div class="step-pane" data-step="6" id="step-66">
+								<h1>soy el 6</h1>
+							</div>
+							<div class="step-pane" data-step="7" id="step-77">
+								<h1>soy el 7</h1>
 							</div>
 						</div>
 					</div>

@@ -59,6 +59,7 @@ class CreateUsersTable extends Migration
             //Datos de vivienda
             $table->string('vivienda'); //Propia, alquilada, Hipotecada
             $table->string('material_vivienda');
+            $table->integer('n_ambientes');
             $table->string('techo_vivienda');
             $table->string('piso_vivienda');
             $table->string('servicio_luz'); //0=no, 1=si

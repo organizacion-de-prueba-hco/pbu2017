@@ -178,6 +178,11 @@ class AsistentsocialFichaSocialController extends Controller
         $id= $ifamiliar->user_id;
         return $this->recargarFormularios('formularios.step-33',$id);
     }
+    public function postEditardvivienda(){
+        $dvivienda=User::find(Input::get('elid'));
+        $dvivienda->fill(Input::all())->save();
+        return $this->recargarFormularios('formularios.step-44',Input::get('elid'));
+    }
      public function recargarFormularios($form,$id){
         $user=User::find($id);
         $departamentos=Departamento::lists('departamento','id');
@@ -214,8 +219,26 @@ class AsistentsocialFichaSocialController extends Controller
                             '3'=>'Solo Madre',
                             '4'=>'Otros');
         $egresoFamiliar=EgresoFamiliar::where('user_id',$id)->first();
+         //4. Datos de vivienda
+        $vivienda=array( '1'=>'Propia',
+                         '2'=>'Alquilada',
+                         '3'=>'Hipotecada',
+                         '4'=>'Alojada',
+                         '5'=>'Cuidador',
+                         '6'=>'Otros');
+        $material=array( '1'=>'Noble',
+                         '2'=>'Mixto',
+                         '3'=>'Rustico');
+           $techo=array( '1'=>'Concreto',
+                         '2'=>'Calamina',
+                         '3'=>'Eternit',
+                         '4'=>'Otros');
+        $piso=array('1'=>'Parquet',
+                         '2'=>'Cemento',
+                         '3'=>'Tierra',
+                         '4'=>'Otros');
 
         
-        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar')); 
+        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso')); 
      }
 }

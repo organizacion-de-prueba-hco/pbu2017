@@ -48,6 +48,7 @@ class User extends Model implements AuthenticatableContract,
             'foto',  
             'vivienda', //Propia, alquilada, Hipotecada
             'material_vivienda',
+            'n_ambientes',
             'techo_vivienda',
             'piso_vivienda',
             'servicio_luz', //0=no, 1=si

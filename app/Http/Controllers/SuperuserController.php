@@ -16,13 +16,15 @@ use App\Facultad;
 use App\MIngreso;
 use App\Colegio;
 use App\Notas;
+use App\CuadroFamiliar;
+use App\EgresoFamiliar;
 
 class SuperuserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('SuperUsuario');
+        // $this->middleware('auth');
+        // $this->middleware('SuperUsuario');
     }
     /**
      * Display a listing of the resource.
@@ -191,6 +193,17 @@ class SuperuserController extends Controller
 
                 $estudiante->save();
 
+                //CReamos tambien los registros por defecto en Ingresos y Egresos Familiares
+                $cfamiliar=new CuadroFamiliar;
+                $cfamiliar->user_id=$ultimoUsuarioRegistrado->id;
+                $cfamiliar->nombres='Estudiante';
+                $cfamiliar->parentesco='YO';
+                $cfamiliar->save();
+
+                $efamiliar=new EgresoFamiliar;
+                $efamiliar->user_id=$ultimoUsuarioRegistrado->id;
+                $efamiliar->save();
+
                 //Colegio del estudiante
                 $colegio=new Colegio;
                 $colegio->estudiante_id=$ultimoUsuarioRegistrado->id;
@@ -304,6 +317,17 @@ class SuperuserController extends Controller
                     }
                   $docente->save();
                 }
+
+            //CReamos tambien los registros por defecto en Ingresos y Egresos Familiares
+                $cfamiliar=new CuadroFamiliar;
+                $cfamiliar->user_id=$ultimoUsuarioRegistrado->id;
+                $cfamiliar->nombres='Estudiante';
+                $cfamiliar->parentesco='YO';
+                $cfamiliar->save();
+
+                $efamiliar=new EgresoFamiliar;
+                $efamiliar->user_id=$ultimoUsuarioRegistrado->id;
+                $efamiliar->save();
          }
          });
 
