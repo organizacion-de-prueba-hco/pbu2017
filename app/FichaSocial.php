@@ -10,7 +10,7 @@ class FichaSocial extends Model
     protected $fillable=[
     'expediente_id',
     'asistenta_social',
-    'opinion_',
+    'opinion',
     'archivo'
 
     ];

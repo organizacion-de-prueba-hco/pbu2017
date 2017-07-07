@@ -10,7 +10,6 @@
                         </div>
 
                           {!! Form::open(['method'=>'post','id'=>'elformulario2-0','class'=>'form-horizontal form-label-left']) !!}
-
             <div class="modal-body">
                       <div class="item form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12">

@@ -18,8 +18,10 @@ use App\TipoColegio;
 use App\CuadroFamiliar;
 use App\EgresoFamiliar;
 use App\DatosSalud;
+use App\FichaSocial;
 use Redirect;
 use Input;
+use Auth;
 
 class AsistentsocialFichaSocialController extends Controller
 {
@@ -249,6 +251,21 @@ class AsistentsocialFichaSocialController extends Controller
       $dsalud->fill(Input::all())->save();
        return $this->recargarFormularios('formularios.step-55',$dsalud->id);
     }
+    public function postOpinion(){
+      $opinion=FichaSocial::where('expediente_id',Input::get('user_id'))->first();
+
+      if($opinion){
+        $opinion->fill(Input::all())->save();
+      }else{
+        $nuevaOpinion=new FichaSocial;
+        $nuevaOpinion->expediente_id=Input::get('user_id');
+        $nuevaOpinion->asistenta_social=Auth::user()->id;
+        $nuevaOpinion->opinion=Input::get('opinion');
+        $nuevaOpinion->save();
+      }
+      
+       return $this->recargarFormularios('formularios.step-66',Input::get('user_id'));
+    }
 
      public function recargarFormularios($form,$id){
         $user=User::find($id);
@@ -305,8 +322,8 @@ class AsistentsocialFichaSocialController extends Controller
                          '3'=>'Tierra',
                          '4'=>'Otros');
         $datoSalud= Cuadrofamiliar::join('datos_saluds','datos_saluds.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.user_id',$id)->select('datos_saluds.id as idsalud','cuadro_familiars.parentesco as parentesco','cuadro_familiars.nombres as nombresp','datos_saluds.*')->get();
-
+        $fichasocial=FichaSocial::where('expediente_id',$id)->first();
         
-        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso','datoSalud')); 
+        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso','datoSalud','fichasocial')); 
      }
 }

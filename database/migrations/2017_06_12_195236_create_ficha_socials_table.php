@@ -16,7 +16,7 @@ class CreateFichaSocialsTable extends Migration
             $table->increments('id');
             $table->integer('expediente_id')->unsigned();
             $table->integer('asistenta_social')->unsigned();
-            $table->string('opinion_');
+            $table->string('opinion');
             $table->string('archivo');
 
             $table->foreign('expediente_id')->references('expediente')->on('expedientes')->onDelete('cascade');

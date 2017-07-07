@@ -8,6 +8,7 @@
 @endsection
 @section('title','Ficha Socio Económica')
 @section('estilos')
+	{!!Html::style('editor/editor.css',['rel'=>'stylesheet'])!!}
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
@@ -94,7 +95,7 @@
 								@include('users.asistentSocial.fichaSocEcon.formularios.step-55')
 							</div>
 							<div class="step-pane" data-step="6" id="step-66">
-								<h1>soy el 6</h1>
+								@include('users.asistentSocial.fichaSocEcon.formularios.step-66')
 							</div>
 							<div class="step-pane" data-step="7" id="step-77">
 								<h1>soy el 7</h1>
@@ -469,6 +470,16 @@
   	  }
 //FIN Formularios-------------------- step--------------------------
 
-
 		</script>
+{!!Html::script('editor/editor.js')!!}
+ <script type="text/javascript">
+  //TextArea Nuevo
+  $(document).ready(function() {
+        $("#opinion-texto").Editor();
+  });
+  //Capturar texto con sus estilos Nuevo
+  function capturaNuevo(){
+    $('#opinion-texto').val($("#opinion-texto").Editor("getText"));
+  }
+</script>
 @endsection

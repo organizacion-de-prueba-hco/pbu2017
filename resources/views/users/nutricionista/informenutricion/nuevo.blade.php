@@ -71,7 +71,7 @@ $e  = '';
 										</div>
 								</div>
 								<!-- pegar el editor-->
-<<<<<<< HEAD
+
 								<div class="item form-group">
                         			<div class="col-md-12 col-sm-12 col-xs-12">
                           				<label>Contenido</label>
@@ -81,12 +81,7 @@ $e  = '';
                           				<br/>
                         			</div>
                      			 </div>
-=======
-								
-									<textarea id="contenido-n" name="contenido-n" ></textarea>
-								
-								
->>>>>>> bed5fc1c48489fc0e8ecb0a41c54911006df2f53
+
 
 								<div class="form-group" >
 										<div class="col-sm-6">

@@ -517,20 +517,20 @@ You should have received a copy of the GNU General Public License along with thi
 							  'screeneffects':true,
 
 							  'fonts'	: { "select":true,
-											"default": "Font",
+											"default": "Fuentes",
 											"tooltip": "Fonts",
 											"commandname": "fontName",
 											"custom":null },
 
 							  'styles'	: { "select":true,
-											"default": "Formatting",
+											"default": "Formato",
 											"tooltip": "Paragraph Format",
 											"commandname": "formatBlock",
 												"custom":null },
 
 							 'font_size': {	"select":true,
-											"default": "Font size",
-											"tooltip": "Font Size",
+											"default": "Tamaño de Fuente",
+											"tooltip": "Tamaño de Fuente",
 											"commandname":"fontSize", 
 											"custom":null },
 
@@ -590,21 +590,21 @@ You should have received a copy of the GNU General Public License along with thi
 														$('#paletteCntr').remove();
 												}},
 							
-							  'bold'	: { "text": "B", 
+							  'bold'	: { "text": "N", 
 											"icon": "fa fa-bold", 
-											"tooltip": "Bold", 
+											"tooltip": "Negrita", 
 											"commandname":"bold", 
 											"custom":null },
 
 						      'italics'	: { "text":"I", 
 											"icon":"fa fa-italic", 
-											"tooltip":"Italics", 
+											"tooltip":"Cursiva", 
 											"commandname":"italic",
 											"custom":null },
 
 						     'underline': { "text":"U", 
 											"icon":"fa fa-underline", 
-											"tooltip":"Underline", 
+											"tooltip":"Subrayado", 
 											"commandname":"underline",
 											"custom":null },
 											
@@ -640,25 +640,25 @@ You should have received a copy of the GNU General Public License along with thi
 
 						     'l_align'	: { "text": "leftalign", 
 											"icon": "fa fa-align-left", 
-											"tooltip": "Align Left", 
+											"tooltip": "Alineación Izquierda", 
 											"commandname":"justifyleft", 
 											"custom":null },
 
 						     'r_align'	: { "text": "rightalign", 
 											"icon": "fa fa-align-right", 
-											"tooltip": "Align Right", 
+											"tooltip": "Alineación derecha", 
 											"commandname":"justifyright", 
 											"custom":null },
 
 						     'c_align'	: { "text": "centeralign", 
 											"icon": "fa fa-align-center", 
-											"tooltip": "Align Center", 
+											"tooltip": "Centrado", 
 											"commandname":"justifycenter", 
 											"custom":null },
 
 						     'justify'	: { "text": "justify", 
 											"icon": "fa fa-align-justify", 
-											"tooltip": "Justify", 
+											"tooltip": "Justificado", 
 											"commandname":"justifyfull", 
 											"custom":null },
 
@@ -985,7 +985,7 @@ You should have received a copy of the GNU General Public License along with thi
 				'justify':true,
 				'insert_link':true,
 				'unlink':true,
-				'insert_img':true,
+				'insert_img':false,
 				'hr_line':true,
 				'block_quote':true,
 				'source':true,
