@@ -30,7 +30,7 @@ class AsistentsocialDeclaracionjuradaController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.asistentSocial.declaracionJur.nuevo');
     }
 
     /**
