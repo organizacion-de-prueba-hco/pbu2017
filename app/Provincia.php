@@ -20,5 +20,8 @@ class Provincia extends Model
   		return $this->belongsto('App\Departamento');
 
   	}
+    public static function provincias($id){
+        return Provincia::where('departamento_id','=',$id)->get();
+    }
 
 }

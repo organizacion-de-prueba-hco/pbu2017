@@ -8,9 +8,9 @@
       
       <div class="col-12">
       @if($fichasocial)
-        <textarea id="opinion-texto" name="opinion">{!!$fichasocial->opinion!!}</textarea> 
+        <textarea id="opinion-texto" name="opinion" class="form-control" rows="5">{!!$fichasocial->opinion!!}</textarea> 
       @else
-        <textarea id="opinion-texto" name="opinion"></textarea>
+        <textarea id="opinion-texto" name="opinion" class="form-control" rows="5"></textarea>
       @endif
       </div>
     </div>

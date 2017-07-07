@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -40,3 +40,16 @@ Route::resource('jusuexpediente', 'JusuExpedienteController');
 Route::controller('jusuexpedientes', 'JusuExpedienteController');
 //nutricionista
 Route::resource('nutriforme', 'NutriInformeController');
+//Select Anidado
+	Route::get('prov/{id}',function (Request $request, $id) {
+            if ($request->ajax()) {
+                $provincias=App\Provincia::provincias($id);
+                return response()->json($provincias);
+            }
+        });
+	Route::get('dist/{id}',function (Request $request, $id) {
+            if ($request->ajax()) {
+                $distritos=App\Distrito::distritos($id);
+                return response()->json($distritos);
+            }
+        });

@@ -49,10 +49,10 @@
 									<div class="space-2"></div>
 
 									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Departamento de Nacimiento:</label>
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Departamento de Nacimiento:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Departamento'])!!}
+												{!!Form::select('departamento',$departamentos,$user->distrito_naci->provincia->departamento_id,['required','id'=>'departamento_nac', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Departamento'])!!}
 											</div>
 										</div>
 									</div>
@@ -60,10 +60,10 @@
 									<div class="space-2"></div>
 
 									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Provincia de Nacimiento:</label>
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Provincia de Nacimiento:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												{!!Form::select('provincia',$provincias,$user->distrito_naci->provincia->id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Provincia'])!!}
+												{!!Form::select('provincia',$provincias,$user->distrito_naci->provincia->id,['required','id'=>'provincia_nac', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Provincia'])!!}
 											</div>
 										</div>
 									</div>
@@ -74,7 +74,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Distrito de Nacimiento:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												{!!Form::select('distrito',$distritos,$user->distrito_nac,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Distrito'])!!}
+												{!!Form::select('distrito_nac',$distritos,$user->distrito_nac,['required','id'=>'distrito_nac', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Distrito'])!!}
 											</div>
 										</div>
 									</div>
@@ -180,35 +180,64 @@
 											</div>
 										</div>
 									</div>
+									<div class="space-2"></div>
+
+									<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Número de Hijos:</label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('n_hijos', $user->n_hijos,['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
+												</div>
+											</div>
+									</div>
 
 									<div class="space-2"></div>
 
 									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Vive con:</label>
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Vive con:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix"><br>
 												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
+													<input name="vc_padre" class="ace" type="checkbox" value="1"
+														@if($user->vc_padre=='1')
+                											checked="checked"
+              											@endif
+													/>
 													<span class="lbl"> Padre</span>
 												</label><br>
 												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
+													<input name="vc_madre" value="1" class="ace" type="checkbox" 
+														@if($user->vc_madre=='1')
+                											checked="checked"
+              											@endif />
 													<span class="lbl"> Madre</span>
 												</label><br>
 												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
+													<input name="vc_hermano" value="1" type="checkbox" class="ace"
+														@if($user->vc_hermano=='1')
+                											checked="checked"
+              											@endif />
 													<span class="lbl"> Hermano</span>
 												</label><br>
 												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
+													<input name="vc_conyugue" value="1" type="checkbox" class="ace"
+														@if($user->vc_conyugue=='1')
+                											checked="checked"
+              											@endif />
 													<span class="lbl"> Conyugue</span>
 												</label><br>
 												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
+													<input name="vc_pension" value="1" type="checkbox" class="ace"
+														@if($user->vc_pension=='1')
+                											checked="checked"
+              											@endif/>
 													<span class="lbl"> Pensión</span>
 												</label><br>
 												<label>
-													<input name="subscription" value="2" type="checkbox" class="ace" />
+													<input name="vc_otros" value="1" type="checkbox" class="ace"
+														@if($user->vc_otros=='1')
+                											checked="checked"
+              											@endif/>
 													<span class="lbl"> Otros</span>
 												</label><br>
 												
@@ -303,7 +332,7 @@
 									<div class="hr hr-dotted"></div>
 									<div align="center" ><br>
                           			<input type="hidden" name="id" value="{{$user->id}}">
-                          			<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('fichasocial/general','#elformulario1-1','#step-11')"><br><br></div>
+                          			<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/general','#elformulario1-1','#step-11')"><br><br></div>
 
 									<div class="space-2"></div>
 								{!! Form::close() !!}

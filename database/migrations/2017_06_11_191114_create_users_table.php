@@ -23,6 +23,12 @@ class CreateUsersTable extends Migration
             $table->string('domicilio')->default('--------');
             $table->string('n_domicilio')->default('--------');
             $table->integer('n_hijos');
+            $table->integer('vc_padre');
+            $table->integer('vc_madre');
+            $table->integer('vc_hermano');
+            $table->integer('vc_conyugue');
+            $table->integer('vc_pension');
+            $table->integer('vc_otros');
             $table->string('telefono');
             $table->integer('distrito_nac')->default('887')->unsigned();
             $table->string('nacionalidad');

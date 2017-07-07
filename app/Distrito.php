@@ -37,6 +37,9 @@ class Distrito extends Model
     public function user_nac(){
         return $this->hasMany('App\User','distrito_nac','id');
     }
+    public static function distritos($id){
+        return Distrito::where('provincia_id','=',$id)->get();
+    }
 
     
 }

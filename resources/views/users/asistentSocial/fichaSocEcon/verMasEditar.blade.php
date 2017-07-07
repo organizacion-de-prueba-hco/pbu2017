@@ -8,7 +8,6 @@
 @endsection
 @section('title','Ficha Socio Económica')
 @section('estilos')
-	{!!Html::style('editor/editor.css',['rel'=>'stylesheet'])!!}
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
@@ -78,7 +77,7 @@
 						<hr />
 
 						<div class="step-content pos-rel">
-							<div class="step-pane active" data-step="1">
+							<div class="step-pane active" data-step="1" id="step-11">
 								@include('users.asistentSocial.fichaSocEcon.formularios.step-11')
 							</div>
 
@@ -108,7 +107,7 @@
 							<i class="ace-icon fa fa-arrow-left"></i>
 							Anterior
 						</button>
-						<button class="btn btn-success btn-next" data-last="Finish">
+						<button class="btn btn-success btn-next" data-last="Finalizar">
 							Siguiente
 							<i class="ace-icon fa fa-arrow-right icon-on-right"></i>
 						</button>
@@ -155,11 +154,12 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "Thank you! Your information was successfully saved!", 
+						message: "<h3>¡Gracias! ¡Su información se ha guardado correctamente!</h3><br> <i>Recuerde descargar la ficha Socio Económica en formato PDF</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",
-								"className" : "btn-sm btn-primary"
+								"className" : "btn-sm btn-primary",
+								"href" : "aaaaaa"
 							}
 						}
 					});
@@ -470,16 +470,36 @@
   	  }
 //FIN Formularios-------------------- step--------------------------
 
+//Selects Anidados de departamentos-prov y Dist
+  //Lugar de nacimiento
+    $("#departamento_nac").change(event => {
+      //Usaremos la ruta que creamos para los selects anidados en "Tutor"
+      $.get(`/prov/${event.target.value}`,function(res,sta){
+        $("#provincia_nac").empty();
+        //console.log(res);
+        $("#provincia_nac").append(`<option value=''>Provincia</option>`);
+        res.forEach(element => {
+          $("#provincia_nac").append(`<option value=${element.id}>${element.provincia}</option>`);
+        });
+
+      });
+    });
+
+    $("#provincia_nac").change(event => {
+      $.get(`/dist/${event.target.value}`,function(res,sta){
+        $("#distrito_nac").empty();
+        //console.log(res);
+        $("#distrito_nac").append(`<option value=''>Distrito</option>`);
+        res.forEach(element => {
+          $("#distrito_nac").append(`<option value=${element.id}>${element.distrito}</option>`);
+        });
+
+      });
+    });
+
+
 		</script>
-{!!Html::script('editor/editor.js')!!}
- <script type="text/javascript">
-  //TextArea Nuevo
-  $(document).ready(function() {
-        $("#opinion-texto").Editor();
-  });
-  //Capturar texto con sus estilos Nuevo
-  function capturaNuevo(){
-    $('#opinion-texto').val($("#opinion-texto").Editor("getText"));
-  }
+
 </script>
+
 @endsection

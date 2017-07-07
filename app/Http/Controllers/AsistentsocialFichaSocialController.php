@@ -109,7 +109,42 @@ class AsistentsocialFichaSocialController extends Controller
         //
     }
     public function postGeneral(){
-        return "PostGenral";
+        $user=User::find(Input::get('id'));
+        $user->fill(Input::all())->save();
+        //Checkbox
+            $vc_padre=Input::get('vc_padre');
+            $vc_madre=Input::get('vc_madre');
+            $vc_hermano=Input::get('vc_hermano');
+            $vc_conyugue=Input::get('vc_conyugue');
+            $vc_pension=Input::get('vc_pension');
+            $vc_otros=Input::get('vc_otros');
+        //if no esta marcado recibe el valor de 0
+            if($vc_padre==''){
+              $vc_padre=='0';
+            }
+            if($vc_madre==''){
+              $vc_madre='0';
+            }
+            if($vc_hermano==''){
+              $vc_hermano='0';
+            }
+            if($vc_conyugue==''){
+              $vc_conyugue='0';
+            }
+            if($vc_pension==''){
+              $vc_pension='0';
+            }
+            if($vc_otros==''){
+              $vc_otros='0';
+            }
+      $user->vc_padre=$vc_padre;
+      $user->vc_madre=$vc_madre;
+      $user->vc_hermano=$vc_hermano;
+      $user->vc_conyugue=$vc_conyugue;
+      $user->vc_pension=$vc_pension;
+      $user->vc_otros=$vc_otros;
+      $user->save();
+        return $this->recargarFormularios('formularios.step-11',Input::get('id'));
     }
     public function getCfamiliar($id){
         return Cuadrofamiliar::find($id);

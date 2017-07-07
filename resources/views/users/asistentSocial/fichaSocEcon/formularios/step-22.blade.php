@@ -49,7 +49,7 @@
                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Familia:</label>
                     <div class="col-xs-12 col-sm-9">
                       <div class="clearfix">
-                        {!!Form::select('tipo_familia',$TipoFamilias,$user->estudiante->tipo_familia,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
+                        {!!Form::select('tipo_familia',$TipoFamilias,$user->estudiante->tipo_familia,['required', 'class'=>'col-xs-12 col-sm-6'])!!}
                       </div>
                     </div>
                   </div>
@@ -58,7 +58,7 @@
                     <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Religión:</label>
                     <div class="col-xs-12 col-sm-9">
                       <div class="clearfix">
-                        {!!Form::select('trato_padres',$TratoPadres,$user->estudiante->trato_padres,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6'])!!}
+                        {!!Form::select('trato_padres',$TratoPadres,$user->estudiante->trato_padres,['required','class'=>'col-xs-12 col-sm-6'])!!}
                       </div>
                     </div>
                   </div>
