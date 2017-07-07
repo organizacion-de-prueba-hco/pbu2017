@@ -23,7 +23,7 @@ domiciliado en <input type="text" name=""> Urbanizacion <input type="text" name=
 <p>En mi condición de padre(madre o apoderado) del Alumno(a) <input type="text" name="">
 que cursa estudios universitarios en la Unheval E.A.P<input type="text" name=""> año <?php echo date("Y");?></p><br>
 <h4>DECLARO BAJO JURAMENTO:</h4>
-<p>Tener un trabajo independiente en el me desempeño  como <input type="text" name="">
+<p>Tener un trabajo independiente en el que me desempeño  como <input type="text" name="">
 percibiendo un haber mensual de S/.<input type="text" name=""> y teniendo una carga de <input type="text" name="">hijos menores en edad escolar, con lo que apoyo a mi hija en forma mensual con <input type="text" name=""> Para los gastos de alimentacion, alquiler de cuarto, más gastos de estudio.
 </p><br>
 <p>
