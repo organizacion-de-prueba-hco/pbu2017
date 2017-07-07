@@ -38,36 +38,47 @@
       <label class="control-label col-md-3 col-sm-3">Servicios básicos</label><br>
         <div class="col-md-6 col-sm-9 col-xs-12" style="font-size: 14px;">
           <label>                
-            <input type="checkbox" name="servicio_luz" value="1"  class="ace"
-              @if($user->servicio_luz=='1')
-                checked="checked"
-              @endif
-            ><span class="lbl"> Luz</label></input><br>
-          <label>                
             <input type="checkbox" name="servicio_agua" value="1" class="ace"
               @if($user->servicio_agua=='1')
                 checked="checked"
               @endif
             ><span class="lbl"> Agua</span></input>
           </label><br>
+          <label>                
+            <input type="checkbox" name="servicio_luz" value="1"  class="ace"
+              @if($user->servicio_luz=='1')
+                checked="checked"
+              @endif
+            ><span class="lbl"> Luz</span></input>
+          </label><br>
           <label>
             <input type="checkbox" name="servicio_desague" value="1" class="ace"
               @if($user->servicio_desague=='1')
                 checked="checked"
               @endif
-            ><span class="lbl"> Desagüe</span></input><br>
+            ><span class="lbl"> Desagüe</span></input>
+          </label><br>
           <label>
-            <input type="checkbox" name="servicio_letrina" value="1" class="ace"
-              @if($user->servicio_letrina=='1')
+            <input type="checkbox" name="servicio_incompletos" value="1" class="ace"
+              @if($user->servicio_incompletos=='1')
                 checked="checked"
               @endif
-            ><span class="lbl"> Letrinas</span></input><br>
+            ><span class="lbl"> Incompletos</span></input>
+          </label><br>
+          <label>
+            <input type="checkbox" name="servicio_letrinas" value="1" class="ace"
+              @if($user->servicio_letrinas=='1')
+                checked="checked"
+              @endif
+            ><span class="lbl"> Letrinas</span></input>
+          </label><br>
           <label>
             <input type="checkbox" name="servicio_otros" value="1" class="ace"
               @if($user->servicio_otros=='1')
                  checked="checked"
               @endif
-            ><span class="lbl"> Otros</label></input><br>
+            ><span class="lbl"> Otros</span></input>
+          </label><br>
         </div>
     </div>
   <div class="hr hr-dotted"></div>

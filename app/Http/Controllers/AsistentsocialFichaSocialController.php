@@ -17,6 +17,7 @@ use App\EstCivil;
 use App\TipoColegio;
 use App\CuadroFamiliar;
 use App\EgresoFamiliar;
+use App\DatosSalud;
 use Redirect;
 use Input;
 
@@ -181,8 +182,74 @@ class AsistentsocialFichaSocialController extends Controller
     public function postEditardvivienda(){
         $dvivienda=User::find(Input::get('elid'));
         $dvivienda->fill(Input::all())->save();
+        //Servicios
+            $agua=Input::get('servicio_agua');
+            $luz=Input::get('servicio_luz');
+            $desague=Input::get('servicio_desague');
+            $letrinas=Input::get('servicio_letrinas');
+            $otros=Input::get('servicio_otros');
+            $incompletos=Input::get('servicio_incompletos');
+        //if no esta marcado recibe el valor de 0
+            if($luz==''){
+              $luz='0';
+            }
+            if($agua==''){
+              $agua='0';
+            }
+            if($desague==''){
+              $desague='0';
+            }
+            if($letrinas==''){
+              $letrinas='0';
+            }
+            if($otros==''){
+              $otros='0';
+            }
+            if($incompletos==''){
+              $incompletos='0';
+            }
+        //Llenamos los datos de servicio
+           $dvivienda->servicio_luz=$luz;
+           $dvivienda->servicio_agua=$agua;
+           $dvivienda->servicio_desague=$desague;
+           $dvivienda->servicio_letrinas=$letrinas;
+           $dvivienda->servicio_otros=$otros;
+           $dvivienda->servicio_incompletos=$incompletos;
+           $dvivienda->save();
         return $this->recargarFormularios('formularios.step-44',Input::get('elid'));
     }
+      public function getNuevodsalud($id){
+        $CuadroFamiliar=Cuadrofamiliar::where('user_id',$id)->get();
+        $user_id=$id;
+        return view('users.asistentSocial.fichaSocEcon.nuevo-dsalud',compact('CuadroFamiliar','user_id'));
+     }
+     public function postAgregarnuevodsalud(){
+        $dSalud= new DatosSalud;       
+        $dSalud->fill(Input::all())->save();
+        $dSalud->save();
+        return $this->recargarFormularios('formularios.step-55',Input::get('user_id') );
+     }
+     public function getVistaeditardsalud($id){
+        $datoSalud=DatosSalud::find($id);
+        return view('users.asistentSocial.fichaSocEcon.editar-dsalud',compact('datoSalud'));
+     }
+     public function postEliminardsalud(){
+      //Solo el usuario correcto puede Eliminar
+      $id=DatosSalud::find(Input::get('id_salud'))->cuadrofamiliar->user_id;
+      DatosSalud::destroy(Input::get('id_salud'));
+      return $this->recargarFormularios('formularios.step-55',$id);
+    }
+    public function postEditardsalud(){
+      $dsalud=DatosSalud::find(Input::get('id_salud'));
+      $dsalud->fill(Input::all())->save();
+      return $this->recargarFormularios('formularios.step-55',$dsalud->cuadrofamiliar->user_id);
+    }
+    public function postOtrosdatossalud(){
+      $dsalud=User::find(Input::get('elid'));
+      $dsalud->fill(Input::all())->save();
+       return $this->recargarFormularios('formularios.step-55',$dsalud->id);
+    }
+
      public function recargarFormularios($form,$id){
         $user=User::find($id);
         $departamentos=Departamento::lists('departamento','id');
@@ -237,8 +304,9 @@ class AsistentsocialFichaSocialController extends Controller
                          '2'=>'Cemento',
                          '3'=>'Tierra',
                          '4'=>'Otros');
+        $datoSalud= Cuadrofamiliar::join('datos_saluds','datos_saluds.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.user_id',$id)->select('datos_saluds.id as idsalud','cuadro_familiars.parentesco as parentesco','cuadro_familiars.nombres as nombresp','datos_saluds.*')->get();
 
         
-        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso')); 
+        return view('users.asistentSocial.fichaSocEcon.'.$form, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso','datoSalud')); 
      }
 }

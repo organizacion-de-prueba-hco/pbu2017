@@ -22,6 +22,8 @@
 @include('users.asistentSocial.fichaSocEcon.nuevo-cfamiliar')
 @include('users.asistentSocial.fichaSocEcon.editar-ltrabajosf')
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
 
 <div class="row">
 	<div class="col-xs-12">
@@ -89,7 +91,7 @@
 								@include('users.asistentSocial.fichaSocEcon.formularios.step-44')
 							</div>
 							<div class="step-pane" data-step="5" id="step-55">
-								<h1>soy el 5</h1>
+								@include('users.asistentSocial.fichaSocEcon.formularios.step-55')
 							</div>
 							<div class="step-pane" data-step="6" id="step-66">
 								<h1>soy el 6</h1>
@@ -445,6 +447,25 @@
       		//$('#div-especifiquen').hide();
       		 $('#div-especifiquen').addClass('hidden');
     	}
+  	  }
+  	  function cargarNuevoDsalud($id){
+        var route="/fichasocial/nuevodsalud/"+$id;
+        
+        $.ajax({
+          url:route,
+          success: function(result){ 
+              $('#NuevoDsalud').html(result);
+          }                  
+        });
+  	  }
+  	  function editarDsalud($id){
+        var route="/fichasocial/vistaeditardsalud/"+$id;
+        $.ajax({
+          url:route,
+          success: function(result){ 
+              $('#EditarDatoSalud').html(result);
+          }                  
+        });
   	  }
 //FIN Formularios-------------------- step--------------------------
 

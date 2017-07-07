@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DatosSalud extends Model
 {
     protected $table='datos_saluds';
-    protected $fillable=[
+    protected $fillable=['id',
     'miembro_familiar',
     'diagnostico',
 	'seguro_medico',
@@ -15,7 +15,8 @@ class DatosSalud extends Model
     ];
 
     public function cuadrofamiliar(){
-    	return $this->belongsto('App\CuadroFamiliar');
+    	return $this->belongsto('App\CuadroFamiliar','miembro_familiar');
+
     }
 
 

@@ -31,7 +31,7 @@ class CuadroFamiliar extends Model
 
     }
     public function datossaludes(){
-        return $this->hasMany('App\DatosSalud');
+        return $this->hasMany('App\DatosSalud','miembro_familiar','id');
     }
 
     public function declaracionjuradas(){
