@@ -156,6 +156,9 @@ class SuperuserController extends Controller
                 if($value->telefono!=''){
                     $usuario->telefono=$value->telefono;
                 }
+                if($value->f_nac!=''){
+                    $usuario->f_nac=$value->fech_nac;
+                }
 
                 if($value->dist_nacim!=''){
                     $distrito=Distrito::where('distrito',$value->dist_nacim)->first();

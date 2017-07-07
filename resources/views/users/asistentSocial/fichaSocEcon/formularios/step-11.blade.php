@@ -1,4 +1,5 @@
 <?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
+<h2 class="StepTitle">I. DATOS GENERALES DEL PERÚ</h2>
 								{!! Form::open(['method'=>'post','id'=>'elformulario1-1','class'=>'form-horizontal form-label-left']) !!}
 								<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -165,7 +166,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Religión:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												{!!Form::select('religion_id',$religiones,$user->religion_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
+												{!!Form::select('religion_id',$religiones,$user->religion_id,['required','id'=>'e_departamento', 'class'=>'col-xs-12 col-sm-6'])!!}
 											</div>
 										</div>
 									</div>
@@ -176,7 +177,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Estado Civil:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												{!!Form::select('est_civil_id',$est_civils,$user->est_civil_id,['required', 'class'=>'col-xs-12 col-sm-6','placeholder' => 'Seleccione'])!!}
+												{!!Form::select('est_civil_id',$est_civils,$user->est_civil_id,['required', 'class'=>'col-xs-12 col-sm-6'])!!}
 											</div>
 										</div>
 									</div>
@@ -248,78 +249,128 @@
 									<div class="hr hr-dotted"></div>
 									<h3 class="lighter block green">1.1 Colegio de Procedencia
 									</h3>
-									<div class="form-group">
-										<div class="col-xs-12 col-sm-12">
-											<div class="clearfix">
-												<table class="table table-bordered" style="background-color:	#F5FFFA">
-												<thead> 
-													<tr>
-														<th>Grado de Instrución</th>
-														<th>Nombre del Colegio</th>
-														<th>Tipo de Colegio</th>
-														<th>Dep. / Prov. / Dist. </th>
-														<th>Año</th>
-														<th>Pensión S/.</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>4to. Secundaria</td>
-														<td>
-															{!!Form::textArea('iv_colegio', $user->estudiante->colegio->iv_colegio,['cols'=>'auto','rows'=>'3', 'placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td align="center">
-															{!!Form::select('tipo',$tipoColegios,$user->estudiante->colegio->iv_tipo,['required','placeholder' => 'Seleccione'])!!}
-														</td>
-														<td>
-															<div>
-															{!!Form::select('iv_dep_colegio',$departamentos,$user->estudiante->colegio->iv_distrit->provincia->departamento_id,['required','placeholder' => 'Departamento'])!!}<br>
-
-															{!!Form::select('iv_prov_colegio',$provincias,$user->estudiante->colegio->iv_distrit->provincia_id,['required', 'placeholder' => 'Provincia'])!!}<br>
-
-															{!!Form::select('iv_distrito',$distritos,$user->estudiante->colegio->iv_distrito,['required','id'=>'e_departamento', 'placeholder' => 'Distrito'])!!}
-															</div>
-														</td>
-														<td>
-															{!!Form::text('iv_fecha', $user->estudiante->colegio->iv_fecha, ['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td>
-															{!!Form::text('iv_pension', $user->estudiante->colegio->iv_pension,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-													</tr>
-													<tr>
-														<td>5to. Secundaria</td>
-														<td>
-															{!!Form::textArea('v_colegio', $user->estudiante->colegio->v_colegio,['cols'=>'auto','rows'=>'3', 'placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td align="center">
-															{!!Form::select('tipo',$tipoColegios,$user->estudiante->colegio->v_tipo,['required','placeholder' => 'Seleccione'])!!}
-														</td>
-														<td>
-															{!!Form::select('v_dep_colegio',$departamentos,$user->estudiante->colegio->v_distrit->provincia->departamento_id,['required','placeholder' => 'Departamento'])!!}<br>
-
-															{!!Form::select('v_prov_colegio',$provincias,$user->estudiante->colegio->v_distrit->provincia_id,['required', 'placeholder' => 'Provincia'])!!}<br>
-
-															{!!Form::select('v_distrito',$distritos,$user->estudiante->colegio->v_distrito,['required','id'=>'e_departamento', 'placeholder' => 'Distrito'])!!}
-														</td>
-														<td>
-															{!!Form::text('v_fecha', $user->estudiante->colegio->v_fecha,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														<td>
-															{!!Form::text('v_pension', $user->estudiante->colegio->v_pension,['placeholder'=>'Escribir aquí...'])!!}
-														</td>
-														
-													</tr>
-													</tbody>
-												</table>
-
+									<div class="col-12">
+									<div class="col-sm-6 col-xs-12" align="left">
+										<h4>4to. Secundaria</h4>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Colegio </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('iv_colegio', $user->estudiante->colegio->iv_colegio,['class'=> 'form-control', 'placeholder'=>'Nombre del colegio'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Tipo </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('iv_tipo',$tipoColegios,$user->estudiante->colegio->iv_tipo,['required'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Departamento </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('iv_dep_colegio',$departamentos,$user->estudiante->colegio->iv_distrit->provincia->departamento_id,['required','placeholder' => 'Departamento','class'=>'form-control','id'=> 'iv_dep'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Provincia </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('iv_prov_colegio',$provincias,$user->estudiante->colegio->iv_distrit->provincia_id,['required','placeholder' => 'Provincia','class'=>'form-control','id'=>'iv_prov'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Distrito </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('iv_distrito',$distritos,$user->estudiante->colegio->iv_distrito,['required','id'=>'e_departamento', 'placeholder' => 'Distrito', 'class'=>'form-control','id'=>'iv_dist'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Año </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('iv_fecha', $user->estudiante->colegio->iv_fecha, ['placeholder'=>'Escribir aquí...'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Pensión S/ </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('iv_pension', $user->estudiante->colegio->iv_pension,['placeholder'=>'Escribir aquí...'])!!}
+												</div>
+											</div>
+										</div>
+									</div>			
+									<div class="col-sm-6 col-xs-12">
+										<h4>5to. Secundaria</h4>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Colegio </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('v_colegio', $user->estudiante->colegio->v_colegio,['class'=> 'form-control', 'placeholder'=>'Nombre del colegio'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Tipo </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('v_tipo',$tipoColegios,$user->estudiante->colegio->v_tipo,['required'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Departamento </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('v_dep_colegio',$departamentos,$user->estudiante->colegio->v_distrit->provincia->departamento_id,['required','placeholder' => 'Departamento','class'=>'form-control','id'=>'v_dep'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Provincia </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('v_prov_colegio',$provincias,$user->estudiante->colegio->v_distrit->provincia_id,['required', 'placeholder' => 'Provincia','class'=>'form-control','id'=>'v_prov'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Distrito </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::select('v_distrito',$distritos,$user->estudiante->colegio->v_distrito,['required','id'=>'e_departamento', 'placeholder' => 'Distrito', 'class'=>'form-control','id'=>'v_dist'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Año </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('v_fecha', $user->estudiante->colegio->v_fecha, ['placeholder'=>'Escribir aquí...'])!!}
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3"> Pensión S/ </label>
+											<div class="col-xs-12 col-sm-9">
+												<div class="clearfix">
+													{!!Form::text('v_pension', $user->estudiante->colegio->v_pension,['placeholder'=>'Escribir aquí...'])!!}
+												</div>
 											</div>
 										</div>
 									</div>
+									</div>
 
-									<div class="space-2"></div>
-
-									<div class="hr hr-dotted"></div>
+																
 									<h3 class="lighter block green">1.2 Modalidad por la que logro el ingreso
 									</h3>
 									<div class="form-group">

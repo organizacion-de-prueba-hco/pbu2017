@@ -328,7 +328,7 @@
 
 //Formularios-------------------- step------------------------------
       function lafuncion($laruta,$elformulario,$eldiv){
-        console.log($($elformulario).serialize());
+        //console.log($($elformulario).serialize());
         var token=$("#token").val(); //El token solo en casos del tipo POST
         var route = $laruta; //Esta ruta dirige al store, y xq no se confunde con el index? x el POST y los datos que recibe
         //console.log("Encuesta:"+$('#encuesta').val()+" <> Pregunta:"+$('#pregunta').val());
@@ -342,7 +342,7 @@
 
           },
           success:  function (response) {
-            console.log(response);
+            //console.log(response);
             $($eldiv).html(response);
           }
         });
@@ -496,7 +496,57 @@
 
       });
     });
+	//4to secundaria
+    $("#iv_dep").change(event => {
+      //Usaremos la ruta que creamos para los selects anidados en "Tutor"
+      $.get(`/prov/${event.target.value}`,function(res,sta){
+        $("#iv_prov").empty();
+        //console.log(res);
+        $("#iv_prov").append(`<option value=''>Provincia</option>`);
+        res.forEach(element => {
+          $("#iv_prov").append(`<option value=${element.id}>${element.provincia}</option>`);
+        });
 
+      });
+    });
+
+    $("#iv_prov").change(event => {
+      $.get(`/dist/${event.target.value}`,function(res,sta){
+        $("#iv_dist").empty();
+        //console.log(res);
+        $("#iv_dist").append(`<option value=''>Distrito</option>`);
+        res.forEach(element => {
+          $("#iv_dist").append(`<option value=${element.id}>${element.distrito}</option>`);
+        });
+
+      });
+    });
+
+    //4to secundaria
+    $("#v_dep").change(event => {
+      //Usaremos la ruta que creamos para los selects anidados en "Tutor"
+      $.get(`/prov/${event.target.value}`,function(res,sta){
+        $("#v_prov").empty();
+        //console.log(res);
+        $("#v_prov").append(`<option value=''>Provincia</option>`);
+        res.forEach(element => {
+          $("#v_prov").append(`<option value=${element.id}>${element.provincia}</option>`);
+        });
+
+      });
+    });
+
+    $("#v_prov").change(event => {
+      $.get(`/dist/${event.target.value}`,function(res,sta){
+        $("#v_dist").empty();
+        //console.log(res);
+        $("#v_dist").append(`<option value=''>Distrito</option>`);
+        res.forEach(element => {
+          $("#v_dist").append(`<option value=${element.id}>${element.distrito}</option>`);
+        });
+
+      });
+    });
 
 		</script>
 

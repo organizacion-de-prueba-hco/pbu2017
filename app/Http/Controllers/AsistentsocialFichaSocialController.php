@@ -18,6 +18,7 @@ use App\TipoColegio;
 use App\CuadroFamiliar;
 use App\EgresoFamiliar;
 use App\DatosSalud;
+use App\Colegio;
 use App\FichaSocial;
 use Redirect;
 use Input;
@@ -144,6 +145,16 @@ class AsistentsocialFichaSocialController extends Controller
       $user->vc_pension=$vc_pension;
       $user->vc_otros=$vc_otros;
       $user->save();
+    
+      //Tabla estudiante
+      $estudiante=Estudiante::find(Input::get('id'));
+      $estudiante->fill(Input::all())->save();
+
+      //Tabla colegios
+      $colegio=Colegio::where('estudiante_id',Input::get('id'))->first();
+
+      $colegios=Colegio::find($colegio->id);
+      $colegios->fill(Input::all())->save();
         return $this->recargarFormularios('formularios.step-11',Input::get('id'));
     }
     public function getCfamiliar($id){
