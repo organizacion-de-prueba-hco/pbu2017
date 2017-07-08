@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\InformeNutricion;
 use Illuminate\Http\Request;
 use Auth;
 use Redirect;
+use App\InformeNutricion;
+use Carbon\Carbon;
+use Input;
+use Validator;
+use Storage;
 
 class NutriInformeController extends Controller
 {
@@ -14,7 +18,7 @@ class NutriInformeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('nutricionista');
+        $this->middleware('nutricionista',['except' => ['getDescargar'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -47,13 +51,34 @@ class NutriInformeController extends Controller
      */
     public function store(Request $request)
     {
+    //obtenemos el campo file definido en el formulario
+    $file = Input::file('archivo');
+    if(!empty($file)){
+        //tamaño del archivo en kBytes
+            $condiciones= array('archivo' => 'max:3072' );
+            $validator=Validator::make(Input::all(),$condiciones);
+            if ($validator->fails()){
+              return back()->withErrors($validator);
+            }else{
+              $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+              $nombre=Carbon::now()->second.$request->get('titulo').'.'.$extension;
+
+              if(!(\Storage::disk('local')->put('informeNutricion/'.$nombre,  \File::get($file)) )){
+              return Redirect::to('forosestudiantes')->with('rojo','Algo salió mal '); 
+              }
+            }
+    }else{
+        $nombre="";
+    }
+    //-----------------------------------------
+
 
         //return $request->get('contenido-n');
         $informenutricion=new InformeNutricion;
         $informenutricion->nutricionista   = Auth::user()->id;
         $informenutricion->titulo=$request->get('titulo');
         $informenutricion->subtitulo=$request->get('subtitulo');
-        $informenutricion->archivo=$request->get('archivo');
+        $informenutricion->archivo=$nombre;
         $informenutricion->contenido=$request->get('contenido-n');
         $informenutricion->save();
         return Redirect::to('nutriforme')->with('verde', 'Se registro un nuevo informe');
@@ -69,7 +94,8 @@ class NutriInformeController extends Controller
      */
     public function show($id)
     {
-        //
+        $foro=InformeNutricion::find($id);
+        return view('users.nutricionista.informenutricion.verMas', compact('foro'));
     }
 
     /**
@@ -93,10 +119,48 @@ class NutriInformeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Si esta marcado el checkbox borramos el archivo y limpiamos de la BD
+    if($request->get('eliminar')=='1'){
+        $datosActuales=InformeNutricion::find($id);
+        if (Storage::exists('informeNutricion/'.$datosActuales->archivo)) {
+            Storage::delete('informeNutricion/'.$datosActuales->archivo);
+        }
+        $datosActuales->archivo='';
+        $datosActuales->save();
+    }else{
+
+    $file = Input::file('archivo');
+    if(!empty($file)){
+        //Si existe un nuevo archivo, borramos el actual
+        $datosActuales=InformeNutricion::find($id);
+        if($datosActuales->archivo){
+            if (Storage::exists('informeNutricion/'.$datosActuales->archivo)) {
+                Storage::delete('informeNutricion/'.$datosActuales->archivo);
+            }
+        }
+        //Luego agregamos el nuevo archivo
+        //tamaño del archivo en kBytes
+            $condiciones= array('archivo' => 'max:3072' );
+            $validator=Validator::make(Input::all(),$condiciones);
+            if ($validator->fails()){
+              return back()->withErrors($validator);
+            }else{
+              $extension = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+              $nombre=Carbon::now()->second.$request->get('titulo').'.'.$extension;
+
+              if(!(\Storage::disk('local')->put('informeNutricion/'.$nombre,  \File::get($file)) )){
+              return Redirect::to('forosestudiantes')->with('rojo','Algo salió mal '); 
+              }
+              $datosActuales->archivo=$nombre;
+              $datosActuales->save();
+            }
+    }
+    }
+    //-----------------------------------------
+
         $informenutricion=InformeNutricion::find($id);
         $informenutricion->titulo=$request->get('titulo');
         $informenutricion->subtitulo=$request->get('subtitulo');
-        $informenutricion->archivo=$request->get('archivo');
         $informenutricion->contenido=$request->get('contenido-n');
         $informenutricion->save();
         return Redirect::to('nutriforme')->with('verde', 'Se actualizo el informe');
@@ -111,5 +175,15 @@ class NutriInformeController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getDescargar($archivo){
+        $url = Storage_path('app/informeNutricion/'.$archivo);
+        if (Storage::exists('informeNutricion/'.$archivo))
+        {
+            //return Storage_path($archivo);
+        return response()->download($url);
+        }
+        //si no se encuentra lanzamos un error 404.
+        return "No se encontró ningun archivo, si el problema persiste comuniquese con el administrador del Software: ".$url;
     }
 }

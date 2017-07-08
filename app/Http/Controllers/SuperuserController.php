@@ -16,6 +16,7 @@ use App\Facultad;
 use App\MIngreso;
 use App\Colegio;
 use App\Notas;
+use App\Expediente;
 use App\CuadroFamiliar;
 use App\EgresoFamiliar;
 
@@ -156,7 +157,7 @@ class SuperuserController extends Controller
                 if($value->telefono!=''){
                     $usuario->telefono=$value->telefono;
                 }
-                if($value->f_nac!=''){
+                if($value->fech_nac!=''){
                     $usuario->f_nac=$value->fech_nac;
                 }
 
@@ -336,4 +337,31 @@ class SuperuserController extends Controller
 
          return "Exito se registraron docentes";
     }
+    public function cargarcomensales(){
+        Excel::load('public/comensales2017.xlsx',function($archivo){
+            $result=$archivo->get();
+            foreach ($result as $key => $value) {
+                if($value->codigo!=''){
+                    $id=Estudiante::where('cod_univ',$value->codigo)->first()->user_id;
+                    if(Expediente::find($id)){ continue; }
+                }else if ($value->dni!=''){
+                    $id=User::where('id',$value->codigo)->first()->id;
+                    if(Expediente::find($id)){continue; }
+                }else{  continue; }
+            if(!$id){  continue;  }
+
+                $expediente= new Expediente;
+                $expediente->expediente=$id;
+                $expediente->jefe_usu='4';
+                if($value->beca!=''){
+                $expediente->tipo_beca=$value->beca;
+                }
+                $expediente->estado='1'; 
+                $expediente->save();            
+                
+            }
+        });
+         return "Exito, se registraron los comensales";    
+    }
+     
 }

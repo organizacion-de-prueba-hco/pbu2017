@@ -3,18 +3,6 @@
 	<?php
 $oa = 'active';
 $a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 ?>
 @endsection
 @section('titulo','Nuevo Informe')
@@ -39,8 +27,6 @@ $e  = '';
 </ul>
 @endsection
 @section('contenido')
-
-		
 			<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<h4 class="header green clearfix">
@@ -49,7 +35,7 @@ $e  = '';
 								
 <!-- inicio formulario -->
 								
-								{!! Form::open(['route' => 'nutriforme.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+								{!! Form::open(['route' => 'nutriforme.store', 'method' => 'POST', 'class'=>'form-horizontal','enctype'=>'multipart/form-data']) !!}
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Título: </label>
 										<div class="col-sm-9">
@@ -60,14 +46,14 @@ $e  = '';
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Subtítulo: </label>
 									<div class="col-sm-9">
-										<input type="text" name="subtitulo" placeholder="Escriba aquí" required class="col-xs-10 col-sm-5" value="">
+										<input type="text" name="subtitulo" placeholder="Escriba aquí (opcional)" class="col-xs-10 col-sm-5" value="">
 									</div>
 								</div>
 								
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Adjunte archivo: </label>
 										<div class="col-sm-9">
-											<input type="file" name="archivo" class="col-xs-10 col-sm-5">
+											<input type="file" name="archivo">
 										</div>
 								</div>
 								<!-- pegar el editor-->
@@ -82,14 +68,15 @@ $e  = '';
                         			</div>
                      			 </div>
 
+                     			 <hr>
 
 								<div class="form-group" >
-										<div class="col-sm-6">
-										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" onclick="capturaNuevo()">
+									<div class="col-sm-12" align="center">
+										<button type="submit" class=" btn btn-sm btn-primary" onclick="capturaNuevo()">
 											<i class="ace-icon fa fa-plus" ></i>
 											<span class="bigger-110">Guardar </span>
-											</button>
-										</div>
+										</button>
+									</div>
 								</div>
 
 								 {!! Form::close() !!}
@@ -97,7 +84,7 @@ $e  = '';
 								
 
 								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
+		</div><!-- /.col -->
 
 			
 @endsection

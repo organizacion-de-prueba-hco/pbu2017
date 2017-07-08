@@ -1,5 +1,5 @@
 <?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
-<h2 class="StepTitle">I. DATOS GENERALES DEL PERÚ</h2>
+<h2 class="StepTitle">I. DATOS GENERALES DEL ALUMNO</h2>
 								{!! Form::open(['method'=>'post','id'=>'elformulario1-1','class'=>'form-horizontal form-label-left']) !!}
 								<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -87,6 +87,14 @@
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
 												{!!Form::text('nacionalidad', $user->nacionalidad, ['class'=> 'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Tipo Sangre:</label>
+										<div class="col-xs-12 col-sm-9">
+											<div class="clearfix">
+												{!!Form::text('tipo_sangre', $user->tipo_sangre, ['class'=>'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
 											</div>
 										</div>
 									</div>

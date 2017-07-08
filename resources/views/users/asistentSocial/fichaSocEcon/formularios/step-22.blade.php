@@ -55,7 +55,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Religión:</label>
+                    <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Trato con los padres:</label>
                     <div class="col-xs-12 col-sm-9">
                       <div class="clearfix">
                         {!!Form::select('trato_padres',$TratoPadres,$user->estudiante->trato_padres,['required','class'=>'col-xs-12 col-sm-6'])!!}

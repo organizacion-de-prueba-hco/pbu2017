@@ -97,7 +97,7 @@ class UserTableSeeder extends Seeder
                 'dni' => '00000007',
                 'nombres' => 'Personal',
                 'apellido_paterno' => 'Usuario',
-                'apellido_materno' => 'Usuario',
+                'apellido_materno' => 'Nuticionista',
                 'email' => 'pnutricion@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '2-3',

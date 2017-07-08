@@ -2,23 +2,11 @@
 @section('activacion')
 	<?php
 $oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 ?>
 @endsection
-@section('titulo','Nuevo Informe')
+@section('titulo','Editar Informe')
 @section('estilos')
+{!!Html::style('editor/editor.css',['rel'=>'stylesheet'])!!}
 	<style type="text/css">
 		label{
 			font-size: 14px;
@@ -48,7 +36,7 @@ $e  = '';
 								
 <!-- inicio formulario -->
 								
-								{!! Form::model($informenutricion,['route' => ['nutriforme.update', $informenutricion->id], 'method' => 'PUT', 'class'=>'form-horizontal']) !!}
+								{!! Form::model($informenutricion,['route' => ['nutriforme.update', $informenutricion->id], 'method' => 'PUT', 'class'=>'form-horizontal','enctype'=>'multipart/form-data']) !!}
 								<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Título: </label>
 										<div class="col-sm-9">
@@ -67,7 +55,13 @@ $e  = '';
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Adjunte archivo: </label>
 
 										<div class="col-sm-9">
-											<input type="text" name="archivo" placeholder="click ----> boton" class="col-xs-10 col-sm-5" value="{{$informenutricion->archivo}}">
+											<input type="file" name="archivo" class="col-xs-10 col-sm-12"><br><br>
+											@if($informenutricion->archivo!='')
+											<label>
+												<input name="eliminar" class="ace" type="checkbox" value="1">
+												<span class="lbl"> Eliminar archivo adjunto</span>
+												</label>
+              								@endif	
 										</div>
 								</div><br>
 								<!-- pegar el editor-->
@@ -76,11 +70,11 @@ $e  = '';
 									<br><br><br>
 								
 
-								<div class="form-group">
-										<div class="col-sm-6">
-										<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" onclick="capturaActualizar()">
+								<div class="form-group" align="center">
+										<div class="col-12">
+										<button type="submit" class="btn btn-sm btn-primary" onclick="capturaActualizar()">
 											<i class="ace-icon fa fa-plus" ></i>
-											<span class="bigger-110">Guardar </span>
+											<span class="bigger-110">Actualizar </span>
 											</button>
 										</div>
 									</div>

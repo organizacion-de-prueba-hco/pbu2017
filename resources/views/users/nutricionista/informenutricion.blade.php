@@ -4,17 +4,6 @@
 $oa = 'active';
 $a  = '';
 $b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 ?>
 @endsection
 @section('titulo','Informes')
@@ -49,32 +38,41 @@ $e  = '';
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
+						<th class="center">Fecha</th>
 						<th class="center">Título</th>
-						<th class="center">Subtitulo</th>
 						<th class="center" class="hidden-480">Archivo</th>
-						<th class="center" class="hidden-480">Fecha de Creación</th>
-						
-						<th></th>
+						<th class="center" class="hidden-480">Acciones</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					@foreach($nutriformes as $nutriforme)
 						<tr>
-							<td class="center">{{$nutriforme->titulo}}</td>
-							<td> {{$nutriforme->subtitulo}}</td>
-							<td>{{$nutriforme->archivo}}</td>
-							<td>{{$nutriforme->created_at}}</td>
-
+							<td align="center">{{$nutriforme->created_at}}</td>
+							<td >{{$nutriforme->titulo}}</td>
+							<td align="center">
+								@if($nutriforme->archivo)
+									<a href="{{url('nutriformes/descargar',$nutriforme->archivo)}}">
+										<span class="label label-sm label-success"><i class="fa fa- fa-download bigger-110 white"></i>	Descargar
+										</span>
+									</a>
+								@endif
+							</td>
+							
 							<td>
-							<div class="hidden-sm hidden-xs action-buttons">
+
+							<div class="hidden-sm hidden-xs action-buttons" align="center">
 								<a class="blue" href="{{route('nutriforme.show',$nutriforme->id)}}" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
+								</a>
+								<a class="orange" href="{{url('pdf/informenutricion',$nutriforme->id)}}" title="Descargar como PDF" target="_black">
+									<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
 								</a>
 								<a class="green" href="{{route('nutriforme.edit',$nutriforme->id)}}">
 									<i class="ace-icon fa fa-pencil bigger-130"></i>
 								</a>
 							</div>
+
 							<div class="hidden-md hidden-lg">
 							<!--Cuando se comprime la pantalla-->
 							<div class="inline pos-rel">
@@ -91,6 +89,13 @@ $e  = '';
 										</a>
 									</li>
 									<li>
+										<a href="{{url('pdf/informenutricion',$nutriforme->id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar como PDF">
+											<span class="orange">
+												<i class="ace-icon fa fa-file-pdf-o bigger-120"></i>
+											</span>
+										</a>
+									</li>
+									<li>
 										<a href="{{route('nutriforme.edit',$nutriforme->id)}}" class="tooltip-success" data-rel="tooltip" title="Editar">
 											<span class="green">
 												<i class="ace-icon fa fa-pencil-square-o bigger-120">
@@ -99,6 +104,7 @@ $e  = '';
 										</a>
 									</li>
 								</ul>
+
 								</div>
 							</div>
 						</td>
@@ -126,20 +132,7 @@ $e  = '';
 		{!!Html::script('assets/js/dataTables.select.min.js')!!}
 
 		<script type="text/javascript">
-		function valida(e){
-          tecla = (document.all) ? e.keyCode : e.which;
-
-          //Tecla de retroceso para borrar, siempre la permite
-          if (tecla==8){
-              return true;
-          }
-
-          // Patron de entrada, en este caso solo acepta numeros
-          patron =/[0-9]/;
-          tecla_final = String.fromCharCode(tecla);
-          return patron.test(tecla_final);
-    }
-
+		
 			jQuery(function($) {
 				//initiate dataTables plugin
 				var myTable =
@@ -148,36 +141,16 @@ $e  = '';
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,
+					  { "bSortable": null},
+					  null, null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
-
-
-					//"bProcessing": true,
-			        //"bServerSide": true,
-			        //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
-
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-					//"iDisplayLength": 50
-
 
 					select: {
 						style: 'multi'
 					}
 			    } );
-
-
 
 				$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 
@@ -210,155 +183,11 @@ $e  = '';
 				} );
 				myTable.buttons().container().appendTo( $('.tableTools-container') );
 
-				//style the message box
-				var defaultCopyAction = myTable.button(1).action();
-				myTable.button(1).action(function (e, dt, button, config) {
-					defaultCopyAction(e, dt, button, config);
-					$('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-				});
-
-
-				var defaultColvisAction = myTable.button(0).action();
-				myTable.button(0).action(function (e, dt, button, config) {
-
-					defaultColvisAction(e, dt, button, config);
-
-
-					if($('.dt-button-collection > .dropdown-menu').length == 0) {
-						$('.dt-button-collection')
-						.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-						.find('a').attr('href', '#').wrap("<li />")
-					}
-					$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-				});
-
-				////
-
-				setTimeout(function() {
-					$($('.tableTools-container')).find('a.dt-button').each(function() {
-						var div = $(this).find(' > div').first();
-						if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
-						else $(this).tooltip({container: 'body', title: $(this).text()});
-					});
-				}, 500);
+				
 
 
 
 
-
-				myTable.on( 'select', function ( e, dt, type, index ) {
-					if ( type === 'row' ) {
-						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
-					}
-				} );
-				myTable.on( 'deselect', function ( e, dt, type, index ) {
-					if ( type === 'row' ) {
-						$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
-					}
-				} );
-
-
-
-
-				/////////////////////////////////
-				//table checkboxes
-				$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
-
-				//select/deselect all rows according to table header checkbox
-				$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
-					var th_checked = this.checked;//checkbox inside "TH" table header
-
-					$('#dynamic-table').find('tbody > tr').each(function(){
-						var row = this;
-						if(th_checked) myTable.row(row).select();
-						else  myTable.row(row).deselect();
-					});
-				});
-
-				//select/deselect a row when the checkbox is checked/unchecked
-				$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
-					var row = $(this).closest('tr').get(0);
-					if(this.checked) myTable.row(row).deselect();
-					else myTable.row(row).select();
-				});
-
-
-
-				$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
-					e.stopImmediatePropagation();
-					e.stopPropagation();
-					e.preventDefault();
-				});
-
-
-
-				//And for the first simple table, which doesn't have TableTools or dataTables
-				//select/deselect all rows according to table header checkbox
-				var active_class = 'active';
-				$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
-					var th_checked = this.checked;//checkbox inside "TH" table header
-
-					$(this).closest('table').find('tbody > tr').each(function(){
-						var row = this;
-						if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
-						else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
-					});
-				});
-
-				//select/deselect a row when the checkbox is checked/unchecked
-				$('#simple-table').on('click', 'td input[type=checkbox]' , function(){
-					var $row = $(this).closest('tr');
-					if($row.is('.detail-row ')) return;
-					if(this.checked) $row.addClass(active_class);
-					else $row.removeClass(active_class);
-				});
-
-
-
-				/********************************/
-				//add tooltip for small view action buttons in dropdown menu
-				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-
-				//tooltip placement on right or left
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('table')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
-
-					var off2 = $source.offset();
-					//var w2 = $source.width();
-
-					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-					return 'left';
-				}
-
-
-
-
-				/***************/
-				$('.show-details-btn').on('click', function(e) {
-					e.preventDefault();
-					$(this).closest('tr').next().toggleClass('open');
-					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-				});
-				/***************/
-
-
-
-
-
-				/**
-				//add horizontal scrollbars to a simple table
-				$('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-				  {
-					horizontal: true,
-					styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-					size: 2000,
-					mouseWheelLock: true
-				  }
-				).css('padding-top', '12px');
-				*/
 
 
 			})

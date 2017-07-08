@@ -22,6 +22,7 @@ Route::resource('superuser', 'SuperuserController');
 Route::get('cargardatos', 'SuperuserController@cargar');
 Route::get('cargarnotas', 'SuperuserController@cargarnotas');
 Route::get('cargardocentes', 'SuperuserController@cargardocentes');
+Route::get('cargarcomensales', 'SuperuserController@cargarcomensales');
 //Asistenta Social
 Route::resource('asfichasocial', 'AsistentSocialFichasocialController');
 Route::controller('fichasocial', 'AsistentSocialFichasocialController');
@@ -40,6 +41,11 @@ Route::resource('jusuexpediente', 'JusuExpedienteController');
 Route::controller('jusuexpedientes', 'JusuExpedienteController');
 //nutricionista
 Route::resource('nutriforme', 'NutriInformeController');
+Route::controller('nutriformes', 'NutriInformeController');
+
+//Pdf
+Route::controller('pdf', 'PdfController');
+
 //Select Anidado
 	Route::get('prov/{id}',function (Request $request, $id) {
             if ($request->ajax()) {

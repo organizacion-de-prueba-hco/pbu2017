@@ -68,75 +68,6 @@
 
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						<li class="purple dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
-							</a>
-
-							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-exclamation-triangle"></i>
-									8 Notificaciones
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar navbar-pink">
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-													<span class="pull-right badge badge-info">+12</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<i class="btn btn-xs btn-primary fa fa-user"></i>
-												Bob just signed up as an editor ...
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-													<span class="pull-right badge badge-success">+8</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-													<span class="pull-right badge badge-info">+11</span>
-												</div>
-											</a>
-										</li>
-									</ul>
-								</li>
-
-								<li class="dropdown-footer">
-									<a href="#">
-										Ver todas las notificaciones
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="{{URL::to('imagenes/avatar/'.Auth::user()->foto)}}"
@@ -191,7 +122,7 @@
 
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<b>Jefe de Unidad</b>
+						<b>Personal de Nutrición</b>
 					</div>
 				</div><!-- /.sidebar-shortcuts -->
 
@@ -201,134 +132,6 @@
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Informe Nutricional </span>
 						</a>
-						<b class="arrow"></b>
-					</li>
-					<li class="{{$a}}">
-						<a href="asfichasocial">
-							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Ficha Socio Econ. </span>
-						</a>
-						<b class="arrow"></b>
-					</li>
-
-					<li class="{{$b}}">
-						<a href="asdeclaracionjurada">
-							<i class="menu-icon fa fa-comment"></i>
-							<span class="menu-text"> Declaración Jurada </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="{{$c}}">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-home"></i>
-							<span class="menu-text"> Visita Domiciliaria </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="{{$c1}}">
-								<a href="asvisitadomc1">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Estudiante
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$c2}}">
-								<a href="asvisitadomc2">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$c3}}">
-								<a href="asvisitadomc3">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal No Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$c4}}">
-								<a href="asvisitadomc4">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Otros
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-
-						</ul>
-					</li>
-
-					<li class="{{$d}}">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-hospital-o"></i>
-							<span class="menu-text"> Visita Hospitalaria </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="{{$d1}}">
-								<a href="asvisitahosp1">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Estudiante
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$d2}}">
-								<a href="asvisitahosp2">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$d3}}">
-								<a href="asvisitahosp3">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal No Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$d4}}">
-								<a href="asvisitahosp4">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Otros
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-
-						</ul>
-					</li>
-
-
-					<li class="{{$e}}">
-						<a href="asexpagocentmed">
-							<i class="menu-icon fa fa-medkit"></i>
-							<span class="menu-text"> Exon. Pago Cent Med </span>
-						</a>
-
 						<b class="arrow"></b>
 					</li>
 				</ul><!-- /.nav-list -->

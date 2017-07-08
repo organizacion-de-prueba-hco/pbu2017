@@ -83,6 +83,9 @@ class User extends Model implements AuthenticatableContract,
     public function directivo(){
         return $this->hasOne('App\Directivo','user_id','id');
     }
+    public function nutricionista(){
+        return $this->hasOne('App\Directivo','nutricionista','id');
+    }
 
     public function expediente(){
         return $this->hasOne('App\Expediente','expediente','id');
