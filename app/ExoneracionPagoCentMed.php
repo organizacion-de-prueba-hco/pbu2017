@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExoneracionPagoCentMed extends Model
 {
-    protected $table='';
+    protected $table='exoneracion_pago_cent_meds';
     protected $fillable=[
     'estudiante',
     'asistenta_social',

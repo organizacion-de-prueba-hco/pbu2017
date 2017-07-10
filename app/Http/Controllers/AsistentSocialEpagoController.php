@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\ExoneracionPagoCentMed;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +16,8 @@ class AsistentSocialEpagoController extends Controller
      */
     public function index()
     {
-        return view('users.asistentSocial.exoneracion');
+        $exoneraciones=ExoneracionPagoCentMed::get();
+        return view('users.asistentSocial.exoneracion',compact('exoneraciones'));
     }
 
     /**
