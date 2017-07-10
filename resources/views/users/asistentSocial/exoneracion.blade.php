@@ -23,11 +23,11 @@
 		<a href="{{url('asdeclaracionjurada')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
 		
 		<div class="table-header">
-			<a href="{{url('asdeclaracionjurada/create')}}" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Lista de Declaraciones Juradas &nbsp;&nbsp;&nbsp;
-			<a href="#testear" data-toggle="modal"><span class="btn btn-warning btn-xs btn-round">Busccar Declaracion Jurada</span></a>
+				Lista de Exoneraciones de Pago al Centro Mpedico &nbsp;&nbsp;&nbsp;
+			<a href="#testear" data-toggle="modal"><span class="btn btn-warning btn-xs btn-round">Busccar Exoneración</span></a>
 		</div>
 										<!--Modal Nuevo-->
 		<div id="nuevo-exp" class="modal fade" tabindex="-1">
@@ -35,12 +35,12 @@
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Registrar Nuevo Declaración</h3>
+												<h3 class="smaller lighter blue no-margin">Registrar Nueva Exoneración de Pago Centro Médico</h3>
 											</div>
 
 											<div class="modal-body" align="center">
 												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'asdeclaracionjurada/nuevo', 'method' => 'POST']) !!}
+													{!! Form::open(['url' => 'asexpagocentmeds/nuevo', 'method' => 'POST']) !!}
 															<span class="input-icon">
 																<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10"
 																required="required"

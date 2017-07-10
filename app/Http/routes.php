@@ -35,7 +35,9 @@ Route::resource('asvisitahosp1', 'AsistentSocialVhd1Controller');
 Route::resource('asvisitahosp2', 'AsistentSocialVhd2Controller');
 Route::resource('asvisitahosp3', 'AsistentSocialVhd3Controller');
 Route::resource('asvisitahosp4', 'AsistentSocialVhd4Controller');
+//asistendSocial
 Route::resource('asexpagocentmed', 'AsistentSocialEpagoController');
+Route::controller('asexpagocentmeds', 'AsistentSocialEpagoController');
 //JUSU
 Route::resource('jusuexpediente', 'JusuExpedienteController');
 Route::controller('jusuexpedientes', 'JusuExpedienteController');
