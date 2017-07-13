@@ -21,6 +21,7 @@
 @include('users.asistentSocial.fichaSocEcon.editar-cfamiliar')
 @include('users.asistentSocial.fichaSocEcon.nuevo-cfamiliar')
 @include('users.asistentSocial.fichaSocEcon.editar-ltrabajosf')
+@include('users.asistentSocial.fichaSocEcon.editar-foto')
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
@@ -405,14 +406,7 @@
           headers:{'X-CSRF-TOKEN':token},
           url:route,
           type:'GET',
-          success: function(result){ 
-          	//console.log(result);
-            // $("#if_cfamiliar_id option[value='"+ result.cfamiliar_id+"']").attr("selected",true);
-            // $('#if_sueldo').val(result.sueldo);
-            // $('#if_honorario').val(result.honorario);
-            // $('#if_ocupacion').val(result.ocupacion);
-            // $('#if_empresa').val(result.empresa);
-            // $('#if_id').val(result.id);
+          success: function(result){
               $('#EditarIfamiliar').html(result);
           }                  
         });
@@ -548,8 +542,28 @@
       });
     });
 
-		</script>
-
+//imagenes
+    //Mostrar imagenes del imput file
+    function foto(evt) {
+      var files = evt.target.files; // FileList object
+        //Obtenemos la imagen del campo "file". 
+      for (var i = 0, f; f = files[i]; i++) {         
+           //Solo admitimos imágenes.
+           if (!f.type.match('image.*')) {
+                continue;
+           }
+           var reader = new FileReader();
+           reader.onload = (function(theFile) {
+               return function(e) {
+               // Creamos la imagen.
+                      document.getElementById("lista").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+               };
+           })(f);
+ 
+           reader.readAsDataURL(f);
+       }
+  }      
+      document.getElementById('files-foto').addEventListener('change', foto, false);
 </script>
 
 @endsection

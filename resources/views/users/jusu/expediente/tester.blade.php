@@ -15,6 +15,7 @@ $d2 = '';
 $d3 = '';
 $d4 = '';
 $e  = '';
+$nbecas='';
 ?>
 @endsection
 @section('titulo','Tester')
@@ -214,6 +215,12 @@ if ($promedionotas <= 10.5) {
 													<div class="profile-info-name"> Modalidad de Ingreso </div>
 													<div class="profile-info-value">
 														<span >{{$estudiante->m_ingreso->modalidad}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Colegio (año) </div>
+													<div class="profile-info-value">
+														<span >{{$estudiante->colegio->v_colegio.' ('.$estudiante->colegio->v_fecha.')'}}</span>
 													</div>
 												</div>
 												<div class="profile-info-row">

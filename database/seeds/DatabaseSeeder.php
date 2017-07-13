@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EscuelaTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(TipoColegio::class);
+        $this->call(NBecasTableSeeder::class);
+        
         Model::reguard();
     }
 }

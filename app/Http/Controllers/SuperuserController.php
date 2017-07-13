@@ -112,7 +112,7 @@ class SuperuserController extends Controller
                 //if($contJohn==50){
                 //    break;
                 //}
-               //---------- Si existe el DNI registrado 
+               //---------- Si existe el Cod registrado 
                     $sensorEstudiante=Estudiante::where('cod_univ',$value->id_alumno)->first();
                   if($sensorEstudiante){
                      $usuario=Estudiante::find($sensorEstudiante->user_id);
@@ -123,12 +123,20 @@ class SuperuserController extends Controller
                   }
                //----------------
                 $usuario = new User;
-                $usuario->dni=$value->dni;
                 $usuario->apellido_paterno=$value->paterno;
                 $usuario->apellido_materno=$value->materno;
                 $usuario->nombres=$value->nombres;
-                $usuario->email=$value->dni.'@mail.com';
-                if($value->dni=='--------' || $value->dni==''){
+                
+                if($value->dni!=''){
+                    if(User::where('dni',$value->dni)->first()){
+                      $usuario->dni=str_random(8);
+                      $usuario->email=str_random(8).'mail.com';
+                    }else{
+                      $usuario->email=$value->dni.'@mail.com'; 
+                      $usuario->dni=$value->dni;
+                    }
+                }
+                else if($value->dni=='--------' || $value->dni==''){
                     $usuario->dni=str_random(8);
                     $usuario->email=str_random(8).'mail.com';
                 }
@@ -179,9 +187,69 @@ class SuperuserController extends Controller
                     $estudiante->cod_univ=str_random(10);
                 }
                 if($value->ep!=''){
-                    $escuela=Escuela::where('escuela',$value->ep)->first();
-                    if($escuela){
-                        $estudiante->escuela_id=$escuela->id;
+                    // $escuela=Escuela::where('escuela',$value->ep)->first();
+                    // if($escuela){
+                    //     $estudiante->escuela_id=$escuela->id;
+                    // }
+                    switch ($value->ep) {
+                        case 'AGRONOMIA':case 'INGENIERIA AGRONOMICA':
+                            $estudiante->escuela_id='1'; break;
+                        case 'INGENIERIA AGROINDUSTRIAL':
+                            $estudiante->escuela_id='2'; break;
+                        case 'INGENIERIA AGROPECUARIA FORESTAL':
+                            $estudiante->escuela_id='3'; break;
+                        case 'MEDICINA HUMANA':
+                            $estudiante->escuela_id='4'; break;
+                        case 'ODONTOLOGIA':
+                            $estudiante->escuela_id='5'; break;
+                        case 'PSICOLOGIA':
+                            $estudiante->escuela_id='6'; break;
+                        case 'ENFERMERIA':
+                            $estudiante->escuela_id='7'; break;
+                        case 'OBSTETRICIA':
+                            $estudiante->escuela_id='8'; break;
+                        case 'CIENCIAS ADMINISTRATIVAS':
+                            $estudiante->escuela_id='9'; break;
+                        case 'TURISMO Y HOTELERIA':
+                            $estudiante->escuela_id='10'; break;
+                        case 'CIENCIAS CONTABLES Y FINANCIERAS':
+                            $estudiante->escuela_id='11'; break;
+                        case 'ECONOMIA':
+                            $estudiante->escuela_id='12'; break;
+                        case 'SOCIOLOGIA':
+                            $estudiante->escuela_id='13'; break;
+                        case 'CIENCIAS DE LA COMUNICACION SOCIAL':
+                            $estudiante->escuela_id='14'; break;
+                        case 'EDUCACION INICIAL': case 'EDUCACION BASICA EDUCACION INICIAL':
+                            $estudiante->escuela_id='15'; break;
+                        case 'EDUCACION PRIMARIA': case 'EDUCACION BASICA EDUCACION PRIMARIA':
+                            $estudiante->escuela_id='16'; break;
+                        case 'EDUCACION FISICA': case 'EDUCACION BASICA EDUCACION FISICA':
+                            $estudiante->escuela_id='17'; break;
+                        case 'FILOSOFIA, PSICOLOGIA Y CIENCIAS SOCIALES': case 'EDUCACION SECUNDARIA CIENCIAS HISTORICO SOCIALES Y GEOGRAFICAS':
+                            $estudiante->escuela_id='18'; break;
+                        case 'LENGUA Y LITERATURA': case 'EDUCACION SECUNDARIA LENGUA Y LITERATURA':
+                            $estudiante->escuela_id='19'; break;
+                        case 'CIENCIAS HISTORICO SOCIALES Y GEOGRAFICAS': case 'EDUCACION SECUNDARIA CIENCIAS HISTORICO SOCIALES Y GEOGRAFICAS':
+                            $estudiante->escuela_id='20'; break;
+                        case 'MATEMATICA Y FISICA': case 'EDUCACION SECUNDARIA MATEMATICA Y FISICA':
+                            $estudiante->escuela_id='21'; break;
+                        case 'BIOLOGIA, QUIMICA Y CIENCIA DEL AMBIENTE': case 'EDUCACION SECUNDARIA BIOLOGIA, QUIMICA Y CIENCIA DEL AMBIENTE':
+                            $estudiante->escuela_id='22'; break;
+                        case 'DERECHO Y CIENCIAS POLITICAS': case 'DERECHO':
+                            $estudiante->escuela_id='23'; break;
+                        case 'INGENIERIA CIVIL':
+                            $estudiante->escuela_id='24'; break;
+                        case 'ARQUITECTURA':
+                            $estudiante->escuela_id='25'; break;
+                        case 'INGENIERIA INDUSTRIAL':
+                            $estudiante->escuela_id='26'; break;
+                        case 'INGENIERIA DE SISTEMAS': 
+                            $estudiante->escuela_id='27'; break;
+                        case 'MEDICINA VETERINARIA': 
+                            $estudiante->escuela_id='28'; break;
+                        default:
+                             $estudiante->escuela_id='1'; break;
                     }
                 }
                 if($value->mod_ingre!=''){
@@ -342,7 +410,11 @@ class SuperuserController extends Controller
             $result=$archivo->get();
             foreach ($result as $key => $value) {
                 if($value->codigo!=''){
-                    $id=Estudiante::where('cod_univ',$value->codigo)->first()->user_id;
+                    $ids=Estudiante::where('cod_univ',$value->codigo)->first();
+                    if (!$ids) {
+                     continue;   
+                    }
+                    $id=$ids->user_id;
                     if(Expediente::find($id)){ continue; }
                 }else if ($value->dni!=''){
                     $id=User::where('id',$value->codigo)->first()->id;

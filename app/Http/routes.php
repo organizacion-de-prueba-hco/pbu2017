@@ -24,8 +24,8 @@ Route::get('cargarnotas', 'SuperuserController@cargarnotas');
 Route::get('cargardocentes', 'SuperuserController@cargardocentes');
 Route::get('cargarcomensales', 'SuperuserController@cargarcomensales');
 //Asistenta Social
-Route::resource('asfichasocial', 'AsistentSocialFichasocialController');
-Route::controller('fichasocial', 'AsistentSocialFichasocialController');
+Route::resource('asfichasocial', 'AsistentsocialFichasocialController');
+Route::controller('fichasocial', 'AsistentsocialFichasocialController');
 Route::resource('asdeclaracionjurada', 'AsistentSocialDeclaracionjuradaController');
 Route::resource('asvisitadomc1', 'AsistentSocialVdc1Controller');
 Route::resource('asvisitadomc2', 'AsistentSocialVdc2Controller');
@@ -39,6 +39,7 @@ Route::resource('asexpagocentmed', 'AsistentSocialEpagoController');
 //JUSU
 Route::resource('jusuexpediente', 'JusuExpedienteController');
 Route::controller('jusuexpedientes', 'JusuExpedienteController');
+Route::resource('jusunbecas', 'JusuNbecasController');
 //nutricionista
 Route::resource('nutriforme', 'NutriInformeController');
 Route::controller('nutriformes', 'NutriInformeController');

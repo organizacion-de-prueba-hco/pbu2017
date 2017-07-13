@@ -15,6 +15,7 @@ $d2 = '';
 $d3 = '';
 $d4 = '';
 $e  = '';
+$nbecas='';
 ?>
 @endsection
 @section('titulo','Expedientes')
@@ -40,7 +41,7 @@ $e  = '';
 			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Lista de los expedientes &nbsp;&nbsp;&nbsp;
+				Expedientes de los comensales &nbsp;&nbsp;&nbsp;
 			<a href="#testear" data-toggle="modal"><span class="btn btn-warning btn-xs btn-round">Testear Estudiante</span></a>
 		</div>
 										<!--Modal Nuevo-->

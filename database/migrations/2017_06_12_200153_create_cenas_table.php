@@ -16,6 +16,7 @@ class CreateCenasTable extends Migration
             $table->increments('id');
             $table->integer('comedor_id')->unsigned();
             $table->integer('expediente_id')->unsigned();
+            $table->string('estado')->default('0');
 
             $table->foreign('expediente_id')->references('expediente')
                   ->on('expedientes')->onDelete('cascade');

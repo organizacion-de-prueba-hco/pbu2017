@@ -1,8 +1,15 @@
 <?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
 <h2 class="StepTitle">I. DATOS GENERALES DEL ALUMNO</h2>
+			<div align="center">
+				<a href="#" title="Clic para actualizar foto" data-toggle="modal" 
+                   data-target="#EditarFotoEstudiante" title="Editar">
+				<span class="profile-picture">
+					<img id="avatar" alt="avatar" src="{{url('imagenes/avatar/'.$user->foto)}}" height="170px;">
+				</span>
+				</a>
+			</div><hr>
 								{!! Form::open(['method'=>'post','id'=>'elformulario1-1','class'=>'form-horizontal form-label-left']) !!}
 								<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
-
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Apellidos y Nombres:</label>
 										<div class="col-xs-12 col-sm-9">
@@ -11,9 +18,7 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="space-2"></div>
-
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Código:</label>
 										<div class="col-xs-12 col-sm-9">

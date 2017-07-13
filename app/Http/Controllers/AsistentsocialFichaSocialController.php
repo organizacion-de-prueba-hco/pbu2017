@@ -157,6 +157,20 @@ class AsistentsocialFichaSocialController extends Controller
       $colegios->fill(Input::all())->save();
         return $this->recargarFormularios('formularios.step-11',Input::get('id'));
     }
+    public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Input::get('id'));        
+        $name=$user->estudiante->cod_univ.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        $user->save();
+        return $this->edit(Input::get('id'));
+    }else{
+      return $this->edit(Input::get('id'));
+    }
+
+    }
     public function getCfamiliar($id){
         return Cuadrofamiliar::find($id);
     }

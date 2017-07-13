@@ -15,6 +15,7 @@ $d2 = '';
 $d3 = '';
 $d4 = '';
 $e  = '';
+$nbecas='';
 ?>
 @endsection
 @section('titulo','Tester')

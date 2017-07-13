@@ -101,4 +101,7 @@ class PdfController extends Controller
         return $pdf->download($informeNutricion->titulo.'.pdf');
         //return $pdf->stream('invoiced');
     }
+    public function getDeclaracionjurada(){
+
+    }
 }

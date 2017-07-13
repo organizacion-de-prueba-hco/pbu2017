@@ -29,8 +29,7 @@ class EscuelaTableSeeder extends Seeder
             'EDUCACION INICIAL',
             'EDUCACION PRIMARIA',
             'EDUCACION FISICA',
-            'FILOSOFIA',
-            'PSICOLOGIA Y CIENCIAS SOCIALES',
+            'FILOSOFIA, PSICOLOGIA Y CIENCIAS SOCIALES',
             'LENGUA Y LITERATURA',
             'CIENCIAS HISTORICO SOCIALES Y GEOGRAFICAS',
             'MATEMATICA Y FISICA',
@@ -40,7 +39,7 @@ class EscuelaTableSeeder extends Seeder
             'ARQUITECTURA',
             'INGENIERIA INDUSTRIAL',
             'INGENIERIA DE SISTEMAS',
-            'MEDICINA VETERINARIA'
+            'MEDICINA VETERINARIA',
 );
          for ($i=0; $i<3; $i++) { 
     		DB::table('escuelas')->insert([
@@ -96,31 +95,31 @@ class EscuelaTableSeeder extends Seeder
                 'facultad_id' => "9",
         	]);
     	}
-    	for ($i=14; $i<23; $i++) { 
+    	for ($i=14; $i<22; $i++) { 
     		DB::table('escuelas')->insert([
                 'escuela' => $array[$i],
                 'facultad_id' => "10",
         	]);
     	}
-    	for ($i=23; $i<24; $i++) { 
+    	for ($i=22; $i<23; $i++) { 
     		DB::table('escuelas')->insert([
                 'escuela' => $array[$i],
                 'facultad_id' => "11",
         	]);
     	}
-    	for ($i=24; $i<26; $i++) { 
+    	for ($i=23; $i<25; $i++) { 
     		DB::table('escuelas')->insert([
                 'escuela' => $array[$i],
                 'facultad_id' => "12",
         	]);
     	}
-    	for ($i=26; $i<28; $i++) { 
+    	for ($i=25; $i<27; $i++) { 
     		DB::table('escuelas')->insert([
                 'escuela' => $array[$i],
                 'facultad_id' => "13",
         	]);
     	}
-    	for ($i=28; $i<29; $i++) { 
+    	for ($i=27; $i<28; $i++) { 
     		DB::table('escuelas')->insert([
                 'escuela' => $array[$i],
                 'facultad_id' => "14",

@@ -17,6 +17,9 @@ class Escuela extends Model
         return $this->hasMany('App\Estudiante');
     }
 
+    public function cantidadbecas(){
+        return $this->hasMany('App\CantidadBecas','escuela_id','id');
+    }
     public function personaldocentes(){
         return $this->hasMany('App\PersonalDocente');
     }

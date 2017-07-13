@@ -22,36 +22,29 @@
 
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
-		</div>
-		<a href="{{url('asdeclaracionjurada')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
+		</div>		
 		
 		<div class="table-header">
-			<a href="{{url('asdeclaracionjurada/create')}}" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-dj" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Lista de Declaraciones Juradas &nbsp;&nbsp;&nbsp;
-			<a href="#testear" data-toggle="modal"><span class="btn btn-warning btn-xs btn-round">Busccar Declaracion Jurada</span></a>
 		</div>
 										<!--Modal Nuevo-->
-		<div id="nuevo-exp" class="modal fade" tabindex="-1">
-								<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Registrar Nuevo Declaración</h3>
+		<div id="nuevo-dj" class="modal fade" tabindex="-1">
+			<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h3 class="smaller lighter blue no-margin">Registrar Nueva Declaración Jurada</h3>
 											</div>
-
-											<div class="modal-body" align="center">
-												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'asdeclaracionjurada/nuevo', 'method' => 'POST']) !!}
-															<span class="input-icon">
-																<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10"
-																required="required"
-																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod-nuevo"
-																>
-																<i class="ace-icon fa fa-search nav-search-icon"></i>
-															</span>
+					<div class="modal-body" align="center">
+							Ingrese Código Universitario del Estudiante<br>
+							{!! Form::open(['url' => 'asdeclaracionjurada/nuevo', 'method' => 'POST']) !!}
+								<span class="input-icon">
+									<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod-nuevo" >
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
 															<button class="btn btn-success btn-sm btn-round submit">
 																<i class="ace-icon fa fa-plus"></i>
 															</button>
@@ -65,47 +58,10 @@
 													Close
 												</button>
 											</div> -->
-										</div><!-- /.modal-content -->
-									</div><!-- /.modal-dialog -->
+					</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
 		</div>
 										<!--Fin modal Nuevo-->
-										<!--Modal testear-->
-		<div id="testear" class="modal fade" tabindex="-1">
-								<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Testear estudiante</h3>
-											</div>
-
-											<div class="modal-body" align="center">
-												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'asdeclaracionjurada/testeador', 'method' => 'POST']) !!}
-															<span class="input-icon">
-																<input type="number" placeholder="Testear ..." class="nav-search-input" maxlength="10"
-																required="required"
-																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod-test"
-																>
-																<i class="ace-icon fa fa-search nav-search-icon"></i>
-															</span>
-															<button class="btn btn-warning btn-sm btn-round submit">
-																<i class="ace-icon fa fa-share"></i>
-															</button>
-													{!!Form::close()!!}
-													<br>
-											</div>
-
-											<!-- <div class="modal-footer">
-												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
-													<i class="ace-icon fa fa-times"></i>
-													Close
-												</button>
-											</div> -->
-										</div><!-- /.modal-content -->
-									</div><!-- /.modal-dialog -->
-								</div>
-										<!--Fin modal Testear-->
 
 										<!-- div.table-responsive -->
 

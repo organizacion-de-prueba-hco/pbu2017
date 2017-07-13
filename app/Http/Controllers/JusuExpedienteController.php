@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Auth;
 use App\Estudiante;
 use App\Expediente;
+use App\User;
 use App\HistorialExpediente;
-use App\Http\Controllers\Controller;
-use Auth;
-use Illuminate\Http\Request;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -17,7 +17,7 @@ class JusuExpedienteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('jusu');
+        $this->middleware('jusu',['except' => ['getReporte'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -145,6 +145,13 @@ class JusuExpedienteController extends Controller
 
         $cod        = $request->get('cod-test');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
+        //return $estudiante;
         return view('users.jusu.expediente.tester', compact('estudiante'));
     }
     public function postNuevo(Request $request)
@@ -152,6 +159,12 @@ class JusuExpedienteController extends Controller
 
         $cod        = $request->get('cod-nuevo');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
         return view('users.jusu.expediente.nuevo', compact('estudiante'));
         //$estudiante=Estudiante::where('cod_univ',$cod)->first();
         //return view('users.jusu.expediente.tester',compact('estudiante'));
