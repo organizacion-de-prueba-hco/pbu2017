@@ -22,7 +22,7 @@ class Jusu
     public function handle($request, Closure $next)
     {
         //return $this->auth->user()->tipo_user=='2-1';
-        if($this->auth->user()->tipo_user=='2'){
+        if($this->auth->user()->tipo_user=='2' || $this->auth->user()->tipo_user=='0'){
             return $next($request);
         }else{
             abort(403);

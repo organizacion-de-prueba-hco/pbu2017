@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::resource('log', 'LogController');
 //Super user
 Route::resource('superuser', 'SuperuserController');
+Route::resource('suestudiantes', 'SuperuserestudiantesController');
 Route::get('cargardatos', 'SuperuserController@cargar');
 Route::get('cargarnotas', 'SuperuserController@cargarnotas');
 Route::get('cargardocentes', 'SuperuserController@cargardocentes');

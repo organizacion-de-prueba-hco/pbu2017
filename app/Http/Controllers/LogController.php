@@ -46,7 +46,7 @@ class LogController extends Controller
                 $mensaje = "ingresó correctamente";
                 switch (Auth::user()->tipo_user) {
                     case '0':
-                        return Redirect::to('super-usuario');
+                        return Redirect::to('suestudiantes');
                         break;
                     case '1':
                         return Redirect::to('docenteproyecto');

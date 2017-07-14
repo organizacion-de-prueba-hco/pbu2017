@@ -156,7 +156,7 @@ class JusuExpedienteController extends Controller
     }
     public function postNuevo(Request $request)
     {
-
+        
         $cod        = $request->get('cod-nuevo');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
         if(!$estudiante){

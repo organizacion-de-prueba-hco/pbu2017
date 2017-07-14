@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>SuperUsuario::@yield('titulo')</title>
+		<title>Super :: @yield('titulo')</title>
 		<link rel="icon" type="image/png" href="{{url('imagenes/unheval-logo.png')}}" />
 
 		<meta name="description" content="" />
@@ -33,6 +33,7 @@
 
 		<!-- ace settings handler -->
 		{!!Html::script('assets/js/ace-extra.min.js')!!}
+		@yield('activacion')
 		@yield('estilos')
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
@@ -60,197 +61,21 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<img src="{{URL::to('imagenes/unheval-logo.png')}}" width="22px">
-							Super Usuario
+							Super
 						</small>
 					</a>
 				</div>
 
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						<li class="purple dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
-							</a>
-
-							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-exclamation-triangle"></i>
-									8 Notifications
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar navbar-pink">
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-													<span class="pull-right badge badge-info">+12</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<i class="btn btn-xs btn-primary fa fa-user"></i>
-												Bob just signed up as an editor ...
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-													<span class="pull-right badge badge-success">+8</span>
-												</div>
-											</a>
-										</li>
-
-										<li>
-											<a href="#">
-												<div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-													<span class="pull-right badge badge-info">+11</span>
-												</div>
-											</a>
-										</li>
-									</ul>
-								</li>
-
-								<li class="dropdown-footer">
-									<a href="#">
-										See all notifications
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="green dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-								<span class="badge badge-success">5</span>
-							</a>
-
-							<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-envelope-o"></i>
-									5 Messages
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar">
-										<li>
-											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-											</a>
-										</li>
-
-										<li>
-											<a href="#" class="clearfix">
-												<img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-												<span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
-											</a>
-										</li>
-									</ul>
-								</li>
-
-								<li class="dropdown-footer">
-									<a href="#">
-										See all messages
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
+												
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="{{URL::to('imagenes/avatar/'.Auth::user()->foto)}}"
+								alt="Foto" />
 								<span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>{{Auth::user()->nombres}}</small>
+									{{Auth::user()->apellidos}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -274,7 +99,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="{{url('log')}}">
 										<i class="ace-icon fa fa-power-off"></i>
 										Salir
 									</a>
@@ -298,262 +123,38 @@
 
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<b>Bienestar Universitario</b>
+						<b>Administrador</b>
 					</div>
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Usuarios </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-desktop"></i>
-							<span class="menu-text">
-								U. Serv. Soc.
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-										Comedor
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="#">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Top Menu
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="#">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Two Menus 1
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="two-menu-2.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Two Menus 2
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="mobile-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Default Mobile Menu
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="mobile-menu-2.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Mobile Menu 2
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="mobile-menu-3.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Mobile Menu 3
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li>
-
-							<li class="">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-
-									Three Level Menu
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="#">
-											<i class="menu-icon fa fa-leaf green"></i>
-											Item #1
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="#" class="dropdown-toggle">
-											<i class="menu-icon fa fa-pencil orange"></i>
-
-											4th level
-											<b class="arrow fa fa-angle-down"></b>
-										</a>
-
-										<b class="arrow"></b>
-
-										<ul class="submenu">
-											<li class="">
-												<a href="#">
-													<i class="menu-icon fa fa-plus purple"></i>
-													Add Product
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-
-											<li class="">
-												<a href="#">
-													<i class="menu-icon fa fa-eye pink"></i>
-													View Products
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text"> U. Act Fís. y Mental </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="tables.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Simple &amp; Dynamic
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="jqgrid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									jqGrid plugin
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-pencil-square-o"></i>
-							<span class="menu-text"> U. Form. Cultural </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="form-elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="form-elements-2.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements 2
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="form-wizard.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wizard &amp; Validation
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="wysiwyg.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wysiwyg &amp; Markdown
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="dropzone.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Dropzone File Upload
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#">
+					<li class="{{$oa}}">
+						<a href="{{url('jusuexpediente')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Encuestas </span>
+							<span class="menu-text"> Comensales </span>
 						</a>
-
+						<b class="arrow"></b>
+					</li>
+					<li class="{{$nbecas}}">
+						<a href="{{url('jusunbecas')}}">
+							<i class="menu-icon fa fa-th-large "></i>
+							<span class="menu-text"> N° Becas </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+					<li class="{{$a}}">
+						<a href="asfichasocial">
+							<i class="menu-icon fa fa-list-alt"></i>
+							<span class="menu-text"> Ficha Socio Econ. </span>
+						</a>
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
-						<a href="#">
-							<i class="menu-icon fa fa-calendar"></i>
-							<span class="menu-text">
-								Otros
-
-								<span class="badge badge-transparent tooltip-error" title="Próximamente">
-									<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
-								</span>
-							</span>
+					
+					<li class="{{$e}}">
+						<a href="asexpagocentmed">
+							<i class="menu-icon fa fa-medkit"></i>
+							<span class="menu-text"> Exon. Pago Cent Med </span>
 						</a>
 
 						<b class="arrow"></b>
@@ -569,26 +170,8 @@
 				<div class="main-content-inner">
 					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 						<!-- Rutas -->
-						<ul class="breadcrumb">
-							<li>
-								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Home</a>
-							</li>
-
-							<li>
-								<a href="#">Other Pages</a>
-							</li>
-							<li class="active">Blank Page</li>
-						</ul><!-- /.breadcrumb -->
-
-						<div class="nav-search" id="nav-search">
-							<form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Buscar ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-							</form>
-						</div><!-- /.nav-search -->
+						@yield('ruta')
+						
 					</div>
 
 					<div class="page-content">
@@ -606,23 +189,10 @@
 					<div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">Bienestar Universitario</span>
-							UHEVAL &copy; 2017-2018
+							- UNHEVAL &copy; 2017-2018
 						</span>
 
 						&nbsp; &nbsp;
-						<span class="action-buttons">
-							<a href="#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
 					</div>
 				</div>
 			</div>

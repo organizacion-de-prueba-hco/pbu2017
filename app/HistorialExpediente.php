@@ -10,7 +10,8 @@ class HistorialExpediente extends Model
     protected $fillable=[
     'expediente_id',
     'tipo_beca',
-    'resultado'
+    'resultado',
+    'obs'
 
     ];
 

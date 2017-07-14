@@ -14,9 +14,9 @@ class NBecasTableSeeder extends Seeder
     	for ($i=1; $i <= 28; $i++) { 
         DB::table('cantidad_becas')->insert([
                 'escuela_id' => $i,
-                'a' => '100'
-                'b' => '100'
-                'c' => '100'
+                'a' => '100',
+                'b' => '100',
+                'c' => '100',
         ]);
     	}
     }
