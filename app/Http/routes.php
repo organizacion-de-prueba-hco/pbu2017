@@ -24,6 +24,7 @@ Route::get('cargardatos', 'SuperuserController@cargar');
 Route::get('cargarnotas', 'SuperuserController@cargarnotas');
 Route::get('cargardocentes', 'SuperuserController@cargardocentes');
 Route::get('cargarcomensales', 'SuperuserController@cargarcomensales');
+Route::get('actualizar', 'SuperuserController@actualizar');
 //Asistenta Social
 Route::resource('asfichasocial', 'AsistentsocialFichasocialController');
 Route::controller('fichasocial', 'AsistentsocialFichasocialController');

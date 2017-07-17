@@ -226,7 +226,7 @@ class SuperuserController extends Controller
                             $estudiante->escuela_id='16'; break;
                         case 'EDUCACION FISICA': case 'EDUCACION BASICA EDUCACION FISICA':
                             $estudiante->escuela_id='17'; break;
-                        case 'FILOSOFIA, PSICOLOGIA Y CIENCIAS SOCIALES': case 'EDUCACION SECUNDARIA CIENCIAS HISTORICO SOCIALES Y GEOGRAFICAS':
+                        case 'FILOSOFIA, PSICOLOGIA Y CIENCIAS SOCIALES': case 'EDUCACION SECUNDARIA FILOSOFIA, PSICOLOGIA Y CIENCIAS SOCIALES':
                             $estudiante->escuela_id='18'; break;
                         case 'LENGUA Y LITERATURA': case 'EDUCACION SECUNDARIA LENGUA Y LITERATURA':
                             $estudiante->escuela_id='19'; break;
@@ -434,6 +434,21 @@ class SuperuserController extends Controller
             }
         });
          return "Exito, se registraron los comensales";    
+    }
+
+    public function actualizar(){
+        Excel::load('public/actualizacion.xlsx',function($archivo){
+            $result=$archivo->get();
+            foreach ($result as $key => $value) {
+
+               $est=Estudiante::where('cod_univ',$value->cod)->first();
+               $estudiante=Estudiante::find($est->user_id);
+               $estudiante->escuela_id='18';
+               $estudiante->save();
+            }
+            
+        });
+        return "Éxito, se han Actualizado";
     }
      
 }

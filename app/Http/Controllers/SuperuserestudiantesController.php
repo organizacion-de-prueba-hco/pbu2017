@@ -80,19 +80,21 @@ class SuperuserestudiantesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //return $request->get('obs');
         $id=$request->get('user_id');
         $expediente=Expediente::find($id);
+        $obs=$request->get('obs');
         if($expediente){
             $expediente->estado=$request->get('estado');
             $expediente->tipo_beca=$request->get('TipoBeca');
-            $expediente->obs=$request->get('obs');
+            $expediente->obs=$obs;
             $expediente->save();
             //Ahora también en el Registro
             $UltimoExpediente=Expediente::orderBy('expediente','desc')->first();
             $HistorialExpediente= new HistorialExpediente;
             $HistorialExpediente->expediente_id=$UltimoExpediente->expediente;
             $HistorialExpediente->tipo_beca= $request->get('TipoBeca');
-            $HistorialExpediente->obs= $request->get('obs');
+            $HistorialExpediente->obs= $obs;
             $HistorialExpediente->resultado= $request->get('estado');
             $HistorialExpediente->save();
         }else{
@@ -100,15 +102,15 @@ class SuperuserestudiantesController extends Controller
             $expediente->expediente = $id;
             $expediente->jefe_usu   = '4';
             $expediente->tipo_beca  = $request->get('TipoBeca');
-            $expediente->obs  = $request->get('obs');
+            $expediente->obs  = $obs;
             $expediente->estado     = '1';
             $expediente->save();
             //Lo registramos tambien en el Historial Expediente
             $UltimoExpediente=Expediente::orderBy('expediente','desc')->first();
             $HistorialExpediente= new HistorialExpediente;
             $HistorialExpediente->expediente_id=$UltimoExpediente->expediente;
-            $HistorialExpediente='1';
-            $HistorialExpediente->obs= $request->get('obs');
+            $HistorialExpediente->tipo_beca= $request->get('TipoBeca');
+            $HistorialExpediente->obs= $obs;
             $HistorialExpediente->resultado= $UltimoExpediente->estado;
             $HistorialExpediente->save();
         }
