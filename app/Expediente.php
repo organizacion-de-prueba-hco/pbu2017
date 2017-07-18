@@ -28,8 +28,6 @@ class Expediente extends Model
     'obs',
     'huella_a',
     'huella_b'
-
-
     ];
 
     public function user(){
@@ -55,10 +53,10 @@ class Expediente extends Model
     public function historialexpedientes(){
         return $this->hasMany('App\HistorialExpediente');
     }
-
-
-
-
-
-
+    public function comedor_asistencias(){
+        return $this->hasMany('App\ComedorAsistencias','concesionario_id');
+    }
+    public function comedor_faltas(){
+        return $this->hasMany('App\ComedorFaltas','concesionario_id');
+    }
 }

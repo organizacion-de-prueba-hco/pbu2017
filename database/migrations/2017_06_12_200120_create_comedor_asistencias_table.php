@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDesayunosTable extends Migration
+class CreateComedorAsistenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,16 @@ class CreateDesayunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('desayunos', function (Blueprint $table) {
+        Schema::create('comedor_asistencias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comedor_id')->unsigned();
             $table->integer('expediente_id')->unsigned();
-            $table->string('estado')->default('0');
-
+            $table->integer('concesionario_id')->unsigned();
+            $table->string('tipo')->default('0');
+            
             $table->foreign('expediente_id')->references('expediente')
                   ->on('expedientes')->onDelete('cascade');
-            $table->foreign('comedor_id')->references('id')
-                  ->on('comedors')->onDelete('cascade');
+            $table->foreign('concesionario_id')->references('responsable')
+                  ->on('concesionario_comedors')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateDesayunosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('desayunos');
+        Schema::drop('comedor_asistencias');
     }
 }
