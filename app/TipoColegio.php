@@ -15,11 +15,11 @@ class TipoColegio extends Model
    
 
     public function v_colegios(){
-    	return $this->hasMany('App\Colegio');
+    	return $this->hasMany('App\Colegio','v_tipo','id');
     }
 
-    public function vi_colegios(){
-    	return $this->hasMany('App\Colegio');
+    public function iv_colegios(){
+    	return $this->hasMany('App\Colegio','iv_tipo','id');
     }
 
 

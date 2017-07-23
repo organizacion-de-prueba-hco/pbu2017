@@ -71,21 +71,21 @@
   <hr>
   {!! Form::open(['method'=>'post','id'=>'elformulario3-gastosyotrosdatos','class'=>'form-horizontal form-label-left']) !!}
    <input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
- <h3 class="lighter block green">3.3 Quién cubre sus gastos personales </h3>
-                  <div class="form-group">
-                    <label class="control-label col-xs-12 col-sm-3 no-padding-right">Seleccione una opción</label>
-                    <div class="col-xs-12 col-sm-9">
-                      <div class="clearfix">
-                        {!!Form::select('cubre_gastos',$cubreGastos,$user->estudiante->cubre_gastos,['required', 'id'=>'cubre_gastos', 'onchange'=>'desc_cubre_gasto(this.value);', 'class'=>'col-xs-12 col-sm-6'])!!}
-                      </div><br>
-                      <?php if ($user->estudiante->cubre_gastos=='4') { $visible='';}
-                            else{ $visible='hidden';} 
-                       ?>
-                      <div id="div-especifiquen" class="{{$visible}}">
-                      <input type="text" name="desc_cubre_gastos" id="desc_cubre_gastos" class="col-xs-12 col-sm-6" value="{{$user->estudiante->desc_cubre_gastos}}" placeholder="Especifique aquí...">
-                      </div>
-                    </div>
-                  </div>
+ <h3 class="lighter block green">3.3 Quién cubre sus Gastos personales </h3>
+    <div class="form-group">
+      <label class="control-label col-xs-12 col-sm-3 no-padding-right">Seleccione una opción</label>
+      <div class="col-xs-12 col-sm-9">
+        <div class="clearfix">
+          {!!Form::select('cubre_gastos',$cubreGastos,$user->estudiante->cubre_gastos,['required', 'id'=>'cubre_gastos', 'onchange'=>'desc_cubre_gasto(this.value);', 'class'=>'col-xs-12 col-sm-6'])!!}
+        </div><br>
+        <?php if ($user->estudiante->cubre_gastos=='4') { $visible='';}
+              else{ $visible='hidden';} 
+          ?>
+        <div id="div-especifiquen" class="{{$visible}}">
+        <input type="text" name="desc_cubre_gastos" id="desc_cubre_gastos" class="col-xs-12 col-sm-6" value="{{$user->estudiante->desc_cubre_gastos}}" placeholder="Especifique aquí...">
+        </div>
+      </div>
+    </div>
 <hr>
  <h3 class="lighter block green">3.4 Egreso Familiar</h3>
                 <div class="form-group">

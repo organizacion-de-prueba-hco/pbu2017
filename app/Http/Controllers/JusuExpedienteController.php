@@ -160,7 +160,7 @@ class JusuExpedienteController extends Controller
         $cod        = $request->get('cod-nuevo');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
         if(!$estudiante){
-          $user = User::where('users.dni', $cod)->first();
+          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
           if($user){
              $estudiante = Estudiante::find($user->id);
           }

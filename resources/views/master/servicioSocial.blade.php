@@ -128,6 +128,14 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
+					<li class="{{$rcMenu}}">
+						<a href="{{url('asrc')}}">
+							<i class="menu-icon fa fa-list-alt"></i>
+							<span class="menu-text"> Control/Registro </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+
 					<li class="{{$a}}">
 						<a href="{{url('asfichasocial')}}">
 							<i class="menu-icon fa fa-list-alt"></i>

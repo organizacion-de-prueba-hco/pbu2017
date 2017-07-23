@@ -1,7 +1,7 @@
 @extends('master.servicioSocial')
 @section('activacion')
 	<?php  
-		$a='active'; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
+		$rcMenu='';$a='active'; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
 	?>
@@ -37,8 +37,8 @@
 
 				<div class="widget-toolbar">
 					<label>
-						<a href="#"><small class="green">
-							<i class="ace-icon fa fa-list-alt"></i>	
+						<a href="{{url('pdf/fs',$user->id)}}" title="Descargar como PDF" target="_black"><small class="green">
+							<i class="ace-icon fa fa-file-pdf-o"></i>	
 							<b>PDF</b></small>
 						</a>
 					</label>

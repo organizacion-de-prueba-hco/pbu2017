@@ -15,7 +15,7 @@
                       <div class="item form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                             <label>LUGAR DE TRABAJO</label>
-                              {!!Form::text('lugar_trabajo', null, ['id'=>'lugar_trabajo', 'required','class'=> 'form-control','placeholder'=>'S/'])!!}
+                              {!!Form::text('lugar_trabajo', null, ['id'=>'lugar_trabajo', 'required','class'=> 'form-control','placeholder'=>'Escribir aquí...'])!!}
                             </div>
                       </div>
                       <div class="item form-group">

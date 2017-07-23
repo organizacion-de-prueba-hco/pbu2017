@@ -20,17 +20,17 @@ class Colegio extends Model
     ];
     public function v_tipocolegio(){
     	
-    	return $this->belongsto('App\TipoColegio');
+    	return $this->belongsto('App\TipoColegio','v_tipo','id');
     }
 
     public function iv_tipocolegio(){
         
-        return $this->belongsto('App\TipoColegio');
+        return $this->belongsto('App\TipoColegio','iv_tipo','id');
     }
 
 
     public function v_distrit(){
-    	return $this->belongsto('App\Distrito','v_distrito');
+    	return $this->belongsto('App\Distrito','v_distrito','id');
         //return $this->belongsTo('App\User', 'llave_local');
     }
 

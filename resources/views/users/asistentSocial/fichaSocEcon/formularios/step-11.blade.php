@@ -132,6 +132,17 @@
 									<div class="space-2"></div>
 
 									<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Telefono:</label>
+										<div class="col-xs-12 col-sm-9">
+											<div class="clearfix">
+												{!!Form::text('telefono', $user->telefono, ['class'=>'col-xs-12 col-sm-6', 'placeholder'=>'Escribir aquí...'])!!}
+											</div>
+										</div>
+									</div>
+
+									<div class="space-2"></div>
+
+									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right" >Fecha de Ingreso-UNHEVAL:</label>
 											<div class="col-xs-12 col-sm-9">
 												<div class="clearfix">

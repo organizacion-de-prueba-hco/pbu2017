@@ -125,7 +125,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
     public function estcivil(){
-        return $this->belongsto('App\EstCivil');
+        return $this->belongsto('App\EstCivil','est_civil_id','id');
     }
 
     public function docente() {

@@ -33,7 +33,7 @@ class Estudiante extends Model
     	return $this->belongsto('App\Escuela');
     }
     public function m_ingreso(){
-    	return $this->belongsto('App\MIngreso');
+    	return $this->belongsto('App\MIngreso','m_ingreso_id','id');
     }
     public function colegio() {
       return $this->hasOne('App\Colegio','estudiante_id', 'user_id');
