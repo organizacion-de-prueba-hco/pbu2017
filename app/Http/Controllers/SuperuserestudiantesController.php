@@ -15,6 +15,11 @@ use Redirect;
 
 class SuperuserestudiantesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('SuperUsuario');
+    }
     /**
      * Display a listing of the resource.
      *

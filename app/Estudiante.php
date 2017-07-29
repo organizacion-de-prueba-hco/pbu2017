@@ -37,6 +37,8 @@ class Estudiante extends Model
     }
     public function colegio() {
       return $this->hasOne('App\Colegio','estudiante_id', 'user_id');
-      //return $this->hasOne('App\Profile', 'clave_foranea', 'clave_local_a_relacionar');
+    }
+    public function estudiantencuestas(){
+        return $this->hasMany('App\Estudiantencuesta','estudiante_id','user_id');
     }
 }

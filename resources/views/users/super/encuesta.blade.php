@@ -1,126 +1,86 @@
-@extends('master.servicioSocial')
+@extends('master.superAdmin')
 @section('activacion')
-	<?php  
-		$a='';$rcMenu=''; $b='active'; $c1=''; $c2='';$c='';$c3=''; $c4='';$d='';$d1=''; $d2=''; $d3=''; $d4='';$e='';
-	?>
+	<?php
+$oa = '';
+$a  = '';
+$b  = '';
+$c  = '';
+$c1 = '';
+$c2 = '';
+$c3 = '';
+$c4 = '';
+$d  = '';
+$d1 = '';
+$d2 = '';
+$d3 = '';
+$d4 = '';
+$e  = '';
+$enc = '';
+$nbecas='';
+$enc='active';
+?>
 @endsection
-@section('title','Declaración Jurada')
+@section('titulo','Expedientes')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-comment"></i>	
-	<li class="active">Declaración Jurada</li>
+	<i class="ace-icon fa fa-list-alt"></i>
+	<li class="active">Encuestas</li>
 </ul>
 @endsection
 @section('contenido')
-	
-
 @include('master.mensajes')
 <div class="row">
 	<div class="col-xs-12">
 
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
-		</div>		
+		</div>
+		
 		
 		<div class="table-header">
-			<a href="#nuevo-dj" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="{{route('suencuesta.create')}}" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Lista de Declaraciones Juradas &nbsp;&nbsp;&nbsp;
+				Encuestas de satisfacción del comedor &nbsp;&nbsp;&nbsp;
+			
 		</div>
-										<!--Modal Nuevo-->
-		<div id="nuevo-dj" class="modal fade" tabindex="-1">
-			<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								<h3 class="smaller lighter blue no-margin">Registrar Nueva Declaración Jurada</h3>
-											</div>
-					<div class="modal-body" align="center">
-							Ingrese Código Universitario del Estudiante<br>
-							{!! Form::open(['url' => 'asdj/nuevo', 'method' => 'POST']) !!}
-								<span class="input-icon">
-									<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod-nuevo" >
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
-									<button class="btn btn-success btn-sm btn-round submit">
-										<i class="ace-icon fa fa-plus"></i>
-									</button>
-														{!!Form::close()!!}
-														<br>
-											</div>
 
-											<!-- <div class="modal-footer">
-												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
-													<i class="ace-icon fa fa-times"></i>
-													Close
-												</button>
-											</div> -->
-					</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-										<!--Fin modal Nuevo-->
-
-										<!-- div.table-responsive -->
-
-										<!-- div.dataTables_borderWrap -->
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">N° Declaración Jurada</th>
-						<th>Estudiante</th>
-						<th>Apoderado</th>
-						<th>Archivo</th>
-						<th></th>
+						<th class="center">Encuesta</th>
+						<th class="center">Estado</th>
+						<th class="center">Acciones</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					@foreach($declaracionjuradas as $declaracionjurada)
-						<tr>
-							<td class="center">{{$declaracionjurada->id}}</td>
-							<td class="hidden-480">{{$declaracionjurada->cuadrofamiliar->user->nombres}} {{$declaracionjurada->cuadrofamiliar->user->apellido_paterno}} {{$declaracionjurada->cuadrofamiliar->user->apellido_materno}}</td>
-							<td class="hidden-480" align="center">{{$declaracionjurada->cuadrofamiliar->nombres}}</td>
-							<td></td>
+					@foreach($encuestas as $us)
+						<tr class="center">
+							<td>{{$us->encuesta}}</td>
 							<td>
-							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="#" title="Ver más">
-									<i class="ace-icon fa fa-search-plus bigger-130"></i>
-								</a>
-								<a class="green" href="#">
-									<i class="ace-icon fa fa-pencil bigger-130"></i>
-								</a>
-							</div>
-							<div class="hidden-md hidden-lg">
-							<!--Cuando se comprime la pantalla-->
-							<div class="inline pos-rel">
-								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-								</button>
-
-								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-									<li>
-										<a href="#" class="tooltip-info" data-rel="tooltip" title="Ver más">
-											<span class="blue">
-												<i class="ace-icon fa fa-search-plus bigger-120"></i>
-											</span>
-										</a>
-									</li>
-
-									<li>
-										<a href="#" class="tooltip-success" data-rel="tooltip" title="Editar">
-											<span class="green">
-												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-											</span>
-										</a>
-									</li>
-								</ul>
-								</div>
-							</div>
-						</td>
+								@if($us->estado=='1')
+                            {!!Form::open(['route'=>['suencuesta.update', $us->id], 'method'=>'PUT'])!!} 
+                              <input type="hidden" name="estado" value="0">
+                              <button class="submit btn btn-success btn-xs"" title="Clic para Desactivar" 
+                              onclick="javascript:return conf('Desactivar');"> 
+                              Activo</button>
+                            {!!Form::close() !!}
+                            @else
+                            {!!Form::open(['route'=>['suencuesta.update', $us->id], 'method'=>'PUT'])!!} 
+                              <input type="hidden" name="estado" value="1">
+                              <button class="submit btn btn-danger btn-xs"" title="Clic para Activar" 
+                              onclick="javascript:return conf('Activar');"> 
+                              Inactivo</button>
+                            {!!Form::close() !!}
+                          @endif
+							</td>
+							<td>
+							<a href="{{url('suencuestas/excel',$us->id)}}" title="Descargar Excel" style="color: green; font-size:2em; padding-right: 4px;"><i id="ico-plus" class="fa fa-file-excel-o"></i></a>
+							</td>
 					</tr>
 					@endforeach
 
@@ -167,8 +127,7 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": false },
-					  null, null,null, null, null,
+					  null, null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
@@ -386,6 +345,12 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
+
+		//
+		function conf(msj){
+    		confirmar = confirm('¿Seguro que deseas '+msj+' esta encuesta?');
+    		return confirmar;
+  		}
 		</script>
 
 

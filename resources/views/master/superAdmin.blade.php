@@ -128,6 +128,13 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
+					<li class="{{$enc}}">
+						<a href="{{url('suencuesta')}}">
+							<i class="menu-icon fa fa-list-alt"></i>
+							<span class="menu-text"> Encuestas </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
 					<li class="{{$oa}}">
 						<a href="{{url('jusuexpediente')}}">
 							<i class="menu-icon fa fa-list-alt"></i>

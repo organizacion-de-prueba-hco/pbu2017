@@ -348,6 +348,12 @@ if ($promedionotas <= 10.5) {
 													</div>
 												</div>
 												<div class="profile-info-row">
+													<div class="profile-info-name"> Fecha de Nacimiento</div>
+													<div class="profile-info-value">
+														<span >{{$estudiante->user->f_nac}}</span>
+													</div>
+												</div>
+												<div class="profile-info-row">
 													<div class="profile-info-name"> Lugar de Nacimiento</div>
 													<div class="profile-info-value">
 														<span >{{$estudiante->user->distrito_naci->distrito.' - '.$estudiante->user->distrito_naci->provincia->provincia.' - '.$estudiante->user->distrito_naci->provincia->departamento->departamento}}</span>
