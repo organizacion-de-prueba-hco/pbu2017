@@ -16,7 +16,9 @@ class CreateComedorAsistenciasTable extends Migration
             $table->increments('id');
             $table->integer('expediente_id')->unsigned();
             $table->integer('concesionario_id')->unsigned();
-            $table->string('tipo')->default('0');
+            $table->string('comida');
+            $table->string('migracion')->default('0');
+            $table->string('asistencia')->default('0'); 
             
             $table->foreign('expediente_id')->references('expediente')
                   ->on('expedientes')->onDelete('cascade');
