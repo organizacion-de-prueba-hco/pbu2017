@@ -3,6 +3,8 @@
 	<?php
 $oa = 'active';
 $nbecas='';
+$enc='';
+$in='';
 ?>
 @endsection
 @section('titulo','Tester')
@@ -94,7 +96,7 @@ $nbecas='';
 														 </label>
 													</p>
 													<p><label>
-														<a href="#" title="Ver más">&nbsp;
+														<a href="{{url('pdf/dj',$estudiante->user_id)}}" target="_black" title="Ver más">&nbsp;
 															<i class="ace-icon fa fa-search-plus"></i> &nbsp;Declaración Jurada del Apoderado
 														</a>
 														 </label>

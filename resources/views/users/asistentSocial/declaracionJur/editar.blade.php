@@ -133,11 +133,6 @@
 										 <select class="col-xs-10 col-sm-5" name="miembro_familiar" required="required" id="pariente">
 										 <option value="">Seleccione una opción</option>
 			                                @foreach($CuadroFamiliar as $cf)
-			                                  <?php  
-			                                    if ($cf->parentesco=='YO') {
-			                                    	continue;
-			                                    }
-			                                  ?>
 			                                  <option value="{{$cf->id}}">{{$cf->parentesco}}: {{$cf->nombres}}</option>
 			                                @endforeach
                               			 </select>

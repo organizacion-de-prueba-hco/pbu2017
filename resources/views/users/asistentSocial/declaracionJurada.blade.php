@@ -89,7 +89,7 @@
 							</td>
 							<td>
 							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="orange" href="#" title="Descargar como PDF">
+								<a class="orange" href="{{url('pdf/dj',$declaracionjurada->id)}}" target="_black" title="Descargar como PDF">
 									<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
 								</a>
 								<a class="green" href="{{route('asdeclaracionjurada.edit',$declaracionjurada->id)}}" title="Editar" data-toggle='tooltip'>
@@ -105,7 +105,7 @@
 
 								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
 									<li>
-										<a href="#" class="tooltip-info" data-rel="tooltip" title="Descargar como PDF">
+										<a href="{{url('pdf/dj',$declaracionjurada->id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar como PDF" target="_black">
 											<span class="orange">
 												<i class="ace-icon fa fa-file-pdf-o bigger-120"></i>
 											</span>

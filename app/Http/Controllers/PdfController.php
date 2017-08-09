@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\CuadroFamiliar;
 use App\EgresoFamiliar;
 use App\FichaSocial;
+use App\DeclaracionJurada;
 
 class PdfController extends Controller
 {
@@ -165,4 +166,28 @@ class PdfController extends Controller
         //return $pdf->download($informeNutricion->titulo.'.pdf');
         return $pdf->stream('invoiced');
     }
+
+    public function getDj($id){
+        //Usamos el ID del user para que a ruta funciones para todos los users
+        //Verificamos si ya existe una declaracion jurada de algun pariente del estudiante
+        $parientes=CuadroFamiliar::join('declaracion_juradas','declaracion_juradas.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.user_id',$id)->select('declaracion_juradas.*')->first();
+
+        if(!$parientes){
+             return back()->with('rojo','aún no se ha generado una DJ para este estudiante');
+        }
+        $ids=$parientes->id;
+        $dj= DeclaracionJurada::find($ids);
+        if(!$dj){
+            return back()->with('rojo','aún no se ha generado una DJ para este estudiante');
+        }
+        $date = Carbon::now();
+        //$date = $date->format('d-m-Y');
+        $view =  \View::make('pdf.dj', compact('dj','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        //return $pdf->download($informeNutricion->titulo.'.pdf');
+        return $pdf->stream('invoiced');
+    }
+
+
 }
