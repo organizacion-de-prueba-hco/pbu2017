@@ -562,7 +562,7 @@
  
            reader.readAsDataURL(f);
        }
-  }      
+  	}      
       document.getElementById('files-foto').addEventListener('change', foto, false);
 </script>
 

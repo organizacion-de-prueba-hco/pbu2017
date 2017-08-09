@@ -2,19 +2,6 @@
 @section('activacion')
 	<?php
 $oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 $nbecas='';
 ?>
 @endsection

@@ -4,7 +4,7 @@
 		$rcMenu='';$a='active'; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Ficha Socio Económica')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -39,20 +39,22 @@
 						<th class="center">Cod. Univ</th>
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
-						<th class="hidden-480">Facultad</th>
+						<th class="hidden-480">CE</th>
 						<th>Beca</th>
 						<th class="hidden-480">Estado</th>
 						<th></th>
 					</tr>
 				</thead>
-
+				<?php  
+					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+				?>
 				<tbody>
 					@foreach($fichaSocEcon as $expediente)
 						<tr>
 							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
 							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
 							<td>{{$expediente->user->estudiante->escuela->escuela}}</td>
-							<td class="hidden-480">{{$expediente->user->estudiante->escuela->facultad->facultad}}</td>
+							<td class="hidden-480">{{$ce[$expediente->caso_especial]}}</td>
 							<td align="center">{{$expediente->tipo_beca}}
 							</td>
 							<td class="hidden-480" align="center">

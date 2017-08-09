@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Input;
+use Redirect;
+use Auth;
 use App\DeclaracionJurada;
 use Carbon\Carbon;
 use App\Estudiante;
@@ -18,6 +20,10 @@ use App\Provincia;
 
 class AsistentsocialDeclaracionjuradaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('asistentsocial');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +54,9 @@ class AsistentsocialDeclaracionjuradaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dj=new DeclaracionJurada;
+        $dj->fill(Input::all())->save();
+        return Redirect::to('asdeclaracionjurada')->with('verde','Se registró una nueva declaración Jurada');
     }
 
     /**
@@ -59,7 +67,36 @@ class AsistentsocialDeclaracionjuradaController extends Controller
      */
     public function show($id)
     {
-        //
+        $dj = DeclaracionJurada::find($id);
+        $cod        = $dj->cuadrofamiliar->user->estudiante->cod_univ;
+        $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        $CuadroFamiliar=CuadroFamiliar::where('user_id',$estudiante->user_id)->get();
+        $instruccion=array( ''=>'Seleccione una opción',
+                            '1'=>'Primaria completa',
+                            '2'=>'Primaria incompleta',
+                            '3'=>'Secundaria completa',
+                            '4'=>'Secundaria incompleta',
+                            '5' =>'Superior técnica completa',
+                            '6' =>'Superior técnica incompleta',
+                            '7' =>'Universitario completo',
+                            '8' =>'Universitario incompleta',
+                            '9' =>'Posgrado');
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+
+        return view('users.asistentSocial.declaracionJur.editar', compact('dj','estudiante','CuadroFamiliar','instruccion','departamentos','provincias','distritos'));
+    
     }
 
     /**
@@ -70,7 +107,35 @@ class AsistentsocialDeclaracionjuradaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dj = DeclaracionJurada::find($id);
+        $cod        = $dj->cuadrofamiliar->user->estudiante->cod_univ;
+        $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        $CuadroFamiliar=CuadroFamiliar::where('user_id',$estudiante->user_id)->get();
+        $instruccion=array( ''=>'Seleccione una opción',
+                            '1'=>'Primaria completa',
+                            '2'=>'Primaria incompleta',
+                            '3'=>'Secundaria completa',
+                            '4'=>'Secundaria incompleta',
+                            '5' =>'Superior técnica completa',
+                            '6' =>'Superior técnica incompleta',
+                            '7' =>'Universitario completo',
+                            '8' =>'Universitario incompleta',
+                            '9' =>'Posgrado');
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+
+        return view('users.asistentSocial.declaracionJur.editar', compact('dj','estudiante','CuadroFamiliar','instruccion','departamentos','provincias','distritos'));
     }
 
     /**
@@ -82,7 +147,12 @@ class AsistentsocialDeclaracionjuradaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(Auth::user()->tipo_user!='2-1'){
+            return Redirect::to('asdeclaracionjurada')->with('rojo','Solo el perosnal de  asistencia social puede realizar estos cambios');
+        }
+        $dj=DeclaracionJurada::find($id);
+        $dj->fill(Input::all())->save();
+        return Redirect::to('asdeclaracionjurada')->with('verde','Se actualizó una declaración Jurada');
     }
 
     /**
@@ -98,6 +168,21 @@ class AsistentsocialDeclaracionjuradaController extends Controller
     public function postNuevo(Request $request){
         $cod        = $request->get('cod-nuevo');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
+
+        //Si la asistenta social es quien e´stá asiendo lps cambios
+        if(Auth::user()->tipo_user!='2-1'){
+            return Redirect::to('asdeclaracionjurada')->with('rojo','Solo el personal de asistencia social puede realizar estos cambios');
+        }
+
+        //Verificamos si ya existe una declaracion jurada de algun pariente del estudiante
+        $parientes=CuadroFamiliar::join('declaracion_juradas','declaracion_juradas.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.user_id',$estudiante->user_id)->select('declaracion_juradas.*')->first();
+
+        if($parientes){
+            return Redirect::to('asdeclaracionjurada/'.$parientes->id.'/edit')->with('naranja','Ya existe una declaración jurada para el estudiante, actualice en esta ventana');
+        }
+
+//                        ->where('user_id',$estudiante->user_id)
+  //                      -> $estudiante->user->cuadro_familiars->where("nombres","Estudiante")->first();//->declaracionjuradas;
         $CuadroFamiliar=CuadroFamiliar::where('user_id',$estudiante->user_id)->get();
         $instruccion=array( ''=>'Seleccione una opción',
                             '1'=>'Primaria completa',
@@ -150,6 +235,6 @@ class AsistentsocialDeclaracionjuradaController extends Controller
         $provincias=Provincia::lists('provincia','id');
         $distritos=Distrito::lists('distrito','id');
 
-        return view('users.asistentSocial.declaracionJur.nuevo', compact('estudiante','CuadroFamiliar','instruccion','departamentos','provincias','distritos'));
+        return back()->with('estudiante','CuadroFamiliar','instruccion','departamentos','provincias','distritos');
     }
 }

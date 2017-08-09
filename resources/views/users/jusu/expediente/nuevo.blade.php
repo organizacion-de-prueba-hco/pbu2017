@@ -2,19 +2,6 @@
 @section('activacion')
 	<?php
 $oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 $nbecas='';
 ?>
 @endsection
@@ -99,6 +86,18 @@ if (App\Expediente::where('expediente', $estudiante->user_id)->first()) {
 											<option value="A">A</option>
 											<option value="B">B</option>
 											<option value="C">C</option>
+										</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Caso Especial </label>
+										<div class="col-sm-9">
+										<select name="caso_especial" class="col-xs-10 col-sm-5" required>
+											<option value="0">Ninguno</option>
+											<option value="1">Victimas de Violencia Política</option>
+											<option value="2">Consejo Universitario</option>
+											<option value="3">Asamblea Universitaria</option>
+											<option value="4">Deportista Calificado</option>
 										</select>
 										</div>
 									</div>

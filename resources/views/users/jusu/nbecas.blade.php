@@ -2,23 +2,12 @@
 @section('activacion')
 	<?php
 $oa = '';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 $nbecas='active';
+$enc='';
+$in='';
 ?>
 @endsection
-@section('titulo','Expedientes')
+@section('titulo','N° Becas')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -28,7 +17,6 @@ $nbecas='active';
 </ul>
 @endsection
 @section('contenido')
-@include('master.mensajes')
 <div class="row">
 	<div class="col-xs-12">
 

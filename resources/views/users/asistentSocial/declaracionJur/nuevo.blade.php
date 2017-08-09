@@ -85,7 +85,7 @@
 <div class="col-xs-12">
 <!-- PAGE CONTENT BEGINS -->
 								<br>
-								{!! Form::open(['route' => 'asrc.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+								{!! Form::open(['route' => 'asdeclaracionjurada.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
 
@@ -129,7 +129,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Pariente </label>
 										<div class="col-sm-9">
-										 <select class="col-xs-10 col-sm-5" name="miembro_familiar">
+										 <select class="col-xs-10 col-sm-5" name="miembro_familiar" required="required">
 										 <option value="">Seleccione una opción</option>
 			                                @foreach($CuadroFamiliar as $cf)
 			                                  <?php  
@@ -174,7 +174,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Empleo </label>
 										<div class="col-sm-9">
-										{!!Form::text('desempeño_como',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Se desempeña como'])!!}
+										{!!Form::text('desempenio_como',null,['required','class'=>'col-xs-10 col-sm-5','placeholder' => 'Se desempeña como'])!!}
 										</div>
 									</div>
 									<div class="form-group">
@@ -204,7 +204,7 @@
 
 									<div class="form-group" >
 										<div class="col-sm-6">
-											<input type='hidden' value="{{$estudiante->user_id}}" name="user_id">
+											<input type='hidden' value="{{Auth::user()->id}}" name="asistenta_social">
 											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5">
 											<i class="ace-icon fa fa-plus" ></i>
 											<span class="bigger-110">Registrar </span>

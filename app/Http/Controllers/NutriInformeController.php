@@ -17,8 +17,8 @@ class NutriInformeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('nutricionista',['except' => ['getDescargar'] ]);
+        $this->middleware('auth');//getDescargar
+        $this->middleware('nutricionista',['except' => ['getDescargar','getOuser'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -186,4 +186,20 @@ class NutriInformeController extends Controller
         //si no se encuentra lanzamos un error 404.
         return "No se encontró ningun archivo, si el problema persiste comuniquese con el administrador del Software: ".$url;
     }
+    public function getOuservermas(){
+
+    }
+    public function getOuser(){        
+        switch (Auth::user()->tipo_user) {
+            case '0': $carpeta='super';  break;
+            case '1': $carpeta='directivo.usu';  break;
+            case '2': $carpeta='jusu';  break;
+            case '2-1': $carpeta='asistentSocial';  break;
+            case '2-3': $carpeta='concesionario';  break;
+            default: return back();   break;
+        }
+        $nutriformes = InformeNutricion::get();
+        return view('users.'.$carpeta.'.informenutricion', compact('nutriformes'));
+    }
+
 }

@@ -74,7 +74,7 @@
 								alt="Foto" />
 								<span class="user-info">
 									<small>{{Auth::user()->nombres}}</small>
-									{{Auth::user()->apellido_paterno}}
+									{{Auth::user()->apellido_paterno.' '.Auth::user()->apellido_materno}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -82,19 +82,17 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
+									<a href="{{url('nutriajuste')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>
 								</li>
-
 								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-user"></i>
-										Mi Perfil
+									<a href="{{url('manual/nutricionista.pdf')}}" target="_black">
+										<i class="ace-icon fa fa-exclamation"></i>
+										Ayuda
 									</a>
 								</li>
-
 								<li class="divider"></li>
 
 								<li>

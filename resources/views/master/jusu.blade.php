@@ -75,7 +75,7 @@
 								alt="Foto" />
 								<span class="user-info">
 									<small>{{Auth::user()->nombres}}</small>
-									{{Auth::user()->apellidos}}
+									{{Auth::user()->apellido_paterno.' '.Auth::user()->apellido_materno}}
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -83,19 +83,17 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
+									<a href="{{url('jusuajustes')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>
 								</li>
-
 								<li>
-									<a href="#">
-										<i class="ace-icon fa fa-user"></i>
-										Mi Perfil
+									<a href="{{url('manual/jusu.pdf')}}" target="_black">
+										<i class="ace-icon fa fa-exclamation"></i>
+										Ayuda
 									</a>
 								</li>
-
 								<li class="divider"></li>
 
 								<li>
@@ -128,6 +126,13 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
+					<li class="{{$enc}}">
+						<a href="{{url('jusuencuesta')}}">
+							<i class="menu-icon fa fa-list-alt"></i>
+							<span class="menu-text"> Encuestas </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
 					<li class="{{$oa}}">
 						<a href="{{url('jusuexpediente')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
@@ -142,134 +147,14 @@
 						</a>
 						<b class="arrow"></b>
 					</li>
-					<li class="{{$a}}">
-						<a href="asfichasocial">
+					<li class="{{$in}}">
+						<a href="{{url('nutriformes/ouser')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Ficha Socio Econ. </span>
+							<span class="menu-text"> Informe Nutrición </span>
 						</a>
 						<b class="arrow"></b>
 					</li>
-
-					<!-- <li class="{{$b}}">
-						<a href="asdeclaracionjurada">
-							<i class="menu-icon fa fa-comment"></i>
-							<span class="menu-text"> Declaración Jurada </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li> -->
-
-					<!-- <li class="{{$c}}">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-home"></i>
-							<span class="menu-text"> Visita Domiciliaria </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="{{$c1}}">
-								<a href="asvisitadomc1">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Estudiante
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$c2}}">
-								<a href="asvisitadomc2">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$c3}}">
-								<a href="asvisitadomc3">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal No Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$c4}}">
-								<a href="asvisitadomc4">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Otros
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							
-						</ul>
-					</li>
-
-					<li class="{{$d}}">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-hospital-o"></i>
-							<span class="menu-text"> Visita Hospitalaria </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="{{$d1}}">
-								<a href="asvisitahosp1">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Estudiante
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$d2}}">
-								<a href="asvisitahosp2">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$d3}}">
-								<a href="asvisitahosp3">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Personal No Docente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="{{$d4}}">
-								<a href="asvisitahosp4">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Otros
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							
-						</ul>
-					</li> -->
-
 					
-					<li class="{{$e}}">
-						<a href="asexpagocentmed">
-							<i class="menu-icon fa fa-medkit"></i>
-							<span class="menu-text"> Exon. Pago Cent Med </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -297,6 +182,7 @@
 
 					<div class="page-content">
 						<div class="row">
+							@include('master.mensajes')
 							@yield('contenido')
 						</div>
 					</div>

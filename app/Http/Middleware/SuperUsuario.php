@@ -18,7 +18,6 @@ class SuperUsuario
     {
         $this->auth = $auth;
     }
-
     public function handle($request, Closure $next)
     {
         //return $this->auth->user()->tipo_user=='2-1';

@@ -2,19 +2,6 @@
 @section('activacion')
 	<?php
 $oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 $nbecas='';
 ?>
 @endsection
@@ -82,6 +69,12 @@ $nbecas='';
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Tipo de Beca </label>
 										<div class="col-sm-9">
 										{!!Form::select('TipoBeca',['A'=>'A','B'=>'B','C'=>'C'],$expediente->tipo_beca,['required','id'=>'beca','class'=>'col-xs-10 col-sm-5','placeholder' => 'Seleccione'])!!}
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Caso Especial </label>
+										<div class="col-sm-9">
+										{!!Form::select('caso_especial',['0'=>'Ninguno','1'=>'Victimas de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado'],$expediente->caso_especial,['required','id'=>'beca','class'=>'col-xs-10 col-sm-5'])!!}
 										</div>
 									</div>
 									<div class="form-group">

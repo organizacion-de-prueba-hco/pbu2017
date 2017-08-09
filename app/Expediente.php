@@ -25,6 +25,7 @@ class Expediente extends Model
     'declaracion_jurada',
     'tipo_beca',
     'estado',
+    'caso_especial',
     'obs',
     'huella_a',
     'huella_b'

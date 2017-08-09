@@ -55,6 +55,7 @@ class JusuExpedienteController extends Controller
         $expediente->expediente = $request->get('id_univ');
         $expediente->jefe_usu   = Auth::user()->id;
         $expediente->tipo_beca  = $request->get('TipoBeca');
+        $expediente->caso_especial=$request->get('caso_especial');
         $expediente->obs  = $request->get('obs');
         $expediente->estado     = '1';
         $expediente->save();
@@ -113,6 +114,7 @@ class JusuExpedienteController extends Controller
         if ($exped) {
             $exped->estado=$request->get('estado');
             $exped->tipo_beca=$request->get('TipoBeca');
+            $exped->caso_especial=$request->get('caso_especial');
             $exped->obs=$request->get('obs');
             $exped->save();
 
@@ -382,5 +384,8 @@ class JusuExpedienteController extends Controller
             });
          });
       })->export('xls');
+    }
+    public function postAsistencia(Request $request){
+      return "inicio: ".$request->get('inicio').'<br>'."Fin: ".$request->get('fin');
     }
 }

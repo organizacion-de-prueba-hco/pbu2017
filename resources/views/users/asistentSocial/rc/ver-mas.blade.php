@@ -74,7 +74,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Telf./Cel. </label>
 										<div class="col-sm-9">
-											<input type="text" placeholder="N° cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
+											<input type="text" name="telefono" placeholder="N° cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
 										</div>
 									</div>
 									

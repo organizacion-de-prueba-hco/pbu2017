@@ -4,7 +4,7 @@
 		$a='';$b='';$c='';$c1='';$c2='';$c3='';$c4='';$d='open active';$d1='';$d2='';$d3='active';$d4='';$e='';
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Ficha Socio Económica')
 @section('estilos')
 @endsection
 @section('ruta')

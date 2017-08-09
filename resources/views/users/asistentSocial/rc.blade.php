@@ -4,7 +4,7 @@
 		$rcMenu='active';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
 	?>
 @endsection
-@section('title','Registro/Control')
+@section('titulo','Registro/Control')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -14,7 +14,6 @@
 </ul>
 @endsection
 @section('contenido')
-@include('master.mensajes')
 <div class="row">
 	<div class="col-xs-12">
 
@@ -84,12 +83,14 @@
 							<td>{{$rc->user->nombres.', '.$rc->user->apellido_paterno.' '.$rc->user->apellido_materno}}</td>
 							<td align="center">
 								<?php 
+                  				if($rc->user->f_nac!='0000-00-00'){
                   					$fn= Carbon\Carbon::parse($rc->user->f_nac);
                   					echo Carbon\Carbon::createFromDate(
                   						$fn->format('Y'),
                   						$fn->format('m'),
                   						$fn->format('d')
                   					)->age;
+                  				}
                   				?> 
 							</td>
 							<td class="hidden-480">{{$rc->user->estudiante->escuela->escuela}}</td>

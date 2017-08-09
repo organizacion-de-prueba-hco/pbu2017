@@ -10,7 +10,9 @@ class ComedorAsistencia extends Model
     protected $fillable=[
     'expediente_id',
     'concesionario_id',
-    'tipo'
+    'comida',
+    'migracion',
+    'asistencia'
     ];
 
     public function expediente(){

@@ -4,7 +4,7 @@
 		$rc='';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='active';
 	?>
 @endsection
-@section('title','Exoneración')
+@section('titulo','Exoneración')
 @section('estilos')
 @endsection
 @section('ruta')

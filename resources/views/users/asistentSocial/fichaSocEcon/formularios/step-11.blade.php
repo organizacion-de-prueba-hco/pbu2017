@@ -27,7 +27,15 @@
 											</div>
 										</div>
 									</div>
-
+									<div class="space-2"></div>
+									<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">DNI:</label>
+										<div class="col-xs-12 col-sm-9">
+											<div class="clearfix">
+												<input type="text" maxlength="8" name="dni" class="col-xs-12 col-sm-6" value="{{$user->dni}}"/>
+											</div>
+										</div>
+									</div>
 									<div class="space-2"></div>
 
 									<div class="form-group">
@@ -51,7 +59,7 @@
 											</div>
 										</div>
 									</div>
-
+									
 									<div class="space-2"></div>
 
 									<div class="form-group">

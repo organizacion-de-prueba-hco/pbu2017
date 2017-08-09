@@ -91,7 +91,7 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\Expediente','expediente','id');
     }
   public function cuadro_familiars(){
-        return $this->hasOne('App\CuadroFamiliar','user_id','id');
+        return $this->hasMany('App\CuadroFamiliar','user_id','id');
     }
 
     public function concesionariocomedor(){
@@ -140,6 +140,11 @@ class User extends Model implements AuthenticatableContract,
     }
     public function controlregistro(){
         return $this->hasMany('App\ControRegistro');
+    }
+    public function setPasswordAttribute($valor){
+        if (!empty($valor)) {
+            $this->attributes['password'] = \Hash::Make($valor);
+        }
     }
    
 

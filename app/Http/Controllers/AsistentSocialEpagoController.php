@@ -10,6 +10,10 @@ use Auth;
 
 class AsistentSocialEpagoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('asistentsocial');
+    }
     /**
      * Display a listing of the resource.
      *

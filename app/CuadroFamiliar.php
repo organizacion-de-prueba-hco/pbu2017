@@ -35,7 +35,7 @@ class CuadroFamiliar extends Model
     }
 
     public function declaracionjuradas(){
-        return $this->hasMany('App\DeclaracionJurada');
+        return $this->hasMany('App\DeclaracionJurada','miembro_familiar');
     }
     public function user(){
         return $this->belongsto('App\User');

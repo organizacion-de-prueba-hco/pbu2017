@@ -27,11 +27,22 @@ Route::get('cargarcomensales', 'SuperuserController@cargarcomensales');
 Route::get('actualizar', 'SuperuserController@actualizar');
 Route::resource('suencuesta', 'SuperuserencuestaController');
 Route::controller('suencuestas', 'SuperuserencuestaController');
+Route::resource('suajuste', 'SuperuserajustesController');
+Route::controller('suajustes', 'SuperuserajustesController');
+//Directivo
+Route::get('directivoencuesta', function () {
+    return view('users.directivo.encuesta');
+});
+Route::resource('directivoajuste', 'DirectivoController');
+Route::controller('directivoajustes', 'DirectivoController');
+Route::controller('directivousus', 'DirectivousuController');
+
+//Route::resource('directivoencuesta', 'DirectivoController');
 //Asistenta Social
-Route::resource('asfichasocial', 'AsistentsocialFichasocialController');
-Route::controller('fichasocial', 'AsistentsocialFichasocialController');
-Route::resource('asdeclaracionjurada', 'AsistentSocialDeclaracionjuradaController');
-Route::controller('asdj', 'AsistentSocialDeclaracionjuradaController');
+Route::resource('asfichasocial', 'AsistentsocialFichaSocialController');
+Route::controller('fichasocial', 'AsistentsocialFichaSocialController');
+Route::resource('asdeclaracionjurada', 'AsistentsocialDeclaracionjuradaController');
+Route::controller('asdj', 'AsistentsocialDeclaracionjuradaController');
 Route::resource('asvisitadomc1', 'AsistentSocialVdc1Controller');
 Route::resource('asvisitadomc2', 'AsistentSocialVdc2Controller');
 Route::resource('asvisitadomc3', 'AsistentSocialVdc3Controller');
@@ -42,6 +53,8 @@ Route::resource('asvisitahosp3', 'AsistentSocialVhd3Controller');
 Route::resource('asvisitahosp4', 'AsistentSocialVhd4Controller');
 Route::resource('asrc', 'AsistentsocialrcController');
 Route::controller('asrcs', 'AsistentsocialrcController');
+Route::resource('asajuste', 'AsistentSocialController');
+Route::controller('asajustes', 'AsistentSocialController');
 //asistendSocial
 Route::resource('asexpagocentmed', 'AsistentSocialEpagoController');
 Route::controller('asexpagocentmeds', 'AsistentSocialEpagoController');
@@ -49,12 +62,21 @@ Route::controller('asexpagocentmeds', 'AsistentSocialEpagoController');
 Route::resource('jusuexpediente', 'JusuExpedienteController');
 Route::controller('jusuexpedientes', 'JusuExpedienteController');
 Route::resource('jusunbecas', 'JusuNbecasController');
+Route::resource('jusuajustes', 'JusuajustesController');
+Route::controller('jusuajuste', 'JusuajustesController');
+Route::get('jusuencuesta', function () {
+    return view('users.jusu.encuesta');
+});
+
 //nutricionista
 Route::resource('nutriforme', 'NutriInformeController');
 Route::controller('nutriformes', 'NutriInformeController');
+Route::controller('nutriajustes', 'NutriController');
+Route::resource('nutriajuste', 'NutriController');
 
 //Estudiante
 Route::resource('encuesta', 'EstudiantencuestaController');
+
 
 //Pdf
 Route::controller('pdf', 'PdfController');

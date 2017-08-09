@@ -85,6 +85,9 @@ class AsistentsocialrcController extends Controller
     public function show($id)
     {
         $rc=ControlRegistro::find($id);
+        if (!$rc) {
+            return back()->with('rojo','ID de estudiante no identificado');
+        }
         $estudiante=Estudiante::find($rc->user_id);
         return view('users.asistentSocial.rc.ver-mas', compact('rc','estudiante'));
     }

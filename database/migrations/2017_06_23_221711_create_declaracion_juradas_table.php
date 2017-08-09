@@ -17,7 +17,7 @@ class CreateDeclaracionJuradasTable extends Migration
             $table->integer('miembro_familiar')->unsigned();
             $table->integer('asistenta_social')->unsigned();
             $table->integer('distrito')->unsigned();
-            $table->string('desempeño_como');
+            $table->string('desempenio_como');
             $table->float('haber_mensual');
             $table->integer('n_hijos');
             $table->float('apoyo_mensual');

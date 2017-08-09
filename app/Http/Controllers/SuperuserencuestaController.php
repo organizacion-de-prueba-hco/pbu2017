@@ -19,7 +19,7 @@ class SuperuserencuestaController extends Controller
   public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('SuperUsuario');
+        $this->middleware('SuperUsuario',['except' => ['getExcel'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -238,6 +238,7 @@ class SuperuserencuestaController extends Controller
                     //Cuerpo 
                     //Dimención 1
                     $sheet->mergeCells('A3:A9'); //Combinamos la 1ra columna de dimenc
+                    $encuestados=$t_docentes;
                     if($t_docentes<1){
                       $t_docentes=1;
                     }
@@ -274,7 +275,7 @@ class SuperuserencuestaController extends Controller
                     //Pie
                    $sheet->mergeCells('C30:D32'); //Fusionamos
                     $sheet->appendRow(30, array(
-                        '','','N° Encuestados = '.$t_docentes,
+                        '','','N° Encuestados = '.$encuestados,
                     ));
                     
                     //Estilos----------------------------------------------------
@@ -302,7 +303,7 @@ class SuperuserencuestaController extends Controller
                         $cells->setBackground('#F0FFFF'); //Color de fondo dim 3
                     });
                     $sheet->cells('A23:G28', function($cells) {
-                        $cells->setBackground('#F0FFFA'); //Color de fondo dim 4
+                        $cells->setBackground('#E6E6FA'); //Color de fondo dim 4
                     });
 
                     $sheet->cells('C30:D31', function($cells) {

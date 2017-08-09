@@ -2,19 +2,6 @@
 @section('activacion')
 	<?php
 $oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 $nbecas='';
 ?>
 @endsection
@@ -101,7 +88,7 @@ $nbecas='';
 											<div class="profile-contact-info">
 												<div class="profile-contact-links align-left"  style="border-radius: 0 0 10px 10px;">
 													<p><label>
-														<a href="#" title="Ver más">&nbsp;
+														<a href="{{url('pdf/fs',$estudiante->user_id)}}" target="_black" title="Ver más">&nbsp;
 															<i class="ace-icon fa fa-search-plus"></i> &nbsp;Ficha Socio Económica
 														</a>
 														 </label>

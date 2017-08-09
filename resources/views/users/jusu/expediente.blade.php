@@ -2,20 +2,9 @@
 @section('activacion')
 	<?php
 $oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
 $nbecas='';
+$enc='';
+$in='';
 ?>
 @endsection
 @section('titulo','Expedientes')
@@ -28,20 +17,21 @@ $nbecas='';
 </ul>
 @endsection
 @section('contenido')
-@include('master.mensajes')
+@include('users.jusu.reporte-asistencia')
 <div class="row">
 	<div class="col-xs-12">
 
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
-		<a href="{{url('jusuexpedientes/reporte')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
+		<a href="{{url('jusuexpedientes/reporte')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Comensales aprobados"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
+		<a href="#asistencia" data-toggle="modal" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Reporte de Asistencias y Faltas"><i class='fa fa-table bigger-110 blue'></i></a>
 		
 		<div class="table-header">
 			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Expedientes de los comensales &nbsp;&nbsp;&nbsp;
+				Comensales &nbsp;&nbsp;&nbsp;
 			<a href="#testear" data-toggle="modal"><span class="btn btn-warning btn-xs btn-round">Testear Estudiante</span></a>
 		</div>
 										<!--Modal Nuevo-->
@@ -129,21 +119,23 @@ $nbecas='';
 						<th class="center">Cod. Univ</th>
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
-						<th class="hidden-480">Facultad</th>
+						<th class="hidden-480">CE</th>
 						<th>Beca</th>
 						<th class="hidden-480">Estado</th>
 
 						<th></th>
 					</tr>
 				</thead>
-
+				<?php  
+					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+				?>
 				<tbody>
 					@foreach($expedientes as $expediente)
 						<tr>
 							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
 							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
 							<td>{{$expediente->user->estudiante->escuela->escuela}}</td>
-							<td class="hidden-480">{{$expediente->user->estudiante->escuela->facultad->facultad}}</td>
+							<td class="hidden-480">{{$ce[$expediente->caso_especial]}}</td>
 							<td align="center">{{$expediente->tipo_beca}}
 							</td>
 							<td class="hidden-480" align="center">

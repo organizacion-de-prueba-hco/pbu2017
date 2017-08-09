@@ -14,24 +14,24 @@ class DeclaracionJurada extends Model
     'miembro_familiar',
    	'asistenta_social',
  	'distrito',
- 	'desempeño_como',
+ 	'desempenio_como',
     'haber_mensual',
     'n_hijos',
     'apoyo_mensual',
     'otros_gastos'
     ];
 
-    public function distrito(){
-    	return $this->belongsto('App\Distrito');
+    public function distrit(){
+    	return $this->belongsto('App\Distrito','distrito');
     }
 
     public function cuadrofamiliar(){
-    	return $this->belongsto('App\CuadroFamiliar','id'); //se coloca la llave con la cual esta relacionado
+    	return $this->belongsto('App\CuadroFamiliar','miembro_familiar','id'); //se coloca la llave con la cual esta relacionado
     }
 
-    public function user(){
-    	return $this->belongsto('App\User','id');
-    }
+    // public function user(){
+    // 	return $this->belongsto('App\User','id');
+    // }
 
 
 

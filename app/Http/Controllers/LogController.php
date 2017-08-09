@@ -49,10 +49,10 @@ class LogController extends Controller
                         return Redirect::to('suencuesta');
                         break;
                     case '1':
-                        return Redirect::to('docenteproyecto');
+                        return Redirect::to('directivoencuesta');
                         break;
                     case '2':
-                        return Redirect::to('jusuexpediente');
+                        return Redirect::to('jusuencuesta');
                         break;
                     case '2-1':
                         return Redirect::to('asrc');

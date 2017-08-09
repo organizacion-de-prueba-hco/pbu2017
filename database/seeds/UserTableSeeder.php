@@ -36,9 +36,20 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
                 'dni' => '00000002',
                 'nombres' => 'Mg. Oscar',
-                'apellido_paterno' => 'Usuario',
-                'apellido_materno' => 'Usuario',
+                'apellido_paterno' => 'Paterno',
+                'apellido_materno' => 'Materno',
                 'email' => 'dbu@hotmail.com',
+                'estado_login' => '1',
+                'tipo_user' => '1',
+                'password' => bcrypt('123456bu'),
+                'foto' => 'admin.png',
+        ]);
+        DB::table('users')->insert([
+                'dni' => '00000003',
+                'nombres' => 'Mg. Cloria',
+                'apellido_paterno' => 'Paterno',
+                'apellido_materno' => 'Materno',
+                'email' => 'mgc@hotmail.com',
                 'estado_login' => '1',
                 'tipo_user' => '1',
                 'password' => bcrypt('123456bu'),
@@ -47,12 +58,14 @@ class UserTableSeeder extends Seeder
         DB::table('directivos')->insert([
                 'user_id' => '2',
                 'cargo_funcion' => 'Vicerrector Académico',
-                
         ]);
         DB::table('directivos')->insert([
                 'user_id' => '3',
                 'cargo_funcion' => 'Director Bienestar Universitario',
-                
+        ]);
+        DB::table('directivos')->insert([
+                'user_id' => '4',
+                'cargo_funcion' => 'Oficina BU',
         ]);
 
         DB::table('users')->insert([

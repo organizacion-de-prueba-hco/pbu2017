@@ -27,6 +27,7 @@ class CreateExpedientesTable extends Migration
             $table->string('declaracion_jurada')->default('1');
             $table->string('tipo_beca'); //a,b,c o d
             $table->string('estado')->default('1'); //Activo o Inactivo
+            $table->integer('caso_especial')->default('0'); //0=ninguno,1=Victimas,2=Concejo Universitario, 3=asamblea Universitaria,4=Deportistas Calificados
             $table->string('obs'); //En caso sea No
             $table->binary('huella_a');
             $table->binary('huella_b');

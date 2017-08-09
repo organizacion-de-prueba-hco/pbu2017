@@ -40,6 +40,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->string('estado_login')->default('0');
+            $table->string('estado_activo')->default('1'); //Para los egresados o retirados
             $table->string('tipo_user')->default('5');
             $table->string('foto')->default('user.png');
                 /*
