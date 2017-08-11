@@ -13,6 +13,7 @@ use App\CuadroFamiliar;
 use App\EgresoFamiliar;
 use App\FichaSocial;
 use App\DeclaracionJurada;
+use App\ExoneracionPagoCentMed;
 
 class PdfController extends Controller
 {
@@ -183,6 +184,21 @@ class PdfController extends Controller
         $date = Carbon::now();
         //$date = $date->format('d-m-Y');
         $view =  \View::make('pdf.dj', compact('dj','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        //return $pdf->download($informeNutricion->titulo.'.pdf');
+        return $pdf->stream('invoiced');
+    }
+
+    public function getExoneracion($id){
+        $exon=ExoneracionPagoCentMed::find($id);
+        if(!$exon){
+             return back()->with('rojo','ID no identificado');
+        }
+
+        $date = Carbon::now();
+        //$date = $date->format('d-m-Y');
+        $view =  \View::make('pdf.exoneracion', compact('exon','date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         //return $pdf->download($informeNutricion->titulo.'.pdf');

@@ -166,8 +166,20 @@ class AsistentsocialDeclaracionjuradaController extends Controller
         //
     }
     public function postNuevo(Request $request){
+
         $cod        = $request->get('cod-nuevo');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
+        if(!$estudiante){
+          //Para que salga error en la pantalla grande
+          return view('users.asistentSocial.declaracionJur.nuevo', compact('estudiante'));
+        }
+
 
         //Si la asistenta social es quien e´stá asiendo lps cambios
         if(Auth::user()->tipo_user!='2-1'){

@@ -255,7 +255,7 @@
 
 					
 					<li class="{{$e}}">
-						<a href="asexpagocentmed">
+						<a href="{{url('asexpagocentmed')}}">
 							<i class="menu-icon fa fa-medkit"></i>
 							<span class="menu-text"> Exon. Pago Cent Med </span>
 						</a>

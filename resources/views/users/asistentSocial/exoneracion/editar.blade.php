@@ -11,7 +11,7 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-medkit"></i>	
 	<li class="active">Exoneración de pago para atención en el centro médico UNHEVAL</li>
-	<li class="active">nuevo</li>
+	<li class="active">editar</li>
 </ul>
 @endsection
 @section('contenido')
@@ -31,7 +31,8 @@ if (App\ExoneracionPagoCentMed::where('id', $estudiante->user_id)->first()) {
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
-								{!! Form::open(['route' => 'asexpagocentmed.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+
+								{!! Form::model($exon,['route' =>['asexpagocentmed.update',$exon->id], 'method' => 'PUT', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
 
@@ -86,7 +87,7 @@ if (App\ExoneracionPagoCentMed::where('id', $estudiante->user_id)->first()) {
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Fecha Nacimiento </label>
 										<div class="col-sm-9">
-										<input type="date" required="true" name="f_nac" value="{{$estudiante->user->f_nac}}">
+										<input type="date" name="f_nac" value="{{$estudiante->user->f_nac}}">
 										</div>
 									</div>
 									<div class="form-group">
