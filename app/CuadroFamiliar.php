@@ -27,7 +27,11 @@ class CuadroFamiliar extends Model
     ];
 
     public function visitadomiciliarias(){
-        return $this->hasMany('App\VisitaDomiciliaria');
+        return $this->hasMany('App\VisitaDomiciliaria','miembro_familiar','id');
+
+    }
+    public function visitahospitalarias(){
+        return $this->hasMany('App\VisitaHospitalaria','miembro_familiar','id');
 
     }
     public function datossaludes(){
@@ -37,6 +41,7 @@ class CuadroFamiliar extends Model
     public function declaracionjuradas(){
         return $this->hasMany('App\DeclaracionJurada','miembro_familiar');
     }
+
     public function user(){
         return $this->belongsto('App\User');
     }

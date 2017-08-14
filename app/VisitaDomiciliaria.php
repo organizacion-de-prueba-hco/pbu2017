@@ -15,15 +15,13 @@ class VisitaDomiciliaria extends Model
     'observaciones',
     'intervencion',
     'fecha'
-
     ];
 
     public function cuadrofamiliar(){
-        return $this->belongsto('App/CuadroFamiliar');
+        return $this->belongsto('App\CuadroFamiliar','miembro_familiar');
     }
-
-    public function user(){
-        return $this->belongsto('App/User');
+    public function asistentasocial(){
+        return $this->belongsto('App\User','asistenta_social');
     }
 
 }

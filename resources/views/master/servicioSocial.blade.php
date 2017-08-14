@@ -147,14 +147,13 @@
 							<i class="menu-icon fa fa-comment"></i>
 							<span class="menu-text"> Declaración Jurada </span>
 						</a>
-
 						<b class="arrow"></b>
 					</li>
 
 					<li class="{{$c}}">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-home"></i>
-							<span class="menu-text"> Visita Domiciliaria </span>
+							<span class="menu-text"> Visita Domiciliaria</span>
 
 							<b class="arrow fa fa-angle-down"></b>
 						</a>
@@ -163,16 +162,15 @@
 
 						<ul class="submenu">
 							<li class="{{$c1}}">
-								<a href="asvisitadomc1">
+								<a href="{{url('asvisitadomc1')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Estudiante
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-
-							<li class="{{$c2}}">
-								<a href="asvisitadomc2">
+							<!-- <li class="{{$c2}}">
+								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Personal Docente
 								</a>
@@ -181,7 +179,7 @@
 							</li>
 
 							<li class="{{$c3}}">
-								<a href="asvisitadomc3">
+								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Personal No Docente
 								</a>
@@ -190,15 +188,13 @@
 							</li>
 
 							<li class="{{$c4}}">
-								<a href="asvisitadomc4">
+								<a href="#">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Otros
 								</a>
 
 								<b class="arrow"></b>
-							</li>
-
-							
+							</li>			 -->				
 						</ul>
 					</li>
 
@@ -214,7 +210,7 @@
 
 						<ul class="submenu">
 							<li class="{{$d1}}">
-								<a href="asvisitahosp1">
+								<a href="{{url('asvisitahosp1')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Estudiante
 								</a>
@@ -222,7 +218,7 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="{{$d2}}">
+							<!-- <li class="{{$d2}}">
 								<a href="asvisitahosp2">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Personal Docente
@@ -247,7 +243,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>
+							</li> -->
 
 							
 						</ul>

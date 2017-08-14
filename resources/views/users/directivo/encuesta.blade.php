@@ -9,6 +9,7 @@
 	$usu_d='';
 	$usu_as='';
 	$usu_sp='';
+	$usu_exo='';
 	$usu_e_a='';
 	$usu_e_b='';
 	$usu_e_c='';

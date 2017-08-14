@@ -13,6 +13,7 @@ use App\User;
 use App\HistorialExpediente;
 use App\CantidadBecas;
 use App\ControlRegistro;
+use App\ExoneracionPagoCentMed;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -115,6 +116,11 @@ class DirectivousuController extends Controller
     }
     public function getAsocial(){
         $crs=ControlRegistro::get();
-        return view('users.directivo.usu.rc',compact('crs'));
+        return view('users.directivo.usu.rcontrol',compact('crs'));
+    }
+    public function getExoneracion(){
+        $exoneraciones=ExoneracionPagoCentMed::get();
+        return view('users.directivo.usu.exoneracion',compact('exoneraciones'));
+        $crs=ExoneracionPagoCent::get();
     }
 }

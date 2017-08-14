@@ -14,6 +14,8 @@ use App\EgresoFamiliar;
 use App\FichaSocial;
 use App\DeclaracionJurada;
 use App\ExoneracionPagoCentMed;
+use App\VisitaDomiciliaria;
+use App\VisitaHospitalaria;
 
 class PdfController extends Controller
 {
@@ -171,8 +173,7 @@ class PdfController extends Controller
     public function getDj($id){
         //Usamos el ID del user para que a ruta funciones para todos los users
         //Verificamos si ya existe una declaracion jurada de algun pariente del estudiante
-        $parientes=CuadroFamiliar::join('declaracion_juradas','declaracion_juradas.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.user_id',$id)->select('declaracion_juradas.*')->first();
-
+        $parientes=CuadroFamiliar::join('declaracion_juradas','declaracion_juradas.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.id',$id)->select('declaracion_juradas.*')->first();
         if(!$parientes){
              return back()->with('rojo','aún no se ha generado una DJ para este estudiante');
         }
@@ -199,6 +200,33 @@ class PdfController extends Controller
         $date = Carbon::now();
         //$date = $date->format('d-m-Y');
         $view =  \View::make('pdf.exoneracion', compact('exon','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        //return $pdf->download($informeNutricion->titulo.'.pdf');
+        return $pdf->stream('invoiced');
+    }
+
+     public function getVisitadomiciliaria($id){
+        $vd=VisitaDomiciliaria::find($id);
+        if(!$vd){
+             return back()->with('rojo','ID no identificado');
+        }        
+        $date = Carbon::now();
+        //$date = $date->format('d-m-Y');
+        $view =  \View::make('pdf.vdomiciliaria', compact('vd','date'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        //return $pdf->download($informeNutricion->titulo.'.pdf');
+        return $pdf->stream('invoiced');
+    }
+    public function getVisitahospitalaria($id){
+        $vd=VisitaHospitalaria::find($id);
+        if(!$vd){
+             return back()->with('rojo','ID no identificado');
+        }        
+        $date = Carbon::now();
+        //$date = $date->format('d-m-Y');
+        $view =  \View::make('pdf.vhospitalaria', compact('vd','date'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         //return $pdf->download($informeNutricion->titulo.'.pdf');

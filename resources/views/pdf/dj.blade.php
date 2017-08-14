@@ -55,10 +55,10 @@
   @if($dj->cuadrofamiliar->parentesco=='YO')
     <div>
       <p>Yo {{$dj->cuadrofamiliar->user->nombres.' '.$dj->cuadrofamiliar->user->apellido_paterno.' '.$dj->cuadrofamiliar->user->apellido_materno}} con DNI N° {{$dj->cuadrofamiliar->user->dni}}</p>
-      <p>Domiciliado en {{$dj->cuadrofamiliar->residencia}}</p>
+      <p>Domiciliado en {{$dj->cuadrofamiliar->user->domicilio.' '.$dj->cuadrofamiliar->user->n_domicilio}}</p>
       <p>Distrito: {{$dj->distrit->distrito}}, Provincia: {{$dj->distrit->provincia->provincia}}, Departamento: {{$dj->distrit->provincia->departamento->departamento}}</p>
       <br>
-      <p>En mi condición de Alumno(a) que Cursa estudios Universitarios en la UNHEVAL Escuela Profesional de {{$dj->cuadrofamiliar->user->estudiante->escuela->escuela}} en {{$dj->cuadrofamiliar->user->estudiante->anio_estudio}} año.</p><br>
+      <p>En mi condición de Alumno(a) que cursa estudios Universitarios en la UNHEVAL Escuela Profesional de {{$dj->cuadrofamiliar->user->estudiante->escuela->escuela}} en {{$dj->cuadrofamiliar->user->estudiante->anio_estudio}} año.</p><br>
 
       <p>DECLARO BAJO JURAMENTO: </p>
       <P>Tener un trabajo independiente en la cual desempeño como {{$dj->desempenio_como}}, percibiendo un haber mensual de S/ {{$dj->haber_mensual}} y teniendo una carga familiar de {{$dj->n_hijos}} hijos menores en edad escolar. Me solvento mensualmente con S/ {{$dj->apoyo_mensual}}. Para mis gastos de estudio, alimentación y alquiler de cuarto.</P>
@@ -86,7 +86,7 @@
     </p>
       <br><br><br><br><br>
       <p>...........................................</p>
-      <p>DNI N° {{$dj->cuadrofamiliar->dni}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      <p>DNI N° {{$dj->cuadrofamiliar->user->dni}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
       </div>
     </div>
   @else

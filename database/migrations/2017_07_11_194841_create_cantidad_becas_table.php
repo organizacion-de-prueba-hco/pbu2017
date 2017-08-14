@@ -18,7 +18,7 @@ class CreateCantidadBecasTable extends Migration
             $table->integer('a');
             $table->integer('b');
             $table->integer('c');
-             $table->foreign('escuela_id')->references('id')
+            $table->foreign('escuela_id')->references('id')
                   ->on('escuelas')->onDelete('cascade');
             $table->timestamps();
         });

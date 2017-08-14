@@ -20,8 +20,9 @@ $search='';
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-th-large "></i>
-	<li class="active">N° Becas</li>
+	<i class="ace-icon fa fa-users"></i>
+	<li class="active">U. Serv Univ</li>
+	<li class="active"><i class="ace-icon fa fa-th-large "></i> N° Becas</li>
 </ul>
 @endsection
 @section('contenido')

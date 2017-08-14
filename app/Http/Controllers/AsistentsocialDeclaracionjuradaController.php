@@ -32,7 +32,6 @@ class AsistentsocialDeclaracionjuradaController extends Controller
     public function index()
     {
        $declaracionjuradas = DeclaracionJurada::get();
-       
         return view('users.asistentSocial.declaracionJurada', compact('declaracionjuradas'));
     }
 
@@ -131,9 +130,6 @@ class AsistentsocialDeclaracionjuradaController extends Controller
         $provincias=Provincia::lists('provincia','id');
         $distritos=Distrito::lists('distrito','id');
 
-        $departamentos=Departamento::lists('departamento','id');
-        $provincias=Provincia::lists('provincia','id');
-        $distritos=Distrito::lists('distrito','id');
 
         return view('users.asistentSocial.declaracionJur.editar', compact('dj','estudiante','CuadroFamiliar','instruccion','departamentos','provincias','distritos'));
     }
@@ -206,12 +202,7 @@ class AsistentsocialDeclaracionjuradaController extends Controller
                             '7' =>'Universitario completo',
                             '8' =>'Universitario incompleta',
                             '9' =>'Posgrado');
-        if(!$estudiante){
-          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
-        }
+        
         $departamentos=Departamento::lists('departamento','id');
         $provincias=Provincia::lists('provincia','id');
         $distritos=Distrito::lists('distrito','id');

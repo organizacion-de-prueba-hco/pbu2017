@@ -15,13 +15,15 @@ $usu_e_c='';
 $search='';
 ?>
 @endsection
-@section('title','Registro/Control')
+@section('titulo','Registro/Control')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>	
-	<li class="active">Registro / Control</li>
+
+	<i class="ace-icon fa fa-users"></i>
+	<li class="active">U. Serv Univ</li>
+	<li class="active"><i class="ace-icon fa fa-list-alt"></i> Registro / Control</li>
 </ul>
 @endsection
 @section('contenido')
@@ -71,8 +73,8 @@ $search='';
 						<th>Fecha</th>
 						<th class="center">Cod. Univ</th>
 						<th>Nombres y Apellidos</th>
-						<th>Edad</th>
 						<th>Escuela</th>
+						<th>Edad</th>
 						<th class="hidden-480">Caso social / otros</th>
 					</tr>
 				</thead>
@@ -83,6 +85,7 @@ $search='';
 							<td class="center">{{$rc->created_at}}</td>
 							<td>{{$rc->user->estudiante->cod_univ}}</td>
 							<td>{{$rc->user->nombres.', '.$rc->user->apellido_paterno.' '.$rc->user->apellido_materno}}</td>
+							<td class="hidden-480">{{$rc->user->estudiante->escuela->escuela}}</td>
 							<td align="center">
 								<?php 
 								 if($rc->user->f_nac!='0000-00-00'){
@@ -96,7 +99,6 @@ $search='';
 								//echo $rc->user->f_nac;
                   				?> 
 							</td>
-							<td class="hidden-480">{{$rc->user->estudiante->escuela->escuela}}</td>
 							<td>{{$rc->caso_social}}</td>
 					</tr>
 					@endforeach

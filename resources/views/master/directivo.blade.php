@@ -167,7 +167,7 @@
 							</li>
 
 							<li class="{{$usu_d}}">
-								<a href="#">
+								<a href="{{url('directivousus/exoneracion')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Exon. Pago Cent Med
 								</a>
@@ -180,8 +180,8 @@
 								</a>
 								<b class="arrow"></b>
 							</li>
-							<li class="">
-								<a href="{{$usu_sp}}">
+							<li class="{{$usu_sp}}">
+								<a href="">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Servicio Psicopedagogía
 								</a>

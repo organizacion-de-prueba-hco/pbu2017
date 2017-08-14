@@ -10,6 +10,9 @@ class VisitaHospitalaria extends Model
     protected $fillable=[
     'miembro_familiar',
     'asistenta_social',
+    'centro_atencion',
+    'tipo_sangre',
+    'medico',
     'motivo',
     'diagnostico',
     'observaciones',
@@ -19,11 +22,10 @@ class VisitaHospitalaria extends Model
     ];
 
     public function cuadrofamiliar(){
-        return $this->belongsto('App/CuadroFamiliar');
+        return $this->belongsto('App\CuadroFamiliar','miembro_familiar','id');
     }
-
-    public function user(){
-        return $this->belongsto('App/User');
+    public function asistentasocial(){
+        return $this->belongsto('App\User','asistenta_social');
     }
 
 }
