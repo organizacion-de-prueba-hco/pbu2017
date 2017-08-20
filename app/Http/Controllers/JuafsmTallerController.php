@@ -16,6 +16,11 @@ use Carbon\Carbon;
 
 class JuafsmTallerController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('juafsm');
+    }
     /**
      * Display a listing of the resource.
      *

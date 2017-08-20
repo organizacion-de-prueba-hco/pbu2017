@@ -80,13 +80,15 @@ Route::resource('nutriajuste', 'NutriController');
 Route::resource('encuesta', 'EstudiantencuestaController');
 
 
-//JUAFSM =3
+//JUAFSM = 3
 Route::resource('jufsmtaller', 'JuafsmTallerController');
 Route::resource('jufsmatricula', 'JuafsmMatriculaController');
 Route::controller('jufsmatriculas', 'JuafsmMatriculaController');
+Route::resource('jufsmreporte', 'JuafsmReporteController');
+Route::resource('jufsm', 'JuafsmController'); //Actualizar datos
+Route::controller('jufsms', 'JuafsmController'); // Actualizar Foto
 
-//JUAFM =4
-
+//JUFC = 4
 
 //Pdf
 Route::controller('pdf', 'PdfController');

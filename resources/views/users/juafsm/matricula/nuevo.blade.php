@@ -1,10 +1,9 @@
 @extends('master.juafsm')
 @section('activacion')
 	<?php
-$oa = '';
-$nbecas='';
-$enc='';
-$in='active';
+$a='active';
+$b='';
+$c='';
 ?>
 @endsection
 @section('title','Nueva Matricula')

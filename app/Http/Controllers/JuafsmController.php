@@ -6,26 +6,27 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use Auth;
 use Redirect;
 use Input;
 use App\User;
 
-class SuperuserajustesController extends Controller
+class JuafsmController extends Controller
 {
-   public function __construct()
-   {
-        $this->middleware('auth');
-        $this->middleware('SuperUsuario');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('juafsm');
+    }
     public function index()
     {
-        return view('users.super.ajustes');
+        return view('users.juafsm.ajustes');
     }
 
     /**
@@ -35,7 +36,7 @@ class SuperuserajustesController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -46,7 +47,7 @@ class SuperuserajustesController extends Controller
      */
     public function store(Request $request)
     {
-         $user=User::find(Auth::user()->id);
+        $user=User::find(Auth::user()->id);
         $user->nombres=$request->get('nombres');
         $user->apellido_paterno=$request->get('apellido_paterno');
         $user->apellido_materno=$request->get('apellido_materno');
@@ -56,9 +57,9 @@ class SuperuserajustesController extends Controller
             $user->password=$request->get('pasword');
         }
         if($user->save()){
-            return Redirect::to('suajuste')->with('verde','Se actulizaron los datos');
+            return Redirect::to('jufsm')->with('verde','Se actulizaron los datos');
         }else{
-            return Redirect::to('suajuste')->with('rojo','Los datos ingresados no son válidos');            
+            return Redirect::to('jufsm')->with('rojo','Los datos ingresados no son válidos');            
         }
     }
 
@@ -106,6 +107,7 @@ class SuperuserajustesController extends Controller
     {
         //
     }
+
     public function postFoto(){
       $file = Input::file('foto');
       if(!empty($file)){
@@ -114,9 +116,9 @@ class SuperuserajustesController extends Controller
         $file->move('imagenes/avatar', $name);
         $user->foto=$name;
         if($user->save()){
-             return Redirect::to('suajuste')->with('verde','Se actualizó foto');     
+             return Redirect::to('jufsm')->with('verde','Se actualizó foto');     
         }else{
-            return Redirect::to('suajuste')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+            return Redirect::to('jufsm')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
         }
       }
      }

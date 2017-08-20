@@ -1,10 +1,9 @@
 @extends('master.juafsm')
 @section('activacion')
 	<?php
-$oa = '';
-$nbecas='';
-$enc='';
-$in='active';
+$a = '';
+$b='active';
+$c='';
 ?>
 @endsection
 @section('titulo','Editar Taller')

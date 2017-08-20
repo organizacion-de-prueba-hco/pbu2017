@@ -18,6 +18,11 @@ use Carbon\Carbon;
 
 class JuafsmMatriculaController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('juafsm');
+    }
     /**
      * Display a listing of the resource.
      *

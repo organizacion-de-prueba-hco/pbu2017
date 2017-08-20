@@ -14,7 +14,6 @@ $usu_e_a='';
 $usu_e_b='';
 $usu_e_c='';
 $search='';
-
 ?>
 @endsection
 @section('titulo','Nuevo Expediente')
@@ -51,7 +50,7 @@ $search='';
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                           </button>
-                          <h4 class="modal-title">Actualizar foto del estudiante</h4>
+                          <h4 class="modal-title">Actualizar foto</h4>
                         </div>
                         <div class="modal-body">                        
                           {!! Form::open(['url' => 'directivoajustes/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}

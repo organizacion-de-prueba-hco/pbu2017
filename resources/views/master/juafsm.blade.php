@@ -83,13 +83,13 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="{{url('jusuajustes')}}">
+									<a href="{{url('jufsm')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>
 								</li>
 								<li>
-									<a href="{{url('manual/jusu.pdf')}}" target="_black">
+									<a href="{{url('manual/jufsm.pdf')}}" target="_black">
 										<i class="ace-icon fa fa-exclamation"></i>
 										Ayuda
 									</a>
@@ -126,22 +126,22 @@
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li class="">
+					<li class="{{$a}}">
 						<a href="{{url('jufsmatricula')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Matricula </span>
 						</a>
 						<b class="arrow"></b>
 					</li>
-					<li class="#">
+					<li class="{{$b}}">
 						<a href="{{url('jufsmtaller')}}">
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Talleres </span>
 						</a>
 						<b class="arrow"></b>
 					</li>
-					<li class="#">
-						<a href="#">
+					<li class="{{$c}}">
+						<a href="{{url('jufsmreporte')}}">
 							<i class="menu-icon fa fa-th-large "></i>
 							<span class="menu-text"> Reportes </span>
 						</a>

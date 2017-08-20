@@ -35,5 +35,7 @@ class Kernel extends HttpKernel
         'SuperUsuario' => \App\Http\Middleware\Jusu::class,
         'nutricionista' => \App\Http\Middleware\Nutricionista::class,
         'directivo' => \App\Http\Middleware\Directivo::class,
+        'juafsm' => \App\Http\Middleware\Juafsm::class,
+        'jufc' => \App\Http\Middleware\Juafsm::class,
     ];
 }

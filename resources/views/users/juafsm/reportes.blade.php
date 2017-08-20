@@ -1,18 +1,18 @@
 @extends('master.juafsm')
 @section('activacion')
 	<?php
-$a = '';
-$b='active';
-$c='';
+$a='';
+$b='';
+$c='active';
 ?>
 @endsection
-@section('titulo','Talleres')
+@section('titulo','Reportes')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list-alt"></i>
-	<li class="active">Talleres</li>
+	<li class="active">Reportes</li>
 </ul>
 @endsection
 @section('contenido')
@@ -23,10 +23,8 @@ $c='';
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-			<a href="{{route('jufsmtaller.create')}}" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
-				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
-			</a> &nbsp;
-				Talleres &nbsp;&nbsp;&nbsp;
+			
+				Reportes &nbsp;&nbsp;&nbsp;
 			</div>
 												
 
@@ -37,23 +35,19 @@ $c='';
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Taller</th>
 						<th class="center">Semestre</th>
-						<th class="center">Docente</th>
-						<th class="center"></th>
+						<th class="center">Acciones</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					@foreach($talleres as $t)
+					@foreach($semestres as $s)
 					<tr>
-						<td>{{$t->taller->taller}}</td>
-						<td>{{$t->semestre}}</td>
-						<td>{{$t->docente}}</td>
+						<td align="center">{{$s}}</td>
 						<td class="action-buttons" align="center">
-						<a href="{{route('jufsmtaller.edit',$t)}}" data-toggle="tooltip" title="Editar">
+						<a href="{{route('jufsmreporte.show',$s)}}" data-toggle="tooltip" title="Descargar">
 							<span class="green">
-								<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+								<i class="ace-icon fa fa-file-excel-o bigger-120"></i>
 							</span>
 							</a>
 						</td>
@@ -91,7 +85,6 @@ $c='';
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null},
-					  null, null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
