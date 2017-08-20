@@ -117,5 +117,30 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('123456bu'),
                 'foto' => 'admin.png',
         ]);
+
+        DB::table('users')->insert([
+                'dni' => '00000008',
+                'nombres' => 'Jef. Act Fís Mental',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'materno',
+                'email' => 'fisica@hotmail.com',
+                'estado_login' => '1',
+                'tipo_user' => '3',
+                'password' => bcrypt('123456bu'),
+                'foto' => 'admin.png',
+        ]);
+
+        DB::table('users')->insert([
+                'dni' => '00000009',
+                'nombres' => 'Jef. Cultural',
+                'apellido_paterno' => 'Usuario',
+                'apellido_materno' => 'Materno',
+                'email' => 'cultural@hotmail.com',
+                'estado_login' => '1',
+                'tipo_user' => '4',
+                'password' => bcrypt('123456bu'),
+                'foto' => 'admin.png',
+        ]);
+
     }
 }

@@ -146,6 +146,9 @@ class User extends Model implements AuthenticatableContract,
             $this->attributes['password'] = \Hash::Make($valor);
         }
     }
+    public function cursotaller(){
+      return $this->hasMany('App\CursoTaller','director');
+    }
    
 
 }

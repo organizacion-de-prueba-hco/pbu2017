@@ -18,7 +18,7 @@ class CreateCursoTallersTable extends Migration
             $table->integer('director')->unsigned();
             $table->string('semestre');
             $table->string('docente');
-            $table->string('estado');
+            $table->string('estado')->default('1');
             $table->foreign('taller_id')->references('id')
                   ->on('tallers')->onDelete('cascade');
             $table->foreign('director')->references('id')

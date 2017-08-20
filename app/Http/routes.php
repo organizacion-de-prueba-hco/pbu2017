@@ -80,6 +80,14 @@ Route::resource('nutriajuste', 'NutriController');
 Route::resource('encuesta', 'EstudiantencuestaController');
 
 
+//JUAFSM =3
+Route::resource('jufsmtaller', 'JuafsmTallerController');
+Route::resource('jufsmatricula', 'JuafsmMatriculaController');
+Route::controller('jufsmatriculas', 'JuafsmMatriculaController');
+
+//JUAFM =4
+
+
 //Pdf
 Route::controller('pdf', 'PdfController');
 

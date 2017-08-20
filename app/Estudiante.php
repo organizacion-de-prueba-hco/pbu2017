@@ -41,4 +41,7 @@ class Estudiante extends Model
     public function estudiantencuestas(){
         return $this->hasMany('App\Estudiantencuesta','estudiante_id','user_id');
     }
+    public function matriculataller(){
+        return $this->hasMany('App\MatriculaTaller','estudiante','user_id');
+    }
 }

@@ -60,6 +60,9 @@ class LogController extends Controller
                     case '2-3':
                         return Redirect::to('nutriforme');
                         break;
+                    case '3':
+                        return Redirect::to('jufsmtaller');
+                        break;
                     default:
                         return Redirect::to('/')->with('rojo', 'Algo salió mal');
                         break;
