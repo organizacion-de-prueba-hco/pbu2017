@@ -1,4 +1,4 @@
-@extends('master.juafsm')
+@extends('master.jufc')
 @section('activacion')
 	<?php
 $a='';
