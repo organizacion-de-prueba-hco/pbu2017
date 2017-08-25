@@ -63,6 +63,9 @@ class LogController extends Controller
                     case '3':
                         return Redirect::to('jufsmtaller');
                         break;
+                    case '4':
+                        return Redirect::to('jufctaller');
+                        break;
                     default:
                         return Redirect::to('/')->with('rojo', 'Algo salió mal');
                         break;
