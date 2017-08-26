@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Contracts\Auth\Guard;
 
 use Closure;
+use Illuminate\Contracts\Auth\Guard;
 
 class Jufc
 {
