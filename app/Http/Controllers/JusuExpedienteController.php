@@ -27,7 +27,11 @@ class JusuExpedienteController extends Controller
      */
     public function index()
     {
-        $expedientes = Expediente::get();
+      $expedientes = Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
+                               ->join('users','users.id','=','estudiantes.user_id')
+                               ->where('users.estado_activo','1')
+                               //->where('expedientes.caso_especial')
+                               ->select('expedientes.*')->get();
         return view('users.jusu.expediente', compact('expedientes'));
     }
 
@@ -387,23 +391,6 @@ class JusuExpedienteController extends Controller
       })->export('xls');
     }
     public function postAsistencia(Request $request){
-      // $hoy= Carbon::now();
-      // $asistencia=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))->where('created_at','<=',$request->get('fin'))->get();
-      // if($asistencia=='[]'){
-      //   return back()->with('naranja','Fechas ingresadas no son válidas');
-      // }
-      // $comensales=Expediente::where('estado','1')->where('caso_especial','0')->get();
-      // foreach ($comensales as $c) {
-      //   $asist=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
-      //                           ->where('created_at','<=',$request->get('fin'))
-      //                           ->where('expediente_id',$c->expediente)
-      //                           ->where('asistencia','1')->count();
-      //   $falt=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
-      //                           ->where('created_at','<=',$request->get('fin'))
-      //                           ->where('expediente_id',$c->expediente)
-      //                           ->where('asistencia','0')->count();
-      //   echo '<br>'.$c->estudiante->user->nombres.' - '.'A:'.$asist.' - F:'.$falt;
-      // }
       $inicio=$request->get('inicio');
       $fin=$request->get('fin');
       Excel::create('Reporte de Asistencia ', function($excel) use($inicio,$fin){

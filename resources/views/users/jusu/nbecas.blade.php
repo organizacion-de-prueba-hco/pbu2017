@@ -23,7 +23,7 @@ $in='';
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
-		<a href="{{url('jusuexpedientes/reporte')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
+		<a href="{{route('jusunbecas.show')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
 		
 		<div class="table-header">
 			Número de Becas por Escuela Profesional 
@@ -52,10 +52,34 @@ $in='';
 					@foreach($cbecas as $nb)
 						<tr>
 							<td>{{$nb->escuela->escuela}}</td>
-							<td>{{$nb->a}}</td>
-							<td>{{$nb->b}}</td>
-							<td>{{$nb->c}}</td>
-							<td>{{$nb->a+$nb->b+$nb->c}}</td>
+							<td>
+								<?php 
+									$ba=App\Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
+									->where('expedientes.caso_especial','0')
+									->where('expedientes.tipo_beca','A')
+									->where('estudiantes.escuela_id',$nb->escuela_id)->count();
+								?>
+								{{$ba.'/'.$nb->a}}
+							</td>
+							<td>
+								<?php 
+									$bb=App\Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
+									->where('expedientes.caso_especial','0')
+									->where('expedientes.tipo_beca','B')
+									->where('estudiantes.escuela_id',$nb->escuela_id)->count();
+								?>
+								{{$bb.'/'.$nb->b}}
+							</td>
+							<td>
+								<?php 
+									$bc=App\Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
+									->where('expedientes.caso_especial','0')
+									->where('expedientes.tipo_beca','C')
+									->where('estudiantes.escuela_id',$nb->escuela_id)->count();
+								?>
+								{{$bc.'/'.$nb->c}}
+							</td>
+							<td>{{($ba+$bb+$bc).'/'.($nb->a+$nb->b+$nb->c)}}</td>
 							
 						<td>
 						<a class="green" href="#editar-becas" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$nb->id}}')">
@@ -113,23 +137,6 @@ $in='';
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
-
-
-					//"bProcessing": true,
-			        //"bServerSide": true,
-			        //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
-
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-					//"iDisplayLength": 50
 
 
 					select: {
@@ -332,7 +339,7 @@ $in='';
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
         console.log(">"+id);
-        var route="/jusunbecas/"+id;
+        var route="/jusunbecas/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({
