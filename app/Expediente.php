@@ -31,8 +31,8 @@ class Expediente extends Model
     'huella_b'
     ];
 
-    public function user(){
-        return $this->belongsto('App\User','expediente');
+    public function estudiante(){
+        return $this->belongsto('App\Estudiante','expediente');
     }
 
     public function desayunos(){

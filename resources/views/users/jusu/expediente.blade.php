@@ -97,13 +97,6 @@ $in='';
 													{!!Form::close()!!}
 													<br>
 											</div>
-
-											<!-- <div class="modal-footer">
-												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
-													<i class="ace-icon fa fa-times"></i>
-													Close
-												</button>
-											</div> -->
 										</div><!-- /.modal-content -->
 									</div><!-- /.modal-dialog -->
 								</div>
@@ -132,12 +125,11 @@ $in='';
 				<tbody>
 					@foreach($expedientes as $expediente)
 						<tr>
-							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
-							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
-							<td>{{$expediente->user->estudiante->escuela->escuela}}</td>
+							<td class="center">{{$expediente->estudiante->user->estudiante->cod_univ}}</td>
+							<td> {{$expediente->estudiante->user->nombres}}, {{$expediente->estudiante->user->apellido_paterno.' '.$expediente->estudiante->user->apellido_materno}}</td>
+							<td>{{$expediente->estudiante->escuela->escuela}}</td>
 							<td class="hidden-480">{{$ce[$expediente->caso_especial]}}</td>
-							<td align="center">{{$expediente->tipo_beca}}
-							</td>
+							<td align="center">{{$expediente->tipo_beca}}</td>
 							<td class="hidden-480" align="center">
 								@if($expediente->estado=='1')
 								<span class="label label-sm label-success">	Aprobado

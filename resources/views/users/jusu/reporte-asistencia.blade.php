@@ -24,7 +24,7 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <input type="submit" class="btn btn-success" value="Actualizar" >
+                          <input type="submit" class="btn btn-success" value="Actualizar">
                         </div>
                       {!! Form::close() !!}
                   </div>

@@ -8,6 +8,7 @@ use App\Estudiante;
 use App\Expediente;
 use App\User;
 use App\HistorialExpediente;
+use App\ComedorAsistencia;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -386,6 +387,176 @@ class JusuExpedienteController extends Controller
       })->export('xls');
     }
     public function postAsistencia(Request $request){
-      return "inicio: ".$request->get('inicio').'<br>'."Fin: ".$request->get('fin');
+      // $hoy= Carbon::now();
+      // $asistencia=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))->where('created_at','<=',$request->get('fin'))->get();
+      // if($asistencia=='[]'){
+      //   return back()->with('naranja','Fechas ingresadas no son válidas');
+      // }
+      // $comensales=Expediente::where('estado','1')->where('caso_especial','0')->get();
+      // foreach ($comensales as $c) {
+      //   $asist=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
+      //                           ->where('created_at','<=',$request->get('fin'))
+      //                           ->where('expediente_id',$c->expediente)
+      //                           ->where('asistencia','1')->count();
+      //   $falt=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
+      //                           ->where('created_at','<=',$request->get('fin'))
+      //                           ->where('expediente_id',$c->expediente)
+      //                           ->where('asistencia','0')->count();
+      //   echo '<br>'.$c->estudiante->user->nombres.' - '.'A:'.$asist.' - F:'.$falt;
+      // }
+      $inicio=$request->get('inicio');
+      $fin=$request->get('fin');
+      Excel::create('Reporte de Asistencia ', function($excel) use($inicio,$fin){
+
+        $excel->sheet('Comensales CE', function($sheet) use($inicio,$fin){
+          //----------DATOS----------------
+            $comensales=Expediente::where('estado','1')->where('caso_especial','<>','0')->get();
+          //----------Fin DATOS----------------
+          // Cabecera
+           $sheet->mergeCells('B1:K1');
+           
+           $sheet->row(1, array('','Reporte de Asistencia CE del '.$inicio.' al '.$fin));
+           $sheet->appendRow(2, array(' ','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','CE','N° Asistencias', 'N° Faltas'));
+            //Estilos
+              $sheet->cells('B1:K2', function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+                $cells->setBackground('#A9D0F5');
+                $cells->setFont(array(
+                  'family'=> 'Calibri',
+                  'bold'  =>  true,
+                  'size'  => '13'
+                ));
+              });
+            //Fin Estilos
+          // Fin Cabecera
+          // Cuerpo
+           $fila=2;  
+           $comensales=Expediente::where('estado','1')->where('caso_especial','!=','0')->orderBy('caso_especial')->get();
+           $ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+           
+            foreach ($comensales as $c) { $fila++;
+              $asist=ComedorAsistencia::where('created_at','>=',$inicio)
+                                      ->where('created_at','<=',$fin)
+                                      ->where('expediente_id',$c->expediente)
+                                      ->where('asistencia','1')->count();
+              $falt=ComedorAsistencia::where('created_at','>=',$inicio)
+                                      ->where('created_at','<=',$fin)
+                                      ->where('expediente_id',$c->expediente)
+                                      ->where('asistencia','0')->count();
+              $sheet->appendRow($fila, array(' ',$fila-2,$c->estudiante->escuela->facultad->facultad,
+                                                         $c->estudiante->escuela->escuela,
+                                                         $c->estudiante->cod_univ,
+                                                         $c->estudiante->user->apellido_paterno,
+                                                         $c->estudiante->user->apellido_materno,
+                                                         $c->estudiante->user->nombres,
+                                                         $ce[$c->caso_especial],
+                                                         $asist,$falt));
+            }
+            //Estilos
+              $sheet->setBorder('B1:K'.$fila, 'thin'); //Bordes
+              $sheet->cells('I3:I'.$fila, function($cells) {//Columna Asistencia
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+              });
+              $sheet->cells('J3:J'.$fila, function($cells) {//Columna Asistencia
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+                $cells->setBackground('#A9F5A9');
+              });
+              $sheet->cells('K3:K'.$fila, function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+                $cells->setBackground('#F5A9A9');
+              });
+              $sheet->cells('B3:B'.$fila, function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+              });
+              $sheet->cells('E3:E'.$fila, function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+              });
+
+            //Fin Estilos
+
+          // Fin de Cuerpo
+        });
+
+        $excel->sheet('Comensales A B C', function($sheet) use($inicio,$fin){
+          //----------DATOS----------------
+            $comensales=Expediente::where('estado','1')->where('caso_especial','0')->get();
+          //----------Fin DATOS----------------
+          // Cabecera
+           $sheet->mergeCells('B1:K1');
+           
+           $sheet->row(1, array('','Reporte de Asistencia de los Comensales del '.$inicio.' al '.$fin));
+           $sheet->appendRow(2, array(' ','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','Beca','N° Asistencias', 'N° Faltas'));
+            //Estilos
+              $sheet->cells('B1:K2', function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+                $cells->setBackground('#A9D0F5');
+                $cells->setFont(array(
+                  'family'=> 'Calibri',
+                  'bold'  =>  true,
+                  'size'  => '13'
+                ));
+              });
+            //Fin Estilos
+          // Fin Cabecera
+          // Cuerpo
+           $fila=2;  
+           $comensales=Expediente::where('estado','1')->where('caso_especial','0')->orderBy('tipo_beca')->get();
+            foreach ($comensales as $c) { $fila++;
+              $asist=ComedorAsistencia::where('created_at','>=',$inicio)
+                                      ->where('created_at','<=',$fin)
+                                      ->where('expediente_id',$c->expediente)
+                                      ->where('asistencia','1')->count();
+              $falt=ComedorAsistencia::where('created_at','>=',$inicio)
+                                      ->where('created_at','<=',$fin)
+                                      ->where('expediente_id',$c->expediente)
+                                      ->where('asistencia','0')->count();
+              $sheet->appendRow($fila, array(' ',$fila-2,$c->estudiante->escuela->facultad->facultad,
+                                                         $c->estudiante->escuela->escuela,
+                                                         $c->estudiante->cod_univ,
+                                                         $c->estudiante->user->apellido_paterno,
+                                                         $c->estudiante->user->apellido_materno,
+                                                         $c->estudiante->user->nombres,
+                                                         $c->tipo_beca,
+                                                         $asist,$falt));
+            }
+            //Estilos
+              $sheet->setBorder('B1:K'.$fila, 'thin'); //Bordes
+              $sheet->cells('I3:I'.$fila, function($cells) {//Columna Asistencia
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+              });
+              $sheet->cells('J3:J'.$fila, function($cells) {//Columna Asistencia
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+                $cells->setBackground('#A9F5A9');
+              });
+              $sheet->cells('K3:K'.$fila, function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+                $cells->setBackground('#F5A9A9');
+              });
+              $sheet->cells('B3:B'.$fila, function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+              });
+              $sheet->cells('E3:E'.$fila, function($cells) {
+                $cells->setAlignment('center'); //ALineación Horizontal
+                $cells->setValignment('center');//Alineacion vertical
+              });
+
+            //Fin Estilos
+
+          // Fin de Cuerpo
+        });
+      })->export('xls');
+    
+
     }
 }
