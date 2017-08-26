@@ -42,7 +42,7 @@ class JufcTallerController extends Controller
      */
     public function create()
     {
-        $talleres=Taller::where('unidad','3')->lists('taller','id');
+        $talleres=Taller::where('unidad','4')->lists('taller','id');
         return view('users.jufc.taller.nuevo', compact('talleres'));
     }
 
@@ -100,7 +100,7 @@ class JufcTallerController extends Controller
     {
 
         $taller=CursoTaller::find($id);
-        $talleres=Taller::where('unidad','3')->lists('taller','id');
+        $talleres=Taller::where('unidad','4')->lists('taller','id');
         return view('users.jufc.taller.editar', compact('taller','talleres'));
     }
 

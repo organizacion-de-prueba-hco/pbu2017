@@ -90,8 +90,9 @@ Route::controller('jufsms', 'JuafsmController'); // Actualizar Foto
 
 //JUFC = 4
 Route::resource('jufctaller', 'JufcTallerController');
-
-
+Route::resource('jufcmatricula', 'JufcMatriculaController');
+Route::controller('jufcmatriculas', 'JufcMatriculaController');
+Route::resource('jufcreporte', 'JufcReporteController');
 Route::resource('jufc', 'JufcController'); //Actualizar datos
 Route::controller('jufcs', 'JufcController'); // Actualizar Foto
 
