@@ -25,7 +25,8 @@ class Jufc
         if($this->auth->user()->tipo_user=='4' || $this->auth->user()->tipo_user=='0'){
             return $next($request);
         }else{
-            abort(403);
+           abort(403);
+
         }
     }
 }

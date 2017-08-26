@@ -28,11 +28,13 @@ class JufcTallerController extends Controller
      */
     public function index()
     {
-         $date = Carbon::now();
+        /* $date = Carbon::now();
             if ($date->format('m')>=8) { $semestre=$date->format('Y').' - II'; }
             else{ $semestre=$date->format('Y').' - I';}
         $talleres=CursoTaller::where('semestre',$semestre)->get();
-        return view('users.jufc.taller',compact('talleres'));
+        return view('users.jufc.taller',compact('talleres'));*/
+        return "hola";
+        
     }
 
     /**

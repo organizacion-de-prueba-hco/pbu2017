@@ -116,9 +116,9 @@ class JufcController extends Controller
         $file->move('imagenes/avatar', $name);
         $user->foto=$name;
         if($user->save()){
-             return Redirect::to('jufsm')->with('verde','Se actualizó foto');     
+             return Redirect::to('jufc')->with('verde','Se actualizó foto');     
         }else{
-            return Redirect::to('jufsm')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+            return Redirect::to('jufc')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
         }
       }
      }
