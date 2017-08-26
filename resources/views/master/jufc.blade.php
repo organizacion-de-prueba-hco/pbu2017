@@ -61,7 +61,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<img src="{{URL::to('imagenes/unheval-logo.png')}}" width="22px">
-							U. Actividad física y salud mental
+							U. Formación Cultural
 						</small>
 					</a>
 				</div>
