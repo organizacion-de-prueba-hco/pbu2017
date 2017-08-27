@@ -208,12 +208,12 @@ class JusuExpedienteController extends Controller
             foreach ($becariosA as $key => $b) {
                $sheet->row($fila, array('',
                   $fila-2,
-                  $b->user->estudiante->escuela->facultad->facultad,
-                  $b->user->estudiante->escuela->escuela,
-                  $b->user->estudiante->cod_univ,
-                  $b->user->apellido_paterno,
-                  $b->user->apellido_materno,
-                  $b->user->nombres)); 
+                  $b->estudiante->escuela->facultad->facultad,
+                  $b->estudiante->escuela->escuela,
+                  $b->estudiante->cod_univ,
+                  $b->estudiante->user->apellido_paterno,
+                  $b->estudiante->user->apellido_materno,
+                  $b->estudiante->user->nombres)); 
                $fila++;
             }
             //Estilos----------------------------------------------------
@@ -258,12 +258,12 @@ class JusuExpedienteController extends Controller
             foreach ($becariosB as $key => $b) {
                $sheet->row($fila, array('',
                   $fila-2,
-                  $b->user->estudiante->escuela->facultad->facultad,
-                  $b->user->estudiante->escuela->escuela,
-                  $b->user->estudiante->cod_univ,
-                  $b->user->apellido_paterno,
-                  $b->user->apellido_materno,
-                  $b->user->nombres)); 
+                  $b->estudiante->escuela->facultad->facultad,
+                  $b->estudiante->escuela->escuela,
+                  $b->estudiante->cod_univ,
+                  $b->estudiante->user->apellido_paterno,
+                  $b->estudiante->user->apellido_materno,
+                  $b->estudiante->user->nombres)); 
                $fila++;
             }
             //Estilos----------------------------------------------------
@@ -308,12 +308,12 @@ class JusuExpedienteController extends Controller
             foreach ($becariosC as $key => $b) {
                $sheet->row($fila, array('',
                   $fila-2,
-                  $b->user->estudiante->escuela->facultad->facultad,
-                  $b->user->estudiante->escuela->escuela,
-                  $b->user->estudiante->cod_univ,
-                  $b->user->apellido_paterno,
-                  $b->user->apellido_materno,
-                  $b->user->nombres)); 
+                  $b->estudiante->escuela->facultad->facultad,
+                  $b->estudiante->escuela->escuela,
+                  $b->estudiante->cod_univ,
+                  $b->estudiante->user->apellido_paterno,
+                  $b->estudiante->user->apellido_materno,
+                  $b->estudiante->user->nombres)); 
                $fila++;
             }
             //Estilos----------------------------------------------------
@@ -364,12 +364,12 @@ class JusuExpedienteController extends Controller
             foreach ($becariosA as $key => $b) {
                $sheet->row($fila, array('',
                   $fila-2,
-                  $b->user->estudiante->escuela->facultad->facultad,
-                  $b->user->estudiante->escuela->escuela,
-                  $b->user->estudiante->cod_univ,
-                  $b->user->apellido_paterno,
-                  $b->user->apellido_materno,
-                  $b->user->nombres,
+                  $b->estudiante->escuela->facultad->facultad,
+                  $b->estudiante->escuela->escuela,
+                  $b->estudiante->cod_univ,
+                  $b->estudiante->user->apellido_paterno,
+                  $b->estudiante->user->apellido_materno,
+                  $b->estudiante->user->nombres,
                   $b->tipo_beca)); 
                $fila++;
             }
@@ -391,6 +391,23 @@ class JusuExpedienteController extends Controller
       })->export('xls');
     }
     public function postAsistencia(Request $request){
+      // $hoy= Carbon::now();
+      // $asistencia=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))->where('created_at','<=',$request->get('fin'))->get();
+      // if($asistencia=='[]'){
+      //   return back()->with('naranja','Fechas ingresadas no son válidas');
+      // }
+      // $comensales=Expediente::where('estado','1')->where('caso_especial','0')->get();
+      // foreach ($comensales as $c) {
+      //   $asist=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
+      //                           ->where('created_at','<=',$request->get('fin'))
+      //                           ->where('expediente_id',$c->expediente)
+      //                           ->where('asistencia','1')->count();
+      //   $falt=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
+      //                           ->where('created_at','<=',$request->get('fin'))
+      //                           ->where('expediente_id',$c->expediente)
+      //                           ->where('asistencia','0')->count();
+      //   echo '<br>'.$c->estudiante->user->nombres.' - '.'A:'.$asist.' - F:'.$falt;
+      // }
       $inicio=$request->get('inicio');
       $fin=$request->get('fin');
       Excel::create('Reporte de Asistencia ', function($excel) use($inicio,$fin){

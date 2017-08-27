@@ -31,7 +31,10 @@ class JuafsmTallerController extends Controller
         $date = Carbon::now();
             if ($date->format('m')>=8) { $semestre=$date->format('Y').' - II'; }
             else{ $semestre=$date->format('Y').' - I';}
-        $talleres=CursoTaller::where('semestre',$semestre)->get();
+        $talleres=CursoTaller::join('tallers','tallers.id','=','curso_tallers.taller_id')
+                                ->where('curso_tallers.semestre',$semestre)
+                                ->where('tallers.unidad','3')
+                                ->select('curso_tallers.*')->get();
         return view('users.juafsm.taller',compact('talleres'));
 
         
@@ -119,7 +122,8 @@ class JuafsmTallerController extends Controller
         $taller=CursoTaller::find($id);
         //Evitar que los talleres se repitan
         //1ro solo asemos cambios si se selecciono algo diferente en el SELECT
-        if ($taller->curso_id!=$request->get('taller')) {
+        //return $taller->taller_id."-".$request->get('taller');
+        if ($taller->taller_id!=$request->get('taller')) {
             //2do No debe existir este taller en este semestre
              $date = Carbon::now();
             if ($date->format('m')>=8) {$semestre=$date->format('Y').' - II'; }

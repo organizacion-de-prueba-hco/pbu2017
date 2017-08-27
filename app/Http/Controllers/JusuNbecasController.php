@@ -62,7 +62,7 @@ class JusuNbecasController extends Controller
      */
     public function show($id)
     {
-      Excel::create('Reporte de Asistencia ', function($excel) {
+      Excel::create('Reporte N° de Becas', function($excel) {
         $date = Carbon::now();
         //$date = $date->format('d-m-Y');
         $excel->sheet(Carbon::now()->format('d-m-Y'), function($sheet) use($date){
