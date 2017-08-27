@@ -34,7 +34,11 @@ class JufcMatriculaController extends Controller
             if ($date->format('m')>=8) { $semestre=$date->format('Y').' - II'; }
             else{ $semestre=$date->format('Y').' - I';}
 
-        $matriculas=MatriculaTaller::get();
+        $matriculas=MatriculaTaller::join('curso_tallers','curso_tallers.id','=','matricula_tallers.curso_taller_id')
+            ->join('tallers','tallers.id','=','curso_tallers.taller_id')
+            ->where('tallers.unidad','4')
+            ->where('curso_tallers.semestre',$semestre)
+            ->select('matricula_tallers.*')->get();
         return view('users.jufc.matricula',compact('matriculas','semestre'));
     }
 
