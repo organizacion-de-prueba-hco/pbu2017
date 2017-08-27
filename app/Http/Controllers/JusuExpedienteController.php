@@ -18,7 +18,7 @@ class JusuExpedienteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('jusu',['except' => ['getReporte'] ]);
+        $this->middleware('jusu',['except' => ['getReporte','postAsistencia'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -181,12 +181,71 @@ class JusuExpedienteController extends Controller
       $becarios=Expediente::where('estado','1')->get();
 
       Excel::create($titulo, function($excel) use($becarios) {
+        $excel->sheet('CE', function($sheet){
+            $becariosA=Expediente::where('estado','1')
+               ->join('users','expedientes.expediente','=','users.id')
+               ->join('estudiantes','users.id','=','estudiantes.user_id')
+               ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
+               ->where('expedientes.caso_especial','!=','0')
+               ->orderBy('expedientes.caso_especial')->get();
+               $ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+            // Cabecera
+            $sheet->mergeCells('B1:I1');
+            $sheet->cells('B1:I2', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('E2:E1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('B2:B1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+            $sheet->cells('I2:I1000', function($cells) {
+               $cells->setAlignment('center'); //ALineación Horizontal
+               $cells->setValignment('center');//Alineacion vertical
+            });
+
+            $sheet->row(1, array('','Relación de los comensales - Casos especiales'));
+            $sheet->appendRow(2, array('','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','CE'));
+            $fila=3;
+            foreach ($becariosA as $key => $b) {
+               $sheet->row($fila, array('',
+                  $fila-2,
+                  $b->estudiante->escuela->facultad->facultad,
+                  $b->estudiante->escuela->escuela,
+                  $b->estudiante->cod_univ,
+                  $b->estudiante->user->apellido_paterno,
+                  $b->estudiante->user->apellido_materno,
+                  $b->estudiante->user->nombres,
+                  $ce[$b->caso_especial])); 
+               $fila++;
+            }
+            //Estilos----------------------------------------------------
+            $sheet->setBorder('B1:I'.($fila-1), 'thin'); //Bordes
+            $sheet->cells('B1:I2', function($cells) {
+               $cells->setBackground('#A9D0F5'); //Color de fondo
+               // Set font
+               $cells->setFont(array(
+                 'family'     => 'Calibri',
+                  //'size'       => '16',
+                  'bold'       =>  true
+               ));
+            });
+            $sheet->cells('B1:I1', function($cells) {
+               $cells->setFontSize(16);
+            });
+         });
+
          $excel->sheet('Beca A', function($sheet){
             $becariosA=Expediente::where('estado','1')
                ->join('users','expedientes.expediente','=','users.id')
                ->join('estudiantes','users.id','=','estudiantes.user_id')
                ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
-               ->where('expedientes.tipo_beca','A')->orderBy('escuelas.id')->get();
+               ->where('expedientes.tipo_beca','A')
+               ->where('expedientes.caso_especial','0')->orderBy('escuelas.id')->get();
             // Cabecera
             $sheet->mergeCells('B1:H1');
             $sheet->cells('B1:H2', function($cells) {
@@ -236,7 +295,8 @@ class JusuExpedienteController extends Controller
                ->join('users','expedientes.expediente','=','users.id')
                ->join('estudiantes','users.id','=','estudiantes.user_id')
                ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
-               ->where('expedientes.tipo_beca','B')->orderBy('escuelas.id')->get();
+               ->where('expedientes.tipo_beca','B')
+               ->where('expedientes.caso_especial','0')->orderBy('escuelas.id')->get();
             // Cabecera
             $sheet->mergeCells('B1:H1');
             $sheet->cells('B1:H2', function($cells) {
@@ -286,7 +346,8 @@ class JusuExpedienteController extends Controller
                ->join('users','expedientes.expediente','=','users.id')
                ->join('estudiantes','users.id','=','estudiantes.user_id')
                ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
-               ->where('expedientes.tipo_beca','C')->orderBy('escuelas.id')->get();
+               ->where('expedientes.tipo_beca','C')
+               ->where('expedientes.caso_especial','0')->orderBy('escuelas.id')->get();
             // Cabecera
             $sheet->mergeCells('B1:H1');
             $sheet->cells('B1:H2', function($cells) {
@@ -338,6 +399,7 @@ class JusuExpedienteController extends Controller
                ->join('users','expedientes.expediente','=','users.id')
                ->join('estudiantes','users.id','=','estudiantes.user_id')
                ->join('escuelas','escuelas.id','=','estudiantes.escuela_id')
+               ->where('expedientes.caso_especial','0')
                ->orderBy('escuelas.id')->get();
             // Cabecera
             $sheet->mergeCells('B1:I1');
@@ -358,7 +420,7 @@ class JusuExpedienteController extends Controller
                $cells->setValignment('center');//Alineacion vertical
             });
 
-            $sheet->row(1, array('','Relación de los comensales'));
+            $sheet->row(1, array('','Relación de los comensales - Becas A, B y C'));
             $sheet->appendRow(2, array('','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','Beca'));
             $fila=3;
             foreach ($becariosA as $key => $b) {
@@ -391,23 +453,6 @@ class JusuExpedienteController extends Controller
       })->export('xls');
     }
     public function postAsistencia(Request $request){
-      // $hoy= Carbon::now();
-      // $asistencia=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))->where('created_at','<=',$request->get('fin'))->get();
-      // if($asistencia=='[]'){
-      //   return back()->with('naranja','Fechas ingresadas no son válidas');
-      // }
-      // $comensales=Expediente::where('estado','1')->where('caso_especial','0')->get();
-      // foreach ($comensales as $c) {
-      //   $asist=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
-      //                           ->where('created_at','<=',$request->get('fin'))
-      //                           ->where('expediente_id',$c->expediente)
-      //                           ->where('asistencia','1')->count();
-      //   $falt=ComedorAsistencia::where('created_at','>=',$request->get('inicio'))
-      //                           ->where('created_at','<=',$request->get('fin'))
-      //                           ->where('expediente_id',$c->expediente)
-      //                           ->where('asistencia','0')->count();
-      //   echo '<br>'.$c->estudiante->user->nombres.' - '.'A:'.$asist.' - F:'.$falt;
-      // }
       $inicio=$request->get('inicio');
       $fin=$request->get('fin');
       Excel::create('Reporte de Asistencia ', function($excel) use($inicio,$fin){

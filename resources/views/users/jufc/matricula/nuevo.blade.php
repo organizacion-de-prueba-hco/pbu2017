@@ -62,28 +62,26 @@ $c='';
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Pariente </label>
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Taller </label>
 		<div class="col-sm-9">
 			<select class="col-xs-10 col-sm-5" name="curso_taller_id" required="required">
-				<option value="">Seleccione una opción</option>
-		        @foreach($talleres as $t)
-		        	<?php 
-		        				$sensor='0';
-		        		foreach ($mistalleres as $mt) {
-		        			if ($mt->curso_taller_id==$t->id) {
-		        				$sensor='1';
-		        				break;
-		        			}
-		        		
-		        		}
-		        		if ($sensor=='1') {
-		        			continue;
-		        		}
-
-		        	?>
-		        <option value="{{$t->id_ct}}">{{$t->taller}}</option>
-		        @endforeach
-        	</select>
+						<option value="">Seleccione una opción</option>
+				        @foreach($talleres as $t)
+				        	<?php 
+				        		$sensor='0';
+				        		foreach ($mistalleres as $mt) {
+				        			if ($mt->cursotaller->taller_id==$t->id) {
+				        				$sensor='1';
+				        				break;
+				        			}
+				        		}
+				        		if ($sensor=='1') {
+				        			continue;
+				        		}
+				        	?>
+				        <option value="{{$t->id_ct}}">{{$t->taller}}</option>
+				        @endforeach
+		        	</select>
 		</div>
 	</div>
 

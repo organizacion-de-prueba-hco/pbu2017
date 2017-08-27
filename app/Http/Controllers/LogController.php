@@ -57,6 +57,9 @@ class LogController extends Controller
                     case '2-1':
                         return Redirect::to('asrc');
                         break;
+                    case '2-2':
+                        return Redirect::to('comedor');
+                        break;
                     case '2-3':
                         return Redirect::to('nutriforme');
                         break;

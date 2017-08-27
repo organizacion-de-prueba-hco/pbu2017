@@ -138,8 +138,8 @@ class JufcMatriculaController extends Controller
             else{ $semestre=$date->format('Y').' - I';}
 
         $talleres=CursoTaller::join('tallers','tallers.id','=','curso_tallers.taller_id')->where('tallers.unidad','4')->where('curso_tallers.semestre',$semestre)->select('tallers.*','curso_tallers.id as id_ct')->get();
-        $mistalleres=MatriculaTaller::where('estudiante',$estudiante->user_id)->get();
-
+        $mistalleres=MatriculaTaller::join('curso_tallers','curso_tallers.id','=','matricula_tallers.curso_taller_id')->where('curso_tallers.semestre',$semestre)->where('matricula_tallers.estudiante',$estudiante->user_id)->get();
+        
         return view('users.jufc.matricula.nuevo', compact('estudiante','talleres','mistalleres'));
     }
     public function getEliminar($id){

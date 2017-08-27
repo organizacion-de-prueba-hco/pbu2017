@@ -70,7 +70,7 @@ Route::get('jusuencuesta', function () {
     return view('users.jusu.encuesta');
 });
 
-//nutricionista
+//nutricionista=7
 Route::resource('nutriforme', 'NutriInformeController');
 Route::controller('nutriformes', 'NutriInformeController');
 Route::controller('nutriajustes', 'NutriController');
@@ -95,6 +95,10 @@ Route::controller('jufcmatriculas', 'JufcMatriculaController');
 Route::resource('jufcreporte', 'JufcReporteController');
 Route::resource('jufc', 'JufcController'); //Actualizar datos
 Route::controller('jufcs', 'JufcController'); // Actualizar Foto
+
+//Comedor = 2-2
+Route::resource('comedor', 'ComedorcomensalController');
+Route::controller('comedors', 'ComedorcomensalController');
 
 //Pdf
 Route::controller('pdf', 'PdfController');
