@@ -43,7 +43,7 @@ $c='';
 
 					<div class="modal-body" align="center">
 						Ingrese Código Universitario del Estudiante<br>
-						{!! Form::open(['url' => 'jufsmatriculas/nuevo', 'method' => 'POST']) !!}
+						{!! Form::open(['url' => 'jufcmatriculas/nuevo', 'method' => 'POST']) !!}
 							<span class="input-icon">
 							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod-nuevo" >
 								<i class="ace-icon fa fa-search nav-search-icon"></i>
@@ -249,13 +249,13 @@ $c='';
 		});
 		function eliminar(ids){
         var id=ids;
-        document.getElementById("eliminar-e").href ="jufsmatriculas/eliminar/"+id;
+        document.getElementById("eliminar-e").href ="jufcmatriculas/eliminar/"+id;
       }
 
       function Cambiarnota(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
-        var route="jufsmatricula/"+id+"/edit";
+        var route="jufcmatricula/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({

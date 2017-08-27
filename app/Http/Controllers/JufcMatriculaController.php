@@ -125,7 +125,7 @@ class JufcMatriculaController extends Controller
         }
 
         //Si la asistenta social es quien e´stá asiendo lps cambios
-        if(Auth::user()->tipo_user!='3'){
+        if(Auth::user()->tipo_user!='4'){
             return Redirect::to('jufcmatricula')->with('rojo','Solo el Director de Unidad puede realizar estos cambios');
         }
 
@@ -133,7 +133,7 @@ class JufcMatriculaController extends Controller
             if ($date->format('m')>=8) { $semestre=$date->format('Y').' - II'; }
             else{ $semestre=$date->format('Y').' - I';}
 
-        $talleres=CursoTaller::join('tallers','tallers.id','=','curso_tallers.taller_id')->where('tallers.unidad','3')->where('curso_tallers.semestre',$semestre)->select('tallers.*','curso_tallers.id as id_ct')->get();
+        $talleres=CursoTaller::join('tallers','tallers.id','=','curso_tallers.taller_id')->where('tallers.unidad','4')->where('curso_tallers.semestre',$semestre)->select('tallers.*','curso_tallers.id as id_ct')->get();
         $mistalleres=MatriculaTaller::where('estudiante',$estudiante->user_id)->get();
 
         return view('users.jufc.matricula.nuevo', compact('estudiante','talleres','mistalleres'));

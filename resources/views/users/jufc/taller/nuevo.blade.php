@@ -1,4 +1,4 @@
-@extends('master.juafsm')
+@extends('master.jufc')
 @section('activacion')
 	<?php
 $a = '';
@@ -19,7 +19,7 @@ $c='';
 @section('contenido')
 
 								<br>
-{!!Form::open(['route' => 'jufsmtaller.store', 'method'=>'POST', 'class'=>'form-horizontal'])!!}
+{!!Form::open(['route' => 'jufctaller.store', 'method'=>'POST', 'class'=>'form-horizontal'])!!}
 
 		
 
