@@ -99,6 +99,8 @@ Route::controller('jufcs', 'JufcController'); // Actualizar Foto
 //Comedor = 2-2
 Route::resource('comedor', 'ComedorcomensalController');
 Route::controller('comedors', 'ComedorcomensalController');
+Route::resource('comedorajuste', 'ComedorController');
+Route::controller('comedorajustes', 'ComedorController');
 
 //Pdf
 Route::controller('pdf', 'PdfController');

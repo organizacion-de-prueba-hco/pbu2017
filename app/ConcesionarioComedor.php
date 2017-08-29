@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class ConcesionarioComedor extends Model
 {
     protected $table='concesionario_comedors';
+    protected $primaryKey='responsable';
+    public $incrementing = false;
     protected $fillable=[
-    'responsable',
     'empresa',
     'ruc'
 

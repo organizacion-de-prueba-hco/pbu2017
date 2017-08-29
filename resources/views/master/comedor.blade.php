@@ -83,7 +83,7 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="{{url('jusuajustes')}}">
+									<a href="{{url('comedorajuste')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>

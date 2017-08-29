@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+use Redirect;
+use Input;
+use App\User;
+use App\ConcesionarioComedor;
+
 class ComedorController extends Controller
 {
     /**
@@ -16,7 +22,7 @@ class ComedorController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.comedor.ajustes');
     }
 
     /**
@@ -37,7 +43,26 @@ class ComedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //DAtos de la empresa
+        $empresa=ConcesionarioComedor::find(Auth::user()->id);
+        $empresa->ruc=$request->get('ruc');
+        $empresa->empresa=$request->get('empresa');
+        $empresa->save();
+        // //DAtos del responsable
+        $user=User::find(Auth::user()->id);
+        $user->nombres=$request->get('nombres');
+        $user->apellido_paterno=$request->get('apellido_paterno');
+        $user->apellido_materno=$request->get('apellido_materno');
+        $user->email=$request->get('email');
+        $user->dni=$request->get('dni');
+        if($request->get('pasword')){
+            $user->password=$request->get('pasword');
+        }
+        if($user->save()){
+            return Redirect::to('comedorajuste')->with('verde','Se actulizaron los datos');
+        }else{
+            return Redirect::to('comedorajuste')->with('rojo','Los datos ingresados no son válidos');            
+        }
     }
 
     /**
@@ -84,4 +109,18 @@ class ComedorController extends Controller
     {
         //
     }
+    public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Auth::user()->id);        
+        $name=$user->dni.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        if($user->save()){
+             return Redirect::to('comedorajuste')->with('verde','Se actualizó foto');     
+        }else{
+            return Redirect::to('comedorajuste')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+        }
+      }
+     }
 }

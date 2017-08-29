@@ -43,7 +43,7 @@ $c='';
                           <h4 class="modal-title">Actualizar foto</h4>
                         </div>
                         <div class="modal-body">                        
-                          {!! Form::open(['url' => 'jufcs/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          {!! Form::open(['url' => 'comedorajustes/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
                           <div class="item form-group">
                             <div class="col-12">
                               <input type="file" id="files-foto" name="foto" accept="image/*"/><br>
@@ -74,7 +74,24 @@ $c='';
 				</a>
 			</div><hr>
 								<!-- PAGE CONTENT BEGINS -->
-	{!! Form::open(['route' => 'jufc.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+	{!! Form::open(['route' => 'comedorajuste.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}								
+									<h3>Datos de la Empresa</h3>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre o Razón Social</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Nombre d la empresa" name="empresa" class="col-xs-10 col-sm-5" value="{{Auth::user()->concesionariocomedor->empresa}}">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> R.U.C</label>
+
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="R.U.C" name="ruc" class="col-xs-10 col-sm-5" value="{{Auth::user()->concesionariocomedor->ruc}}">
+										</div>
+									</div>
+									<hr><h3>Datos del Responsable / Encargado</h3>
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombres </label>
 
