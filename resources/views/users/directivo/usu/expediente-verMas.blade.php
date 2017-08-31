@@ -13,7 +13,12 @@ $usu_e_a='';
 $usu_e_b='';
 $usu_e_c='';
 $search='';
-
+$uafsm='';
+$uafsm_a='';
+$uafsm_b='';
+$ufc='';
+$ufc_a='';
+$ufc_b='';
 ?>
 @endsection
 @section('titulo','Tester')
@@ -228,9 +233,15 @@ if ($promedionotas <= 10.5) {
 												</thead>
 												<tbody>
 													<tr>
+														@if($recibo)
+														<td>{{$recibo->n_recibo}}</td>
+														<td>{{$recibo->fecha}}</td>
+														<td>{{$recibo->importe}}</td>
+														@else
 														<td>#######</td>
-														<td>2017</td>
-														<td>50.8</td>
+														<td>#######</td>
+														<td>#######</td>
+														@endif
 														<td class="{{$estadob}}" href="#detalleNotas" data-toggle="modal" title="Clic para más detalles">{{$promedionotas}}</td>
 													</tr>
 												</tbody>

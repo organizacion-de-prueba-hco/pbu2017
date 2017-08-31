@@ -13,6 +13,12 @@ $usu_e_a='';
 $usu_e_b='';
 $usu_e_c='';
 $search='';
+$uafsm='';
+$uafsm_a='';
+$uafsm_b='';
+$ufc='';
+$ufc_a='';
+$ufc_b='';
 	?>
 @endsection
 @section('titulo','Exoneración')

@@ -2,33 +2,35 @@
 @section('activacion')
 	<?php
 $enc='';
-$usu='active open';
+$usu='';
 $usu_a='';
-$usu_b='active';
+$usu_b='';
 $usu_c='';
 $usu_d='';
 $usu_as='';
 $usu_sp='';
+$usu_exo='';
 $usu_e_a='';
 $usu_e_b='';
 $usu_e_c='';
 $search='';
-$uafsm='';
+$uafsm='active open';
 $uafsm_a='';
-$uafsm_b='';
+$uafsm_b='active';
 $ufc='';
 $ufc_a='';
 $ufc_b='';
+
 ?>
 @endsection
-@section('titulo','Informes')
+@section('titulo','Reportes')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-users"></i>
-	<li class="active">U. Serv Univ</li>
-	<li class="active"><i class="ace-icon fa fa-list-alt"></i> Informe Nutricional</li>
+	<i class="ace-icon fa fa-futbol-o"></i>
+	<li class="active">U. Act. Física Mental</li>
+	<li class="active">Reportes</li>
 </ul>
 @endsection
 @section('contenido')
@@ -39,7 +41,8 @@ $ufc_b='';
 			<div class="pull-right tableTools-container"></div>
 		</div>
 		<div class="table-header">
-				Lista de los informes nutricionales &nbsp;&nbsp;&nbsp;
+			
+				Reportes &nbsp;&nbsp;&nbsp;
 			</div>
 												
 
@@ -50,34 +53,21 @@ $ufc_b='';
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Fecha</th>
-						<th class="center">Título</th>
-						<th class="center" class="hidden-480">Archivo</th>
-						<th class="center" class="hidden-480">Acciones</th>
+						<th class="center">Semestre</th>
+						<th class="center">Acciones</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					@foreach($nutriformes as $nutriforme)
-						<tr>
-							<td align="center">{{$nutriforme->created_at}}</td>
-							<td >{{$nutriforme->titulo}}</td>
-							<td align="center">
-								@if($nutriforme->archivo)
-									<a href="{{url('nutriformes/descargar',$nutriforme->archivo)}}">
-										<span class="label label-sm label-success"><i class="fa fa- fa-download bigger-110 white"></i>	Descargar
-										</span>
-									</a>
-								@endif
-							</td>
-							
-							<td align="center">
-								<a class="orange" href="{{url('pdf/informenutricion',$nutriforme->id)}}" title="Descargar como PDF" target="_black">
-									<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
-								</a>
-
-							<div class="hidden-md hidden-lg">
-							
+					@foreach($semestres as $s)
+					<tr>
+						<td align="center">{{$s}}</td>
+						<td class="action-buttons" align="center">
+						<a href="{{route('jufsmreporte.show',$s)}}" data-toggle="tooltip" title="Descargar">
+							<span class="green">
+								<i class="ace-icon fa fa-file-excel-o bigger-120"></i>
+							</span>
+							</a>
 						</td>
 					</tr>
 					@endforeach
@@ -113,7 +103,6 @@ $ufc_b='';
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null},
-					  null, null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
@@ -124,6 +113,11 @@ $ufc_b='';
 			    } );
 
 			})
+
+			//Para que salga las letritas negras del title
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		});
 		</script>
 
 

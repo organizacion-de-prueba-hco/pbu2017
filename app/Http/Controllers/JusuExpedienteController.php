@@ -86,7 +86,8 @@ class JusuExpedienteController extends Controller
         //return $id;
         $hexpedientes = HistorialExpediente::where('expediente_id', $id)->get();
         $estudiante   = Estudiante::where('user_id', $id)->first();
-        return view('users.jusu.expediente.verMas', compact('estudiante', 'hexpedientes'));
+        $recibo   = Recibo::where('cod_univ',$estudiante->cod_univ)->orderBy('id','desc')->first();
+        return view('users.jusu.expediente.verMas', compact('estudiante', 'hexpedientes','recibo'));
     }
 
     /**

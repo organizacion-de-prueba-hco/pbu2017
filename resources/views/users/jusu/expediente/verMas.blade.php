@@ -218,9 +218,13 @@ if ($promedionotas <= 10.5) {
 												</thead>
 												<tbody>
 													<tr>
-														<td>#######</td>
-														<td>2017</td>
-														<td>50.8</td>
+														@if($he->resultado=='1')
+															<span class="label label-sm label-success">	Aprobado
+															</span>
+														@elseif($he->resultado=='0')
+															<span class="label label-sm label-warning">	Desaprobado
+															</span>
+														@endif
 														<td class="{{$estadob}}" href="#detalleNotas" data-toggle="modal" title="Clic para más detalles">{{$promedionotas}}</td>
 													</tr>
 												</tbody>

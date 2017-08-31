@@ -13,7 +13,12 @@ $usu_e_a='';
 $usu_e_b='';
 $usu_e_c='';
 $search='';
-
+$uafsm='';
+$uafsm_a='';
+$uafsm_b='';
+$ufc='';
+$ufc_a='';
+$ufc_b='';
 ?>
 @endsection
 @section('titulo','Expedientes')
@@ -63,9 +68,9 @@ $search='';
 				<tbody>
 					@foreach($expedientes as $expediente)
 						<tr>
-							<td class="center">{{$expediente->user->estudiante->cod_univ}}</td>
-							<td> {{$expediente->user->nombres}}, {{$expediente->user->apellido_paterno.' '.$expediente->user->apellido_materno}}</td>
-							<td>{{$expediente->user->estudiante->escuela->escuela}}</td>
+							<td class="center">{{$expediente->estudiante->cod_univ}}</td>
+							<td> {{$expediente->nombres}}, {{$expediente->apellido_paterno.' '.$expediente->estudiante->user->apellido_materno}}</td>
+							<td>{{$expediente->estudiante->escuela->escuela}}</td>
 							<td class="hidden-480">{{$ce[$expediente->caso_especial]}}</td>
 							<td align="center">{{$expediente->tipo_beca}}
 							</td>

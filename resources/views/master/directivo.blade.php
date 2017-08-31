@@ -223,7 +223,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="{{$uafsm}}">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-futbol-o"></i>
 							<span class="menu-text"> U. Act Física Mental </span>
@@ -233,28 +233,19 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
-								<a href="#">
+							<li class="{{$uafsm_a}}">
+								<a href="{{url('directivotalleres/matriculauafsm')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Comensales
+									Estudiantes
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="#">
+							<li class="{{$uafsm_b}}">
+								<a href="{{url('directivotalleres/uafsm')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									N° Becas
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="#">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Exon. Pago Cent Med
+									Reportes
 								</a>
 
 								<b class="arrow"></b>
@@ -262,7 +253,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="{{$ufc}}">
 						<a href="#" class="dropdown-toggle">
 							<i class="menu-icon fa fa-tachometer"></i>
 							<span class="menu-text"> U. Form Cultural </span>
@@ -272,28 +263,19 @@
 						<b class="arrow"></b>
 
 						<ul class="submenu">
-							<li class="">
-								<a href="#">
+							<li class="{{$ufc_a}}">
+								<a href="{{url('directivotalleres/matriculaufc')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Comensales
+									Estudiantes
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
-								<a href="#">
+							<li class="{{$ufc_b}}">
+								<a href="{{url('directivotalleres/ufc')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									N° Becas
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="#">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Exon. Pago Cent Med
+									Reportes
 								</a>
 
 								<b class="arrow"></b>

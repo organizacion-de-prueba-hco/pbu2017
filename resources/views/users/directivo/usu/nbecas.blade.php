@@ -13,6 +13,12 @@ $usu_e_a='';
 $usu_e_b='';
 $usu_e_c='';
 $search='';
+$uafsm='';
+$uafsm_a='';
+$uafsm_b='';
+$ufc='';
+$ufc_a='';
+$ufc_b='';
 ?>
 @endsection
 @section('titulo','N° Becas')
@@ -32,7 +38,7 @@ $search='';
 		<div class="clearfix">
 			<div class="pull-right tableTools-container"></div>
 		</div>
-		<a href="{{url('jusuexpedientes/reporte')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
+		<a href="{{route('jusunbecas.show')}}" style="position: relative; margin-top: -70px; z-index: 10;" class="btn btn-white btn-primary btn-bold" data-toggle="tooltip" data-placement="top" title="Exportar a Excel"><i class='fa fa-file-excel-o bigger-110 green'></i></a>
 		
 		<div class="table-header">
 			Número de Becas por Escuela Profesional 

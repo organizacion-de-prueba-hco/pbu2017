@@ -1,9 +1,10 @@
-@extends('master.jufc')
+@extends('master.comedor')
 @section('activacion')
 	<?php
-$a='';
-$b='';
-$c='';
+$oa = '';
+$nbecas='';
+$enc='';
+$in='';
 ?>
 @endsection
 @section('titulo','Nuevo Expediente')

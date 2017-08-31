@@ -14,6 +14,7 @@ use App\HistorialExpediente;
 use App\CantidadBecas;
 use App\ControlRegistro;
 use App\ExoneracionPagoCentMed;
+use App\Recibo;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -108,7 +109,8 @@ class DirectivousuController extends Controller
         //return $id;
         $hexpedientes = HistorialExpediente::where('expediente_id', $id)->get();
         $estudiante   = Estudiante::where('user_id', $id)->first();
-        return view('users.directivo.usu.expediente-verMas', compact('estudiante', 'hexpedientes'));
+        $recibo   = Recibo::where('cod_univ',$estudiante->cod_univ)->orderBy('id','desc')->first();
+        return view('users.directivo.usu.expediente-verMas', compact('estudiante', 'hexpedientes','recibo'));
     }
     public function getNbecas(){
         $cbecas=CantidadBecas::get();

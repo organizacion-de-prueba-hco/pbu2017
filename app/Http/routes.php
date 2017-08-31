@@ -36,6 +36,7 @@ Route::get('directivoencuesta', function () {
 Route::resource('directivoajuste', 'DirectivoController');
 Route::controller('directivoajustes', 'DirectivoController');
 Route::controller('directivousus', 'DirectivousuController');
+Route::controller('directivotalleres', 'DirectivotController');
 
 //Route::resource('directivoencuesta', 'DirectivoController');
 //Asistenta Social
