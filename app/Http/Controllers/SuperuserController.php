@@ -24,8 +24,8 @@ class SuperuserController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
-        // $this->middleware('SuperUsuario');
+         $this->middleware('auth');
+         $this->middleware('SuperUsuario');
     }
     /**
      * Display a listing of the resource.
