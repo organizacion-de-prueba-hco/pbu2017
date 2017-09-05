@@ -24,7 +24,9 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <input type="submit" class="btn btn-success" value="Actualizar">
+                        <button type="submit" class="btn btn-success"> 
+                          <i class="ace-icon fa fa-file-excel-o"> Descargar</i>
+                        </button>
                         </div>
                       {!! Form::close() !!}
                   </div>

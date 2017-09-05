@@ -9,6 +9,7 @@ use App\Expediente;
 use App\User;
 use App\HistorialExpediente;
 use App\ComedorAsistencia;
+use App\Recibo;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -190,6 +191,8 @@ class JusuExpedienteController extends Controller
                ->where('expedientes.caso_especial','!=','0')
                ->orderBy('expedientes.caso_especial')->get();
                $ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+
+               //echo $ce[$expediente->ce];
             // Cabecera
             $sheet->mergeCells('B1:I1');
             $sheet->cells('B1:I2', function($cells) {

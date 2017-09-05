@@ -44,17 +44,17 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('123456bu'),
                 'foto' => 'admin.png',
         ]);
-        DB::table('users')->insert([
-                'dni' => '00000003',
-                'nombres' => 'Mg. Cloria',
-                'apellido_paterno' => 'Paterno',
-                'apellido_materno' => 'Materno',
-                'email' => 'mgc@hotmail.com',
-                'estado_login' => '1',
-                'tipo_user' => '1',
-                'password' => bcrypt('123456bu'),
-                'foto' => 'admin.png',
-        ]);
+        // DB::table('users')->insert([
+        //         'dni' => '00000003',
+        //         'nombres' => 'Mg. Cloria',
+        //         'apellido_paterno' => 'Paterno',
+        //         'apellido_materno' => 'Materno',
+        //         'email' => 'mgc@hotmail.com',
+        //         'estado_login' => '1',
+        //         'tipo_user' => '1',
+        //         'password' => bcrypt('123456bu'),
+        //         'foto' => 'admin.png',
+        // ]);
         DB::table('directivos')->insert([
                 'user_id' => '2',
                 'cargo_funcion' => 'Vicerrector Académico',
@@ -63,10 +63,10 @@ class UserTableSeeder extends Seeder
                 'user_id' => '3',
                 'cargo_funcion' => 'Director Bienestar Universitario',
         ]);
-        DB::table('directivos')->insert([
-                'user_id' => '4',
-                'cargo_funcion' => 'Oficina BU',
-        ]);
+        // DB::table('directivos')->insert([
+        //         'user_id' => '4',
+        //         'cargo_funcion' => 'Oficina BU',
+        // ]);
 
         DB::table('users')->insert([
                 'dni' => '00000004',
@@ -118,29 +118,29 @@ class UserTableSeeder extends Seeder
                 'foto' => 'admin.png',
         ]);
 
-        DB::table('users')->insert([
-                'dni' => '00000008',
-                'nombres' => 'Jef. Act Fís Mental',
-                'apellido_paterno' => 'Usuario',
-                'apellido_materno' => 'materno',
-                'email' => 'fisica@hotmail.com',
-                'estado_login' => '1',
-                'tipo_user' => '3',
-                'password' => bcrypt('123456bu'),
-                'foto' => 'admin.png',
-        ]);
+        // DB::table('users')->insert([
+        //         'dni' => '00000008',
+        //         'nombres' => 'Jef. Act Fís Mental',
+        //         'apellido_paterno' => 'Usuario',
+        //         'apellido_materno' => 'materno',
+        //         'email' => 'fisica@hotmail.com',
+        //         'estado_login' => '1',
+        //         'tipo_user' => '3',
+        //         'password' => bcrypt('123456bu'),
+        //         'foto' => 'admin.png',
+        // ]);
 
-        DB::table('users')->insert([
-                'dni' => '00000009',
-                'nombres' => 'Jef. Cultural',
-                'apellido_paterno' => 'Usuario',
-                'apellido_materno' => 'Materno',
-                'email' => 'cultural@hotmail.com',
-                'estado_login' => '1',
-                'tipo_user' => '4',
-                'password' => bcrypt('123456bu'),
-                'foto' => 'admin.png',
-        ]);
+        // DB::table('users')->insert([
+        //         'dni' => '00000009',
+        //         'nombres' => 'Jef. Cultural',
+        //         'apellido_paterno' => 'Usuario',
+        //         'apellido_materno' => 'Materno',
+        //         'email' => 'cultural@hotmail.com',
+        //         'estado_login' => '1',
+        //         'tipo_user' => '4',
+        //         'password' => bcrypt('123456bu'),
+        //         'foto' => 'admin.png',
+        // ]);
 
     }
 }

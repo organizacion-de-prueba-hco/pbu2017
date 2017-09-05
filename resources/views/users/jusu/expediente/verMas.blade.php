@@ -218,12 +218,14 @@ if ($promedionotas <= 10.5) {
 												</thead>
 												<tbody>
 													<tr>
-														@if($he->resultado=='1')
-															<span class="label label-sm label-success">	Aprobado
-															</span>
-														@elseif($he->resultado=='0')
-															<span class="label label-sm label-warning">	Desaprobado
-															</span>
+														@if($recibo)
+														<td>{{$recibo->n_recibo}}</td>
+														<td>{{$recibo->fecha}}</td>
+														<td>{{$recibo->importe}}</td>
+														@else
+														<td>#######</td>
+														<td>#######</td>
+														<td>#######</td>
 														@endif
 														<td class="{{$estadob}}" href="#detalleNotas" data-toggle="modal" title="Clic para más detalles">{{$promedionotas}}</td>
 													</tr>
