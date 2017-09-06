@@ -14,6 +14,8 @@ class CreateCmReporBsaludsTable extends Migration
     {
         Schema::create('cm_repor_bsaluds', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('medicina_id')->unsigned();
+            $table->foreign('medicina_id')->references('id')->on('cm_medicinas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -28,7 +28,6 @@ class CreateCmMedicinasTable extends Migration
             $table->string('triaje_to');
             $table->string('triaje_pa');
             $table->string('triaje_p');
-            $table->string('triaje_fc');
             $table->string('triaje_t');
             $table->string('triaje_imc');
 
@@ -36,10 +35,10 @@ class CreateCmMedicinasTable extends Migration
             $table->string('imp_dx');
             //tratamiento
             $table->string('tto_descripcion');
+            //relación de michos a muchos con procedimientos: cm_med_procs
 
             //Medicamentos
-            $table->integer('cantidad_medicamento');
-            
+            //Relación de muchos a muchos con medicamentos: cm_med_med
 
 
             $table->foreign('medico_id')->references('id')->on('users')->onDelete('cascade');
