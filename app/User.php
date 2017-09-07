@@ -90,6 +90,12 @@ class User extends Model implements AuthenticatableContract,
     public function expediente(){
         return $this->hasOne('App\Expediente','expediente','id');
     }
+
+     public function cmantecedente(){
+      return $this->hasOne('App\CmAntecedente','user_id','id');      
+    }
+
+
   public function cuadro_familiars(){
         return $this->hasMany('App\CuadroFamiliar','user_id','id');
     }
@@ -148,6 +154,9 @@ class User extends Model implements AuthenticatableContract,
     }
     public function cursotaller(){
       return $this->hasMany('App\CursoTaller','director');
+    }
+    public function cmmedicina(){
+        return $this->hasMany('App\CmMedicina');
     }
    
 
