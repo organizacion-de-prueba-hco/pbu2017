@@ -103,6 +103,9 @@ Route::controller('comedors', 'ComedorcomensalController');
 Route::resource('comedorajuste', 'ComedorController');
 Route::controller('comedorajustes', 'ComedorController');
 
+//Centro médico 2-4, 2-4-1, 2-4-2
+Route::resource('enf', 'EnfermeraRegistrosController');
+
 //Pdf
 Route::controller('pdf', 'PdfController');
 

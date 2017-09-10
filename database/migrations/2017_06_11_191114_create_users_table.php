@@ -57,6 +57,8 @@ class CreateUsersTable extends Migration
                     2-3=personal de nutricion para el comedor
 
                     2-4=perosonal medico general
+                    2-4-1 = Odontologa
+                    2-4-2 = Enfermera
                     .
                     .
                     .
