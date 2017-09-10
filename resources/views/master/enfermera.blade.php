@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Enfermera :: @yield('titulo')</title>
+		<title>Enfermeria :: @yield('titulo')</title>
 		<link rel="icon" type="image/png" href="{{url('imagenes/unheval-logo.png')}}" />
 
 		<meta name="description" content="" />
@@ -127,7 +127,7 @@
 
 				<ul class="nav nav-list">
 					<li class="{{$i}}">
-						<a href="{{url('directivoencuesta')}}">
+						<a href="{{url('enf')}}">
 							<i class="menu-icon fa fa-home"></i>
 							<span class="menu-text"> Inicio </span>
 						</a>
@@ -282,6 +282,7 @@
 
 					<div class="page-content">
 						<div class="row">
+							@include('master.mensajes')
 							@yield('contenido')
 						</div>
 					</div>

@@ -37,26 +37,32 @@
 
 <div class="container">
 	<div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
+	<div class="col-sm-6 col-sm-offset-3 col-xs-12">
 		<div align="right">
     		<h1 class=text-center id="nombre-titulo"> Centro Médico</h1>
     		<h3 style="margin-top: -10px; margin-bottom: -10px"><i>Buscar estudiante...</i></h3>
     	</div><br><hr>
 	</div>
-   <div class="col-xs-6 col-xs-offset-3">
+   <div class="col-sm-6 col-sm-offset-3 col-xs-12">
     <div id="custom-search-input">
+    {!! Form::open(['url' => 'enfs/buscar', 'method' => 'POST']) !!}
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg"  placeholder="Ingresar DNI o Código Universitario" style="font-family:cursive; font-size: 1.5em;" maxlength="12" />
+                	
+                    <input type="text" class="form-control input-lg" name="cod"  placeholder="Ingresar DNI o Código Universitario" style="font-family:cursive; font-size: 1.5em;" maxlength="10" autofocus/>
+
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
-                </div>
+                  
+                </div> 
+                {!!Form::close()!!} 
             </div>
     </div>
 	</div>
 </div>
+<br><br>
 @endsection
 @section('script')
 		<script type="text/javascript">
