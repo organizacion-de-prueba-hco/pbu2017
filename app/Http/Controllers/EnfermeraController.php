@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+use Redirect;
+use Input;
+use App\User;
+
 class EnfermeraController extends Controller
 {
     /**
@@ -14,6 +19,11 @@ class EnfermeraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('enfermera');
+    }
     public function index()
     {
         //

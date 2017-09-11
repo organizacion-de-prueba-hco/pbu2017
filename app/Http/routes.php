@@ -105,8 +105,8 @@ Route::controller('comedorajustes', 'ComedorController');
 
 //Centro médico 2-4, 2-4-1, 2-4-2
 Route::resource('enf', 'EnfermeraRegistrosController');
-Route::controller('enfs', 'EnfermeraRegistrosController');
-
+Route::controller('enfs', 'EnfermeraRegistrosController'); //metodos adicionales
+Route::resource('enfajustes', 'EnfermeraController'); //metodos normales
 //Pdf
 Route::controller('pdf', 'PdfController');
 

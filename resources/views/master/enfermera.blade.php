@@ -83,7 +83,7 @@
 							</a>
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="{{url('directivoajuste')}}">
+									<a href="{{url('enfajustes')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>
