@@ -26,7 +26,8 @@ class EnfermeraController extends Controller
     }
     public function index()
     {
-        //
+        return view('users.enfermera.ajustes');
+        //return "hola";
     }
 
     /**
@@ -47,7 +48,20 @@ class EnfermeraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=User::find(Auth::user()->id);
+        $user->nombres=$request->get('nombres');
+        $user->apellido_paterno=$request->get('apellido_paterno');
+        $user->apellido_materno=$request->get('apellido_materno');
+        $user->email=$request->get('email');
+        $user->dni=$request->get('dni');
+        if($request->get('pasword')){
+            $user->password=$request->get('pasword');
+        }
+        if($user->save()){
+            return Redirect::to('enf')->with('verde','Se actulizaron los datos');
+        }else{
+            return Redirect::to('enf')->with('rojo','Los datos ingresados no son válidos');            
+        }
     }
 
     /**
@@ -94,4 +108,21 @@ class EnfermeraController extends Controller
     {
         //
     }
+
+    public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Auth::user()->id);        
+        $name=$user->dni.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        if($user->save()){
+             return Redirect::to('enf')->with('verde','Se actualizó foto');     //redirige a enf que es donde se muestran los registros
+        }else{
+            return Redirect::to('enf')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+        }
+      }
+     }
+
+
 }

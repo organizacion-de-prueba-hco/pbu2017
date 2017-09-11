@@ -1,9 +1,21 @@
-@extends('master.jufc')
+@extends('master.enfermera')
 @section('activacion')
 	<?php
-$a='';
-$b='';
-$c='';
+$i='';
+$ii='';
+$iii='';
+$ii_i='';
+$ii_ii='';
+$ii_iii='';
+$ii_iv='';
+$iii_i='';
+$iii_ii='';
+$iv='';
+$iv_i='';
+$iv_ii='';
+$v='';
+$v_i='';
+$v_ii='';
 ?>
 @endsection
 @section('titulo','Nuevo Expediente')
@@ -43,7 +55,7 @@ $c='';
                           <h4 class="modal-title">Actualizar foto</h4>
                         </div>
                         <div class="modal-body">                        
-                          {!! Form::open(['url' => 'jufcs/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          {!! Form::open(['url' => 'enfermeras/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
                           <div class="item form-group">
                             <div class="col-12">
                               <input type="file" id="files-foto" name="foto" accept="image/*"/><br>
@@ -74,7 +86,7 @@ $c='';
 				</a>
 			</div><hr>
 								<!-- PAGE CONTENT BEGINS -->
-	{!! Form::open(['route' => 'jufc.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+	{!! Form::open(['route' => 'enfermera.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombres </label>
 

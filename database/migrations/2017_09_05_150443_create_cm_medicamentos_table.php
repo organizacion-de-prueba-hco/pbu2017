@@ -13,10 +13,10 @@ class CreateCmMedicamentosTable extends Migration
     public function up()
     {
         Schema::create('cm_medicamentos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('medicamento');
-            $table->string('presentacion');
-            $table->integer('cantidad');
+            $table->increments('id');//
+            $table->string('medicamento');//paracetamol
+            $table->string('presentacion');//10 mg or 20mg
+            $table->integer('cantidad');//cantidad de 
             $table->timestamps();
         });
     }
