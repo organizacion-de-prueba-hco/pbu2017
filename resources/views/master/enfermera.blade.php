@@ -217,7 +217,7 @@
 
 						<ul class="submenu">
 							<li class="{{$iv_i}}">
-								<a href="{{url('directivotalleres/matriculauafsm')}}">
+								<a href="{{url('enfaten')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Atención
 								</a>
@@ -226,7 +226,7 @@
 							</li>
 
 							<li class="{{$iv_ii}}">
-								<a href="{{url('directivotalleres/uafsm')}}">
+								<a href="{{url('enfainv')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inventario
 								</a>
