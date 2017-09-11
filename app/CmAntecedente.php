@@ -28,7 +28,7 @@ class CmAntecedente extends Model
     'updated_at'
     ];
     public function user(){
-    	return $this->belongsto('App\User','')
+    	return $this->belongsto('App\User','user_id','id');
     }
 
     

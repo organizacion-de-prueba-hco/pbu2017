@@ -80,7 +80,7 @@
 							</div>
 
 							<div class="step-pane" data-step="2" id="step-22">
-								
+								@include('users.enfermera.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
 								
@@ -556,6 +556,24 @@
        }
   	}      
       document.getElementById('files-foto').addEventListener('change', foto, false);
+
+      //Mostrar ocultar P_Otros
+    function mostrarotros($id,$check){
+    	var elementId=$id;
+    	var checkbox=$check;
+    	//console.log(elementId+checkbox);
+    	if ($(checkbox).prop('checked')) {
+          	document.getElementById(elementId).style.visibility='visible';
+
+        }
+        else {
+          	$('#'+elementId).val('');
+           	document.getElementById(elementId).style.visibility='hidden';
+        }
+    }
+
 </script>
+
+
 
 @endsection

@@ -19,6 +19,7 @@ use App\Notas;
 use App\Expediente;
 use App\CuadroFamiliar;
 use App\EgresoFamiliar;
+use App\CmAntecedente;
 
 class SuperuserController extends Controller
 {
@@ -275,6 +276,17 @@ class SuperuserController extends Controller
                 $efamiliar=new EgresoFamiliar;
                 $efamiliar->user_id=$ultimoUsuarioRegistrado->id;
                 $efamiliar->save();
+
+                //Crear nuevos antecedentes de los médics
+                $antecedentes = new CmAntecedente;
+                $antecedentes->user_id=$ultimoUsuarioRegistrado->id;
+                $antecedentes->tipo='0'; //YO
+                $antecedentes->save();
+
+                $antecedentes = new CmAntecedente;
+                $antecedentes->user_id=$ultimoUsuarioRegistrado->id;
+                $antecedentes->tipo='1'; //Pariente
+                $antecedentes->save();
 
                 //Colegio del estudiante
                 $colegio=new Colegio;
