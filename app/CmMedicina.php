@@ -10,7 +10,7 @@ class CmMedicina extends Model
     protected $primaryKey='id';
     protected $fillable=[
     'medico',
-    'user_id';
+    'user_id',
     'te',
     'fi',
     'ce',
@@ -36,6 +36,6 @@ class CmMedicina extends Model
     }
 
     public function user(){
-    	return $this->belongsto('App\user')
+    	return $this->belongsto('App\user');
     }
 }

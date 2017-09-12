@@ -147,12 +147,14 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Gracias! ¡Su información se ha guardado correctamente!</h3><br> <i>Recuerde descargar la ficha Socio Económica en formato PDF</i>", 
+						message: "<h3>¡Su información se ha guardado correctamente!</h3><br><i>Puede descargar reportes de medicina y odontología PDF</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								"href" : "aaaaaa"
+								 callback: function() {
+                					alert('Holaaa');
+            					 }
 							}
 						}
 					});

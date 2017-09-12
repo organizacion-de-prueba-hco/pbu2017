@@ -144,7 +144,7 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="{{$ii_i}}">
-								<a href="{{url('directivousus/comensales')}}">
+								<a href="{{url('enfmed')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Atención
 								</a>
