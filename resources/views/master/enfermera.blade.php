@@ -217,7 +217,7 @@
 
 						<ul class="submenu">
 							<li class="{{$iv_i}}">
-								<a href="{{url('enfaten')}}">
+								<a href="{{url('enffarm')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Atención
 								</a>

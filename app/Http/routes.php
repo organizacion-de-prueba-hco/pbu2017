@@ -111,8 +111,8 @@ Route::controller('enfermeras', 'EnfermeraController'); // Actualizar Foto
 Route::resource('enfmed', 'EnfermeraMedController');
 
 
-Route::resource('enfaten', 'EnfermAtencionController');
-Route::controller('enfatens', 'EnfermAtencionController');
+Route::resource('enffarm', 'EnfermeraFarmController');
+Route::controller('enffarms', 'EnfermeraFarmController');
 Route::resource('enfainv', 'EnfermInventarioController');
 Route::controller('enfainvs', 'EnfermInventarioController');
 
