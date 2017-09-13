@@ -39,5 +39,6 @@ class Kernel extends HttpKernel
         'jufc' => \App\Http\Middleware\Jufc::class,
         'comedor' => \App\Http\Middleware\Comedor::class,
         'enfermera' => \App\Http\Middleware\Enfermera::class,
+        'medico' => \App\Http\Middleware\Medico::class,
     ];
 }

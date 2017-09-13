@@ -14,6 +14,7 @@ use App\EstCivil;
 use App\Departamento;
 use App\Distrito;
 use App\Provincia;
+use App\CmAntecedente;
 
 use Redirect;
 
@@ -112,13 +113,22 @@ class EnfermeraRegistrosController extends Controller
         if(!$estudiante){
             return Redirect::to('enf')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
         }else{
+            //return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',Input::get('user_id'));
+            return $this->recargarFormularios('users.enfermera.inicio.vermas',$estudiante);
+        }
+        
+    }
+
+    public function recargarFormularios($ruta,$estudiante){
+        
             $religiones=Religion::lists('religion','id');
             $est_civils=EstCivil::lists('est_civil','id');
             $departamentos=Departamento::lists('departamento','id');
             $provincias=Provincia::lists('provincia','id');
             $distritos=Distrito::lists('distrito','id');
-            return view('users.enfermera.inicio.vermas', compact('estudiante','religiones','est_civils','departamentos','provincias','distritos'));
-        }
+            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
-    }
+     }
 }
