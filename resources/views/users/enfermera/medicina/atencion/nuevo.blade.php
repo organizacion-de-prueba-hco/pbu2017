@@ -134,7 +134,7 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Su información se ha guardado correctamente!</h3><br><i>para terminar recuerde presionar el botón azul \'Enviar datos\'</i>", 
+						message: "<h3>¡Ya casi ha terminado!</h3><br><i>para terminar recuerde presionar el botón azul \'Enviar datos\'</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",

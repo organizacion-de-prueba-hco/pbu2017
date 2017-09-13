@@ -16,9 +16,11 @@ use App\Departamento;
 use App\Provincia;
 use App\Distrito;
 use App\CuadroFamiliar;
+use App\CmAntecedente;
 
 use Redirect;
 use Input;
+use Auth;
 
 class EnfermeraMedController extends Controller
 {
@@ -138,6 +140,38 @@ class EnfermeraMedController extends Controller
 
       return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',$estudiante);
     }
+    public function postAntecedentes(){
+      //return "Holitas...";
+      for ($i=0; $i <=1 ; $i++) { 
+         $id=Input::get('id'.$i);
+         $antec=CmAntecedente::find($id);
+         $antec->user_id=Input::get('id');
+         $antec->c_alcohol=Input::get('c_alcohol_'.$i);
+         $antec->c_droga=Input::get('c_droga_'.$i);
+         $antec->c_tabaco=Input::get('c_tabaco_'.$i);
+         $antec->c_cafe=Input::get('c_cafe_'.$i);
+         $antec->p_hepatitis=Input::get('p_hepatitis_'.$i);
+         $antec->p_tifoidea=Input::get('p_tifoidea_'.$i);
+         $antec->p_tbc=Input::get('p_tbc_'.$i);
+         $antec->p_hta=Input::get('p_hta_'.$i);
+         $antec->p_dm=Input::get('p_dm_'.$i);
+         $antec->p_asma=Input::get('p_asma_'.$i);
+         $antec->p_otros=Input::get('p_otros_'.$i);
+         $antec->p_otros_desc=Input::get('p_otros_desc_'.$i);
+         $antec->qx=Input::get('qx_'.$i);
+         $antec->save();
+
+      }
+      $estudiante=Estudiante::find(Input::get('id'));
+      return $this->recargarFormularios('users.enfermera.inicio.vermas.step-22',$estudiante);
+    }
+
+    public function postTriaje(){
+      //return Input::all();
+      $triaje=new CmMedicina;
+      $triaje->fill(Input::all())->save();
+      return Redirect('enfmed')->with('verde','Se registró correctamente la atención');
+    }
 
      public function recargarFormularios($ruta,$estudiante){
         
@@ -146,8 +180,9 @@ class EnfermeraMedController extends Controller
             $departamentos=Departamento::lists('departamento','id');
             $provincias=Provincia::lists('provincia','id');
             $distritos=Distrito::lists('distrito','id');
-
-            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos'));
+            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
      }
     

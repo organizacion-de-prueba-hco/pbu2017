@@ -44,32 +44,27 @@
 		</div>
 										<!--Modal Nuevo-->
 		<div id="nuevo-exp" class="modal fade" tabindex="-1">
-								<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h3 class="smaller lighter blue no-margin">Registrar Nueva Atención Médica</h3>
-											</div>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3 class="smaller lighter blue no-margin">Registrar Nueva Atención Médica</h3>
+					</div>
 
-											<div class="modal-body" align="center">
-												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'enfmeds/nuevo', 'method' => 'GET']) !!}
-															<span class="input-icon">
-																<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10"
-																required="required"
-																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod"
-																>
-																<i class="ace-icon fa fa-search nav-search-icon"></i>
-															</span>
-															<button class="btn btn-success btn-sm btn-round submit">
-																<i class="ace-icon fa fa-plus"></i>
-															</button>
-														{!!Form::close()!!}
-														<br>
-											</div>
-										</div><!-- /.modal-content -->
-									</div><!-- /.modal-dialog -->
+					<div class="modal-body" align="center">Ingrese Código Universitario del Estudiante<br>
+						{!! Form::open(['url' => 'enfmeds/nuevo', 'method' => 'GET']) !!}
+						<span class="input-icon">
+							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod" >
+										<i class="ace-icon fa fa-search nav-search-icon"></i>
+						</span>
+						<button class="btn btn-success btn-sm btn-round submit">
+							<i class="ace-icon fa fa-plus"></i>
+						</button>
+						{!!Form::close()!!}
+						<br>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
 		</div>
 										<!--Fin modal Nuevo-->
 										
@@ -81,9 +76,10 @@
 				<thead>
 					<tr>
 						<th class="center">Fecha</th>
+						<th class="center">Código</th>
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
-						<th class="hidden-480">Estado</th>
+						<th class="center">Estado</th>
 						<th>Cita</th>
 						<th></th>
 					</tr>
@@ -95,54 +91,32 @@
 					@foreach($medicina as $med)
 						<tr>
 							<td class="center">{{$med->created_at}}</td>
+							<td class="center">{{$med->user->estudiante->cod_univ}}</td>
 							<td> {{$med->user->nombres}}, {{$med->user->apellido_paterno.' '.$med->user->apellido_materno}}</td>
 							<td>{{$med->user->estudiante->escuela->escuela}}</td>
 							<td class="hidden-480" align="center">
-								@if(2>1)
+								@if($med->imp_dx != '')
 								<span class="label label-sm label-success">	Atendido
 								</span>
-								@elseif(2<=1)
+								@else
 								<span class="label label-sm label-warning">	Pendiente
 								</span>
 								@endif
 							</td>
-							<td align="center">0000-00-00</td>
+							<td align="center">
+							@if($med->cita!='0000-00-00')
+								{{$med->cita}}
+							@endif
+							</td>
 							<td>
-							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="{{route('jusuexpediente.show',$med->id)}}" title="Ver más">
-									<i class="ace-icon fa fa-search-plus bigger-130"></i>
-								</a>
-								<a class="green" href="{{route('jusuexpediente.edit',$med->id)}}">
-									<i class="ace-icon fa fa-pencil bigger-130"></i>
-								</a>
-							</div>
-							<div class="hidden-md hidden-lg">
-							<!--Cuando se comprime la pantalla-->
-							<div class="inline pos-rel">
-								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-								</button>
-
-								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-									<li>
-										<a href="{{route('jusuexpediente.show',$med->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
-											<span class="blue">
-												<i class="ace-icon fa fa-search-plus bigger-120"></i>
-											</span>
-										</a>
-									</li>
-
-									<li>
-										<a href="{{route('jusuexpediente.edit',$med->id)}}" class="tooltip-success" data-rel="tooltip" title="Editar">
-											<span class="green">
-												<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-											</span>
-										</a>
-									</li>
-								</ul>
+								<div class="hidden-sm hidden-xs action-buttons">
+									<a href="{{route('jusuexpediente.show',$med->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
+									<span class="blue">
+										<i class="ace-icon fa fa-search-plus bigger-120"></i>
+									</span>
+									</a>
 								</div>
-							</div>
-						</td>
+							</td>
 					</tr>
 					@endforeach
 
@@ -190,7 +164,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": false },
-					  null, null,null, null, null,
+					  null, null,null, null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],

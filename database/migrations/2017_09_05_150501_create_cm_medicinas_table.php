@@ -35,6 +35,8 @@ class CreateCmMedicinasTable extends Migration
             $table->string('imp_dx');
             //tratamiento
             $table->string('tto_descripcion');
+
+            $table->date('cita')->default('0000-00-00 00:00:00');
             //relación de michos a muchos con procedimientos: cm_med_procs
 
             //Medicamentos

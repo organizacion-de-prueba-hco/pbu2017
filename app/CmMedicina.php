@@ -9,7 +9,7 @@ class CmMedicina extends Model
     protected $table='cm_medicinas';
     protected $primaryKey='id';
     protected $fillable=[
-    'medico',
+    'medico_id',
     'user_id',
     'te',
     'fi',
@@ -24,8 +24,7 @@ class CmMedicina extends Model
     'triaje_imc',
     'imp_dx',
     'tto_descripcion',
-    'cantidad_medicamento',
-    'cantidad_medicamento',
+    'cita',
     'created_at',
     'updated_at'
     ];
@@ -37,5 +36,8 @@ class CmMedicina extends Model
 
     public function user(){
     	return $this->belongsto('App\user');
+    }
+    public function medico(){
+        return $this->belongsto('App\user');
     }
 }

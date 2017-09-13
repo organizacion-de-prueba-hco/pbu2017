@@ -12,30 +12,30 @@
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-9">
 							<label>
-								<input name="vc_padre" class="ace" type="checkbox" value="1"
-									@if($estudiante->user->vc_padre=='1')
-                					checked="checked"
-              					@endif
+								<input name="c_alcohol_0" class="ace" type="checkbox" value="1"
+									@if($antec0->c_alcohol=='1')
+                						checked="checked"
+              						@endif
 								/>
 								<span class="lbl"> Alcohol</span>
 							</label><br>
 							<label>
-								<input name="vc_madre" value="1" class="ace" type="checkbox" 
-									@if($estudiante->user->vc_madre=='1')
+								<input name="c_droga_0" value="1" class="ace" type="checkbox" 
+									@if($antec0->c_droga=='1')
                 						checked="checked"
               					@endif />
 								<span class="lbl"> Droga</span>
 							</label><br>
 							<label>
-								<input name="vc_hermano" value="1" type="checkbox" class="ace"
-									@if($estudiante->user->vc_hermano=='1')
+								<input name="c_tabaco_0" value="1" type="checkbox" class="ace"
+									@if($antec0->c_tabaco=='1')
                 						checked="checked"
               					@endif />
 								<span class="lbl"> Tabaco</span>
 							</label><br>
 							<label>
-								<input name="vc_conyugue" value="1" type="checkbox" class="ace"
-									@if($estudiante->user->vc_conyugue=='1')
+								<input name="c_cafe_0" value="1" type="checkbox" class="ace"
+									@if($antec0->c_cafe=='1')
                 						checked="checked"
               					@endif />
 								<span class="lbl"> Café</span>
@@ -50,8 +50,8 @@
 						<div class="col-xs-12 col-sm-9">
 							<div class="clearfix">
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_hepatitis_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_hepatitis=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -59,8 +59,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_tifoidea_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_tifoidea=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -68,8 +68,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_tbc_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_tbc=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -77,17 +77,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
-                						checked="checked"
-              						@endif
-									/>
-									<span class="lbl"> TBC</span>
-								</label><br>
-
-								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_hta_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_hta=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -95,8 +86,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_dm_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_dm=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -104,8 +95,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_asma_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_asma=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -113,21 +104,20 @@
 								</label><br>
 
 								<label>
-									<input name="p_otros" id="p_otros" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_otros_0" id="p_otros_0" class="ace" type="checkbox" value="1"
+										@if($antec0->p_otros=='1')
                 						checked="checked"
               						@endif
-              						onclick="mostrarotros('p_otros_desc','#p_otros')"
+              						onclick="mostrarotros('p_otros_desc_0','#p_otros_0')"
 									/>
 									<span class="lbl"> OTROS</span>
 								</label><br>
-								<?php $desc= App\CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first()->p_otros_desc; ?>
 								<label 
-									@if($desc == '')
+									@if($antec0->p_otros_desc == '')
 										style="visibility:hidden"
 									@endif
 								>	
-									<input type="text" class="ace" name="p_otros_desc" id="p_otros_desc" class="col-12" value="{{$desc}}"><br>
+									<input type="text" class="ace" name="p_otros_desc_0" id="p_otros_desc_0" class="col-12" value="{{$antec0->p_otros_desc}}"><br>
 								</label><br>				
 							</div>
 						</div>
@@ -139,7 +129,7 @@
 						<div class="form-group">
 							<div class="col-xs-12 col-sm-9">
 								<div class="clearfix">
-									<textarea name="qx" placeholder="Describir si ha presentado alguna cirugía"  class="form-control" rows="10"></textarea>
+									<textarea name="qx_0" placeholder="Describir si ha presentado alguna cirugía"  class="form-control" rows="10">{{$antec0->qx}}</textarea>
 								</div>
 						</div>
 					</div>
@@ -160,30 +150,30 @@
 					<div class="form-group">
 						<div class="col-xs-12 col-sm-9">
 							<label>
-								<input name="vc_padre" class="ace" type="checkbox" value="1"
-									@if($estudiante->user->vc_padre=='1')
-                					checked="checked"
-              					@endif
+								<input name="c_alcohol_1" class="ace" type="checkbox" value="1"
+									@if($antec1->c_alcohol=='1')
+                						checked="checked"
+              						@endif
 								/>
 								<span class="lbl"> Alcohol</span>
 							</label><br>
 							<label>
-								<input name="vc_madre" value="1" class="ace" type="checkbox" 
-									@if($estudiante->user->vc_madre=='1')
+								<input name="c_droga_1" value="1" class="ace" type="checkbox" 
+									@if($antec1->c_droga=='1')
                 						checked="checked"
               					@endif />
 								<span class="lbl"> Droga</span>
 							</label><br>
 							<label>
-								<input name="vc_hermano" value="1" type="checkbox" class="ace"
-									@if($estudiante->user->vc_hermano=='1')
+								<input name="c_tabaco_1" value="1" type="checkbox" class="ace"
+									@if($antec1->c_tabaco=='1')
                 						checked="checked"
               					@endif />
 								<span class="lbl"> Tabaco</span>
 							</label><br>
 							<label>
-								<input name="vc_conyugue" value="1" type="checkbox" class="ace"
-									@if($estudiante->user->vc_conyugue=='1')
+								<input name="c_cafe_1" value="1" type="checkbox" class="ace"
+									@if($antec1->c_cafe=='1')
                 						checked="checked"
               					@endif />
 								<span class="lbl"> Café</span>
@@ -198,8 +188,8 @@
 						<div class="col-xs-12 col-sm-9">
 							<div class="clearfix">
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_hepatitis_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_hepatitis=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -207,8 +197,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_tifoidea_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_tifoidea=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -216,8 +206,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_tbc_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_tbc=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -225,17 +215,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
-                						checked="checked"
-              						@endif
-									/>
-									<span class="lbl"> TBC</span>
-								</label><br>
-
-								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_hta_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_hta=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -243,8 +224,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_dm_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_dm=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -252,8 +233,8 @@
 								</label><br>
 
 								<label>
-									<input name="vc_padre" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_asma_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_asma=='1')
                 						checked="checked"
               						@endif
 									/>
@@ -261,21 +242,21 @@
 								</label><br>
 
 								<label>
-									<input name="p_otros2" id="p_otros2" class="ace" type="checkbox" value="1"
-										@if($estudiante->user->vc_padre=='1')
+									<input name="p_otros_1" id="p_otros_1" class="ace" type="checkbox" value="1"
+										@if($antec1->p_otros=='1')
                 						checked="checked"
               						@endif
-              						onclick="mostrarotros('p_otros_desc2','#p_otros2')"
+              						onclick="mostrarotros('p_otros_desc_1','#p_otros_1')"
 									/>
 									<span class="lbl"> OTROS</span>
 								</label><br>
-								<?php $desc2 = App\CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first()->p_otros_desc; ?>
+								
 								<label 
-									@if($desc2 == '')
+									@if($antec1->p_otros_desc == '')
 										style="visibility:hidden"
 									@endif
 								>	
-									<input type="text" class="ace" name="p_otros_desc2" id="p_otros_desc2" class="col-12" value="{{$desc2}}"><br>
+									<input type="text" class="ace" name="p_otros_desc_1" id="p_otros_desc_1" class="col-12" value="{{$antec1->p_otros_desc}}"><br>
 								</label><br>				
 							</div>
 						</div>
@@ -287,7 +268,7 @@
 						<div class="form-group">
 							<div class="col-xs-12 col-sm-9">
 								<div class="clearfix">
-									<textarea name="qx2" placeholder="Describir si ha presentado alguna cirugía"  class="form-control" rows="10"></textarea>
+									<textarea name="qx_1" placeholder="Describir si ha presentado alguna cirugía"  class="form-control" rows="10">{{$antec1->qx}}</textarea>
 								</div>
 						</div>
 					</div>
@@ -297,8 +278,10 @@
 
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-12" align="center">
-            	<input type="hidden" name="id" value="{{$estudiante->user->id}}">
-            	<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/general','#elformulario1-2','#step-22')">
+            	<input type="hidden" name="id" value="{{$estudiante->user_id}}">
+            	<input type="hidden" name="id0" value="{{$antec0->id}}">
+            	<input type="hidden" name="id1" value="{{$antec1->id}}">
+            	<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/enfmeds/antecedentes','#elformulario1-2','#step-22')">
             	</div>
          	</div>
          </div>
