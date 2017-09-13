@@ -8,8 +8,7 @@
 				</span>
 				</a>
 			</div><hr>
-					{!! Form::open(['method'=>'post','id'=>'elformulario1-1','class'=>'form-horizontal form-label-left']) !!}
-								<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
+					{!! Form::open(['method'=>'post','id'=>'elformulario1-11','class'=>'form-horizontal form-label-left']) !!}
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Apellidos y Nombres:</label>
 										<div class="col-xs-12 col-sm-9">
@@ -23,7 +22,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Código:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" value="{{$estudiante->cod_univ}}" disabled="true"/>
+												<input type="text" name="cod" class="col-xs-12 col-sm-6" value="{{$estudiante->cod_univ}}" disabled="true"/>
 											</div>
 										</div>
 									</div>
@@ -117,7 +116,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Sexo:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" maxlength="8" name="sexo" class="col-xs-12 col-sm-6" disabled="true" 
+												<input type="text" maxlength="8" class="col-xs-12 col-sm-6" disabled="true" 
 													@if($estudiante->user->genero=='0') 
 														value="Femenino"
 													@else
@@ -155,7 +154,7 @@
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
 
-												<input type="text" maxlength="8" name="ocupacion" class="col-xs-12 col-sm-6" value="{{App\CuadroFamiliar::where('parentesco','YO')->where('user_id',$estudiante->user->id)->first()->ocupacion}}"/>
+												<input type="text" name="ocupacion" class="col-xs-12 col-sm-6" value="{{App\CuadroFamiliar::where('parentesco','YO')->where('user_id',$estudiante->user->id)->first()->ocupacion}}"/>
 											</div>
 										</div>
 									</div>
@@ -171,8 +170,8 @@
 									<div class="space-2"></div>					
 									<div class="hr hr-dotted"></div>
 									<div align="center" ><br>
-                          			<input type="hidden" name="id" value="{{$estudiante->user->id}}">
-                          			<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/general','#elformulario1-1','#step-11')"><br><br></div>
+                          			<input type="hidden" name="id" value="{{$estudiante->user_id}}">
+                          			<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/enfmeds/filiacion','#elformulario1-11','#step-11')"><br><br></div>
 
 									<div class="space-2"></div>
 								{!! Form::close() !!}

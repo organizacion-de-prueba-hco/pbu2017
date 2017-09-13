@@ -109,6 +109,7 @@ Route::controller('enfs', 'EnfermeraRegistrosController'); //metodos adicionales
 Route::resource('enfermera', 'EnfermeraController'); //metodos normales
 Route::controller('enfermeras', 'EnfermeraController'); // Actualizar Foto
 Route::resource('enfmed', 'EnfermeraMedController');
+Route::controller('enfmeds', 'EnfermeraMedController');
 
 
 Route::resource('enffarm', 'EnfermeraFarmController');

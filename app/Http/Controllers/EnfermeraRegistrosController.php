@@ -19,6 +19,11 @@ use Redirect;
 
 class EnfermeraRegistrosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('enfermera');
+    }
     /**
      * Display a listing of the resource.
      *

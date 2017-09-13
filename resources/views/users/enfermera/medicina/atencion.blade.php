@@ -53,12 +53,12 @@
 
 											<div class="modal-body" align="center">
 												Ingrese Código Universitario del Estudiante<br>
-													{!! Form::open(['url' => 'jusuexpedientes/nuevo', 'method' => 'POST']) !!}
+													{!! Form::open(['url' => 'enfmeds/nuevo', 'method' => 'GET']) !!}
 															<span class="input-icon">
 																<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10"
 																required="required"
 																oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-																name="cod-nuevo"
+																name="cod"
 																>
 																<i class="ace-icon fa fa-search nav-search-icon"></i>
 															</span>

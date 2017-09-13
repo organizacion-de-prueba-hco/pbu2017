@@ -1,7 +1,7 @@
 <?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
 <h2 class="StepTitle">II. ANTECEDENTES</h2>
 			
-		{!! Form::open(['method'=>'post','id'=>'elformulario1-1','class'=>'form-horizontal form-label-left']) !!}
+		{!! Form::open(['method'=>'post','id'=>'elformulario1-2','class'=>'form-horizontal form-label-left']) !!}
 		<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="space-2"></div><hr>
 			<h3 class="lighter block green">2.1 Personal</h3>
@@ -298,7 +298,7 @@
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-12" align="center">
             	<input type="hidden" name="id" value="{{$estudiante->user->id}}">
-            	<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/general','#elformulario1-1','#step-11')">
+            	<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/fichasocial/general','#elformulario1-2','#step-22')">
             	</div>
          	</div>
          </div>
