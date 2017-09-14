@@ -177,7 +177,6 @@ class MedicoMedController extends Controller
          $antec->p_otros_desc=Input::get('p_otros_desc_'.$i);
          $antec->qx=Input::get('qx_'.$i);
          $antec->save();
-
       }
       $estudiante=Estudiante::find(Input::get('id'));
       return $this->recargarFormularios('users.medico.inicio.vermas.step-22',$estudiante);
@@ -188,6 +187,14 @@ class MedicoMedController extends Controller
       $triaje=new CmMedicina;
       $triaje->fill(Input::all())->save();
       return Redirect('enfmed')->with('verde','Se registró correctamente la atención');
+    }
+    public function postActualizartriaje(){
+      //return Input::all();
+      $medicina=CmMedicina::find(Input::get('id'));
+      $estudiante=Estudiante::find($medicina->user_id);
+      $medicina->fill(Input::all())->save();
+      //$medicina=CmMedicina::find(Input::get('id'));
+      return $this->recargarFormularios('users.medico.inicio.vermas.step-actualizartriaje',$estudiante,$medicina);
     }
 
      public function recargarFormularios($ruta,$estudiante,$medicina){

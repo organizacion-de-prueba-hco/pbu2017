@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php  
 	$i ='';
@@ -28,7 +28,7 @@
 	<i class="ace-icon fa fa-user-md"></i>
 	<li class="active">Medicina</li>
 	<li class="active">Atención</li>
-	<li class="active">Nuevo</li>	
+	<li class="active">Examen Físico</li>	
 </ul>
 @endsection
 @section('contenido')
@@ -62,31 +62,30 @@
 									<span class="step">III</span>
 									<span class="title">TRIAJE</span>
 								</li>
-								<li data-step="3">
+								<li data-step="4">
 									<span class="step">IV</span>
 									<span class="title">EXAMEN FÍSICO</span>
 								</li>
-								
-
-								
+													
 							</ul>
 						</div>
 						<hr />
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.enfermera.inicio.vermas.step-11')
+								@include('users.medico.inicio.vermas.step-11')
 							</div>
 
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.enfermera.inicio.vermas.step-22')
+								@include('users.medico.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.enfermera.inicio.vermas.step-triaje')
+								@include('users.medico.inicio.vermas.step-actualizartriaje')
 							</div>
-							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.enfermera.inicio.vermas.step-ef')
+							<div class="step-pane" data-step="4" id="step-44">
+								@include('users.medico.inicio.vermas.step-ef')
 							</div>
+							
 							
 						</div>
 					</div>

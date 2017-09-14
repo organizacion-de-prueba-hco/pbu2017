@@ -174,7 +174,6 @@ class EnfermeraMedController extends Controller
     }
 
      public function recargarFormularios($ruta,$estudiante){
-        
             $religiones=Religion::lists('religion','id');
             $est_civils=EstCivil::lists('est_civil','id');
             $departamentos=Departamento::lists('departamento','id');

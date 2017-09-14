@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php  
 	$i ='active';
@@ -27,7 +27,7 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-home"></i>	
 	<li class="active">Inicio</li>
-	<li class="active">Buscar Estudiante</li>	
+	<li class="active">Buscar Estudiantes</li>	
 </ul>
 @endsection
 @section('contenido')
@@ -76,14 +76,14 @@
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.enfermera.inicio.vermas.step-11')
+								@include('users.medicina.inicio.vermas.step-11')
 							</div>
 
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.enfermera.inicio.vermas.step-22')
+								@include('users.medicina.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								
+								@include('users.medicina.inicio.vermas.step-triaje')
 							</div>
 							<div class="step-pane" data-step="4" id="step-44">
 								

@@ -14,6 +14,7 @@ class CreateCmMedProcsTable extends Migration
     {
         Schema::create('cm_med_procs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cantidad');
             $table->integer('medicina_id')->unsigned();
             $table->integer('procedimiento_id')->unsigned();
 
