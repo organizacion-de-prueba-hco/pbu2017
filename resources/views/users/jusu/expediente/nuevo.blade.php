@@ -3,6 +3,8 @@
 	<?php
 $oa = 'active';
 $nbecas='';
+$enc='';
+$in='';
 ?>
 @endsection
 @section('titulo','Nuevo Expediente')

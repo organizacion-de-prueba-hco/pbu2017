@@ -1,49 +1,15 @@
 <h2 class="StepTitle">IV. EXAMEN FÍSICO</h2>
 			<hr>
 
-<!--Modal Nuevo-->
-<div id="procedimientos" class="modal fade" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
-				</button>
-				<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimeito</h3>
-			</div>
 
-			<div class="modal-body" align="center">
-				{!! Form::open(['url' => 'jusuexpedientes/nuevo', 'method' => 'POST', 'class'=>'form-horizontal form-label-left']) !!}
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
-						<div class="col-xs-12 col-sm-9">
-							<div class="clearfix">
-								<input type="number" class="col-xs-12 col-sm-6" name="triaje_p" />
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
-						<div class="col-xs-12 col-sm-9">
-							<div class="clearfix">
-								<input type="text" class="col-xs-12 col-sm-6" name="triaje_p" />
-							</div>
-						</div>
-					</div>
-				{!!Form::close()!!}
-				<br>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div>
-<!--Fin modal Nuevo-->
 
-		{!! Form::open(['url' => 'medmeds/triaje','method'=>'post', 'class'=>'form-horizontal form-label-left']) !!}								
+		{!! Form::open(['url' => 'medmeds/ef','method'=>'post', 'class'=>'form-horizontal form-label-left']) !!}								
 									<div class="space-2"></div>
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">TE: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" placeholder="Tiempo de enfermedad" name="triaje_fc" />
+												<input type="text" class="col-xs-12 col-sm-6" placeholder="Tiempo de enfermedad" name="te" value="{{$medicina->te}}" />
 											</div>
 										</div>
 									</div>
@@ -52,7 +18,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">FI: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" placeholder="Forma de inicio" name="triaje_fr"/>
+												<input type="text" class="col-xs-12 col-sm-6" placeholder="Forma de inicio" name="fi" value="{{$medicina->fi}}" />
 											</div>
 										</div>
 									</div>
@@ -60,7 +26,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">CE: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" name="triaje_to" class="col-xs-12 col-sm-6" placeholder="Curso o evolución"/>
+												<input type="text" name="ce" class="col-xs-12 col-sm-6" placeholder="Curso o evolución" value="{{$medicina->ce}}" />
 											</div>
 										</div>
 									</div>
@@ -68,7 +34,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Relato Enf: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" placeholder="El paciente describe lo que siente" name="triaje_pa"/>
+												<input type="text" class="col-xs-12 col-sm-6" placeholder="El paciente describe lo que siente" name="relato_enf" value="{{$medicina->relato_enf}}" required="true"/>
 											</div>
 										</div>
 									</div>
@@ -76,7 +42,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Imp DX: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" placeholder="Describe el DX)"  name="triaje_p" />
+												<input type="text" class="col-xs-12 col-sm-6" placeholder="Describe el DX"  name="imp_dx" value="{{$medicina->imp_dx}}" required="true" />
 											</div>
 										</div>
 									</div>
@@ -84,7 +50,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">TTO: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" placeholder="Descripción del Tratamiento" name="tto" />
+												<input type="text" class="col-xs-12 col-sm-6" placeholder="Descripción del Tratamiento" name="tto_descripcion" {{$medicina->tto_descripcion}} />
 											</div>
 											<div>
 <div class="row">
@@ -95,7 +61,7 @@
 		</div>
 		
 		<div class="table-header">
-			<a href="#procedimientos" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal" data-target="#procedimientos">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Procedimientos &nbsp;&nbsp;&nbsp;
@@ -117,21 +83,22 @@
 					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
 				?>
 				<tbody>
-					
+					@foreach($mps as $mp)
 						<tr>
-							<td class="center"></td>
-							<td class="center"></td>
+							<td class="center">{{$mp->cantidad}}</td>
+							<td class="center">{{$mp->cmprocedimiento->procedimiento}}</td>
 							
 							<td>
-								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="{{route('medmed.show','1')}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
+								<div class="hidden-sm hidden-xs action-buttons" align="center">
+									<a href="#" class="tooltip-info" title="Actualizar" data-toggle="modal" data-target="#aprocedimientos" onclick="cargarProcedimientos('{{$mp->id}}')">
 									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
+										<i class="ace-icon fa  fa-pencil-square-o bigger-120"></i>
 									</span>
 									</a>
 								</div>
 							</td>
-					</tr>
+						</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>
@@ -145,7 +112,7 @@
 		</div>
 		
 		<div class="table-header">
-			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal" data-target="#medicamentos">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Medicamentos &nbsp;&nbsp;&nbsp;
@@ -169,22 +136,23 @@
 					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
 				?>
 				<tbody>
-					
+					@foreach($mms as $m)
 						<tr>
-							<td class="center"></td>
-							<td class="center"></td>
-							<th class="center">Presentación</th>
-							<th class="center">Indicaciones</th>
+							<td class="center">{{$m->cantidad}}</td>
+							<td class="center">{{$m->medicamento->medicamento}}</td>
+							<td class="center">{{$m->medicamento->presentacion}}</td>
+							<td class="center">{{$m->indicaciones}}</td>
 							<td>
-								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="{{route('medmed.show','1')}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
+								<div class="hidden-sm hidden-xs action-buttons" align="center">
+									<a href="#" class="tooltip-info" title="Actualizar" data-toggle="modal" data-target="#amedicamentos" onclick="cargarMedicamentos('{{$m->id}}')">
 									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
+										<i class="ace-icon fa  fa-pencil-square-o bigger-120"></i>
 									</span>
 									</a>
 								</div>
 							</td>
 					</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>
@@ -199,7 +167,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Próxima Cita: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="date" name="triaje_imc"/>
+												<input type="date" name="cita" value="{{$medicina->cita}}" />
 											</div>
 										</div>
 									</div>
@@ -211,7 +179,8 @@
 									<div class="hr hr-dotted"></div>
 									<div align="center" ><br>
                           			<input type="hidden" name="user_id" value="{{$estudiante->user->id}}">
-                          			<input type="hidden" name="medico_id" value="1">
+                          			<input type="hidden" name="medico_id" value="{{Auth::user()->id}}">
+                          			<input type="hidden" name="m_id" value="{{$medicina->id}}">
                           			<input type="submit" value="Enviar datos" class="btn btn-info"><br><br></div>
 
 									<div class="space-2"></div>

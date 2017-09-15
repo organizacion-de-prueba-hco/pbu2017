@@ -5,6 +5,8 @@ $oa = 'active';
 $nbecas='';
 $enc='';
 $in='';
+$enc='';
+$in='';
 ?>
 @endsection
 @section('titulo','Editar Expediente')

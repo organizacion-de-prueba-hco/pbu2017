@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class CmMedProc extends Model
 {
     protected $table='cm_med_procs';
-    protected $primaryKey='id';
     protected $fillable=[
+    'cantidad',
     'medicina_id',
-    'procedimiento_id',
-    'created_at';
-    'updated_at'
+    'procedimiento_id'
     ];
 
     public function cmprocedimiento(){
-    	return $this->belongsto('App\CmProcedimiento');
+    	return $this->belongsto('App\CmProcedimiento','procedimiento_id','id');
     }
 
     public function cmmedicina(){

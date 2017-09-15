@@ -13,6 +13,7 @@
 		{!!Html::style('assets/css/bootstrap.min.css')!!}
 		{!!Html::style('assets/font-awesome/4.5.0/css/font-awesome.min.css')!!}
 		<!-- page specific plugin styles -->
+		{!!Html::style('assets/css/select2.min.css')!!}
 
 		<!-- text fonts -->
 		{!!Html::style('assets/css/fonts.googleapis.com.css')!!}

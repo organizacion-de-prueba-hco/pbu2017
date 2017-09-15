@@ -16,6 +16,6 @@ class CmProcedimiento extends Model
     ];
 
     public function cmmedproc(){
-    	return $this->hasMany('App\CmMedProc');
+    	return $this->hasMany('App\CmMedProc','procedimiento_id','id');
     }
 }

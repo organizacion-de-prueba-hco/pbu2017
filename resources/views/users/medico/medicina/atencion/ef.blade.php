@@ -20,7 +20,7 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Atención')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -32,9 +32,212 @@
 </ul>
 @endsection
 @section('contenido')
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
+<!--Modal Actualizar Medicamentos-->
+<div id="amedicamentos" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-amedicamentos','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" id="m_cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Medicamento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								<select name="medicamento_id" id="m_medicamento_id" class='col-xs-12 col-sm-9' style='width: 100%;'>
+									@foreach($medicamentos as $m)
+									<option value="{{$m->id}}">{{$m->medicamento.' - '.$m->presentacion}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Indicaciones</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="text" class="col-xs-12 col-sm-6" name="indicaciones" id="m_indicaciones" style='width: 100%;'/>
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="m_id"  id="m_id">
+		            	
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/emedicamentos','#modal-amedicamentos','#step-44');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/amedicamentos','#modal-amedicamentos','#step-44')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin Actualizar Medicamento-->
+
+<!--Modal Nuevo Medicamento-->
+<div id="medicamentos" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-medicamentos','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Medicamento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								<select name="medicamento_id" id="medicamento_id" class='col-xs-12 col-sm-9' style='width: 100%;'>
+									@foreach($medicamentos as $m)
+									<option value="{{$m->id}}">{{$m->medicamento.' - '.$m->presentacion}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Indicaciones</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="text" min="1" class="col-xs-12 col-sm-6" name="indicaciones" style='width: 100%;'/>
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="medicina_id" value="{{$medicina->id}}">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/medicamentos','#modal-medicamentos','#step-44')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin Nuevo Medicamento-->
+
+<!-- Actualizar Procedimiento -->
+<div class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true" id="aprocedimientos">
+   <div class="modal-dialog">
+      <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel2">Actualizar Procedimento</h4>
+      </div>
+
+         {!! Form::open(['method'=>'post','id'=>'modal-aprocedimiento','class'=>'form-horizontal form-label-left']) !!}
+            <div class="modal-body">
+	            <div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" id="c_cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								{!!Form::select('procedimiento_id',$procedimientos,null,['required', 'id'=>'c_procedimiento_id','class'=>'col-xs-12 col-sm-9','style'=>'width: 100%'])!!}
+							</div>
+						</div>
+					</div>         
+            </div>
+               <div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="id" id="c_id" value="">
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/eprocedimientos','#modal-aprocedimiento','#step-44');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/aprocedimientos','#modal-aprocedimiento','#step-44')">
+		            	</div>
+		         	</div>
+               </div>
+         {!! Form::close() !!}
+      </div>
+   </div>
+</div>
+<!--Fin de Actualizar procedimiento-->
+
+<!--Modal Nuevo Procedimiento-->
+<div id="procedimientos" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimeito</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-procedimientos','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								{!!Form::select('procedimiento_id',$procedimientos,null,['required', 'id'=>'procedimiento_id','class'=>'col-xs-12 col-sm-9','style'=>'width: 100%'])!!}
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="medicina_id" value="{{$medicina->id}}">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/procedimientos','#modal-procedimientos','#step-44')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin modal Nuevo-->
 
 <div class="row">
 	<div class="col-xs-12">
@@ -117,15 +320,16 @@
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
+		
+
 			jQuery(function($) {
-			
+				$('#procedimiento_id').select2({});
+				$('#c_procedimiento_id').select2({});
+				$('#medicamento_id').select2({});
+				$('#m_medicamento_id').select2({});
 				$('[data-rel=tooltip]').tooltip();
 			
-				$('.select2').css('width','200px').select2({allowClear:true})
-				.on('change', function(){
-					$(this).closest('form').validate().element($(this));
-				}); 
-			
+							
 			
 				var $validation = false;
 				$('#fuelux-wizard-container')
@@ -277,12 +481,6 @@
 							if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
 							else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
 						}
-						else if(element.is('.select2')) {
-							error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-						}
-						else if(element.is('.chosen-select')) {
-							error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-						}
 						else error.insertAfter(element.parent());
 					},
 			
@@ -308,12 +506,6 @@
 					$(this).closest('form').validate().element($(this));
 				});
 				*/
-				
-				
-				$(document).one('ajaxloadstart.page', function(e) {
-					//in ajax mode, remove remaining elements before leaving page
-					$('[class*=select2]').remove();
-				});
 			})
 
 //Formularios-------------------- step------------------------------
@@ -568,8 +760,50 @@
           	$('#'+elementId).val('');
            	document.getElementById(elementId).style.visibility='hidden';
         }
-    }
+    }     
 
+//Editar Procedimientos y medicamentos
+//Editar 
+      function cargarProcedimientos(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/medmeds/cprocedimientos/"+id;
+           //console.log(id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+           //console.log(result.procedimiento_id);
+          $('#c_cantidad').val(result.cantidad);
+          $("#c_procedimiento_id option[value='"+ result.procedimiento_id +"']").attr("selected",true);
+          $('#c_id').val(id);                 
+          }                  
+        });
+      }
+      function cargarMedicamentos(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/medmeds/cmedicamentos/"+id;
+           console.log(id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+           //console.log(result);
+          $('#m_cantidad').val(result.cantidad);
+          $("#m_medicamento_id option[value='"+ result.medicamento_id +"']").attr("selected",true);
+          $('#m_id').val(result.id); 
+          $('#m_indicaciones').val(result.indicaciones);                 
+          }                  
+        });
+      }
+    
 </script>
 
 

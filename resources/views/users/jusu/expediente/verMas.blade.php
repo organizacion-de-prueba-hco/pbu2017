@@ -5,6 +5,7 @@ $oa = 'active';
 $nbecas='';
 $enc='';
 $in='';
+$enc='';
 ?>
 @endsection
 @section('titulo','Tester')

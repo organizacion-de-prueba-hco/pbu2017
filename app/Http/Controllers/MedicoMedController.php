@@ -17,6 +17,10 @@ use App\Provincia;
 use App\Distrito;
 use App\CuadroFamiliar;
 use App\CmAntecedente;
+use App\CmProcedimiento;
+use App\CmMedProc;
+use App\CmMedicamento;
+use App\MedMed;
 
 use Redirect;
 use Input;
@@ -197,6 +201,66 @@ class MedicoMedController extends Controller
       return $this->recargarFormularios('users.medico.inicio.vermas.step-actualizartriaje',$estudiante,$medicina);
     }
 
+    public function postProcedimientos(){
+        $consulta=new CmMedProc;
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $medicina=CmMedicina::find(Input::get('medicina_id'));
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+    }
+
+    public function getCprocedimientos($id){ //Cargar procedimientos al modalActualizar
+        return CmMedProc::find($id);
+    }
+    public function postAprocedimientos(){//Actualizar
+        $consulta=CmMedProc::find(Input::get('id'));
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $medicina=CmMedicina::find($consulta->medicina_id);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+    }
+    public function postEprocedimientos(){//Eliminar
+        $consulta=CmMedProc::find(Input::get('id'));
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $medicina=CmMedicina::find($consulta->medicina_id);
+        CmMedProc::destroy(Input::get('id'));
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+    }
+
+    public function postMedicamentos(){
+        $consulta=new MedMed;
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $medicina=CmMedicina::find(Input::get('medicina_id'));
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+    }
+    public function getCmedicamentos($id){ //Cargar Medicamentos al modalActualizar
+        return MedMed::find($id);
+    }
+    public function postAmedicamentos(){//Actualizar
+
+        $consulta=MedMed::find(Input::get('m_id'));
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $medicina=CmMedicina::find($consulta->medicina_id);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+    }
+    public function postEmedicamentos(){//Eliminar
+
+        $consulta=MedMed::find(Input::get('m_id'));
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $medicina=CmMedicina::find($consulta->medicina_id);
+        MedMed::destroy(Input::get('m_id'));
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+    }
+
+    public function postEf(){//Eliminar
+        
+        $consulta=CmMedicina::find(Input::get('m_id'));
+        $consulta->fill(Input::all())->save();
+        return Redirect::to('medmed')->with('verde','Se registró atención correctamente');
+    }
+
      public function recargarFormularios($ruta,$estudiante,$medicina){
         
             $religiones=Religion::lists('religion','id');
@@ -204,9 +268,13 @@ class MedicoMedController extends Controller
             $departamentos=Departamento::lists('departamento','id');
             $provincias=Provincia::lists('provincia','id');
             $distritos=Distrito::lists('distrito','id');
+            $procedimientos=CmProcedimiento::where('area','0')->lists('procedimiento','id');
+            $medicamentos=CmMedicamento::get();
             $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
             $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
+            $mps=CmMedProc::where('medicina_id',$medicina->id)->get();
+            $mms=MedMed::where('medicina_id',$medicina->id)->get();
+            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));
         
      }
 

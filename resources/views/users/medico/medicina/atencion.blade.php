@@ -80,7 +80,7 @@
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
 						<th class="center">Estado</th>
-						<th>Cita</th>
+						<th class="center">Cita</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -163,7 +163,7 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": false },
+					  { "bSortable": null },
 					  null, null,null, null,null,
 					  { "bSortable": false }
 					],
