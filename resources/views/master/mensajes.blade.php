@@ -11,7 +11,7 @@
 @elseif(Session::has('azul'))
             <div class="alert alert-info alert-dismissible fade in" role="alert" align="rigth">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <b>¡Exito!</b> {{ Session::get('azul')}}
+              <b>¡Atención!</b> {{ Session::get('azul')}}
             </div>
 @elseif(Session::has('naranja'))
             <div class="alert alert-warning alert-dismissible fade in" role="alert" align="rigth">

@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php  
 	$i ='';
@@ -20,7 +20,7 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Medicina')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -68,14 +68,13 @@
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.enfermera.inicio.vermas.step-11')
+								@include('users.medico.inicio.registro.step-11')
 							</div>
-
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.enfermera.inicio.vermas.step-22')
+								@include('users.medico.inicio.registro.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.enfermera.inicio.vermas.step-triaje')
+								@include('users.medico.inicio.registro.step-triaje')
 							</div>
 							
 						</div>

@@ -139,14 +139,13 @@ class MedicoMedController extends Controller
         }
 
         if(!$estudiante){
-            return Redirect::to('enfmed')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+            return Redirect::to('medmed')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
         }else{
-            //return $this->recargarFormularios('users.medico.inicio.vermas.step-11',Input::get('user_id'));
-            return $this->recargarFormularios('users.medico.medicina.atencion.nuevo',$estudiante);
+            return $this->recargarFormularios0('users.medico.medicina.atencion.nuevo',$estudiante);
         }
     }
 
-    public function postFiliacion(){
+    public function postFiliacion0(){
       //return "Holitas...";
       $user=User::find(Input::get('id'));
       $user->fill(Input::all())->save();
@@ -159,9 +158,9 @@ class MedicoMedController extends Controller
       $ocupacion->save();
       //$opinion->fill(Input::all())->save();
 
-      return $this->recargarFormularios('users.medico.inicio.vermas.step-11',$estudiante);
+      return $this->recargarFormularios0('users.medico.inicio.registro.step-11',$estudiante);
     }
-    public function postAntecedentes(){
+    public function postAntecedentes0(){
       //return "Holitas...";
       for ($i=0; $i <=1 ; $i++) { 
          $id=Input::get('id'.$i);
@@ -183,21 +182,21 @@ class MedicoMedController extends Controller
          $antec->save();
       }
       $estudiante=Estudiante::find(Input::get('id'));
-      return $this->recargarFormularios('users.medico.inicio.vermas.step-22',$estudiante);
+      return $this->recargarFormularios0('users.medico.inicio.registro.step-22',$estudiante);
     }
 
     public function postTriaje(){
       //return Input::all();
       $triaje=new CmMedicina;
       $triaje->fill(Input::all())->save();
-      return Redirect('enfmed')->with('verde','Se registró correctamente la atención');
+      return Redirect('medmed')->with('verde','Se registró correctamente la atención');
     }
     public function postActualizartriaje(){
       //return Input::all();
       $medicina=CmMedicina::find(Input::get('id'));
       $estudiante=Estudiante::find($medicina->user_id);
       $medicina->fill(Input::all())->save();
-      //$medicina=CmMedicina::find(Input::get('id'));
+      $medicina=CmMedicina::find(Input::get('id'));
       return $this->recargarFormularios('users.medico.inicio.vermas.step-actualizartriaje',$estudiante,$medicina);
     }
 
@@ -261,8 +260,19 @@ class MedicoMedController extends Controller
         return Redirect::to('medmed')->with('verde','Se registró atención correctamente');
     }
 
-     public function recargarFormularios($ruta,$estudiante,$medicina){
+    public function recargarFormularios0($ruta,$estudiante){
+            $religiones=Religion::lists('religion','id');
+            $est_civils=EstCivil::lists('est_civil','id');
+            $departamentos=Departamento::lists('departamento','id');
+            $provincias=Provincia::lists('provincia','id');
+            $distritos=Distrito::lists('distrito','id');
+            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
+     }
+
+     public function recargarFormularios($ruta,$estudiante,$medicina){
             $religiones=Religion::lists('religion','id');
             $est_civils=EstCivil::lists('est_civil','id');
             $departamentos=Departamento::lists('departamento','id');
@@ -274,8 +284,15 @@ class MedicoMedController extends Controller
             $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
             $mps=CmMedProc::where('medicina_id',$medicina->id)->get();
             $mms=MedMed::where('medicina_id',$medicina->id)->get();
-            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));
-        
+            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));  
+     }
+
+     public function getGenerareporte($tipo,$id){
+        //
+        $med=CmMedicina::find($id);
+        if(!$med) {
+            return back()->with('azul','Estado pendiente, no puede generar reportes o constancias');
+        }
      }
 
 

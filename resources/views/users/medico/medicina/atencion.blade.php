@@ -52,7 +52,7 @@
 					</div>
 
 					<div class="modal-body" align="center">Ingrese Código Universitario del Estudiante<br>
-						{!! Form::open(['url' => 'enfmeds/nuevo', 'method' => 'GET']) !!}
+						{!! Form::open(['url' => 'medmeds/nuevo', 'method' => 'GET']) !!}
 						<span class="input-icon">
 							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod" >
 										<i class="ace-icon fa fa-search nav-search-icon"></i>
@@ -67,6 +67,43 @@
 			</div><!-- /.modal-dialog -->
 		</div>
 										<!--Fin modal Nuevo-->
+
+
+										<!--Modal Reportes y constancias-->
+		<div id="reportes-modal" class="modal fade" tabindex="-1">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3 class="smaller lighter blue no-margin">Generar y/o descargar: </h3>
+					</div>
+					<br>
+					<div class="hidden-sm hidden-xs action-buttons" align="center">
+						<a href="#" ddata-dismiss="modal">
+							<span class="blue">
+								<i class="ace-icon fa fa-search-plus bigger-120"> Receta médica</i>
+							</span>
+						</a><br><br>
+						<a href="#" ddata-dismiss="modal">
+							<span class="blue">
+								<i class="ace-icon fa fa-search-plus bigger-120"> Constancia de buena salud</i>
+							</span>
+						</a><br><br>
+						<a href="#" ddata-dismiss="modal">
+							<span class="blue">
+								<i class="ace-icon fa fa-search-plus bigger-120"> Permiso médico</i>
+							</span>
+						</a><br><br>
+						<a href="#" ddata-dismiss="modal">
+							<span class="blue">
+								<i class="ace-icon fa fa-search-plus bigger-120"> Descarte de TBC</i>
+							</span>
+						</a><br><br>
+					</div><br>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+										<!--Fin Fin de reportes y constancias -->
 										
 										<!-- div.table-responsive -->
 
@@ -110,6 +147,11 @@
 							</td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
+									<a @if($med->imp_dx != '') href="#reportes-modal" @else href="{{url('medmeds/generareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias">
+									<span class="orange">
+										<i class="ace-icon fa fa-th-large bigger-120"></i>
+									</span>
+									</a>
 									<a href="{{route('medmed.show',$med->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
 									<span class="blue">
 										<i class="ace-icon fa fa-search-plus bigger-120"></i>
