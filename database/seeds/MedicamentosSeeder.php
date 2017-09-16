@@ -1,0 +1,195 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class MedicamentosSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+      $array = array(
+"DICLOXACILINA",
+"DICLOFENACO",
+"DICLOFENACO",
+"GABAPENTINA",
+"HIDROXIDO DE ALUMINIO",
+"IBUPROFENO",
+"IBUPROFENO", 
+"GENTAMICINA OFTALMICA",
+"DIMENHIDRINATO",
+"DIMENHIDRINATO",
+"DOXICICLINA",
+"DOXICICLINA",
+"ESCOPOLAMINA",
+"KETOROLACO",
+"LIDOCAINA",
+"MEBENDAZOL",
+"METAMIZOL",
+"METAMIZOL",
+"AMOXICILINA",
+"AMOXICILINA-ACIDO CLAVULANICO",
+"ACICLOVIR",
+"CIPROFLOXACINO/FENAZOPIRIDINA",
+"AZITROMICINA",
+"ALPRAZOLAN",
+"ACIDOACETIL SALICILICO",
+"ISORBIDE",
+"CLORFENAMINA",
+"CLORFENAMINA",  
+"CLOTRIMAZOL",
+"CLOTRIMAZOL",
+"BENCILPENICILINA SODICA",
+"CEFALEXINA",
+"CAPTOPRIL",
+"CELECOXIB",
+"CETIRIZINA",
+"BECLOMETASONA", 
+"PORTIL",
+"PORTIL",
+"DEXAMETASONA",
+"DEXTROSA 33%",
+"RANITIDINA",
+"PREDNISONA",
+"PREDNISONA",
+"PREDNISONA",
+"PNC G PROCAINICA",
+"PARACETAMOL",
+"NAPROXENO",
+"NEOMICINA",
+"OMEPRAZOL",
+"NIFEDIPINO",
+"RANITIDINA",
+"RANITIDINA",
+"SALBUTAMOL",
+"SIMETICONA",
+"TIAMINA",
+"VENDA ELASTICA",
+"VENDA ELASTICA",
+"VENDA ELASTICA",
+"VENDA ELASTICA",
+"VENDA ELASTICA",
+"JERINGA",
+"GASA ESTERIL", 
+"VOLUTROL",
+"ESPARADRAPO",
+"GUANTE A GRANEL",
+"GUANTE A GRANEL",
+"GUANTE ESTERIL-NEOGLOBES",
+"FRASCOS DE BK",
+"VOLUTROL",
+"MASCARILLAS 3M",
+"TRAMADOL",
+"TRAMADOL",
+"TRAMADOL",
+"VALSARTAN",
+"GENTAMICINA",
+"CEFTRIAXONA"
+);
+
+
+ $array1 = array(
+
+"CAP 500MG",
+"AMP 75MG",
+"GEL",
+"CAP ", 
+"JBE",
+"JBE",
+"TAB 400 MG",
+"GOTAS",
+"AMP 50 MG",
+"TAB 50 MG",
+"CAP 100 MG",
+"CAP 100 MG",
+"AMP 20 MG",
+"TAB 10 MG",
+"JALEA",
+"TAB 500 MG",
+"AMP 1G",
+"AMP 1G",
+"CAP 500 MG",
+"CAP 500-125 MG",
+"CAP 500-125 MG",
+"CAP CPX-FZP",
+"TAB 500 MG",
+"TAB 0.5 MG",
+"TAB 100 MG",
+"TAB 10 MG",
+"AMP 10 MG",
+"TAB 4 MG",
+"OVULOS",
+"CREMA",
+"AMP",
+"TAB 500MG",
+"TAB 25 MG",
+"CAP 200 MG",
+"TAB 10 MG",
+"AEROSOL",
+"CREMA",
+"CREMA",
+"AMP",
+"AMPULAS",
+"AMP 50 MG",
+"TAB 5 MG",
+"TAB 50 MG",
+"TAB 50 MG",
+"AMP",
+"TAB 500 MG",
+"TAB 500 MG",
+"CREMA",
+"CAP 20 MG",
+"TAB 30 MG",
+"TAB 300 MG",
+"TAB 150 MG",
+"JBE",
+"TAB",
+"TAB 100 MG",
+"3*5",
+"2*3",
+"6*5",
+"5*5",
+"4*5",
+"10CC",
+"10*10",
+"100 ML",
+"CAJAS",
+"CAJAS * 100 M",
+"CAJA *100 XS",
+"7 pulgadas",
+"PZAS",
+"100 ML",
+"PZAS",
+"AMP 50 MG",
+"AMP 100 MG",
+"TAB 50 MG",
+"TAB",
+"160MG",
+"AMPOLLA"
+
+ );
+
+ for ($i=0; $i<count($array); $i++) { 
+    		DB::table('cm_medicamentos')->insert([
+                'medicamento' => $array[$i],
+                'presentacion'=> $array1[$i],
+        	]);
+
+    	}
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+}

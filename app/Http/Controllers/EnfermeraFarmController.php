@@ -7,8 +7,22 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Estudiante;
+use App\User;
+use App\Religion;
+use App\EstCivil;
+use App\Departamento;
+use App\Provincia;
+use App\Distrito;
+use App\CuadroFamiliar;
+
 class EnfermeraFarmController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('enfermera');
+    }
     /**
      * Display a listing of the resource.
      *
