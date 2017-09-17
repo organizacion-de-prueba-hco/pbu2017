@@ -161,7 +161,7 @@ class MedicamentosSeeder extends Seeder
 "CAJA *100 XS",
 "7 pulgadas",
 "PZAS",
-"100 ML",
+"100 ML",//me escuchas? no he, 
 "PZAS",
 "AMP 50 MG",
 "AMP 100 MG",
