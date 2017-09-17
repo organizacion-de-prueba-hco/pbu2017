@@ -11,7 +11,8 @@ class MedMed extends Model
     'cantidad',
     'indicaciones',
     'medicina_id',
-    'medicamento_id'
+    'medicamento_id',
+    'estado'
     ];
 
     public function medicamento(){

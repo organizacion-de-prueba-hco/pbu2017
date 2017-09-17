@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\CmMedicina;
 use App\Estudiante;
 use App\User;
 use App\Religion;
@@ -15,6 +16,15 @@ use App\Departamento;
 use App\Provincia;
 use App\Distrito;
 use App\CuadroFamiliar;
+use App\CmAntecedente;
+use App\CmProcedimiento;
+use App\CmMedProc;
+use App\CmMedicamento;
+use App\MedMed;
+
+use Redirect;
+use Input;
+use Auth;
 
 class EnfermeraFarmController extends Controller
 {
@@ -30,7 +40,8 @@ class EnfermeraFarmController extends Controller
      */
     public function index()
     {
-        return view('users.enfermera.farmacia.atencion');
+        $medmed=MedMed::get();
+        return view('users.enfermera.farmacia.atencion',compact('medmed'));
     }
 
     /**

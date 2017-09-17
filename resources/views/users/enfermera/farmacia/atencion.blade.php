@@ -75,25 +75,23 @@
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Fecha</th>
-						<th class="center">Código</th>
-						<th>Nombres y Apellidos</th>
-						<th>Escuela</th>
+						<th class="center">Cantidad</th>
+						<th class="center">Receta</th>
+						<th>medicina_id</th>
+						<th>Nombre</th>
 						<th class="center">Estado</th>
 						<th>Cita</th>
 						<th></th>
 					</tr>
 				</thead>
-				<?php  
-					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
-				?>
+				
 				<tbody>
-					@foreach($medicina as $med)
+					@foreach($medmed as $med)
 						<tr>
-							<td class="center">{{$med->created_at}}</td>
-							<td class="center">{{$med->user->estudiante->cod_univ}}</td>
-							<td> {{$med->user->nombres}}, {{$med->user->apellido_paterno.' '.$med->user->apellido_materno}}</td>
-							<td>{{$med->user->estudiante->escuela->escuela}}</td>
+							<td class="center">{{$med->cantidad}}</td>
+							<td class="center">{{$med->indicaciones}}</td>
+							<td> {{$med->medicina_id}}</td>
+							<td>{{$med->medicamento->medicamento}}</td>
 							<td class="hidden-480" align="center">
 								@if($med->imp_dx != '')
 								<span class="label label-sm label-success">	Atendido
@@ -104,9 +102,7 @@
 								@endif
 							</td>
 							<td align="center">
-							@if($med->cita!='0000-00-00')
-								{{$med->cita}}
-							@endif
+							
 							</td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
