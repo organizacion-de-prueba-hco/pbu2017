@@ -84,13 +84,13 @@
 							</a>
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="{{url('enfermera')}}">
+									<a href="{{url('medico')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>
 								</li>
 								<li>
-									<a href="{{url('manual/enfermera.pdf')}}" target="_black">
+									<a href="{{url('manual/medico.pdf')}}" target="_black">
 										<i class="ace-icon fa fa-exclamation"></i>
 										Ayuda
 									</a>
