@@ -2,16 +2,16 @@
 @section('activacion')
 	<?php
 	$i ='';
-	$ii='active open';
-	$ii_i='active';
+	$ii='';
+	$ii_i='';
 	$ii_ii='';
 	$ii_iii='';
 	$ii_iv='';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='';
-	$iv_i='';
+	$iv='active open';
+	$iv_i='active';
 	$iv_ii='';
 	$v='';
 	$v_i='';

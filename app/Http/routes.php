@@ -121,8 +121,8 @@ Route::controller('medicos', 'MedicoController');
 
 Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');
-Route::resource('enfainv', 'EnfermInventarioController');
-Route::controller('enfainvs', 'EnfermInventarioController');
+Route::resource('enfainv', 'EnfermeraInvController');
+Route::controller('enfainvs', 'EnfermeraInvController');
 
 
 //Pdf
