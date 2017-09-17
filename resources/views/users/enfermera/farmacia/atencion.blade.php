@@ -93,7 +93,7 @@
 							<td> {{$med->medicina_id}}</td>
 							<td>{{$med->medicamento->medicamento}}</td>
 							<td class="hidden-480" align="center">
-								@if($med->imp_dx != '')
+								@if($med->estado != '0')
 								<span class="label label-sm label-success">	Atendido
 								</span>
 								@else
