@@ -7,8 +7,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\CmProcedimiento;
+
+use Redirect;
+use Input;
+use Auth;
+
 class EnfermeraOtroProcController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('enfermera');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +27,8 @@ class EnfermeraOtroProcController extends Controller
      */
     public function index()
     {
-        //
+        $procedimiento=CmProcedimiento::get();
+        return view('users.enfermera.otros.procedimientos',compact('procedimiento')); 
     }
 
     /**
