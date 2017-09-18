@@ -48,21 +48,35 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nueva Atención Farmacia</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
 					</div>
+					{!! Form::open(['url' => 'enfotroprocs/nuevo', 'method' => 'POST']) !!}
+					<div class="modal-body" align="center">
+						<div class="item form-group">
+						
+						<div class="col-md-12 col-sm-12 col-xs-12">
+                          <label>Procedimiento:<tab>	</label>
+                          <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" >
+									
+                        </div>
 
-					<div class="modal-body" align="center">Ingrese Código Universitario del Estudiante<br>
-						{!! Form::open(['url' => 'enffarms/nuevo', 'method' => 'GET']) !!}
-						<span class="input-icon">
-							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod" >
-										<i class="ace-icon fa fa-search nav-search-icon"></i>
-						</span>
-						<button class="btn btn-success btn-sm btn-round submit">
-							<i class="ace-icon fa fa-plus"></i>
-						</button>
-						{!!Form::close()!!}
+                        <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+							<label>Tarifa: </label>
+							<input type="number" step="any" placeholder="Tarifa" required="required" name="tarifa" >
+										
+						
+						</div>
+						
 						<br>
 					</div>
+					</div>
+					<br>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
+					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
+					</button>
+					</div>
+					{!!Form::close()!!}
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div>
@@ -76,7 +90,7 @@
 				<thead>
 					<tr>
 						<th class="center">Procedimiento</th>
-						<th class="center">tarifa</th>
+						<th class="center">Tarifa S/</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -86,8 +100,10 @@
 					@foreach($procedimiento as $med)
 						<tr>
 							<td class="center">{{$med->procedimiento}}</td>
-							<td class="center">{{$med->tarifa}}</td>
-							<td> </td>						
+							<td class="center">{{ number_format($med->tarifa, 2, ".", ".")  }}</td>
+							<td><a class="green" href="#editar-becas" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
+							<i class="ace-icon fa fa-pencil bigger-130"></i>
+						</a> </td>						
 							<td align="center"></td>
 							
 					</tr>
@@ -355,6 +371,32 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
+
+
+		function cargarModalEditar(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        console.log(">"+id);
+        var route="/jusunbecas/"+id+"/edit";
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+
+          success: function(result){
+            //console.log(result);
+            $('#editar-becas').html(result);
+                             
+          }                  
+        });
+      }
+
+
+
+
+
 		</script>
 
 
