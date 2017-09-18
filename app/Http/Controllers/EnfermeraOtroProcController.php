@@ -85,11 +85,18 @@ class EnfermeraOtroProcController extends Controller
     public function update(Request $request, $id)
     {
         $proc=CmProcedimiento::find($id);
+
+        $proc->procedimiento=$request->get('proc');
+        $proc->tarifa=$request->get('tar');
+        //$proc->save();
+        //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
         if($proc->fill(Input::all())->save()){
         return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');    
     }else{
         return Redirect::to('enfotroproc')->with('rojo','No se pudo actualizar, vuelva a intentar');
     }
+
+
     }
 
     /**

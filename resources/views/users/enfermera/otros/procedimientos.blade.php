@@ -99,7 +99,7 @@
 					<tr>
 						<th class="center">Procedimiento</th>
 						<th class="center">Tarifa S/</th>
-						<th></th>
+						<th>Editar</th>
 						<th></th>
 					</tr>
 				</thead>
