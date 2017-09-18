@@ -18,13 +18,13 @@
 	$v_ii='';
 	?>
 @endsection
-@section('titulo','Farmacia-Inventario')
+@section('titulo','Otros-Inventario')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
+	<li class="active">Otros</li>
 	<li class="active">Inventario</li>
 </ul>
 @endsection
@@ -40,7 +40,7 @@
 			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Atención &nbsp;&nbsp;&nbsp;
+				Inventario &nbsp;&nbsp;&nbsp;
 		</div>
 										<!--Modal Nuevo-->
 		<div id="nuevo-exp" class="modal fade" tabindex="-1">
@@ -48,7 +48,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nueva Atención Farmacia</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Artículo en el Inventario</h3>
 					</div>
 
 					<div class="modal-body" align="center">Ingrese Código Universitario del Estudiante<br>
