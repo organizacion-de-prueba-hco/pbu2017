@@ -37,13 +37,21 @@
 		</div>
 		
 		<div class="table-header">
-			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-proc" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Atención &nbsp;&nbsp;&nbsp;
+				Nuevo Procedimiento &nbsp;&nbsp;&nbsp;
 		</div>
+		
+				<!--Modal procedimiento-->
+		<div id="editar-procedimiento" class="modal fade" tabindex="-1">
+			
+		</div>
+										<!--Fin modal procedimiento-->							
+
+
 										<!--Modal Nuevo-->
-		<div id="nuevo-exp" class="modal fade" tabindex="-1">
+		<div id="nuevo-proc" class="modal fade" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -97,11 +105,11 @@
 				</thead>
 				
 				<tbody>
-					@foreach($procedimiento as $med)
+					@foreach($procedimiento as $proc)
 						<tr>
-							<td class="center">{{$med->procedimiento}}</td>
-							<td class="center">{{ number_format($med->tarifa, 2, ".", ".")  }}</td>
-							<td><a class="green" href="#editar-becas" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
+							<td class="center">{{$proc->procedimiento}}</td>
+							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
+							<td><a class="green" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
 						</a> </td>						
 							<td align="center"></td>
@@ -377,7 +385,7 @@
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
         console.log(">"+id);
-        var route="/jusunbecas/"+id+"/edit";
+        var route="/enfotroproc/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({
@@ -387,7 +395,7 @@
 
           success: function(result){
             //console.log(result);
-            $('#editar-becas').html(result);
+            $('#editar-procedimiento').html(result);
                              
           }                  
         });

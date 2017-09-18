@@ -71,7 +71,8 @@ class EnfermeraOtroProcController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proc = CmProcedimiento::find($id);
+        return view('users.enfermera.otros.editar-procedimiento',compact('proc'));
     }
 
     /**
@@ -83,7 +84,12 @@ class EnfermeraOtroProcController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $proc=CmProcedimiento::find($id);
+        if($proc->fill(Input::all())->save()){
+        return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');    
+    }else{
+        return Redirect::to('enfotroproc')->with('rojo','No se pudo actualizar, vuelva a intentar');
+    }
     }
 
     /**
@@ -107,34 +113,6 @@ class EnfermeraOtroProcController extends Controller
         $procedimiento->save();
         return Redirect::to('enfotroproc')->with('verde','Se registró un nuevo Procedimiento');
 
-        /*
-        $cod = $request->get('cod-nuevo');
-        $estudiante = Estudiante::where('cod_univ', $cod)->first();
-        if(!$estudiante){
-          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
-        }
-        if(!$estudiante){
-          return view('users.jufc.matricula.nuevo', compact('estudiante'));
-        }
-
-        //Si la asistenta social es quien e´stá asiendo lps cambios
-        if(Auth::user()->tipo_user!='4'){
-            return Redirect::to('jufcmatricula')->with('rojo','Solo el Director de Unidad puede realizar estos cambios');
-        }
-
-        $date = Carbon::now();
-            if ($date->format('m')>=8) { $semestre=$date->format('Y').' - II'; }
-            else{ $semestre=$date->format('Y').' - I';}
-
-        $talleres=CursoTaller::join('tallers','tallers.id','=','curso_tallers.taller_id')->where('tallers.unidad','4')->where('curso_tallers.semestre',$semestre)->select('tallers.*','curso_tallers.id as id_ct')->get();
-        $mistalleres=MatriculaTaller::join('curso_tallers','curso_tallers.id','=','matricula_tallers.curso_taller_id')->where('curso_tallers.semestre',$semestre)->where('matricula_tallers.estudiante',$estudiante->user_id)->get();
-        
-        return view('users.jufc.matricula.nuevo', compact('estudiante','talleres','mistalleres'));
-
-        */
     }
 
 
