@@ -246,7 +246,7 @@
 
 						<ul class="submenu">
 							<li class="{{$v_i}}">
-								<a href="{{url('directivotalleres/matriculauafsm')}}">
+								<a href="{{url('enfotroinv')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inventario
 								</a>
@@ -255,7 +255,7 @@
 							</li>
 
 							<li class="{{$v_ii}}">
-								<a href="{{url('directivotalleres/uafsm')}}">
+								<a href="{{url('enfotroproc')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Procedimientos
 								</a>

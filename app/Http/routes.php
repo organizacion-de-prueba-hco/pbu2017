@@ -123,6 +123,12 @@ Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');
 Route::resource('enfainv', 'EnfermeraInvController');
 Route::controller('enfainvs', 'EnfermeraInvController');
+//enfermera/otro/inventario
+Route::resource('enfotroinv', 'EnfermeraOtroInvController');
+Route::controller('enfotrotinvs', 'EnfermeraOtroInvController');
+//enfermera/otro/procedimiento
+Route::resource('enfotroproc', 'EnfermeraOtroProcController');
+Route::controller('enfotroprocs', 'EnfermeraOtroProcController');
 
 
 //Pdf
