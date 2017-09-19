@@ -226,7 +226,7 @@
 							</li>
 
 							<li class="{{$iv_ii}}">
-								<a href="{{url('enfainv')}}">
+								<a href="{{url('enfinv')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inventario
 								</a>

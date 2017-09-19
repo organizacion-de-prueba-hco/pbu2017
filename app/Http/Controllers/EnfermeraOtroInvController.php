@@ -88,14 +88,14 @@ class EnfermeraOtroInvController extends Controller
     public function update(Request $request, $id)
     {
 
-         $proc=CmInventario::find($id);
+         $inv=CmInventario::find($id);
 
-        $proc->nombre=$request->get('nom');
-        $proc->descripcion=$request->get('desc');
-        $proc->cantidad=$request->get('cant');
+        $inv->nombre=$request->get('nom');
+        $inv->descripcion=$request->get('desc');
+        $inv->cantidad=$request->get('cant');
         //$proc->save();
         //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
-        if($proc->fill(Input::all())->save()){
+        if($inv->fill(Input::all())->save()){
         return Redirect::to('enfotroinv')->with('verde','Se actualizo el artículo del inventario');    
     }else{
         return Redirect::to('enfotroinv')->with('rojo','No se pudo actualizar, vuelva a intentar');

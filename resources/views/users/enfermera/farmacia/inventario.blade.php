@@ -37,32 +37,61 @@
 		</div>
 		
 		<div class="table-header">
-			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
 				Atención &nbsp;&nbsp;&nbsp;
 		</div>
+										
+
+		<!--Modal editar-inventario -->
+		<div id="editar-inventario" class="modal fade" tabindex="-1">
+			
+		</div>
+										<!--Fin modal editar-inventario-->	
+
+
 										<!--Modal Nuevo-->
-		<div id="nuevo-exp" class="modal fade" tabindex="-1">
+		<div id="nuevo-inv" class="modal fade" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nueva Atención Farmacia</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Artículo</h3>
 					</div>
+					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
+					<div class="modal-body" align="center">
+						<div class="item form-group">
+						
+						<div class="col-md-12 col-sm-12 col-xs-12">
+                          <label>Medicamento:<tab>	</label>
+                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="med" >
+									
+                        </div>
 
-					<div class="modal-body" align="center">Ingrese Código Universitario del Estudiante<br>
-						{!! Form::open(['url' => 'enffarms/nuevo', 'method' => 'GET']) !!}
-						<span class="input-icon">
-							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod" >
-										<i class="ace-icon fa fa-search nav-search-icon"></i>
-						</span>
-						<button class="btn btn-success btn-sm btn-round submit">
-							<i class="ace-icon fa fa-plus"></i>
-						</button>
-						{!!Form::close()!!}
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <label>Presentación:<tab>	</label>
+                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="pres" >
+									
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+							<label>Cantidad: </label>
+							<input type="number" placeholder="Cantidad" required="required" name="cant" >
+										
+						
+						</div>
+						
 						<br>
 					</div>
+					</div>
+					<br>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
+					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
+					</button>
+					</div>
+					{!!Form::close()!!}
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div>
@@ -78,7 +107,7 @@
 						<th class="center">Nombre</th>
 						<th class="center">Presentación</th>
 						<th>Cantidad</th>
-						<th></th>
+						<th>Editar</th>
 					</tr>
 				</thead>
 				
@@ -88,7 +117,9 @@
 							<td class="center">{{$med->medicamento}}</td>
 							<td class="center">{{$med->presentacion}}</td>
 							<td> {{$med->cantidad}}</td>						
-							<td align="center"></td>
+							<td align="center"><a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
+							<i class="ace-icon fa fa-pencil bigger-130"></i>
+						</a></td>
 							
 					</tr>
 					@endforeach
@@ -355,6 +386,28 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
+
+
+		function cargarModalEditar(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        console.log(">"+id);
+        var route="/enfinv/"+id+"/edit";
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+
+          success: function(result){
+            //console.log(result);
+            $('#editar-inventario').html(result);
+                             
+          }                  
+        });
+      }
+
 		</script>
 
 

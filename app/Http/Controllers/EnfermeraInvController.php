@@ -83,7 +83,8 @@ class EnfermeraInvController extends Controller
      */
     public function edit($id)
     {
-        //
+        $med = CmMedicamento::find($id);
+        return view('users.enfermera.farmacia.editar-inventario',compact('med'));
     }
 
     /**
@@ -95,7 +96,18 @@ class EnfermeraInvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $med=CmMedicamento::find($id);
+
+        $med->medicamento=$request->get('med');
+        $med->presentacion=$request->get('pres');
+        $med->cantidad=$request->get('cant');
+        //$proc->save();
+        //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
+        if($med->fill(Input::all())->save()){
+        return Redirect::to('enfinv')->with('verde','Se actualizo el artículo del inventario');    
+    }else{
+        return Redirect::to('enfinv')->with('rojo','No se pudo actualizar, vuelva a intentar');
+    }
     }
 
     /**
@@ -108,4 +120,20 @@ class EnfermeraInvController extends Controller
     {
         //
     }
+
+
+public function postNuevo(Request $request){
+
+    
+
+        $medicamento=new CmMedicamento;
+        $medicamento->medicamento=$request->get('med');
+        $medicamento->presentacion=$request->get('pres');
+        $medicamento->cantidad=$request->get('cant');
+        $medicamento->save();
+        return Redirect::to('enfinv')->with('verde','Se registró un nuevo  artículo en el Inventario');
+    }
+
+
+
 }

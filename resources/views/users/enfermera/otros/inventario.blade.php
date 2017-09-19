@@ -43,11 +43,11 @@
 				Inventario &nbsp;&nbsp;&nbsp;
 		</div>
 										
-		<!--Modal procedimiento-->
+		<!--Modal editar-inventario -->
 		<div id="editar-inventario" class="modal fade" tabindex="-1">
 			
 		</div>
-										<!--Fin modal procedimiento-->	
+										<!--Fin modal editar-inventario-->	
 
 
 										<!--Modal Nuevo-->
