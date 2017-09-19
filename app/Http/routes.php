@@ -125,7 +125,7 @@ Route::resource('enfainv', 'EnfermeraInvController');
 Route::controller('enfainvs', 'EnfermeraInvController');
 //enfermera/otro/inventario
 Route::resource('enfotroinv', 'EnfermeraOtroInvController');
-Route::controller('enfotrotinvs', 'EnfermeraOtroInvController');
+Route::controller('enfotroinvs', 'EnfermeraOtroInvController');
 //enfermera/otro/procedimiento
 Route::resource('enfotroproc', 'EnfermeraOtroProcController');
 Route::controller('enfotroprocs', 'EnfermeraOtroProcController');

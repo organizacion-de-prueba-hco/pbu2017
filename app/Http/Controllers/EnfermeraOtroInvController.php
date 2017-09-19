@@ -73,7 +73,9 @@ class EnfermeraOtroInvController extends Controller
      */
     public function edit($id)
     {
-        //
+         $inv = CmInventario::find($id);
+        return view('users.enfermera.otros.editar-inventario',compact('inv'));
+        
     }
 
     /**
@@ -85,7 +87,20 @@ class EnfermeraOtroInvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+         $proc=CmInventario::find($id);
+
+        $proc->nombre=$request->get('nom');
+        $proc->descripcion=$request->get('desc');
+        $proc->cantidad=$request->get('cant');
+        //$proc->save();
+        //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
+        if($proc->fill(Input::all())->save()){
+        return Redirect::to('enfotroinv')->with('verde','Se actualizo el artículo del inventario');    
+    }else{
+        return Redirect::to('enfotroinv')->with('rojo','No se pudo actualizar, vuelva a intentar');
+    }
+
     }
 
     /**
@@ -98,4 +113,18 @@ class EnfermeraOtroInvController extends Controller
     {
         //
     }
+
+    public function postNuevo(Request $request){
+
+    
+
+        $inventario=new CmInventario;
+        $inventario->nombre=$request->get('nom');
+        $inventario->descripcion=$request->get('desc');
+        $inventario->cantidad=$request->get('cant');
+        $inventario->save();
+        return Redirect::to('enfotroinv')->with('verde','Se registró un nuevo  artículo en el Invenario');
+    }
+
+
 }

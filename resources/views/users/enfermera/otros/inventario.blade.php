@@ -42,6 +42,14 @@
 			</a>
 				Inventario &nbsp;&nbsp;&nbsp;
 		</div>
+										
+		<!--Modal procedimiento-->
+		<div id="editar-inventario" class="modal fade" tabindex="-1">
+			
+		</div>
+										<!--Fin modal procedimiento-->	
+
+
 										<!--Modal Nuevo-->
 		<div id="nuevo-inv" class="modal fade" tabindex="-1">
 			<div class="modal-dialog">
@@ -56,19 +64,19 @@
 						
 						<div class="col-md-12 col-sm-12 col-xs-12">
                           <label>Nombre:<tab>	</label>
-                          <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" >
+                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="nom" >
 									
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
                           <label>Descripción:<tab>	</label>
-                          <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" >
+                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="desc" >
 									
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12" align="center">
 							<label>Cantidad: </label>
-							<input type="number" placeholder="Tarifa" required="required" name="tarifa" >
+							<input type="number" placeholder="Cantidad" required="required" name="cant" >
 										
 						
 						</div>
@@ -98,7 +106,7 @@
 						<th class="center">Nombre</th>
 						<th class="center">Descripción</th>
 						<th>Cantidad</th>
-						<th></th>
+						<th>Editar</th>
 					</tr>
 				</thead>
 				
@@ -108,7 +116,9 @@
 							<td class="center">{{$med->nombre}}</td>
 							<td class="center">{{$med->descripcion}}</td>
 							<td> {{$med->cantidad}}</td>						
-							<td align="center"></td>
+							<td align="center"><a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
+							<i class="ace-icon fa fa-pencil bigger-130"></i>
+						</a></td>
 							
 					</tr>
 					@endforeach
@@ -375,6 +385,29 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
+
+
+		function cargarModalEditar(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        console.log(">"+id);
+        var route="/enfotroinv/"+id+"/edit";
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+
+          success: function(result){
+            //console.log(result);
+            $('#editar-inventario').html(result);
+                             
+          }                  
+        });
+      }
+
+
 		</script>
 
 
