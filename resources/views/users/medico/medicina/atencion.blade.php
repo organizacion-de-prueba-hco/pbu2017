@@ -79,24 +79,26 @@
 					</div>
 					<br>
 					<div class="hidden-sm hidden-xs action-buttons" align="center">
-						<a href="#" ddata-dismiss="modal">
-							<span class="blue">
-								<i class="ace-icon fa fa-search-plus bigger-120"> Receta médica</i>
+						<input id="token" type="hidden" name="_token" value="{{ csrf_token() }}">
+						
+						<a href="#" id="rm">
+							<span class="black">
+								<i class="ace-icon fa fa-th-large bigger-120"> Receta médica</i>
 							</span>
 						</a><br><br>
-						<a href="#" ddata-dismiss="modal">
+						<a href="#" id="tbc" data-dismiss="modal">
 							<span class="blue">
-								<i class="ace-icon fa fa-search-plus bigger-120"> Constancia de buena salud</i>
+								<i class="ace-icon fa fa-th-large bigger-120"> Descarte de TBC</i>
 							</span>
 						</a><br><br>
-						<a href="#" ddata-dismiss="modal">
-							<span class="blue">
-								<i class="ace-icon fa fa-search-plus bigger-120"> Permiso médico</i>
+						<a href="#" id="cbs" data-dismiss="modal">
+							<span class="green">
+								<i class="ace-icon fa fa-th-large bigger-120"> Constancia de buena Salud</i>
 							</span>
 						</a><br><br>
-						<a href="#" ddata-dismiss="modal">
-							<span class="blue">
-								<i class="ace-icon fa fa-search-plus bigger-120"> Descarte de TBC</i>
+						<a href="#" id="cpe" data-dismiss="modal">
+							<span class="orange">
+								<i class="ace-icon fa fa-th-large bigger-120"> Constancia por enfermedad</i>
 							</span>
 						</a><br><br>
 					</div><br>
@@ -108,6 +110,7 @@
 										<!-- div.table-responsive -->
 
 										<!-- div.dataTables_borderWrap -->
+		<a href="#" id="abrir"></a>
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
@@ -147,8 +150,8 @@
 							</td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a @if($med->imp_dx != '') href="#reportes-modal" @else href="{{url('medmeds/generareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias">
-									<span class="orange">
+									<a @if($med->imp_dx != '') href="#reportes-modal" @else href="{{url('medmeds/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$med->id}}')">
+									<span class="orange" >
 										<i class="ace-icon fa fa-th-large bigger-120"></i>
 									</span>
 									</a>
@@ -424,6 +427,23 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
+
+		function reportes($id){
+			//console.log($id);
+			$('#rm').attr({onclick: "cerrarmodal();"});
+			$('#tbc').attr({onclick: "cerrarmodal();"});
+			$('#cbs').attr({onclick: "cerrarmodal();"});
+			$('#cpe').attr({onclick: "cerrarmodal();"});
+			$("#rm").attr('href','/medmeds/descargareporte/1/'+$id);
+			$("#tbc").attr('href','/medmeds/descargareporte/2/'+$id);
+			$("#cbs").attr('href','/medmeds/descargareporte/3/'+$id);
+			$("#cpe").attr('href','/medmeds/descargareporte/4/'+$id);
+		}
+
+		function cerrarmodal(){
+			 $('#reportes-modal').modal('hide');
+		}
+
 		</script>
 
 

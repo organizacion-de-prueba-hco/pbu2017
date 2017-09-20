@@ -21,6 +21,8 @@ use App\CmProcedimiento;
 use App\CmMedProc;
 use App\CmMedicamento;
 use App\MedMed;
+use Carbon\Carbon;
+use App\InformeNutricion;
 
 use Redirect;
 use Input;
@@ -287,11 +289,38 @@ class MedicoMedController extends Controller
             return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));  
      }
 
-     public function getGenerareporte($tipo,$id){
-        //
+     public function getDescargareporte($tipo, $id){
         $med=CmMedicina::find($id);
         if(!$med) {
-            return back()->with('azul','Estado pendiente, no puede generar reportes o constancias');
+            return Redirect::to('medmed')->with('azul','Estado pendiente, no puede generar reportes o constancias');
+        }
+        else{
+        $date = Carbon::now();
+        switch ($tipo) {
+            case '1':
+                $recetas = MedMed::where('medicina_id',$id)->get();
+                $medicina = CmMedicina::find($id);
+                $view =  \View::make('pdf.cm.rm', compact('date','recetas','medicina'))->render();
+                $pdf = \App::make('dompdf.wrapper');
+                $pdf->loadHTML($view);
+                return $pdf->download('Receta Médica.pdf');
+            break;
+            case '2': 
+                return "Descarte de TBC";
+            break;
+            case '3': 
+                return "Constancia de buena salud";
+            break;
+            case '4':
+                return "Constancia por enfermedad";
+            break;
+            default: return Redirect::to('medmed')->with('naranja','Algo salió mal'); break;
+        }
+ 
+       
+        //$date = $date->format('d-m-Y');
+       
+         //$pdf->stream('invoiced');
         }
      }
 

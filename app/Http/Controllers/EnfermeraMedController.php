@@ -174,14 +174,14 @@ class EnfermeraMedController extends Controller
     }
 
      public function recargarFormularios($ruta,$estudiante){
-            $religiones=Religion::lists('religion','id');
-            $est_civils=EstCivil::lists('est_civil','id');
-            $departamentos=Departamento::lists('departamento','id');
-            $provincias=Provincia::lists('provincia','id');
-            $distritos=Distrito::lists('distrito','id');
-            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
+        $religiones=Religion::lists('religion','id');
+        $est_civils=EstCivil::lists('est_civil','id');
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+        $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+        $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+        return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
      }
     
