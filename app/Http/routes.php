@@ -121,8 +121,14 @@ Route::controller('medicos', 'MedicoController');
 
 Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');
-Route::resource('enfainv', 'EnfermeraInvController');
-Route::controller('enfainvs', 'EnfermeraInvController');
+Route::resource('enfinv', 'EnfermeraInvController');
+Route::controller('enfinvs', 'EnfermeraInvController');
+//enfermera/otro/inventario
+Route::resource('enfotroinv', 'EnfermeraOtroInvController');
+Route::controller('enfotroinvs', 'EnfermeraOtroInvController');
+//enfermera/otro/procedimiento
+Route::resource('enfotroproc', 'EnfermeraOtroProcController');
+Route::controller('enfotroprocs', 'EnfermeraOtroProcController');
 
 
 //Pdf

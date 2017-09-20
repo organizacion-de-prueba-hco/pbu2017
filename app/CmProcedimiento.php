@@ -10,6 +10,7 @@ class CmProcedimiento extends Model
     protected $primaryKey='id';
     protected $fillable=[
     'procedimiento',
+    'area',
     'tarifa',
     'created_at',
     'updated_at'

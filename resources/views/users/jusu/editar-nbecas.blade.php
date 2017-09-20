@@ -23,6 +23,7 @@
                         </div>
                     </div>    
 				</div>
+				<div>sfasdf</div>
 				<div class="modal-footer">
 					<input type="submit" class="btn btn-sm btn-success" value="Editar">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">

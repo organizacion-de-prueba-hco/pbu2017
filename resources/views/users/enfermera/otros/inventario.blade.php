@@ -10,21 +10,21 @@
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='active open';
+	$iv='';
 	$iv_i='';
-	$iv_ii='active';
-	$v='';
-	$v_i='';
+	$iv_ii='';
+	$v='active open';
+	$v_i='active';
 	$v_ii='';
 	?>
 @endsection
-@section('titulo','Farmacia-Inventario')
+@section('titulo','Otros-Inventario')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
+	<li class="active">Otros</li>
 	<li class="active">Inventario</li>
 </ul>
 @endsection
@@ -40,10 +40,9 @@
 			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Atención &nbsp;&nbsp;&nbsp;
+				Inventario &nbsp;&nbsp;&nbsp;
 		</div>
 										
-
 		<!--Modal editar-inventario -->
 		<div id="editar-inventario" class="modal fade" tabindex="-1">
 			
@@ -59,19 +58,19 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Artículo</h3>
 					</div>
-					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'enfotroinvs/nuevo', 'method' => 'POST']) !!}
 					<div class="modal-body" align="center">
 						<div class="item form-group">
 						
 						<div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Medicamento:<tab>	</label>
-                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="med" >
+                          <label>Nombre:<tab>	</label>
+                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="nom" >
 									
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Presentación:<tab>	</label>
-                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="pres" >
+                          <label>Descripción:<tab>	</label>
+                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="desc" >
 									
                         </div>
 
@@ -105,17 +104,17 @@
 				<thead>
 					<tr>
 						<th class="center">Nombre</th>
-						<th class="center">Presentación</th>
+						<th class="center">Descripción</th>
 						<th>Cantidad</th>
 						<th>Editar</th>
 					</tr>
 				</thead>
 				
 				<tbody>
-					@foreach($medicamento as $med)
+					@foreach($inventario as $med)
 						<tr>
-							<td class="center">{{$med->medicamento}}</td>
-							<td class="center">{{$med->presentacion}}</td>
+							<td class="center">{{$med->nombre}}</td>
+							<td class="center">{{$med->descripcion}}</td>
 							<td> {{$med->cantidad}}</td>						
 							<td align="center"><a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
@@ -392,7 +391,7 @@
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
         console.log(">"+id);
-        var route="/enfinv/"+id+"/edit";
+        var route="/enfotroinv/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({
@@ -407,6 +406,7 @@
           }                  
         });
       }
+
 
 		</script>
 

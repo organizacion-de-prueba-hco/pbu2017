@@ -10,22 +10,22 @@
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='active open';
+	$iv='';
 	$iv_i='';
-	$iv_ii='active';
-	$v='';
+	$iv_ii='';
+	$v='active open';
 	$v_i='';
-	$v_ii='';
+	$v_ii='active';
 	?>
 @endsection
-@section('titulo','Farmacia-Inventario')
+@section('titulo','Otros-Procedimiento')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
-	<li class="active">Inventario</li>
+	<li class="active">Otros</li>
+	<li class="active">Procedimiento</li>
 </ul>
 @endsection
 @section('contenido')
@@ -37,47 +37,40 @@
 		</div>
 		
 		<div class="table-header">
-			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-proc" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Atención &nbsp;&nbsp;&nbsp;
+				Nuevo Procedimiento &nbsp;&nbsp;&nbsp;
 		</div>
-										
-
-		<!--Modal editar-inventario -->
-		<div id="editar-inventario" class="modal fade" tabindex="-1">
+		
+				<!--Modal procedimiento-->
+		<div id="editar-procedimiento" class="modal fade" tabindex="-1">
 			
 		</div>
-										<!--Fin modal editar-inventario-->	
+										<!--Fin modal procedimiento-->							
 
 
 										<!--Modal Nuevo-->
-		<div id="nuevo-inv" class="modal fade" tabindex="-1">
+		<div id="nuevo-proc" class="modal fade" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Artículo</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
 					</div>
-					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
+					{!! Form::open(['url' => 'enfotroprocs/nuevo', 'method' => 'POST']) !!}
 					<div class="modal-body" align="center">
 						<div class="item form-group">
 						
 						<div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Medicamento:<tab>	</label>
-                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="med" >
-									
-                        </div>
-
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Presentación:<tab>	</label>
-                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="pres" >
+                          <label>Procedimiento:<tab>	</label>
+                          <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" >
 									
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12" align="center">
-							<label>Cantidad: </label>
-							<input type="number" placeholder="Cantidad" required="required" name="cant" >
+							<label>Tarifa: </label>
+							<input type="number" step="any" placeholder="Tarifa" required="required" name="tarifa" >
 										
 						
 						</div>
@@ -104,22 +97,22 @@
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Nombre</th>
-						<th class="center">Presentación</th>
-						<th>Cantidad</th>
+						<th class="center">Procedimiento</th>
+						<th class="center">Tarifa S/</th>
 						<th>Editar</th>
+						<th></th>
 					</tr>
 				</thead>
 				
 				<tbody>
-					@foreach($medicamento as $med)
+					@foreach($procedimiento as $proc)
 						<tr>
-							<td class="center">{{$med->medicamento}}</td>
-							<td class="center">{{$med->presentacion}}</td>
-							<td> {{$med->cantidad}}</td>						
-							<td align="center"><a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
+							<td class="center">{{$proc->procedimiento}}</td>
+							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
+							<td><a class="green" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')">
 							<i class="ace-icon fa fa-pencil bigger-130"></i>
-						</a></td>
+						</a> </td>						
+							<td align="center"></td>
 							
 					</tr>
 					@endforeach
@@ -392,7 +385,7 @@
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
         console.log(">"+id);
-        var route="/enfinv/"+id+"/edit";
+        var route="/enfotroproc/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({
@@ -402,11 +395,15 @@
 
           success: function(result){
             //console.log(result);
-            $('#editar-inventario').html(result);
+            $('#editar-procedimiento').html(result);
                              
           }                  
         });
       }
+
+
+
+
 
 		</script>
 

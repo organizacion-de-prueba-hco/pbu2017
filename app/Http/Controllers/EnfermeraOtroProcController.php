@@ -7,25 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\CmMedicina;
-use App\Estudiante;
-use App\User;
-use App\Religion;
-use App\EstCivil;
-use App\Departamento;
-use App\Provincia;
-use App\Distrito;
-use App\CuadroFamiliar;
-use App\CmAntecedente;
 use App\CmProcedimiento;
-use App\CmMedProc;
-use App\CmMedicamento;
 
 use Redirect;
 use Input;
 use Auth;
 
-class EnfermeraInvController extends Controller
+class EnfermeraOtroProcController extends Controller
 {
     public function __construct()
     {
@@ -39,8 +27,8 @@ class EnfermeraInvController extends Controller
      */
     public function index()
     {
-        $medicamento=CmMedicamento::get();
-        return view('users.enfermera.farmacia.inventario',compact('medicamento')); 
+        $procedimiento=CmProcedimiento::get();
+        return view('users.enfermera.otros.procedimientos',compact('procedimiento')); 
     }
 
     /**
@@ -83,8 +71,8 @@ class EnfermeraInvController extends Controller
      */
     public function edit($id)
     {
-        $med = CmMedicamento::find($id);
-        return view('users.enfermera.farmacia.editar-inventario',compact('med'));
+        $proc = CmProcedimiento::find($id);
+        return view('users.enfermera.otros.editar-procedimiento',compact('proc'));
     }
 
     /**
@@ -96,18 +84,19 @@ class EnfermeraInvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $med=CmMedicamento::find($id);
+        $proc=CmProcedimiento::find($id);
 
-        $med->medicamento=$request->get('med');
-        $med->presentacion=$request->get('pres');
-        $med->cantidad=$request->get('cant');
+        $proc->procedimiento=$request->get('proc');
+        $proc->tarifa=$request->get('tar');
         //$proc->save();
         //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
-        if($med->fill(Input::all())->save()){
-        return Redirect::to('enfinv')->with('verde','Se actualizo el artículo del inventario');    
+        if($proc->fill(Input::all())->save()){
+        return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');    
     }else{
-        return Redirect::to('enfinv')->with('rojo','No se pudo actualizar, vuelva a intentar');
+        return Redirect::to('enfotroproc')->with('rojo','No se pudo actualizar, vuelva a intentar');
     }
+
+
     }
 
     /**
@@ -121,19 +110,17 @@ class EnfermeraInvController extends Controller
         //
     }
 
+    public function postNuevo(Request $request){
 
-public function postNuevo(Request $request){
+     
 
-    
+        $procedimiento=new CmProcedimiento;
+        $procedimiento->procedimiento=$request->get('procedimiento');
+        $procedimiento->tarifa=$request->get('tarifa');
+        $procedimiento->save();
+        return Redirect::to('enfotroproc')->with('verde','Se registró un nuevo Procedimiento');
 
-        $medicamento=new CmMedicamento;
-        $medicamento->medicamento=$request->get('med');
-        $medicamento->presentacion=$request->get('pres');
-        $medicamento->cantidad=$request->get('cant');
-        $medicamento->save();
-        return Redirect::to('enfinv')->with('verde','Se registró un nuevo  artículo en el Inventario');
     }
-
 
 
 }
