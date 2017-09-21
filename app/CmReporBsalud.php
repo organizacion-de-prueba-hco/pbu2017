@@ -8,8 +8,9 @@ class CmReporBsalud extends Model
 {
     protected $table='cm_repor_bsaluds';
     protected $primaryKey='id';
-    protected $fillable=[
-    'created_at';
-    'updated_at'
-    ];
+    protected $fillable=['medicina_id'];
+
+    public function medicina(){
+        return $this->belongsto('App\CmMedicina','medicina_id','id');
+    }
 }

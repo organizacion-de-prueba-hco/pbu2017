@@ -23,6 +23,8 @@ use App\CmMedicamento;
 use App\MedMed;
 use Carbon\Carbon;
 use App\InformeNutricion;
+use App\CmReporTbc;
+use App\CmReporBsalud;
 
 use Redirect;
 use Input;
@@ -306,10 +308,47 @@ class MedicoMedController extends Controller
                 return $pdf->download('Receta Médica.pdf');
             break;
             case '2': 
-                return "Descarte de TBC";
+                $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
+                if($r_tbc){
+                    //PDF
+                    $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
+                    $view =  \View::make('pdf.cm.tbc', compact('date','r_tbc'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Descarte de TBC.pdf');
+                    
+                }else{
+                    $tbc=new CmReporTbc;
+                    $tbc->medicina_id=$id;
+                    $tbc->save();
+                    //PDF
+                    $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
+                    $view =  \View::make('pdf.cm.tbc', compact('date','r_tbc'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Descarte de TBC.pdf');
+                }
             break;
             case '3': 
-                return "Constancia de buena salud";
+                $r_bs=CmReporBsalud::where('medicina_id',$id)->first();
+                if($r_bs){
+                    //PDF
+                    $view =  \View::make('pdf.cm.bs', compact('date','r_bs'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Constancia de Buena Salud.pdf');
+                    
+                }else{
+                    $tbc=new CmReporBsalud;
+                    $tbc->medicina_id=$id;
+                    $tbc->save();
+                    //PDF
+                    $r_tbc=CmReporBsalud::where('medicina_id',$id)->first();
+                    $view =  \View::make('pdf.cm.bs', compact('date','r_bs'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Constancia de Buena Salud.pdf');
+                }
             break;
             case '4':
                 return "Constancia por enfermedad";
