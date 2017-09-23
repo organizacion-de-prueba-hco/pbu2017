@@ -15,6 +15,7 @@ class CreateCmReporEnfermedadsTable extends Migration
         Schema::create('cm_repor_enfermedads', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('medicina_id')->unsigned();
+            $table->integer('periodo');
             $table->foreign('medicina_id')->references('id')->on('cm_medicinas')->onDelete('cascade');
             $table->timestamps();
         });

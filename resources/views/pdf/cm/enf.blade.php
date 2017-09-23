@@ -1,7 +1,9 @@
 <html>
-<?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
+<?php use Carbon\Carbon; Carbon::setLocale('es');  
+$fn= Carbon::parse($r_enf->medicina->user->f_nac);
+?>
   <head>
-    <title>Descarte de TBC</title>
+    <title>Constancia por Enfermedad</title>
     <meta http-equiv="Content-Type" content="text/html;">
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -51,24 +53,38 @@
   </div>
   <div id="content" style="margin-left: 30px; margin-right: 30px;">
     <br><br>
-    <h2 align="center" style="font-size: 20px; font-family: fantasy;">CONSTANCIA DE EXAMEN MÉDICO<br><br><u>DESCARTE - TBC</u></h2>
+    <h2 align="center" style="font-size: 20px; font-family: fantasy;">CONSTANCIA POR ENFERMEDAD</h2>
 
     <div>
-      <p><b>Apellidos y Nombres: </b>{{$r_tbc->medicina->user->apellido_paterno.' '.$r_tbc->medicina->user->apellido_materno.' '.$r_tbc->medicina->user->nombres}}</p>
-      <p><b>Código Universitario: </b>{{$r_tbc->medicina->user->estudiante->cod_univ}}</p>
-      <p><b>Escuela Profesional: </b>{{$r_tbc->medicina->user->estudiante->escuela->escuela}}</p>
-      <p><b>Facultad: </b>{{$r_tbc->medicina->user->estudiante->escuela->facultad->facultad}}</p>
-      <?php $fn= Carbon::parse($r_tbc->medicina->user->f_nac); ?>
-      <p><b>Edad: </b>{{Carbon::createFromDate(
-                              $fn->format('Y'),
-                              $fn->format('m'),
-                              $fn->format('d')
-                            )->age.' Años'}}</p>  
-      <p><b>Lugar de Nacimiento: </b>{{$r_tbc->medicina->user->distrito_naci->distrito.' - '.$r_tbc->medicina->user->distrito_naci->provincia->provincia.' - '.$r_tbc->medicina->user->distrito_naci->provincia->departamento->departamento}}</p>
-      <p><b>Diagnóstico: </b><br>{{$r_tbc->medicina->imp_dx}}</p>  
+      <p>{{$r_enf->medicina->user->apellido_paterno.' '.$r_enf->medicina->user->apellido_materno.' '.$r_enf->medicina->user->nombres}} de {{Carbon::createFromDate( $fn->format('Y'),$fn->format('m'), $fn->format('d'))->age}} años de edad, identificado con el DNI N° {{$r_enf->medicina->user->dni}}; ha sido evaluado(a) en el Centro Médico de la UNHEVAL; encontrandose con el diagnóstico: </p>
+      <p>{{$r_enf->medicina->imp_dx}}</p>  
+      <p>Días de permiso : <b>{{$r_enf->periodo}} @if($r_enf->periodo==1) dia @else dias @endif</b></p><br>
+      <p>Se emite el presente para los fines que requiera.</p><br>
 
-    </div><br><br><br><br><br><br><br><br>
+
+    </div><br><br>
     <div align="right">
+      <p>
+        <p><i>Huánuco {{$r_enf->created_at->format('d')}} de 
+        <?php 
+        switch($r_enf->created_at->format('F')) {
+          case "January":  $month = "Enero"; break;
+          case "February":   $month = "Febrero"; break;
+          case "March":    $month = "Marzo"; break;
+          case "April":    $month = "Abril"; break;
+          case "May":    $month = "Mayo"; break;
+          case "June":     $month = "Junio"; break;
+          case "July":     $month = "Julio"; break;
+          case "August":   $month = "Agosto"; break;
+          case "September":  $month = "Setiembre"; break;
+          case "October":  $month = "Octubre"; break;
+          case "November":   $month = "Noviembre"; break;
+          case "December":   $month = "Diciembre"; break;
+        }
+     ?>
+      {{$month}} {{$r_enf->created_at->format('Y')}}</i>
+    </p><br><br><br><br><br><br><br><br>
+      </p>
       <p>_____________________<br>Firma y Sello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
     </div>
     <br>

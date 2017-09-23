@@ -25,6 +25,7 @@ use Carbon\Carbon;
 use App\InformeNutricion;
 use App\CmReporTbc;
 use App\CmReporBsalud;
+use App\CmReporEnfermedad;
 
 use Redirect;
 use Input;
@@ -339,11 +340,11 @@ class MedicoMedController extends Controller
                     return $pdf->download('Constancia de Buena Salud.pdf');
                     
                 }else{
-                    $tbc=new CmReporBsalud;
-                    $tbc->medicina_id=$id;
-                    $tbc->save();
+                    $bs=new CmReporBsalud;
+                    $bs->medicina_id=$id;
+                    $bs->save();
                     //PDF
-                    $r_tbc=CmReporBsalud::where('medicina_id',$id)->first();
+                    $r_bs=CmReporBsalud::where('medicina_id',$id)->first();
                     $view =  \View::make('pdf.cm.bs', compact('date','r_bs'))->render();
                     $pdf = \App::make('dompdf.wrapper');
                     $pdf->loadHTML($view);
@@ -351,16 +352,53 @@ class MedicoMedController extends Controller
                 }
             break;
             case '4':
+                $r_enf=CmReporEnfermedad::where('medicina_id',$id)->first();
+                if($r_enf){
+                    //PDF
+                    $view =  \View::make('pdf.cm.enf', compact('date','r_enf'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Constancia por Enfermedad.pdf');
+                }else{
+                    return view('users.medico.medicina.atencion.enf',compact('id'));
+                }
                 return "Constancia por enfermedad";
             break;
             default: return Redirect::to('medmed')->with('naranja','Algo salió mal'); break;
         }
+
  
        
         //$date = $date->format('d-m-Y');
        
          //$pdf->stream('invoiced');
         }
+     }
+
+     public function postEnf(){
+            $id=Input::get('medicina_id');
+            $r_enf=CmReporEnfermedad::where('medicina_id',$id)->first();
+            if($r_enf){
+               //PDF
+               $view =  \View::make('pdf.cm.enf', compact('r_enf'))->render();
+               $pdf = \App::make('dompdf.wrapper');
+               $pdf->loadHTML($view);
+               return $pdf->download('Constancia por Enfermedad.pdf');
+            }else{
+                $bs=new CmReporEnfermedad;
+                $bs->medicina_id=$id;
+                $bs->periodo=Input::get('periodo');
+                $bs->save();
+
+               //PDF
+                 $r_enf=CmReporEnfermedad::where('medicina_id',$id)->first();
+               $view =  \View::make('pdf.cm.enf', compact('r_enf'))->render();
+               $pdf = \App::make('dompdf.wrapper');
+               $pdf->loadHTML($view);
+               return $pdf->download('Constancia por Enfermedad.pdf');
+                return Redirect::to('medmed');
+            }
+            return Input::all();
      }
 
 
