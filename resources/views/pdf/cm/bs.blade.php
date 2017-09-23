@@ -61,8 +61,29 @@ $fn= Carbon::parse($r_bs->medicina->user->f_nac);
       <p>Se emite el presente para los fines que requiera.</p>
 
 
-    </div><br><br><br><br><br><br><br><br>
+    </div><br><br>
     <div align="right">
+      <p>
+        <p><i>Huánuco {{$r_bs->created_at->format('d')}} de 
+        <?php 
+        switch($r_bs->created_at->format('F')) {
+          case "January":  $month = "Enero"; break;
+          case "February":   $month = "Febrero"; break;
+          case "March":    $month = "Marzo"; break;
+          case "April":    $month = "Abril"; break;
+          case "May":    $month = "Mayo"; break;
+          case "June":     $month = "Junio"; break;
+          case "July":     $month = "Julio"; break;
+          case "August":   $month = "Agosto"; break;
+          case "September":  $month = "Setiembre"; break;
+          case "October":  $month = "Octubre"; break;
+          case "November":   $month = "Noviembre"; break;
+          case "December":   $month = "Diciembre"; break;
+        }
+     ?>
+      {{$month}} {{$r_bs->created_at->format('Y')}}</i>
+    </p><br><br><br><br><br><br><br><br>
+      </p>
       <p>_____________________<br>Firma y Sello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
     </div>
     <br>

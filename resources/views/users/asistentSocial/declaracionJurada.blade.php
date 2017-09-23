@@ -1,7 +1,7 @@
 @extends('master.servicioSocial')
 @section('activacion')
 	<?php  
-		$a='';$rcMenu=''; $b='active'; $c1=''; $c2='';$c='';$c3=''; $c4='';$d='';$d1=''; $d2=''; $d3=''; $d4='';$e='';
+	 $a='';$rcMenu=''; $b='active'; $c1=''; $c2='';$c='';$c3=''; $c4='';$d='';$d1=''; $d2=''; $d3=''; $d4='';$e='';
 	?>
 @endsection
 @section('titulo','Declaración Jurada')
@@ -37,7 +37,7 @@
 											</div>
 					<div class="modal-body" align="center">
 							Ingrese Código Universitario del Estudiante<br>
-							{!! Form::open(['url' => 'asdj/nuevo', 'method' => 'POST']) !!}
+							{!! Form::open(['url' => 'asdj/nuevo', 'method' => 'GET']) !!}
 								<span class="input-icon">
 									<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod-nuevo" >
 									<i class="ace-icon fa fa-search nav-search-icon"></i>

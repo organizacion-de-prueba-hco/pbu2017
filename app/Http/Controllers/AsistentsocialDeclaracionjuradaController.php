@@ -161,9 +161,8 @@ class AsistentsocialDeclaracionjuradaController extends Controller
     {
         //
     }
-    public function postNuevo(Request $request){
-
-        $cod        = $request->get('cod-nuevo');
+    public function getNuevo(){
+        $cod        = Input::get('cod-nuevo');
         $estudiante = Estudiante::where('cod_univ', $cod)->first();
         if(!$estudiante){
           $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
@@ -237,6 +236,7 @@ class AsistentsocialDeclaracionjuradaController extends Controller
         $departamentos=Departamento::lists('departamento','id');
         $provincias=Provincia::lists('provincia','id');
         $distritos=Distrito::lists('distrito','id');
+
 
         return back()->with('estudiante','CuadroFamiliar','instruccion','departamentos','provincias','distritos');
     }
