@@ -400,6 +400,19 @@ class MedicoMedController extends Controller
             }
             return Input::all();
      }
+     //TABLAS DE REPORTE
+     public function getTablatbc(){
+        $tbcs=CmReporTbc::get();
+        return view('users.medico.medicina.descarteTbc',compact('tbcs'));
+     }
+     public function getTablabs(){
+        $tbcs=CmReporBsalud::get();
+        return view('users.medico.medicina.constanciaBs',compact('tbcs'));
+     }
+     public function getTablaenf(){
+        $tbcs=CmReporEnfermedad::get();
+        return view('users.medico.medicina.constanciaEnf',compact('tbcs'));
+     }
 
 
     

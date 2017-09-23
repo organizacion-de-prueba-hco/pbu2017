@@ -4,9 +4,9 @@
 	$i ='';
 	$ii='active open';
 	$ii_i='';
-	$ii_ii='active';
+	$ii_ii='';
 	$ii_iii='';
-	$ii_iv='';
+	$ii_iv='active';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
@@ -18,14 +18,14 @@
 	$v_ii='';
 	?>
 @endsection
-@section('titulo','Descarte de TBC')
+@section('titulo','Constancia por Enfermedad')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-user-md"></i>
 	<li class="active">Medicina</li>
-	<li class="active">Descarte TBC</li>
+	<li class="active">Constancia por Enfermedad</li>
 </ul>
 @endsection
 @section('contenido')
@@ -37,7 +37,7 @@
 		</div>
 		
 		<div class="table-header">
-			Descarte de TBC
+			Constancia por Enfermedad
 		</div>
 										
 
@@ -51,6 +51,7 @@
 						<th class="center">Código</th>
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
+						<th>Días de Permiso</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -64,10 +65,10 @@
 							<td class="center">{{$tbc->medicina->user->estudiante->cod_univ}}</td>
 							<td> {{$tbc->medicina->user->nombres}}, {{$tbc->medicina->user->apellido_paterno.' '.$tbc->medicina->user->apellido_materno}}</td>
 							<td>{{$tbc->medicina->user->estudiante->escuela->escuela}}</td>
-							
+							<td class="center">{{$tbc->periodo}}</td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="{{url('medmeds/descargareporte/2/'.$tbc->medicina_id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar en PDF">
+									<a href="{{url('medmeds/descargareporte/4/'.$tbc->medicina_id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar en PDF">
 									<span class="orange">
 										<i class="ace-icon fa fa-download bigger-120"></i>
 									</span>
@@ -121,7 +122,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null,
+					  null, null,null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],

@@ -4,8 +4,8 @@
 	$i ='';
 	$ii='active open';
 	$ii_i='';
-	$ii_ii='active';
-	$ii_iii='';
+	$ii_ii='';
+	$ii_iii='active';
 	$ii_iv='';
 	$iii='';
 	$iii_i='';
@@ -18,7 +18,7 @@
 	$v_ii='';
 	?>
 @endsection
-@section('titulo','Descarte de TBC')
+@section('titulo','Constancia de Buena Salud')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -37,7 +37,7 @@
 		</div>
 		
 		<div class="table-header">
-			Descarte de TBC
+			Constancia de Buena Salud
 		</div>
 										
 
@@ -67,7 +67,7 @@
 							
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="{{url('medmeds/descargareporte/2/'.$tbc->medicina_id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar en PDF">
+									<a href="{{url('medmeds/descargareporte/3/'.$tbc->medicina_id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar en PDF">
 									<span class="orange">
 										<i class="ace-icon fa fa-download bigger-120"></i>
 									</span>

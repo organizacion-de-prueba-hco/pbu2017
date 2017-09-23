@@ -67,8 +67,29 @@
       <p><b>Lugar de Nacimiento: </b>{{$r_tbc->medicina->user->distrito_naci->distrito.' - '.$r_tbc->medicina->user->distrito_naci->provincia->provincia.' - '.$r_tbc->medicina->user->distrito_naci->provincia->departamento->departamento}}</p>
       <p><b>Diagnóstico: </b><br>{{$r_tbc->medicina->imp_dx}}</p>  
 
-    </div><br><br><br><br><br><br><br><br>
+    </div><br><br>
     <div align="right">
+      <p>
+        <p><i>Huánuco {{$r_tbc->created_at->format('d')}} de 
+        <?php 
+        switch($r_tbc->created_at->format('F')) {
+          case "January":  $month = "Enero"; break;
+          case "February":   $month = "Febrero"; break;
+          case "March":    $month = "Marzo"; break;
+          case "April":    $month = "Abril"; break;
+          case "May":    $month = "Mayo"; break;
+          case "June":     $month = "Junio"; break;
+          case "July":     $month = "Julio"; break;
+          case "August":   $month = "Agosto"; break;
+          case "September":  $month = "Setiembre"; break;
+          case "October":  $month = "Octubre"; break;
+          case "November":   $month = "Noviembre"; break;
+          case "December":   $month = "Diciembre"; break;
+        }
+     ?>
+      {{$month}} {{$r_tbc->created_at->format('Y')}}</i>
+    </p><br><br><br><br><br><br><br><br>
+      </p>
       <p>_____________________<br>Firma y Sello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
     </div>
     <br>
