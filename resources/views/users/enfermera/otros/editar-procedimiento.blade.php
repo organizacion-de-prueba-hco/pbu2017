@@ -2,14 +2,14 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Lista de Procedimientos</h3>
+						<h3 class="smaller lighter blue no-margin">Editar Procedimiento</h3>
 					</div>
 			 {!! Form::model($proc,['route'=>['enfotroproc.update',$proc->id],'method' => 'PUT',  'class'=>'form-horizontal form-label-left']) !!}
 				<div class="modal-body">									
 					<div class="item form-group">
-                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+                         <div class="col-md-8 col-sm-8 col-xs-8" align="center">
                           <label>Procedimiento</label>
-                          <input name="proc" value="{{$proc->procedimiento}}" required="required" class="form-control tamaño" min="0"  type="text">
+                          <input name="proc" value="{{$proc->procedimiento}}" required="required" class="form-control tamaño" min="0"  type="text" width="100%">
                         </div>
                         
                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
@@ -24,7 +24,7 @@
 					<input type="submit" class="btn btn-sm btn-success" value="Editar">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
 						<i class="ace-icon fa fa-times"></i>
-						Close
+						Cerrar
 					</button>
 				</div>
 				{!!Form::close()!!}

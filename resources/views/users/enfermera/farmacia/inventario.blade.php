@@ -30,23 +30,17 @@
 @endsection
 @section('contenido')
 <div class="row">
-	<div class="col-xs-12">
-
-		<div class="clearfix">
-			<div class="pull-right tableTools-container"></div>
-		</div>
-		
+	<div class="col-xs-12">		
 		<div class="table-header">
 			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Atención &nbsp;&nbsp;&nbsp;
+				Medicamentos &nbsp;&nbsp;&nbsp;
 		</div>
 										
 
 		<!--Modal editar-inventario -->
 		<div id="editar-inventario" class="modal fade" tabindex="-1">
-			
 		</div>
 										<!--Fin modal editar-inventario-->	
 
@@ -57,33 +51,27 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Artículo</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
 					</div>
 					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
-					<div class="modal-body" align="center">
-						<div class="item form-group">
-						
-						<div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Medicamento:<tab>	</label>
-                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="med" >
-									
+					<div class="modal-body">									
+					<div class="item form-group">
+                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+                          <label>Medicamento</label>
+                          <input name="med" required="required" class="form-control tamaño" min="0"  type="text">
+                        </div>
+                        
+                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+                            <label>Presentación</label>
+                            <input required="required" name="pres" type="text">
                         </div>
 
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Presentación:<tab>	</label>
-                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="pres" >
-									
+                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+                            <label>Cantidad</label>
+                            <input required="required" name="cant" type="number" step="any">
                         </div>
-
-                        <div class="col-md-12 col-sm-12 col-xs-12" align="center">
-							<label>Cantidad: </label>
-							<input type="number" placeholder="Cantidad" required="required" name="cant" >
-										
-						
-						</div>
-						
-						<br>
-					</div>
+                        
+                    </div> <br><br>   
 					</div>
 					<br>
 					<div class="modal-footer">
@@ -106,20 +94,27 @@
 					<tr>
 						<th class="center">Nombre</th>
 						<th class="center">Presentación</th>
-						<th>Cantidad</th>
-						<th>Editar</th>
+						<th class="center">Cantidad</th>
+						<th class="center">Editar</th>
 					</tr>
 				</thead>
 				
 				<tbody>
 					@foreach($medicamento as $med)
 						<tr>
-							<td class="center">{{$med->medicamento}}</td>
-							<td class="center">{{$med->presentacion}}</td>
-							<td> {{$med->cantidad}}</td>						
-							<td align="center"><a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
-							<i class="ace-icon fa fa-pencil bigger-130"></i>
-						</a></td>
+							<td>{{$med->medicamento}}</td>
+							<td>{{$med->presentacion}}</td>
+							<td class="center"> {{$med->cantidad}}</td>						
+							<td class="center">
+								<div class="hidden-sm hidden-xs action-buttons">
+									<a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')" data-rel="tooltip">
+									<span class="blue">
+										<i class="ace-icon fa fa-pencil bigger-130"></i>
+									</span>
+									</a>
+								</div>
+
+							</td>
 							
 					</tr>
 					@endforeach
@@ -167,8 +162,7 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],

@@ -2,7 +2,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Lista del Inventario</h3>
+						<h3 class="smaller lighter blue no-margin">Editar Inventario</h3>
 					</div>
 			 {!! Form::model($inv,['route'=>['enfotroinv.update',$inv->id],'method' => 'PUT',  'class'=>'form-horizontal form-label-left']) !!}
 				<div class="modal-body">									
@@ -29,7 +29,7 @@
 					<input type="submit" class="btn btn-sm btn-success" value="Editar">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
 						<i class="ace-icon fa fa-times"></i>
-						Close
+						Cerrar
 					</button>
 				</div>
 				{!!Form::close()!!}

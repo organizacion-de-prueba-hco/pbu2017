@@ -30,12 +30,7 @@
 @endsection
 @section('contenido')
 <div class="row">
-	<div class="col-xs-12">
-
-		<div class="clearfix">
-			<div class="pull-right tableTools-container"></div>
-		</div>
-		
+	<div class="col-xs-12">		
 		<div class="table-header">
 			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
@@ -62,29 +57,27 @@
 					<div class="modal-body" align="center">
 						<div class="item form-group">
 						
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-md-4 col-sm-4 col-xs-4">
                           <label>Nombre:<tab>	</label>
                           <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="nom" >
 									
                         </div>
 
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
                           <label>Descripción:<tab>	</label>
                           <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="desc" >
 									
                         </div>
 
-                        <div class="col-md-12 col-sm-12 col-xs-12" align="center">
+                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
 							<label>Cantidad: </label>
 							<input type="number" placeholder="Cantidad" required="required" name="cant" >
-										
-						
 						</div>
-						
 						<br>
 					</div>
 					</div>
-					<br>
+
+					<br><br>
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
@@ -116,9 +109,13 @@
 							<td class="center">{{$med->nombre}}</td>
 							<td class="center">{{$med->descripcion}}</td>
 							<td> {{$med->cantidad}}</td>						
-							<td align="center"><a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')">
-							<i class="ace-icon fa fa-pencil bigger-130"></i>
-						</a></td>
+							<td align="center">
+							  <div class="hidden-sm hidden-xs action-buttons">
+								<a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')" data-rel="tooltip">
+								<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
+							 </div>
+							</td>
 							
 					</tr>
 					@endforeach
@@ -166,8 +163,7 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],

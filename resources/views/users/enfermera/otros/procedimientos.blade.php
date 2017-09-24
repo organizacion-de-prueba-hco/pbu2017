@@ -31,11 +31,7 @@
 @section('contenido')
 <div class="row">
 	<div class="col-xs-12">
-
-		<div class="clearfix">
-			<div class="pull-right tableTools-container"></div>
-		</div>
-		
+	
 		<div class="table-header">
 			<a href="#nuevo-proc" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
@@ -62,17 +58,14 @@
 					<div class="modal-body" align="center">
 						<div class="item form-group">
 						
-						<div class="col-md-12 col-sm-12 col-xs-12">
-                          <label>Procedimiento:<tab>	</label>
-                          <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" >
-									
-                        </div>
+						<div class="col-md-8 col-sm-8 col-xs-8">
+                  	  <label>Procedimiento: </label><br>
+                       <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" style="width: 100%;">
+                  </div>
 
-                        <div class="col-md-12 col-sm-12 col-xs-12" align="center">
-							<label>Tarifa: </label>
-							<input type="number" step="any" placeholder="Tarifa" required="required" name="tarifa" >
-										
-						
+                  <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+							<label>Tarifa: </label><br>
+							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa" >
 						</div>
 						
 						<br>
@@ -99,21 +92,22 @@
 					<tr>
 						<th class="center">Procedimiento</th>
 						<th class="center">Tarifa S/</th>
-						<th>Editar</th>
-						<th></th>
+						<th class="center">Editar</th>
 					</tr>
 				</thead>
 				
 				<tbody>
 					@foreach($procedimiento as $proc)
 						<tr>
-							<td class="center">{{$proc->procedimiento}}</td>
+							<td>{{$proc->procedimiento}}</td>
 							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
-							<td><a class="green" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')">
-							<i class="ace-icon fa fa-pencil bigger-130"></i>
-						</a> </td>						
-							<td align="center"></td>
-							
+							<td class="center">
+								<div class="hidden-sm hidden-xs action-buttons">
+								<a class="green cnter" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')" data-rel="tooltip">
+								<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
+								</div> 
+							</td>								
 					</tr>
 					@endforeach
 
@@ -161,7 +155,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, 
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
