@@ -151,7 +151,7 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="{{$ii_ii}}">
-								<a href="{{url('nutriformes/ouser')}}">
+								<a href="{{url('enfmeds/tablatbc')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Descarte TBC
 								</a>
@@ -159,7 +159,7 @@
 							</li>
 
 							<li class="{{$ii_iii}}">
-								<a href="{{url('directivousus/nbecas')}}">
+								<a href="{{url('enfmeds/tablabs')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Constancia Buena Salud
 								</a>
@@ -168,7 +168,7 @@
 							</li>
 
 							<li class="{{$ii_iv}}">
-								<a href="{{url('directivousus/exoneracion')}}">
+								<a href="{{url('enfmeds/tablaenf')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Constancia por enfermedad
 								</a>

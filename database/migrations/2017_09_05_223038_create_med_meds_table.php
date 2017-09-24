@@ -18,6 +18,7 @@ class CreateMedMedsTable extends Migration
             $table->string('indicaciones');
             $table->integer('medicina_id')->unsigned();
             $table->integer('medicamento_id')->unsigned();
+            $table->string('estado')->default('0');
 
             $table->foreign('medicina_id')->references('id')->on('cm_medicinas')->onDelete('cascade');
             $table->foreign('medicamento_id')->references('id')->on('cm_medicamentos')

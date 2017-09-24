@@ -96,7 +96,20 @@ class EnfermeraFarmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $farmacia=MedMed::find($id);
+         $medicamento=CmMedicamento::find($farmacia->medicamento_id);
+            if ($request->get('estado')=='0') {
+               $valor=$medicamento->cantidad+$farmacia->cantidad;
+            }else{
+               $valor=$medicamento->cantidad-$farmacia->cantidad;
+            }
+         $medicamento->cantidad=$valor;
+         $medicamento->save();
+
+        $farmacia->estado=$request->get('estado');
+        $farmacia->save();
+        return Redirect::to('enffarm');
     }
 
     /**

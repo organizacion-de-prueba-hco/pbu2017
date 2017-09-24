@@ -81,14 +81,15 @@
           <td class="ttd">{{$r->indicaciones}}</td>
         </tr>
       @endforeach()
+      <?php $r=App\MedMed::where('medicina_id',$r->medicina_id)->first(); ?>
       </tbody>
     </table>
     </div><br><br>
     <div align="right">
       <p>
-        <p><i>Huánuco {{$r_bs->created_at->format('d')}} de 
+        <p><i>Huánuco {{$r->created_at->format('d')}} de 
         <?php 
-        switch($r_bs->created_at->format('F')) {
+        switch($r->created_at->format('F')) {
           case "January":  $month = "Enero"; break;
           case "February":   $month = "Febrero"; break;
           case "March":    $month = "Marzo"; break;
@@ -103,7 +104,7 @@
           case "December":   $month = "Diciembre"; break;
         }
      ?>
-      {{$month}} {{$r_bs->created_at->format('Y')}}</i>
+      {{$month}} {{$r->created_at->format('Y')}}</i>
     </p><br><br><br><br><br><br><br><br>
       </p>
       <p>_____________________<br>Firma y Sello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>

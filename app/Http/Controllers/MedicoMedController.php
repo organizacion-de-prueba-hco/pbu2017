@@ -306,7 +306,7 @@ class MedicoMedController extends Controller
                 $view =  \View::make('pdf.cm.rm', compact('date','recetas','medicina'))->render();
                 $pdf = \App::make('dompdf.wrapper');
                 $pdf->loadHTML($view);
-                return $pdf->download('Receta Médica.pdf');
+                return $pdf->download('Receta Médica - '.$med->user->dni.'.pdf');
             break;
             case '2': 
                 $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
@@ -316,7 +316,7 @@ class MedicoMedController extends Controller
                     $view =  \View::make('pdf.cm.tbc', compact('date','r_tbc'))->render();
                     $pdf = \App::make('dompdf.wrapper');
                     $pdf->loadHTML($view);
-                    return $pdf->download('Descarte de TBC.pdf');
+                    return $pdf->download('Descarte de TBC - '.$med->user->dni.'.pdf');
                     
                 }else{
                     $tbc=new CmReporTbc;
@@ -327,7 +327,7 @@ class MedicoMedController extends Controller
                     $view =  \View::make('pdf.cm.tbc', compact('date','r_tbc'))->render();
                     $pdf = \App::make('dompdf.wrapper');
                     $pdf->loadHTML($view);
-                    return $pdf->download('Descarte de TBC.pdf');
+                    return $pdf->download('Descarte de TBC - '.$med->user->dni.'.pdf');
                 }
             break;
             case '3': 
@@ -337,7 +337,7 @@ class MedicoMedController extends Controller
                     $view =  \View::make('pdf.cm.bs', compact('date','r_bs'))->render();
                     $pdf = \App::make('dompdf.wrapper');
                     $pdf->loadHTML($view);
-                    return $pdf->download('Constancia de Buena Salud.pdf');
+                    return $pdf->download('Constancia de Buena Salud - '.$med->user->dni.'.pdf');
                     
                 }else{
                     $bs=new CmReporBsalud;
@@ -348,7 +348,7 @@ class MedicoMedController extends Controller
                     $view =  \View::make('pdf.cm.bs', compact('date','r_bs'))->render();
                     $pdf = \App::make('dompdf.wrapper');
                     $pdf->loadHTML($view);
-                    return $pdf->download('Constancia de Buena Salud.pdf');
+                    return $pdf->download('Constancia de Buena Salud - '.$med->user->dni.'.pdf');
                 }
             break;
             case '4':
@@ -358,7 +358,7 @@ class MedicoMedController extends Controller
                     $view =  \View::make('pdf.cm.enf', compact('date','r_enf'))->render();
                     $pdf = \App::make('dompdf.wrapper');
                     $pdf->loadHTML($view);
-                    return $pdf->download('Constancia por Enfermedad.pdf');
+                    return $pdf->download('Constancia por Enfermedad - '.$med->user->dni.'.pdf');
                 }else{
                     return view('users.medico.medicina.atencion.enf',compact('id'));
                 }
@@ -383,7 +383,7 @@ class MedicoMedController extends Controller
                $view =  \View::make('pdf.cm.enf', compact('r_enf'))->render();
                $pdf = \App::make('dompdf.wrapper');
                $pdf->loadHTML($view);
-               return $pdf->download('Constancia por Enfermedad.pdf');
+               return $pdf->download('Constancia por Enfermedad - '.$med->user->dni.'.pdf');
             }else{
                 $bs=new CmReporEnfermedad;
                 $bs->medicina_id=$id;
@@ -395,7 +395,7 @@ class MedicoMedController extends Controller
                $view =  \View::make('pdf.cm.enf', compact('r_enf'))->render();
                $pdf = \App::make('dompdf.wrapper');
                $pdf->loadHTML($view);
-               return $pdf->download('Constancia por Enfermedad.pdf');
+               return $pdf->download('Constancia por Enfermedad - '.$med->user->dni.'.pdf');
                 return Redirect::to('medmed');
             }
             return Input::all();

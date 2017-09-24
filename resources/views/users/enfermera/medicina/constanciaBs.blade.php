@@ -2,82 +2,77 @@
 @section('activacion')
 	<?php
 	$i ='';
-	$ii='';
+	$ii='active open';
 	$ii_i='';
 	$ii_ii='';
-	$ii_iii='';
+	$ii_iii='active';
 	$ii_iv='';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='active open';
-	$iv_i='active';
+	$iv='';
+	$iv_i='';
 	$iv_ii='';
 	$v='';
 	$v_i='';
 	$v_ii='';
 	?>
 @endsection
-@section('titulo','Farmacia-Atención')
+@section('titulo','Constancia de Buena Salud')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
-	<li class="active">Atención</li>
+	<li class="active">Medicina</li>
+	<li class="active">Descarte TBC</li>
 </ul>
 @endsection
 @section('contenido')
 <div class="row">
-	<div class="col-xs-12">		
+	<div class="col-xs-12">
+
+		<div class="clearfix">
+			<div class="pull-right tableTools-container"></div>
+		</div>
+		
 		<div class="table-header">
-				Farmacia &nbsp;&nbsp;&nbsp;
+			Constancia de Buena Salud
 		</div>
 										
-										<!-- div.dataTables_borderWrap -->
+
+									
+		<a href="#" id="abrir"></a>
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
 						<th class="center">Fecha</th>
-						<th class="center">Cód Estudiante</th>
-						<th>Estudiante</th>
+						<th class="center">Código</th>
+						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
-						<th class="center">Medicamento</th>
-						<th>Cantidad</th>
-						<th>Estado</th>
+						<th></th>
 					</tr>
 				</thead>
-				
+				<?php  
+					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+				?>
 				<tbody>
-					@foreach($medmed as $med)
+					@foreach($tbcs as $tbc)
 						<tr>
-							<td class="center">{{$med->created_at}}</td>
-							<td class="center">{{$med->cmmedicina->user->estudiante->cod_univ}}</td>
-							<td> {{$med->cmmedicina->user->apellido_paterno.' '.$med->cmmedicina->user->apellido_materno.' '.$med->cmmedicina->user->nombres}}</td>
-							<td>{{$med->cmmedicina->user->estudiante->escuela->escuela}}</td>
-							<td>{{$med->medicamento->medicamento.' - '.$med->medicamento->presentacion}}</td>
+							<td class="center">{{$tbc->created_at}}</td>
+							<td class="center">{{$tbc->medicina->user->estudiante->cod_univ}}</td>
+							<td> {{$tbc->medicina->user->nombres}}, {{$tbc->medicina->user->apellido_paterno.' '.$tbc->medicina->user->apellido_materno}}</td>
+							<td>{{$tbc->medicina->user->estudiante->escuela->escuela}}</td>
 							
-							<td class="center">
-							{{$med->cantidad}}
-							</td>
 							<td>
-							@if($med->estado=='1')
-                            {!!Form::open(['route'=>['enffarm.update', $med->id], 'method'=>'PUT'])!!} 
-                              <input type="hidden" name="estado" value="0">
-                              <button class="submit btn btn-success btn-xs"" title="Clic para Desactivar" 
-                              onclick="javascript:return conf('Desactivar');"> 
-                              Atendido</button>
-                            {!!Form::close() !!}
-                            @else
-                            {!!Form::open(['route'=>['enffarm.update', $med->id], 'method'=>'PUT'])!!} 
-                              <input type="hidden" name="estado" value="1">
-                              <button class="submit btn btn-danger btn-xs"" title="Clic para Activar" 
-                              onclick="javascript:return conf('Activar');"> 
-                              Pendiente</button>
-                            {!!Form::close() !!}
-                          	@endif
+								<div class="hidden-sm hidden-xs action-buttons">
+									<a href="{{url('enfmeds/descargareporte/3/'.$tbc->medicina_id)}}" class="tooltip-info" data-rel="tooltip" title="Descargar en PDF">
+									<span class="orange">
+										<i class="ace-icon fa fa-download bigger-120"></i>
+									</span>
+									</a>
+								</div>
 							</td>
 					</tr>
 					@endforeach
@@ -126,7 +121,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
@@ -340,15 +335,8 @@
 
 			})
 
-		//Para que salga las letritas negras del title
-		$(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip(); 
-		});
-		//
-		function conf(msj){
-    		confirmar = confirm('¿Seguro que deseas cambiar este estado?');
-    		return confirmar;
-  		}
+	
+
 		</script>
 
 

@@ -17,6 +17,15 @@ use App\Provincia;
 use App\Distrito;
 use App\CuadroFamiliar;
 use App\CmAntecedente;
+use App\CmProcedimiento;
+use App\CmMedProc;
+use App\CmMedicamento;
+use App\MedMed;
+use Carbon\Carbon;
+use App\InformeNutricion;
+use App\CmReporTbc;
+use App\CmReporBsalud;
+use App\CmReporEnfermedad;
 
 use Redirect;
 use Input;
@@ -183,6 +192,80 @@ class EnfermeraMedController extends Controller
         $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
         return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
+     }
+     //TABLAS DE REPORTE
+     public function getTablatbc(){
+        $tbcs=CmReporTbc::get();
+        return view('users.enfermera.medicina.descarteTbc',compact('tbcs'));
+     }
+     public function getTablabs(){
+        $tbcs=CmReporBsalud::get();
+        return view('users.enfermera.medicina.constanciaBs',compact('tbcs'));
+     }
+     public function getTablaenf(){
+        $tbcs=CmReporEnfermedad::get();
+        return view('users.enfermera.medicina.constanciaEnf',compact('tbcs'));
+     }
+
+    public function getDescargareporte($tipo, $id){
+        $med=CmMedicina::find($id);
+        if(!$med) {
+            return back()->with('azul','Estado pendiente, no se ha generado aún este reporte');
+        }
+        else{
+        $date = Carbon::now();
+        switch ($tipo) {
+            case '1':
+                $recetas = MedMed::where('medicina_id',$id)->get();
+                $medicina = CmMedicina::find($id);
+                $view =  \View::make('pdf.cm.rm', compact('date','recetas','medicina'))->render();
+                $pdf = \App::make('dompdf.wrapper');
+                $pdf->loadHTML($view);
+                return $pdf->download('Receta Médica - '.$medicina->user->dni.'.pdf');
+            break;
+            case '2': 
+                $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
+                if($r_tbc){
+                    //PDF
+                    $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
+                    $view =  \View::make('pdf.cm.tbc', compact('date','r_tbc'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Descarte de TBC -'.$r_tbc->medicina->user->dni.'.pdf');
+                    
+                }else{
+                    return back()->with('naranja','No se encontró PDF');
+                }
+            break;
+            case '3': 
+                $r_bs=CmReporBsalud::where('medicina_id',$id)->first();
+                if($r_bs){
+                    //PDF
+                    $view =  \View::make('pdf.cm.bs', compact('date','r_bs'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Constancia de Buena Salud - '.$med->user->dni.'.pdf');
+                    
+                }else{
+                    return back()->with('naranja','No se encontró PDF');
+                }
+            break;
+            case '4':
+                $r_enf=CmReporEnfermedad::where('medicina_id',$id)->first();
+                if($r_enf){
+                    //PDF
+                    $view =  \View::make('pdf.cm.enf', compact('date','r_enf'))->render();
+                    $pdf = \App::make('dompdf.wrapper');
+                    $pdf->loadHTML($view);
+                    return $pdf->download('Constancia por Enfermedad - '.$med->user->dni.'.pdf');
+                }else{
+                    return back()->with('naranja','No se encontró PDF');
+                }
+            break;
+            default: return back()->with('naranja','Algo salió mal'); break;
+        }
+
+        }
      }
     
 }
