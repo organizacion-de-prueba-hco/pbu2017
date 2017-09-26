@@ -188,9 +188,9 @@
 
 						<ul class="submenu">
 							<li class="{{$iii_i}}">
-								<a href="{{url('directivotalleres/matriculauafsm')}}">
+								<a href="{{url('enfodonto')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Estudiantes
+									Atención
 								</a>
 
 								<b class="arrow"></b>

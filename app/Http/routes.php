@@ -110,14 +110,19 @@ Route::resource('enfermera', 'EnfermeraController'); //metodos normales
 Route::controller('enfermeras', 'EnfermeraController'); // Actualizar Foto
 Route::resource('enfmed', 'EnfermeraMedController');
 Route::controller('enfmeds', 'EnfermeraMedController');
+Route::resource('enfodonto', 'EnfermeraOdontoController');
+Route::controller('enfodontos', 'EnfermeraOdontoController');
 
 Route::resource('med', 'MedicoRegistrosController');
 Route::resource('medmed', 'MedicoMedController');
 Route::controller('medmeds', 'MedicoMedController');
-
 Route::resource('medico', 'MedicoController');
 Route::controller('medicos', 'MedicoController');
 
+Route::resource('odonto', 'OdontoRegistrosController');
+Route::controller('odontos', 'OdontoRegistrosController');
+Route::resource('odontodonto', 'OdontologoOdontoController');
+Route::controller('odontodontos', 'OdontologoOdontoController');
 
 Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');

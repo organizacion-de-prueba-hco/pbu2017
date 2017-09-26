@@ -1,12 +1,8 @@
-@extends('master.enfermera')
+@extends('master.odontologo')
 @section('activacion')
 	<?php  
-	$i ='active';
-	$ii='';
-	$ii_i='';
-	$ii_ii='';
-	$ii_iii='';
-	$ii_iv='';
+	$i ='';
+	$ii='active';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
@@ -20,14 +16,14 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('titulo','Inicio')
+@section('title','Ficha Socio Económica')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-home"></i>	
-	<li class="active">Inicio</li>
-	<li class="active">Buscar Estudiante</li>	
+	<li class="active">Atención</li>
+	<li class="active">Nuevo</li>	
 </ul>
 @endsection
 @section('contenido')
@@ -59,37 +55,21 @@
 								</li>
 								<li data-step="3">
 									<span class="step">III</span>
-									<span class="title">MEDICINA</span>
-								</li>
-								<li data-step="4">
-									<span class="step">IV</span>
 									<span class="title">ODONTOLOGÍA</span>
-								</li>
-								<li data-step="5">
-									<span class="step">V</span>
-									<span class="title">REPORTES</span>
-								</li>
-								
+								</li>								
 							</ul>
 						</div>
 						<hr />
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.enfermera.inicio.vermas.step-11')
+								@include('users.odontologo.inicio.vermas.step-11')
 							</div>
-
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.enfermera.inicio.vermas.step-22')
+								@include('users.odontologo.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								
-							</div>
-							<div class="step-pane" data-step="4" id="step-44">
-								
-							</div>
-							<div class="step-pane" data-step="5" id="step-55">
-								
+								@include('users.odontologo.odontologia.verMas.step-33')
 							</div>
 							
 						</div>
@@ -147,14 +127,14 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Su información se ha guardado correctamente!</h3><br><i>Puede descargar reportes de medicina y odontología PDF</i>", 
+						message: "<h3>¡Un poco más!</h3><br><i>Presione el boton azul \'Enviar Datos\'</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								 callback: function() {
-                					alert('Holaaa');
-            					 }
+								 // callback: function() {
+         //        					alert('Holaaa');
+         //    					 }
 							}
 						}
 					});
@@ -575,7 +555,5 @@
     }
 
 </script>
-
-
 
 @endsection
