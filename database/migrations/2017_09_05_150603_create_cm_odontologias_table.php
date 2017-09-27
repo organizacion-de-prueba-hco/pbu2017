@@ -60,45 +60,30 @@ class CreateCmOdontologiasTable extends Migration
               $table->string('iii_xliii');
               $table->string('iii_xliv');
               $table->string('iii_xlv');
-              $table->string('iii_xlvi');
-              $table->string('iii_xlvii');
-              $table->string('iii_xlviii');
 
               $table->string('iii_li');
               $table->string('iii_lii');
               $table->string('iii_liii');
               $table->string('iii_liv');
               $table->string('iii_lv');
-              $table->string('iii_lvi');
-              $table->string('iii_lvii');
-              $table->string('iii_lviii');
 
               $table->string('iii_lxi');
               $table->string('iii_lxii');
               $table->string('iii_lxiii');
               $table->string('iii_lxiv');
               $table->string('iii_lxv');
-              $table->string('iii_lxvi');
-              $table->string('iii_lxvii');
-              $table->string('iii_lxviii');
 
               $table->string('iii_lxxi');
               $table->string('iii_lxxii');
               $table->string('iii_lxxiii');
               $table->string('iii_lxxiv');
               $table->string('iii_lxxv');
-              $table->string('iii_lxxvi');
-              $table->string('iii_lxxvii');
-              $table->string('iii_lxxviii');
 
               $table->string('iii_lxxxi');
               $table->string('iii_lxxxii');
               $table->string('iii_lxxxiii');
               $table->string('iii_lxxxiv');
               $table->string('iii_lxxxv');
-              $table->string('iii_lxxxvi');
-              $table->string('iii_lxxxvii');
-              $table->string('iii_lxxxviii');
 
               //B) Examen Bucal
               $table->string('iii_b_a');

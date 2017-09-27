@@ -207,13 +207,88 @@ class OdontologoOdontoController extends Controller
         }
      }
 
+     public function postRegistrar(){
+        //return Input::all();
+        $registro=CmOdontologia::find(Input::get('o_id'));
+        $registro->fill(Input::all())->save();
+        $registro->ii_a=Input::get('ii_a');
+        $registro->ii_b=Input::get('ii_b');
+        $registro->ii_c=Input::get('ii_c');
+        $registro->ii_d=Input::get('ii_d');
+
+        $registro->iii_xi=Input::get('iii_xi');
+        $registro->iii_xii=Input::get('iii_xii');
+        $registro->iii_xiii=Input::get('iii_xiii');
+        $registro->iii_xiv=Input::get('iii_xiv');
+        $registro->iii_xv=Input::get('iii_xv');
+        $registro->iii_xvi=Input::get('iii_xvi');
+        $registro->iii_xvii=Input::get('iii_xvii');
+        $registro->iii_xviii=Input::get('iii_xviii');
+        $registro->iii_xxi=Input::get('iii_xxi');
+        $registro->iii_xxii=Input::get('iii_xxii');
+        $registro->iii_xxiii=Input::get('iii_xxiii');
+        $registro->iii_xxiv=Input::get('iii_xxiv');
+        $registro->iii_xxv=Input::get('iii_xxv');
+        $registro->iii_xxvi=Input::get('iii_xxvi');
+        $registro->iii_xxvi=Input::get('iii_xxvi');
+        $registro->iii_xxvii=Input::get('iii_xxvii');
+        $registro->iii_xxviii=Input::get('iii_xxviii');
+        $registro->iii_xxxi=Input::get('iii_xxxi');
+        $registro->iii_xxxi=Input::get('iii_xxxi');
+        $registro->iii_xxxii=Input::get('iii_xxxii');
+        $registro->iii_xxxiii=Input::get('iii_xxxiii');
+        $registro->iii_xxxiv=Input::get('iii_xxxiv');
+        $registro->iii_xxxv=Input::get('iii_xxxv');
+        $registro->iii_xxxvi=Input::get('iii_xxxvi');
+        $registro->iii_xxxvii=Input::get('iii_xxxvii');
+        $registro->iii_xxxviii=Input::get('iii_xxxviii');
+        $registro->iii_xli=Input::get('iii_xli');
+        $registro->iii_xlii=Input::get('iii_xlii');
+        $registro->iii_xliii=Input::get('iii_xliii');
+        $registro->iii_xliv=Input::get('iii_xliv');
+        $registro->iii_xlv=Input::get('iii_xlv');
+        $registro->iii_xlvi=Input::get('iii_xlvi');
+        $registro->iii_xlvii=Input::get('iii_xlvii');
+        $registro->iii_xlviii=Input::get('iii_xlviii');
+        $registro->iii_li=Input::get('iii_li');
+        $registro->iii_lii=Input::get('iii_lii');
+        $registro->iii_liii=Input::get('iii_liii');
+        $registro->iii_liv=Input::get('iii_liv');
+        $registro->iii_lv=Input::get('iii_lv');
+        $registro->iii_lxi=Input::get('iii_lxi');
+        $registro->iii_lxii=Input::get('iii_lxii');
+        $registro->iii_lxiii=Input::get('iii_lxiii');
+        $registro->iii_lxiv=Input::get('iii_lxiv');
+        $registro->iii_lxv=Input::get('iii_lxv');
+        $registro->iii_lxxi=Input::get('iii_lxxi');
+        $registro->iii_lxxii=Input::get('iii_lxxii');
+        $registro->iii_lxxiii=Input::get('iii_lxxiii');
+        $registro->iii_lxxiv=Input::get('iii_lxxiv');
+        $registro->iii_lxxv=Input::get('iii_lxxv');
+        $registro->iii_lxxxi=Input::get('iii_lxxxi');
+        $registro->iii_lxxxii=Input::get('iii_lxxxii');
+        $registro->iii_lxxxiii=Input::get('iii_lxxxiii');
+        $registro->iii_lxxxiv=Input::get('iii_lxxxiv');
+        $registro->iii_lxxxv=Input::get('iii_lxxxv');
+
+        $registro->iii_b_a=Input::get('iii_b_a');
+        $registro->iii_b_b=Input::get('iii_b_b');
+        $registro->iii_b_c=Input::get('iii_b_c');
+        $registro->iii_b_d=Input::get('iii_b_d');
+        $registro->iii_b_e=Input::get('iii_b_e');
+        $registro->iii_b_f=Input::get('iii_b_f');
+        $registro->iii_b_otros=Input::get('iii_b_otros');
+
+        $registro->save();
+      return Redirect('odontodonto')->with('verde','Se registró correctamente la atención');
+     }
      public function recargarFormularios($ruta,$estudiante,$medicina){
             $religiones=Religion::lists('religion','id');
             $est_civils=EstCivil::lists('est_civil','id');
             $departamentos=Departamento::lists('departamento','id');
             $provincias=Provincia::lists('provincia','id');
             $distritos=Distrito::lists('distrito','id');
-            $procedimientos=CmProcedimiento::where('area','0')->lists('procedimiento','id');
+            $procedimientos=CmProcedimiento::where('area','1')->lists('procedimiento','id');
             $medicamentos=CmMedicamento::get();
             $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
             $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
