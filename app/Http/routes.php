@@ -123,6 +123,9 @@ Route::resource('odonto', 'OdontoRegistrosController');
 Route::controller('odontos', 'OdontoRegistrosController');
 Route::resource('odontodonto', 'OdontologoOdontoController');
 Route::controller('odontodontos', 'OdontologoOdontoController');
+Route::resource('odontologo', 'OdontologoController'); //metodos normales
+Route::controller('odontologos', 'OdontologoController'); // Actualizar Foto
+
 
 Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');

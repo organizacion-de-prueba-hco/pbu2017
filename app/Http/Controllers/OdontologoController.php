@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+use Redirect;
+use Input;
+use App\User;
+
 class OdontologoController extends Controller
 {
     /**
@@ -14,8 +19,14 @@ class OdontologoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('odonto');
+    }
     public function index()
     {
+         return view('users.odontologo.ajustes');
         //
     }
 
@@ -37,7 +48,20 @@ class OdontologoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=User::find(Auth::user()->id);
+        $user->nombres=$request->get('nombres');
+        $user->apellido_paterno=$request->get('apellido_paterno');
+        $user->apellido_materno=$request->get('apellido_materno');
+        $user->email=$request->get('email');
+        $user->dni=$request->get('dni');
+        if($request->get('pasword')){
+            $user->password=$request->get('pasword');
+        }
+        if($user->save()){
+            return Redirect::to('odonto')->with('verde','Se actualizaron los datos');
+        }else{
+            return Redirect::to('odonto')->with('rojo','Los datos ingresados no son válidos');            
+        }
     }
 
     /**
@@ -84,4 +108,19 @@ class OdontologoController extends Controller
     {
         //
     }
+
+    public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Auth::user()->id);        
+        $name=$user->dni.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        if($user->save()){
+             return Redirect::to('odonto')->with('verde','Se actualizó foto');     //redirige a enf que es donde se muestran los registros
+        }else{
+            return Redirect::to('odonto')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+        }
+      }
+     }
 }

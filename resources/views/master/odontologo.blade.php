@@ -84,7 +84,7 @@
 							</a>
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="{{url('medico')}}">
+									<a href="{{url('odontologo')}}">
 										<i class="ace-icon fa fa-cog"></i>
 										Ajustes
 									</a>
