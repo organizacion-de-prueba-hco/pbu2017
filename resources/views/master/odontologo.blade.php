@@ -90,7 +90,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="{{url('manual/medico.pdf')}}" target="_black">
+									<a href="{{url('manual/odontologo.pdf')}}" target="_black">
 										<i class="ace-icon fa fa-exclamation"></i>
 										Ayuda
 									</a>

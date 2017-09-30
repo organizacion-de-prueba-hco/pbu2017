@@ -1,23 +1,20 @@
 @extends('master.odontologo')
 @section('activacion')
-	<?php
-$i='';
-$ii='';
-$iii='';
-$ii_i='';
-$ii_ii='';
-$ii_iii='';
-$ii_iv='';
-$iii_i='';
-$iii_ii='';
-$iv='';
-$iv_i='';
-$iv_ii='';
-$v='';
-$v_i='';
-$v_ii='';
-$iv_iii='';
-?>
+	<?php  
+	$i ='';
+	$ii='';
+	$iii='';
+	$iii_i='';
+	$iii_ii='';
+	$iv='';
+	$iv_i='';
+	$iv_ii='';
+	$v='';
+	$v_i='';
+	$v_ii='';
+		use Carbon\Carbon;
+		Carbon::setLocale('es');
+	?>
 @endsection
 @section('titulo','Nuevo Expediente')
 @section('estilos')
@@ -56,7 +53,7 @@ $iv_iii='';
                           <h4 class="modal-title">Actualizar foto</h4>
                         </div>
                         <div class="modal-body">                        
-                          {!! Form::open(['url' => 'enfermeras/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          {!! Form::open(['url' => 'odontologos/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
                           <div class="item form-group">
                             <div class="col-12">
                               <input type="file" id="files-foto" name="foto" accept="image/*"/><br>
@@ -87,7 +84,7 @@ $iv_iii='';
 				</a>
 			</div><hr>
 								<!-- PAGE CONTENT BEGINS -->
-	{!! Form::open(['route' => 'enfermera.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+	{!! Form::open(['route' => 'odontologo.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombres </label>
 
