@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NBecasTableSeeder::class);
         $this->call(TallerTableSeeder::class);
         $this->call(MedicamentosSeeder::class);
+        $this->call(CmProcedimientoSeeder::class);
         
         Model::reguard();
     }

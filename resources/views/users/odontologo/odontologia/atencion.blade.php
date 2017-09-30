@@ -52,24 +52,20 @@
 						
 						<a href="#" id="rm">
 							<span class="black">
-								<i class="ace-icon fa fa-th-large bigger-120"> Receta médica</i>
+								<i class="ace-icon fa fa-th-large bigger-120"> Receta - Odontología</i>
 							</span>
-						</a><br><br>
-						<a href="#" id="tbc" data-dismiss="modal">
+						</a><br><hr><br>
+						<a href="#" id="ex" data-dismiss="modal">
 							<span class="blue">
-								<i class="ace-icon fa fa-th-large bigger-120"> Descarte de TBC</i>
+								<i class="ace-icon fa fa-th-large bigger-120"> Este Expediente</i>
 							</span>
 						</a><br><br>
-						<a href="#" id="cbs" data-dismiss="modal">
+						<a href="#" id="th" data-dismiss="modal">
 							<span class="green">
-								<i class="ace-icon fa fa-th-large bigger-120"> Constancia de buena Salud</i>
+								<i class="ace-icon fa fa-th-large bigger-120"> Todo el Historial</i>
 							</span>
 						</a><br><br>
-						<a href="#" id="cpe" data-dismiss="modal">
-							<span class="orange">
-								<i class="ace-icon fa fa-th-large bigger-120"> Constancia por enfermedad</i>
-							</span>
-						</a><br><br>
+						
 					</div><br>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -85,7 +81,8 @@
 				<thead>
 					<tr>
 						<th class="center">Fecha</th>
-						<th class="center">Código</th>
+						<th class="center">Cód Exp</th>
+						<th class="center">Código Estudiante</th>
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
 						<th class="center">Estado</th>
@@ -100,11 +97,12 @@
 					@foreach($odontologia as $odonto)
 						<tr>
 							<td class="center">{{$odonto->created_at}}</td>
+							<td class="center">{{$odonto->id}}</td>
 							<td class="center">{{$odonto->user->estudiante->cod_univ}}</td>
 							<td> {{$odonto->user->nombres}}, {{$odonto->user->apellido_paterno.' '.$odonto->user->apellido_materno}}</td>
 							<td>{{$odonto->user->estudiante->escuela->escuela}}</td>
 							<td class="hidden-480" align="center">
-								@if($odonto->imp_dx != '')
+								@if($odonto->i_motivo_consulta != '')
 								<span class="label label-sm label-success">	Atendido
 								</span>
 								@else
@@ -119,7 +117,7 @@
 							</td>
 							<td>
 								<div class="action-buttons">
-									<a @if($odonto->imp_dx != '') href="#reportes-modal" @else href="{{url('odontodontos/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$odonto->id}}')">
+									<a @if($odonto->i_motivo_consulta != '') href="#reportes-modal" @else href="{{url('odontodontos/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$odonto->id}}')">
 									<span class="orange" >
 										<i class="ace-icon fa fa-th-large bigger-120"></i>
 									</span>
@@ -178,7 +176,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, null, null,null, null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
@@ -400,13 +398,11 @@
 		function reportes($id){
 			//console.log($id);
 			$('#rm').attr({onclick: "cerrarmodal();"});
-			$('#tbc').attr({onclick: "cerrarmodal();"});
-			$('#cbs').attr({onclick: "cerrarmodal();"});
-			$('#cpe').attr({onclick: "cerrarmodal();"});
-			$("#rm").attr('href','/medmeds/descargareporte/1/'+$id);
-			$("#tbc").attr('href','/medmeds/descargareporte/2/'+$id);
-			$("#cbs").attr('href','/medmeds/descargareporte/3/'+$id);
-			$("#cpe").attr('href','/medmeds/descargareporte/4/'+$id);
+			$('#historial-o').attr({onclick: "cerrarmodal();"});
+			$('#historial-t').attr({onclick: "cerrarmodal();"});
+			$("#rm").attr('href','/odontodontos/descargareporte/1/'+$id);
+			$("#historial-o").attr('href','/odontodontos/descargareporte/2/'+$id);
+			$("#historial-t").attr('href','/odontodontos/descargareporte/3/'+$id);
 		}
 
 		function cerrarmodal(){

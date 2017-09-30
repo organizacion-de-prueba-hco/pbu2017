@@ -16,6 +16,7 @@
 	$v='active open';
 	$v_i='';
 	$v_ii='active';
+	$iv_iii='';
 	?>
 @endsection
 @section('titulo','Otros-Procedimiento')

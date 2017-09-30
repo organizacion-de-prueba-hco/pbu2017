@@ -367,11 +367,6 @@ class MedicoMedController extends Controller
             default: return Redirect::to('medmed')->with('naranja','Algo salió mal'); break;
         }
 
- 
-       
-        //$date = $date->format('d-m-Y');
-       
-         //$pdf->stream('invoiced');
         }
      }
 

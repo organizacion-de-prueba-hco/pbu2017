@@ -16,6 +16,7 @@
 	$v='active open';
 	$v_i='active';
 	$v_ii='';
+	$iv_iii='';
 	?>
 @endsection
 @section('titulo','Otros-Inventario')

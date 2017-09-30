@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOdoAtencionsTable extends Migration
+class CreateCmOdoAtencionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateOdoAtencionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('odo_atencions', function (Blueprint $table) {
+        Schema::create('cm_odo_atencions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('odontologia_id')->unsigned();
             $table->integer('procedimiento_id')->unsigned();
              $table->string('obs');
              $table->date('prox_cita');
 
-            $table->foreign('odontologia_id')->references('id')->on('cm_medicinas')->onDelete('cascade');
+            $table->foreign('odontologia_id')->references('id')->on('cm_odontologias')->onDelete('cascade');
             $table->foreign('procedimiento_id')->references('id')->on('cm_procedimientos')
                   ->onDelete('cascade');
             $table->timestamps();
@@ -33,6 +33,6 @@ class CreateOdoAtencionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('odo_atencions');
+        Schema::drop('cm_odo_atencions');
     }
 }

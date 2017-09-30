@@ -11,12 +11,12 @@
 	$iii_i='';
 	$iii_ii='';
 	$iv='active open';
-	$iv_i='active';
+	$iv_i='';
 	$iv_ii='';
 	$v='';
 	$v_i='';
 	$v_ii='';
-	$iv_iii='';
+	$iv_iii='active';
 	?>
 @endsection
 @section('titulo','Farmacia-Atención')
@@ -26,14 +26,14 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-medkit"></i>
 	<li class="active">Farmacia</li>
-	<li class="active">Atención Medicina</li>
+	<li class="active">Atención odontología</li>
 </ul>
 @endsection
 @section('contenido')
 <div class="row">
 	<div class="col-xs-12">		
 		<div class="table-header">
-				Farmacia - Medicina&nbsp;&nbsp;&nbsp;
+				Farmacia - Odontología&nbsp;&nbsp;&nbsp;
 		</div>
 										
 										<!-- div.dataTables_borderWrap -->
@@ -55,9 +55,9 @@
 					@foreach($medmed as $med)
 						<tr>
 							<td class="center">{{$med->created_at}}</td>
-							<td class="center">{{$med->cmmedicina->user->estudiante->cod_univ}}</td>
-							<td> {{$med->cmmedicina->user->apellido_paterno.' '.$med->cmmedicina->user->apellido_materno.' '.$med->cmmedicina->user->nombres}}</td>
-							<td>{{$med->cmmedicina->user->estudiante->escuela->escuela}}</td>
+							<td class="center">{{$med->cmodontologia->user->estudiante->cod_univ}}</td>
+							<td> {{$med->cmodontologia->user->apellido_paterno.' '.$med->cmodontologia->user->apellido_materno.' '.$med->cmodontologia->user->nombres}}</td>
+							<td>{{$med->cmodontologia->user->estudiante->escuela->escuela}}</td>
 							<td>{{$med->medicamento->medicamento.' - '.$med->medicamento->presentacion}}</td>
 							
 							<td class="center">
@@ -67,14 +67,16 @@
 							@if($med->estado=='1')
                             {!!Form::open(['route'=>['enffarm.update', $med->id], 'method'=>'PUT'])!!} 
                               <input type="hidden" name="estado" value="0">
-                              <button class="submit btn btn-success btn-xs"" title="Clic para Desactivar" 
+                              <input type="hidden" name="oficina" value="2">
+                              <button class="submit btn btn-success btn-xs"" title="Clic para Cambiar" 
                               onclick="javascript:return conf('Desactivar');"> 
                               Atendido</button>
                             {!!Form::close() !!}
                             @else
                             {!!Form::open(['route'=>['enffarm.update', $med->id], 'method'=>'PUT'])!!} 
                               <input type="hidden" name="estado" value="1">
-                              <button class="submit btn btn-danger btn-xs"" title="Clic para Activar" 
+                              <input type="hidden" name="oficina" value="2">
+                              <button class="submit btn btn-danger btn-xs"" title="Clic para Cambiar" 
                               onclick="javascript:return conf('Activar');"> 
                               Pendiente</button>
                             {!!Form::close() !!}

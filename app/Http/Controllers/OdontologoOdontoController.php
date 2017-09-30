@@ -18,14 +18,15 @@ use App\Distrito;
 use App\CuadroFamiliar;
 use App\CmAntecedente;
 use App\CmProcedimiento;
-use App\CmMedProc;
+use App\CmOdoProc;
 use App\CmMedicamento;
-use App\MedMed;
+use App\CmOdoMed;
 use Carbon\Carbon;
 use App\InformeNutricion;
 use App\CmReporTbc;
 use App\CmReporBsalud;
 use App\CmReporEnfermedad;
+use App\CmOdoAtencion;
 
 use Redirect;
 use Input;
@@ -139,12 +140,12 @@ class OdontologoOdontoController extends Controller
         $date = Carbon::now();
         switch ($tipo) {
             case '1':
-                $recetas = MedMed::where('medicina_id',$id)->get();
-                $medicina = CmMedicina::find($id);
-                $view =  \View::make('pdf.cm.rm', compact('date','recetas','medicina'))->render();
+                $recetas = CmOdoMed::where('odontologia_id',$id)->get();
+                $medicina = CmOdontologia::find($id);
+                $view =  \View::make('pdf.cm.ro', compact('date','recetas','medicina'))->render();
                 $pdf = \App::make('dompdf.wrapper');
                 $pdf->loadHTML($view);
-                return $pdf->download('Receta Médica - '.$med->user->dni.'.pdf');
+                return $pdf->download('Receta-Odontología - '.$med->user->dni.'.pdf');
             break;
             case '2': 
                 $r_tbc=CmReporTbc::where('medicina_id',$id)->first();
@@ -202,7 +203,7 @@ class OdontologoOdontoController extends Controller
                 }
                 return "Constancia por enfermedad";
             break;
-            default: return Redirect::to('medmed')->with('naranja','Algo salió mal'); break;
+            default: return Redirect::to('odontodonto')->with('naranja','Algo salió mal'); break;
         }
         }
      }
@@ -247,9 +248,6 @@ class OdontologoOdontoController extends Controller
         $registro->iii_xliii=Input::get('iii_xliii');
         $registro->iii_xliv=Input::get('iii_xliv');
         $registro->iii_xlv=Input::get('iii_xlv');
-        $registro->iii_xlvi=Input::get('iii_xlvi');
-        $registro->iii_xlvii=Input::get('iii_xlvii');
-        $registro->iii_xlviii=Input::get('iii_xlviii');
         $registro->iii_li=Input::get('iii_li');
         $registro->iii_lii=Input::get('iii_lii');
         $registro->iii_liii=Input::get('iii_liii');
@@ -282,6 +280,88 @@ class OdontologoOdontoController extends Controller
         $registro->save();
       return Redirect('odontodonto')->with('verde','Se registró correctamente la atención');
      }
+     public function postProcedimientos(){//NUevo Procedimientos
+        //return "Hola";
+        $consulta=new CmOdoProc;
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find(Input::get('odontologia_id'));
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+     }
+
+     public function getCprocedimientos($id){ //Cargar procedimientos al modalActualizar
+        return CmOdoProc::find($id);
+     }
+
+     public function postAprocedimientos(){//Actualizar
+        $consulta=CmOdoProc::find(Input::get('id'));
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find($consulta->odontologia_id);
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+    }
+
+    public function postEprocedimientos(){//Eliminar
+        $consulta=CmOdoProc::find(Input::get('id'));
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find($consulta->odontologia_id);
+        CmOdoProc::destroy(Input::get('id'));
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+    }
+    public function getCmedicamentos($id){ //Cargar procedimientos al modalActualizar
+       //return "Tio Jones";
+        return CmOdoMed::find($id);
+     }
+    public function postMedicamentos(){
+        //return "Hola";
+        $consulta=new CmOdoMed;
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find(Input::get('odontologia_id'));
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+     }
+     public function postEmedicamentos(){//Eliminar
+        $consulta=CmOdoMed::find(Input::get('m_id'));
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find($consulta->odontologia_id);
+        CmOdoMed::destroy(Input::get('m_id'));
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+    }
+    public function postAmedicamentos(){//Actualizar
+        $consulta=CmOdoMed::find(Input::get('m_id'));
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find($consulta->odontologia_id);
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+    }
+
+     public function postAtenciones(){//NUevo Atenciones
+      //return "Hola";
+        $consulta=new CmOdoAtencion;
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find(Input::get('odontologia_id'));
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+     }
+
+     public function getCatenciones($id){ //Cargar procedimientos al modalActualizar
+        return CmOdoAtencion::find($id);
+     }
+     public function postEatenciones(){//Eliminar
+      // return Input::get('id');
+        $consulta=CmOdoAtencion::find(Input::get('id'));
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find($consulta->odontologia_id);
+        CmOdoAtencion::destroy(Input::get('id'));
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+    }
+    public function postAatenciones(){//Actualizar
+        $consulta=CmOdoAtencion::find(Input::get('id'));
+        $consulta->fill(Input::all())->save();
+        $estudiante=Estudiante::find(Input::get('user_id'));
+        $odontologia=CmOdontologia::find($consulta->odontologia_id);
+        return $this->recargarFormularios('users.odontologo.odontologia.vermas.step-33-tablas',$estudiante,$odontologia);
+    }
      public function recargarFormularios($ruta,$estudiante,$medicina){
             $religiones=Religion::lists('religion','id');
             $est_civils=EstCivil::lists('est_civil','id');
@@ -292,8 +372,12 @@ class OdontologoOdontoController extends Controller
             $medicamentos=CmMedicamento::get();
             $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
             $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            $mps=CmMedProc::where('medicina_id',$medicina->id)->get();
-            $mms=MedMed::where('medicina_id',$medicina->id)->get();
-            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));  
+            $ops=CmOdoProc::where('odontologia_id',$medicina->id)->get();
+            $oms=CmOdoMed::where('odontologia_id',$medicina->id)->get();
+            $ots=CmOdoAtencion::where('odontologia_id',$medicina->id)->get();
+            
+            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','ops','oms','ots'));  
      }
+
+
 }

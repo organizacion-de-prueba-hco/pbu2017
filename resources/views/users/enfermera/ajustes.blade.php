@@ -16,6 +16,7 @@ $iv_ii='';
 $v='';
 $v_i='';
 $v_ii='';
+$iv_iii='';
 ?>
 @endsection
 @section('titulo','Nuevo Expediente')

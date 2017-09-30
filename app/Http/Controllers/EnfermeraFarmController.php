@@ -21,6 +21,7 @@ use App\CmProcedimiento;
 use App\CmMedProc;
 use App\CmMedicamento;
 use App\MedMed;
+use App\CmOdoMed;
 
 use Redirect;
 use Input;
@@ -38,10 +39,18 @@ class EnfermeraFarmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex($id)
     {
-        $medmed=MedMed::get();
-        return view('users.enfermera.farmacia.atencion',compact('medmed'));
+        if($id=='2'){
+            $medmed=CmOdoMed::get();
+            return view('users.enfermera.farmacia.atencion2',compact('medmed')); 
+        }else if($id=='1'){
+            $medmed=MedMed::get();
+            return view('users.enfermera.farmacia.atencion',compact('medmed'));  
+        }else{
+            return back()->with('naranja','No se encontró la ruta');
+        }
+        
     }
 
     /**
@@ -96,20 +105,43 @@ class EnfermeraFarmController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $farmacia=MedMed::find($id);
+        if ($request->get('oficina')=='1') {
+            $farmacia=MedMed::find($id);
          $medicamento=CmMedicamento::find($farmacia->medicamento_id);
             if ($request->get('estado')=='0') {
                $valor=$medicamento->cantidad+$farmacia->cantidad;
             }else{
                $valor=$medicamento->cantidad-$farmacia->cantidad;
             }
+            if($valor<0){
+                return back()->with('rojo','No se pudo realizar esta acción, solo se cuenta con '.$medicamento->cantidad.' Unid. de '.$medicamento->medicamento.'-'.$medicamento->presentacion);
+            }
          $medicamento->cantidad=$valor;
          $medicamento->save();
 
         $farmacia->estado=$request->get('estado');
         $farmacia->save();
-        return Redirect::to('enffarm');
+        return Redirect::to('enffarms/index/1'); 
+        }
+        else if($request->get('oficina')=='2'){
+           $farmacia=CmOdoMed::find($id);
+           $medicamento=CmMedicamento::find($farmacia->medicamento_id);
+            if ($request->get('estado')=='0') {
+               $valor=$medicamento->cantidad+$farmacia->cantidad;
+            }else{
+               $valor=$medicamento->cantidad-$farmacia->cantidad;
+            }
+            if($valor<0){
+                return back()->with('rojo','No se pudo realizar esta acción, solo se cuenta con '.$medicamento->cantidad.' Unid. de '.$medicamento->medicamento.'-'.$medicamento->presentacion);
+            }
+         $medicamento->cantidad=$valor;
+         $medicamento->save();
+
+        $farmacia->estado=$request->get('estado');
+        $farmacia->save();
+        return Redirect::to('enffarms/index/2'); 
+        }
+        
     }
 
     /**

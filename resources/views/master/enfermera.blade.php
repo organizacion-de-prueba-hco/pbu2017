@@ -217,9 +217,17 @@
 
 						<ul class="submenu">
 							<li class="{{$iv_i}}">
-								<a href="{{url('enffarm')}}">
+								<a href="{{url('enffarms/index','1')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Atención
+									Atención Medicina
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$iv_iii}}">
+								<a href="{{url('enffarms/index','2')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Atención Odontología
 								</a>
 
 								<b class="arrow"></b>

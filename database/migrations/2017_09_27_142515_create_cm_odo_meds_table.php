@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOdoProcsTable extends Migration
+class CreateCmOdoMedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,16 @@ class CreateOdoProcsTable extends Migration
      */
     public function up()
     {
-        Schema::create('odo_procs', function (Blueprint $table) {
+        Schema::create('cm_odo_meds', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cantidad');
+            $table->string('indicaciones');
             $table->integer('odontologia_id')->unsigned();
-            $table->integer('procedimiento_id')->unsigned();
+            $table->integer('medicamento_id')->unsigned();
+            $table->string('estado')->default('0');
 
-            $table->foreign('odontologia_id')->references('id')->on('cm_medicinas')->onDelete('cascade');
-            $table->foreign('procedimiento_id')->references('id')->on('cm_procedimientos')
+            $table->foreign('odontologia_id')->references('id')->on('cm_odontologias')->onDelete('cascade');
+            $table->foreign('medicamento_id')->references('id')->on('cm_medicamentos')
                   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -32,6 +34,6 @@ class CreateOdoProcsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('odo_procs');
+        Schema::drop('cm_odo_meds');
     }
 }

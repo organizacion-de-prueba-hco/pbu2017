@@ -16,7 +16,7 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Ficha Socio Económica')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -27,9 +27,323 @@
 </ul>
 @endsection
 @section('contenido')
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
+
+<!-- Actualizar Procedimiento -->
+<div class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true" id="aprocedimientos">
+   <div class="modal-dialog">
+      <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel2">Actualizar Procedimento</h4>
+      </div>
+
+         {!! Form::open(['method'=>'post','id'=>'modal-aprocedimiento','class'=>'form-horizontal form-label-left']) !!}
+            <div class="modal-body">
+	            <div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" id="c_cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								{!!Form::select('procedimiento_id',$procedimientos,null,['required', 'id'=>'c_procedimiento_id','class'=>'col-xs-12 col-sm-9','style'=>'width: 100%'])!!}
+							</div>
+						</div>
+					</div>         
+            </div>
+               <div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="id" id="c_id" value="">
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/odontodontos/eprocedimientos','#modal-aprocedimiento','#div-de-tablas');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/odontodontos/aprocedimientos','#modal-aprocedimiento','#div-de-tablas')">
+		            	</div>
+		         	</div>
+               </div>
+         {!! Form::close() !!}
+      </div>
+   </div>
+</div>
+<!--Fin de Actualizar procedimiento-->
+
+<!--Modal Nuevo Procedimiento-->
+<div id="procedimientos" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-procedimientos','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								{!!Form::select('procedimiento_id',$procedimientos,null,['required', 'id'=>'procedimiento_id','class'=>'col-xs-12 col-sm-9','style'=>'width: 100%'])!!}
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="odontologia_id" value="{{$medicina->id}}">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/odontodontos/procedimientos','#modal-procedimientos','#div-de-tablas')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin modal Nuevo-->
+
+<!--Modal Actualizar Medicamentos-->
+<div id="amedicamentos" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Actualizar Medicamento</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-amedicamentos','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" id="m_cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Medicamento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								<select name="medicamento_id" id="m_medicamento_id" class='col-xs-12 col-sm-9' style='width: 100%;'>
+									@foreach($medicamentos as $m)
+									<option value="{{$m->id}}">{{$m->medicamento.' - '.$m->presentacion}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Indicaciones</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="text" class="col-xs-12 col-sm-6" name="indicaciones" id="m_indicaciones" style='width: 100%;'/>
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="m_id"  id="m_id">
+		            	
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/odontodontos/emedicamentos','#modal-amedicamentos','#div-de-tablas');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/odontodontos/amedicamentos','#modal-amedicamentos','#div-de-tablas')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin Actualizar Medicamento-->
+
+<!--Modal Nuevo Medicamento-->
+<div id="medicamentos" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-medicamentos','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Cantidad</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="number" min="1" class="col-xs-12 col-sm-6" name="cantidad" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Medicamento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								<select name="medicamento_id" id="medicamento_id" class='col-xs-12 col-sm-9' style='width: 100%;'>
+									@foreach($medicamentos as $m)
+									<option value="{{$m->id}}">{{$m->medicamento.' - '.$m->presentacion}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Indicaciones</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="text" min="1" class="col-xs-12 col-sm-6" name="indicaciones" style='width: 100%;'/>
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="odontologia_id" value="{{$medicina->id}}">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/odontodontos/medicamentos','#modal-medicamentos','#div-de-tablas')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin Nuevo Medicamento-->
+
+<!-- Actualizar Atencion -->
+<div class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true" id="aatenciones">
+   <div class="modal-dialog">
+      <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel2">Actualizar Atención</h4>
+      </div>
+      <div class="modal-body" align="center">
+         {!! Form::open(['method'=>'post','id'=>'modal-aatencion','class'=>'form-horizontal form-label-left']) !!}
+            <div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								{!!Form::select('procedimiento_id',$procedimientos,null,['required', 'id'=>'a_atencion_id','class'=>'col-xs-12 col-sm-9','style'=>'width: 100%'])!!}
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Observación</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="text" class="col-xs-12 col-sm-6" name="obs" id="a_obs"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Próxima Cita</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="date" class="col-xs-12 col-sm-6" name="prox_cita" id="a_prox_cita" />
+							</div>
+						</div>
+					</div>
+		</div>
+               <div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="id" id="a_id" value="">
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/odontodontos/eatenciones','#modal-aatencion','#div-de-tablas');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/odontodontos/aatenciones','#modal-aatencion','#div-de-tablas')">
+		            	</div>
+		         	</div>
+               </div>
+         {!! Form::close() !!}
+      </div>
+   </div>
+</div>
+<!--Fin de Actualizar atención-->
+
+<!--Modal Nueva atención-->
+<div id="atenciones" class="modal fade bs-example-modal-sm" tabindex="" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+				<h3 class="smaller lighter blue no-margin">Registrar Nueva Atención</h3>
+			</div>
+
+			<div class="modal-body" align="center">
+				{!! Form::open(['method'=>'post','id'=>'modal-atenciones','class'=>'form-horizontal form-label-left']) !!}
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Procedimiento</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix" align="left">
+								{!!Form::select('procedimiento_id',$procedimientos,null,['required', 'id'=>'atencion_id','class'=>'col-xs-12 col-sm-9','style'=>'width: 100%'])!!}
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Observación</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="text" class="col-xs-12 col-sm-6" name="obs" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Próxima Cita</label>
+						<div class="col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<input type="date" class="col-xs-12 col-sm-6" name="prox_cita" />
+							</div>
+						</div>
+					</div>
+			</div>
+					<div class="modal-footer">
+               	<div class="form-group">
+							<div class="col-xs-12 col-sm-12">
+		            	<input type="hidden" name="odontologia_id" value="{{$medicina->id}}">
+		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/odontodontos/atenciones','#modal-atenciones','#div-de-tablas')">
+		            	</div>
+		         	</div>
+		         </div>
+				{!!Form::close()!!}
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<!--Fin modal Nuevo-->
+
 
 <div class="row">
 	<div class="col-xs-12">
@@ -38,7 +352,7 @@
 		<div class="hr hr-18 hr-double dotted"></div>
 		<div class="widget-box">
 			<div class="widget-header widget-header-blue widget-header-flat">
-				<h4 class="widget-title lighter">Datos del Estudiante</h4>
+				<h4 class="widget-title lighter">Código: {{$medicina->id}}</h4>
 			</div>
 			<div class="widget-body">
 				<div class="widget-main">
@@ -103,14 +417,15 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
-			
+				$('#procedimiento_id').select2({});
+				$('#c_procedimiento_id').select2({});
+				$('#medicamento_id').select2({});
+				$('#m_medicamento_id').select2({});
+				$('#atencion_id').select2({});
+				$('#a_atencion_id').select2({});
 				$('[data-rel=tooltip]').tooltip();
 			
-				$('.select2').css('width','200px').select2({allowClear:true})
-				.on('change', function(){
-					$(this).closest('form').validate().element($(this));
-				}); 
-			
+							
 			
 				var $validation = false;
 				$('#fuelux-wizard-container')
@@ -127,14 +442,14 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Un poco más!</h3><br><i>Presione el boton azul \'Enviar Datos\'</i>", 
+						message: "<h3>¡Ya casi ha terminado!</h3><br><i>para terminar recuerde presionar el botón azul \'Enviar datos\'</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								 // callback: function() {
-         //        					alert('Holaaa');
-         //    					 }
+								 callback: function() {
+                					//alert('Holaaa');
+            					 }
 							}
 						}
 					});
@@ -262,12 +577,6 @@
 							if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
 							else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
 						}
-						else if(element.is('.select2')) {
-							error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-						}
-						else if(element.is('.chosen-select')) {
-							error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-						}
 						else error.insertAfter(element.parent());
 					},
 			
@@ -293,12 +602,6 @@
 					$(this).closest('form').validate().element($(this));
 				});
 				*/
-				
-				
-				$(document).one('ajaxloadstart.page', function(e) {
-					//in ajax mode, remove remaining elements before leaving page
-					$('[class*=select2]').remove();
-				});
 			})
 
 //Formularios-------------------- step------------------------------
@@ -323,221 +626,70 @@
         });
       }
 
-    //Editar 
-      function cargarModalCfamiliar(ids){
-        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
-        var id=ids;
-        var route="/fichasocial/cfamiliar/"+id;
-            //console.log(id);
-        var data={'id':id}; 
-        var token=$("#token").val();
-        $.ajax({
-          headers:{'X-CSRF-TOKEN':token},
-          url:route,
-          type:'GET',
-          success: function(result){
-            //console.log(result);
-            $('#cf_nombres').val(result.nombres);
-            $('#cf_parentesco').val(result.parentesco);
-            $('#cf_fecha_n').val(result.f_nac);
-            $("#cf_instruccion option[value='"+ result.grado_instrucion +"']").attr("selected",true);
-            // $("#e_estado option[value='"+ result.estado +"']").attr("selected",true);
-            $('#cf_ocupacion').val(result.ocupacion);
-            $('#cf_residencia').val(result.residencia);
-            $('#cf_id').val(result.id);                 
-          }                  
-        });
-      }    
-      function cargarModaLtrabajosf(ids){
-        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
-        var id=ids;
-        var route="/fichasocial/ltrabajosf/"+id;
-            //console.log(id);
-        var data={'id':id}; 
-        var token=$("#token").val();
-        $.ajax({
-          headers:{'X-CSRF-TOKEN':token},
-          url:route,
-          type:'GET',
-          success: function(result){
-            //console.log(result);
-            $('#Ltrabajosf_id').val(result.id);
-            $('#lugar_trabajo').val(result.lugar_trabajo);
-            $('#trabajo_inicio').val(result.trabajo_inicio);
-            $('#trabajo_fin').val(result.trabajo_fin);
-            $('#Ltrabajosf_titulo').val(result.trabajo_fin);                 
-          }                  
-        });
-      }
-      function cargarModalIfamiliar(ids){
-        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
-        var id=ids;
-        var route="/fichasocial/ingresofamiliar/"+id;
-        //console.log('El id es: '+id);
-        var data={'id':id}; 
-        var token=$("#token").val();
-        $.ajax({
-          headers:{'X-CSRF-TOKEN':token},
-          url:route,
-          type:'GET',
-          success: function(result){
-              $('#EditarIfamiliar').html(result);
-          }                  
-        });
-     }
-      function resetearModalIfamiliar($laruta,$modal,$eldiv){
-        //console.log($laruta+$eldiv);
-        var token=$("#token").val();
-        var route = $laruta;
-        $.ajax({
-          data:  {'rutaModal':$modal},
-          headers:{'X-CSRF-TOKEN':token}, 
-          url:   route,
-          type: 'post',
-          beforeSend: function () {
-            $($eldiv).html("Procesando, espere por favor...");
-          },
-          success:  function (response) {
-            //console.log(response);
-            $($eldiv).html(response);
-          }
-        });
-      }
-      //para el formulario 3.3 si es otro quien cubre los gastos
-      function desc_cubre_gasto($ids){
-    	var id=$ids;
-    	$('#desc_cubre_gastos').val("");
-
-    	if(id == '4'){
-        	//$('#div-especifiquen').show();
-        	 $('#div-especifiquen').removeClass('hidden');
-      		
-    	}else{
-      		//$('#div-especifiquen').hide();
-      		 $('#div-especifiquen').addClass('hidden');
-    	}
-  	  }
-  	  function cargarNuevoDsalud($id){
-        var route="/fichasocial/nuevodsalud/"+$id;
-        
-        $.ajax({
-          url:route,
-          success: function(result){ 
-              $('#NuevoDsalud').html(result);
-          }                  
-        });
-  	  }
-  	  function editarDsalud($id){
-        var route="/fichasocial/vistaeditardsalud/"+$id;
-        $.ajax({
-          url:route,
-          success: function(result){ 
-              $('#EditarDatoSalud').html(result);
-          }                  
-        });
-  	  }
+       
 //FIN Formularios-------------------- step--------------------------
-
-//Selects Anidados de departamentos-prov y Dist
-  //Lugar de nacimiento
-    $("#departamento_nac").change(event => {
-      //Usaremos la ruta que creamos para los selects anidados en "Tutor"
-      $.get(`/prov/${event.target.value}`,function(res,sta){
-        $("#provincia_nac").empty();
-        //console.log(res);
-        $("#provincia_nac").append(`<option value=''>Provincia</option>`);
-        res.forEach(element => {
-          $("#provincia_nac").append(`<option value=${element.id}>${element.provincia}</option>`);
+		function cargarProcedimientos(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/odontodontos/cprocedimientos/"+id;
+           //console.log(id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+           //console.log(result.procedimiento_id);
+          $('#c_cantidad').val(result.cantidad);
+          $("#c_procedimiento_id option[value='"+ result.procedimiento_id +"']").attr("selected",true);
+          $('#c_id').val(id);                 
+          }                  
         });
-
-      });
-    });
-
-    $("#provincia_nac").change(event => {
-      $.get(`/dist/${event.target.value}`,function(res,sta){
-        $("#distrito_nac").empty();
-        //console.log(res);
-        $("#distrito_nac").append(`<option value=''>Distrito</option>`);
-        res.forEach(element => {
-          $("#distrito_nac").append(`<option value=${element.id}>${element.distrito}</option>`);
+      }
+      
+      function cargarMedicamentos(ids){
+        //console.log(ids);
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/odontodontos/cmedicamentos/"+id;
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+           //console.log(result);
+          $('#m_cantidad').val(result.cantidad);
+          $("#m_medicamento_id option[value='"+ result.medicamento_id +"']").attr("selected",true);
+          $('#m_id').val(result.id); 
+          $('#m_indicaciones').val(result.indicaciones);                 
+          }                  
         });
+      }
 
-      });
-    });
-	//4to secundaria
-    $("#iv_dep").change(event => {
-      //Usaremos la ruta que creamos para los selects anidados en "Tutor"
-      $.get(`/prov/${event.target.value}`,function(res,sta){
-        $("#iv_prov").empty();
-        //console.log(res);
-        $("#iv_prov").append(`<option value=''>Provincia</option>`);
-        res.forEach(element => {
-          $("#iv_prov").append(`<option value=${element.id}>${element.provincia}</option>`);
+      function cargarAtenciones(ids){
+        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
+        var id=ids;
+        var route="/odontodontos/catenciones/"+id;
+           //console.log(id);
+        var data={'id':id}; 
+        var token=$("#token").val();
+        $.ajax({
+          headers:{'X-CSRF-TOKEN':token},
+          url:route,
+          type:'GET',
+          success: function(result){
+           //console.log(result);
+          $('#a_obs').val(result.obs);
+          $("#a_atencion_id option[value='"+ result.procedimiento_id +"']").attr("selected",true);
+          $('#a_prox_cita').val(result.prox_cita);
+          $('#a_id').val(id);                 
+          }                  
         });
+      }
 
-      });
-    });
-
-    $("#iv_prov").change(event => {
-      $.get(`/dist/${event.target.value}`,function(res,sta){
-        $("#iv_dist").empty();
-        //console.log(res);
-        $("#iv_dist").append(`<option value=''>Distrito</option>`);
-        res.forEach(element => {
-          $("#iv_dist").append(`<option value=${element.id}>${element.distrito}</option>`);
-        });
-
-      });
-    });
-
-    //4to secundaria
-    $("#v_dep").change(event => {
-      //Usaremos la ruta que creamos para los selects anidados en "Tutor"
-      $.get(`/prov/${event.target.value}`,function(res,sta){
-        $("#v_prov").empty();
-        //console.log(res);
-        $("#v_prov").append(`<option value=''>Provincia</option>`);
-        res.forEach(element => {
-          $("#v_prov").append(`<option value=${element.id}>${element.provincia}</option>`);
-        });
-
-      });
-    });
-
-    $("#v_prov").change(event => {
-      $.get(`/dist/${event.target.value}`,function(res,sta){
-        $("#v_dist").empty();
-        //console.log(res);
-        $("#v_dist").append(`<option value=''>Distrito</option>`);
-        res.forEach(element => {
-          $("#v_dist").append(`<option value=${element.id}>${element.distrito}</option>`);
-        });
-
-      });
-    });
-
-//imagenes
-    //Mostrar imagenes del imput file
-    function foto(evt) {
-      var files = evt.target.files; // FileList object
-        //Obtenemos la imagen del campo "file". 
-      for (var i = 0, f; f = files[i]; i++) {         
-           //Solo admitimos imágenes.
-           if (!f.type.match('image.*')) {
-                continue;
-           }
-           var reader = new FileReader();
-           reader.onload = (function(theFile) {
-               return function(e) {
-               // Creamos la imagen.
-                      document.getElementById("lista").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-               };
-           })(f);
- 
-           reader.readAsDataURL(f);
-       }
-  	}      
-      document.getElementById('files-foto').addEventListener('change', foto, false);
 
       //Mostrar ocultar P_Otros
     function mostrarotros($id,$check){
