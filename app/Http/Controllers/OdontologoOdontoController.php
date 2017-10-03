@@ -231,10 +231,9 @@ class OdontologoOdontoController extends Controller
         $registro->iii_xxiv=Input::get('iii_xxiv');
         $registro->iii_xxv=Input::get('iii_xxv');
         $registro->iii_xxvi=Input::get('iii_xxvi');
-        $registro->iii_xxvi=Input::get('iii_xxvi');
         $registro->iii_xxvii=Input::get('iii_xxvii');
         $registro->iii_xxviii=Input::get('iii_xxviii');
-        $registro->iii_xxxi=Input::get('iii_xxxi');
+
         $registro->iii_xxxi=Input::get('iii_xxxi');
         $registro->iii_xxxii=Input::get('iii_xxxii');
         $registro->iii_xxxiii=Input::get('iii_xxxiii');
@@ -248,6 +247,10 @@ class OdontologoOdontoController extends Controller
         $registro->iii_xliii=Input::get('iii_xliii');
         $registro->iii_xliv=Input::get('iii_xliv');
         $registro->iii_xlv=Input::get('iii_xlv');
+        $registro->iii_xlvi=Input::get('iii_xlvi');
+        $registro->iii_xlvii=Input::get('iii_xlvii');
+        $registro->iii_xlviii=Input::get('iii_xlviii');
+
         $registro->iii_li=Input::get('iii_li');
         $registro->iii_lii=Input::get('iii_lii');
         $registro->iii_liii=Input::get('iii_liii');
@@ -278,7 +281,7 @@ class OdontologoOdontoController extends Controller
         $registro->iii_b_otros=Input::get('iii_b_otros');
 
         $registro->save();
-      return Redirect('odontodonto')->with('verde','Se registró correctamente la atención');
+      return Redirect('odontodonto')->with('verde','Se actualizó correctamente la atención');
      }
      public function postProcedimientos(){//NUevo Procedimientos
         //return "Hola";

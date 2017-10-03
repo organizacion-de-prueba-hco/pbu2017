@@ -2,20 +2,11 @@
 @section('activacion')
 	<?php
 	$i ='';
-	$ii='active open';
-	$ii_i='active';
-	$ii_ii='';
-	$ii_iii='';
-	$ii_iv='';
+	$ii='active';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='';
-	$iv_i='';
-	$iv_ii='';
-	$v='';
-	$v_i='';
-	$v_ii='';
+	$iii_iii='';
 	?>
 @endsection
 @section('titulo','Medicina-Atención')

@@ -3,24 +3,15 @@
 	<?php  
 	$i ='active';
 	$ii='';
-	$ii_i='';
-	$ii_ii='';
-	$ii_iii='';
-	$ii_iv='';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='';
-	$iv_i='';
-	$iv_ii='';
-	$v='';
-	$v_i='';
-	$v_ii='';
+	$iii_iii='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Ficha Socio Económica')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -31,9 +22,6 @@
 </ul>
 @endsection
 @section('contenido')
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
 
 <div class="row">
 	<div class="col-xs-12">
@@ -60,12 +48,7 @@
 								<li data-step="3">
 									<span class="step">III</span>
 									<span class="title">ODONTOLOGÍA</span>
-								</li>
-								<li data-step="5">
-									<span class="step">IV</span>
-									<span class="title">REPORTES</span>
-								</li>
-								
+								</li>								
 							</ul>
 						</div>
 						<hr />
@@ -78,15 +61,8 @@
 								@include('users.odontologo.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								
+								@include('users.odontologo.inicio.vermas.step-33')
 							</div>
-							<div class="step-pane" data-step="4" id="step-44">
-								
-							</div>
-							<div class="step-pane" data-step="5" id="step-55">
-								
-							</div>
-							
 						</div>
 					</div>
 					<hr />
@@ -142,7 +118,7 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Un poco más!</h3><br><i>Presione el boton azul \'Enviar Datos\'</i>", 
+						message: "<h3>¡Imprimir!</h3><br><i>Ud. Puede descargar este documento en formato PDF</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",

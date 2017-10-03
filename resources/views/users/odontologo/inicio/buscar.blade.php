@@ -3,19 +3,10 @@
 	<?php
 	$i ='active';
 	$ii='';
-	$ii_i='';
-	$ii_ii='';
-	$ii_iii='';
-	$ii_iv='';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='';
-	$iv_i='';
-	$iv_ii='';
-	$v='';
-	$v_i='';
-	$v_ii='';
+	$iii_iii='';
 	?>
 @endsection
 @section('titulo','Expedientes')

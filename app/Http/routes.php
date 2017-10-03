@@ -123,6 +123,7 @@ Route::resource('odonto', 'OdontoRegistrosController');
 Route::controller('odontos', 'OdontoRegistrosController');
 Route::resource('odontodonto', 'OdontologoOdontoController');
 Route::controller('odontodontos', 'OdontologoOdontoController');
+Route::controller('odontotros', 'OdontologoController');
 
 Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');

@@ -7,8 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\CmMedicamento;
+use App\CmProcedimiento;
+use App\CmInventario;
+
 class OdontologoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');//getDescargar
+        $this->middleware('odonto');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -83,5 +92,19 @@ class OdontologoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Otros----------------------------------------
+    public function getMedicamentos(){
+        $medicamento=CmMedicamento::get();
+        return view('users.odontologo.otros.medicamentos',compact('medicamento'));
+    }
+    public function getProcedimientos(){
+        $procedimiento=CmProcedimiento::get();
+        return view('users.odontologo.otros.procedimientos',compact('procedimiento'));
+    }
+    public function getInventario(){
+        $inventario=CmInventario::get();
+        return view('users.odontologo.otros.inventario',compact('inventario'));
     }
 }

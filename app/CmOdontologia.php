@@ -12,11 +12,12 @@ class CmOdontologia extends Model
     'odontologo_id',
     'user_id',
     'i_motivo_consulta',
-    'ii_a','ii_b','ii_c','ii_d','iii_xi','iii_xii','iii_xiii','iii_ix','iii_xv','iii_xvi','iii_xvii','iii_xviii',
+    'ii_a','ii_b','ii_c','ii_d',
+    'iii_xi','iii_xii','iii_xiii','iii_ix','iii_xv','iii_xvi','iii_xvii','iii_xviii',
     'iii_xxi','iii_xxii','iii_xxiii','iii_xxiv','iii_xxv','iii_xxvi','iii_xxvii','iii_xxviii',
-    'iii_xxxi','iii_xxxi','iii_xxxii','iii_xxxiii','iii_xxxiv','iii_xxxv','iii_xxxvi','iii_xxxvii','iii_xxxi',
+    'iii_xxxi','iii_xxxii','iii_xxxiii','iii_xxxiv','iii_xxxv','iii_xxxvi','iii_xxxvii','iii_xxxviii',
     'iii_xli','iii_xlii','iii_xliii','iii_xliv','iii_xlv','iii_xlvi','iii_xlvii','iii_xlviii',
-    'iii_li','iii_lii','iii_liii','iii_liv',
+    'iii_li','iii_lii','iii_liii','iii_liv','iii_lv',
     'iii_lxi','iii_lxii','iii_lxiii','iii_lxiv','iii_lxv',
     'iii_lxxi','iii_lxxii','iii_lxxiii','iii_lxxiv','iii_lxxv',
     'iii_lxxxi','iii_lxxxii','iii_lxxxiii','iii_lxxxiv','iii_lxxxv',
@@ -31,6 +32,6 @@ class CmOdontologia extends Model
     	return $this->belongsto('App\user');
     }
     public function odontologo(){
-        return $this->belongsto('App\user', 'odontologo','id');
+        return $this->belongsto('App\user', 'odontologo_id','id');
     }
 }

@@ -1,120 +1,48 @@
-@extends('master.enfermera')
+@extends('master.odontologo')
 @section('activacion')
 	<?php
 	$i ='';
 	$ii='';
-	$ii_i='';
-	$ii_ii='';
-	$ii_iii='';
-	$ii_iv='';
-	$iii='';
+	$iii='active open';
 	$iii_i='';
 	$iii_ii='';
-	$iv='';
-	$iv_i='';
-	$iv_ii='';
-	$v='active open';
-	$v_i='';
-	$v_ii='active';
-	$iv_iii='';
+	$iii_iii='active';
 	?>
 @endsection
-@section('titulo','Otros-Procedimiento')
+@section('titulo','Otros-Inventario')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-user-md"></i>
+	<i class="ace-icon fa fa-plus-square"></i>
 	<li class="active">Otros</li>
-	<li class="active">Procedimiento</li>
+	<li class="active">Inventario</li>
 </ul>
 @endsection
 @section('contenido')
 <div class="row">
-	<div class="col-xs-12">
-	
+	<div class="col-xs-12">		
 		<div class="table-header">
-			<a href="#nuevo-proc" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
-				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
-			</a>
-				Nuevo Procedimiento &nbsp;&nbsp;&nbsp;
+				Inventario &nbsp;&nbsp;&nbsp;
 		</div>
-		
-				<!--Modal procedimiento-->
-		<div id="editar-procedimiento" class="modal fade" tabindex="-1">
-			
-		</div>
-										<!--Fin modal procedimiento-->							
-
-
-										<!--Modal Nuevo-->
-		<div id="nuevo-proc" class="modal fade" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
-					</div>
-					{!! Form::open(['url' => 'enfotroprocs/nuevo', 'method' => 'POST']) !!}
-					<div class="modal-body" align="center">
-						<div class="item form-group">
-						
-						<div class="col-md-8 col-sm-8 col-xs-8">
-                  	  <label>Procedimiento: </label><br>
-                       <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" style="width: 100%;">
-                  </div>
-
-                  <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-							<label>Tarifa: </label><br>
-							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa" >
-						</div>
-						
-						<br>
-					</div>
-					</div>
-					<br>
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
-					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
-					</button>
-					</div>
-					{!!Form::close()!!}
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-										<!--Fin modal Nuevo-->
 										
-										<!-- div.table-responsive -->
-
-										<!-- div.dataTables_borderWrap -->
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Procedimiento</th>
-						<th class="center">Consultorio</th>
-						<th class="center">Tarifa S/</th>
-						<th class="center">Editar</th>
+						<th class="center">Nombre</th>
+						<th class="center">Descripción</th>
+						<th>Cantidad / Unidades</th>
 					</tr>
 				</thead>
 				
 				<tbody>
-					@foreach($procedimiento as $proc)
+					@foreach($inventario as $med)
 						<tr>
-							<td>{{$proc->procedimiento}}</td>
-							@if($proc->area==0)
-								<td class="center">Medicina</td>
-							@else
-								<td class="center">Odontología</td>
-							@endif
-							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
-							<td class="center">
-								<div class="hidden-sm hidden-xs action-buttons">
-								<a class="green cnter" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')" data-rel="tooltip">
-								<i class="ace-icon fa fa-pencil bigger-130"></i>
-								</a>
-								</div> 
-							</td>								
+							<td class="center">{{$med->nombre}}</td>
+							<td class="center">{{$med->descripcion}}</td>
+							<td> {{$med->cantidad}}</td>				
+							
 					</tr>
 					@endforeach
 
@@ -161,7 +89,6 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  { "bSortable": null },
 					  null, null,
 					  { "bSortable": false }
 					],
@@ -380,28 +307,6 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
-
-
-		function cargarModalEditar(ids){
-        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
-        var id=ids;
-        console.log(">"+id);
-        var route="/enfotroproc/"+id+"/edit";
-        var data={'id':id}; 
-        var token=$("#token").val();
-        $.ajax({
-          headers:{'X-CSRF-TOKEN':token},
-          url:route,
-          type:'GET',
-
-          success: function(result){
-            //console.log(result);
-            $('#editar-procedimiento').html(result);
-                             
-          }                  
-        });
-      }
-
 
 
 

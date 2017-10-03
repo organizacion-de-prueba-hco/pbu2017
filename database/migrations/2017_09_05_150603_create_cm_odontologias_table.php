@@ -28,6 +28,7 @@ class CreateCmOdontologiasTable extends Migration
 
             //III. Estado de salud Bucodental
               //A) Examen Odontológico
+              //11-18
               $table->string('iii_xi');
               $table->string('iii_xii');
               $table->string('iii_xiii');
@@ -36,7 +37,7 @@ class CreateCmOdontologiasTable extends Migration
               $table->string('iii_xvi');
               $table->string('iii_xvii');
               $table->string('iii_xviii');
-
+              //21-28
               $table->string('iii_xxi');
               $table->string('iii_xxii');
               $table->string('iii_xxiii');
@@ -45,7 +46,7 @@ class CreateCmOdontologiasTable extends Migration
               $table->string('iii_xxvi');
               $table->string('iii_xxvii');
               $table->string('iii_xxviii');
-
+              //31-38
               $table->string('iii_xxxi');
               $table->string('iii_xxxii');
               $table->string('iii_xxxiii');
@@ -54,31 +55,34 @@ class CreateCmOdontologiasTable extends Migration
               $table->string('iii_xxxvi');
               $table->string('iii_xxxvii');
               $table->string('iii_xxxviii');
-
+              //41-48
               $table->string('iii_xli');
               $table->string('iii_xlii');
               $table->string('iii_xliii');
               $table->string('iii_xliv');
               $table->string('iii_xlv');
-
+              $table->string('iii_xlvi');
+              $table->string('iii_xlvii');
+              $table->string('iii_xlviii');
+              //51-55
               $table->string('iii_li');
               $table->string('iii_lii');
               $table->string('iii_liii');
               $table->string('iii_liv');
               $table->string('iii_lv');
-
+              //61-65
               $table->string('iii_lxi');
               $table->string('iii_lxii');
               $table->string('iii_lxiii');
               $table->string('iii_lxiv');
               $table->string('iii_lxv');
-
+              //71-75
               $table->string('iii_lxxi');
               $table->string('iii_lxxii');
               $table->string('iii_lxxiii');
               $table->string('iii_lxxiv');
               $table->string('iii_lxxv');
-
+              //81-85
               $table->string('iii_lxxxi');
               $table->string('iii_lxxxii');
               $table->string('iii_lxxxiii');

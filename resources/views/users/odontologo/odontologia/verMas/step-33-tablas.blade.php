@@ -1,6 +1,6 @@
 
 					<div class="space-2"></div><hr>
-					<h3 class="lighter block green">3.4 Plan de tratamiento</h3>
+					<h3 class="lighter block green">3.5 Plan de tratamiento</h3>
 					<div class="form-group">
 						<label class="control-label col-xs-12 col-sm-3 no-padding-right"></label>
 						<div class="col-xs-12 col-sm-9">
@@ -60,7 +60,7 @@
 					</div>
 
 					<div class="space-2"></div><hr>
-					<h3 class="lighter block green">3.5 Medicamentos</h3>
+					<h3 class="lighter block green">3.6 Medicamentos</h3>
 					<div class="form-group">
 						<label class="control-label col-xs-12 col-sm-3 no-padding-right"></label>
 						<div class="col-xs-12 col-sm-9">
@@ -121,7 +121,7 @@
 					</div>
 
 					<div class="space-2"></div><hr>
-					<h3 class="lighter block green">3.6 Atenciones</h3>
+					<h3 class="lighter block green">3.7 Atenciones</h3>
 					<div class="form-group">
 						<label class="control-label col-xs-12 col-sm-3 no-padding-right"></label>
 						<div class="col-xs-12 col-sm-9">

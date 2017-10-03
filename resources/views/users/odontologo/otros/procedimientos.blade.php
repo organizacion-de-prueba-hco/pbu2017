@@ -1,22 +1,12 @@
-@extends('master.enfermera')
+@extends('master.odontologo')
 @section('activacion')
 	<?php
 	$i ='';
 	$ii='';
-	$ii_i='';
-	$ii_ii='';
-	$ii_iii='';
-	$ii_iv='';
-	$iii='';
+	$iii='active open';
 	$iii_i='';
-	$iii_ii='';
-	$iv='';
-	$iv_i='';
-	$iv_ii='';
-	$v='active open';
-	$v_i='';
-	$v_ii='active';
-	$iv_iii='';
+	$iii_ii='active';
+	$iii_iii='';
 	?>
 @endsection
 @section('titulo','Otros-Procedimiento')
@@ -24,9 +14,9 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-user-md"></i>
+	<i class="ace-icon fa fa-plus-square"></i>
 	<li class="active">Otros</li>
-	<li class="active">Procedimiento</li>
+	<li class="active">Procedimientos</li>
 </ul>
 @endsection
 @section('contenido')
@@ -40,53 +30,9 @@
 				Nuevo Procedimiento &nbsp;&nbsp;&nbsp;
 		</div>
 		
-				<!--Modal procedimiento-->
-		<div id="editar-procedimiento" class="modal fade" tabindex="-1">
-			
-		</div>
+				
 										<!--Fin modal procedimiento-->							
 
-
-										<!--Modal Nuevo-->
-		<div id="nuevo-proc" class="modal fade" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
-					</div>
-					{!! Form::open(['url' => 'enfotroprocs/nuevo', 'method' => 'POST']) !!}
-					<div class="modal-body" align="center">
-						<div class="item form-group">
-						
-						<div class="col-md-8 col-sm-8 col-xs-8">
-                  	  <label>Procedimiento: </label><br>
-                       <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" style="width: 100%;">
-                  </div>
-
-                  <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-							<label>Tarifa: </label><br>
-							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa" >
-						</div>
-						
-						<br>
-					</div>
-					</div>
-					<br>
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
-					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
-					</button>
-					</div>
-					{!!Form::close()!!}
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-										<!--Fin modal Nuevo-->
-										
-										<!-- div.table-responsive -->
-
-										<!-- div.dataTables_borderWrap -->
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
@@ -94,7 +40,6 @@
 						<th class="center">Procedimiento</th>
 						<th class="center">Consultorio</th>
 						<th class="center">Tarifa S/</th>
-						<th class="center">Editar</th>
 					</tr>
 				</thead>
 				
@@ -108,13 +53,7 @@
 								<td class="center">Odontología</td>
 							@endif
 							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
-							<td class="center">
-								<div class="hidden-sm hidden-xs action-buttons">
-								<a class="green cnter" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')" data-rel="tooltip">
-								<i class="ace-icon fa fa-pencil bigger-130"></i>
-								</a>
-								</div> 
-							</td>								
+														
 					</tr>
 					@endforeach
 
@@ -162,28 +101,10 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,
+					  null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
-
-
-					//"bProcessing": true,
-			        //"bServerSide": true,
-			        //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
-
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-					//"iDisplayLength": 50
-
 
 					select: {
 						style: 'multi'
@@ -355,24 +276,6 @@
 					$(this).closest('tr').next().toggleClass('open');
 					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
 				});
-				/***************/
-
-
-
-
-
-				/**
-				//add horizontal scrollbars to a simple table
-				$('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-				  {
-					horizontal: true,
-					styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-					size: 2000,
-					mouseWheelLock: true
-				  }
-				).css('padding-top', '12px');
-				*/
-
 
 			})
 

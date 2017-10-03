@@ -15,6 +15,7 @@ use App\Departamento;
 use App\Distrito;
 use App\Provincia;
 use App\CmAntecedente;
+use App\CmOdontologia;
 
 use Redirect;
 
@@ -128,6 +129,7 @@ class OdontoRegistrosController extends Controller
             $distritos=Distrito::lists('distrito','id');
             $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
             $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
+            $odontologias=CmOdontologia::where('user_id',$estudiante->user_id)->where('i_motivo_consulta','<>','')->orderBy('id','desc')->get();
+            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','odontologias'));
      }
 }

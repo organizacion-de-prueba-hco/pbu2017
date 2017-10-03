@@ -128,7 +128,7 @@
 
 				<ul class="nav nav-list">
 					<li class="{{$i}}">
-						<a href="{{url('med')}}">
+						<a href="{{url('odonto')}}">
 							<i class="menu-icon fa fa-home"></i>
 							<span class="menu-text"> Inicio </span>
 						</a>
@@ -152,7 +152,7 @@
 
 						<ul class="submenu">
 							<li class="{{$iii_i}}">
-								<a href="{{url('enffarm')}}">
+								<a href="{{url('odontotros/medicamentos')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Medicamentos
 								</a>
@@ -160,8 +160,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="{{$iii_i}}">
-								<a href="{{url('enffarm')}}">
+							<li class="{{$iii_ii}}">
+								<a href="{{url('odontotros/procedimientos')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Procedimientos
 								</a>
@@ -169,8 +169,8 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="{{$iii_ii}}">
-								<a href="{{url('enfainv')}}">
+							<li class="{{$iii_iii}}">
+								<a href="{{url('odontotros/inventario')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inventario
 								</a>
