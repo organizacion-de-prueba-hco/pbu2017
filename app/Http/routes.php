@@ -138,6 +138,11 @@ Route::resource('enfotroproc', 'EnfermeraOtroProcController');
 Route::controller('enfotroprocs', 'EnfermeraOtroProcController');
 
 
+
+
+
+
+
 //Pdf
 Route::controller('pdf', 'PdfController');
 

@@ -13,7 +13,7 @@
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Apellidos y Nombres:</label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
-												<input type="text" class="col-xs-12 col-sm-6" value="{{$estudiante->user->apellido_paterno.' '.$estudiante->user->apellido_materno.' '.$estudiante->user->nombres}}" disabled="true"/>
+												<input type="text" class="col-xs-12 col-sm-6" value="{{$estudiante->user->apellido_paterno.' '.$estudiante->user->apellido_materno.' '.$estudiante->user->nombres}}" />
 											</div>
 										</div>
 									</div>

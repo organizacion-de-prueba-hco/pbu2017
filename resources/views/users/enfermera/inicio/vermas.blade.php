@@ -110,6 +110,32 @@
 			</div><!-- /.widget-body -->
 		</div>
 	</div><!-- /.col -->
+
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarFotoEstudiante">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                      	{{$estudiante->user_id}}
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title">Actualizar foto</h4>
+                        </div>
+                        <div class="modal-body">                        
+                          {!! Form::open(['url' => 'estudiantes/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          <div class="item form-group">
+                            <div class="col-12">
+                              <input type="file" id="files-foto" name="foto" accept="image/*"/><br>
+                              <output id="lista"><img src="{{url('imagenes/avatar/'.Auth::user()->foto)}}" width="100%"></output>
+                            </div>
+                          </div>
+                        <div class="modal-footer">
+                          <input type="submit" class="btn btn-success" value="Actualizar" >
+                        </div>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+      </div>
+    </div>
 </div><!-- /.row -->
 @endsection
 @section('script')
