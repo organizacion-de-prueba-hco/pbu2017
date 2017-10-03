@@ -53,7 +53,7 @@
     </p>
   </div>
   <div id="content" style="margin-left: 30px; margin-right: 30px;">
-    <h2 align="center" style="font-size: 18px; font-family: fantasy;">FICHA CLINICA ODONTOLÓGICA</h2>
+    <h2 align="center" style="font-size: 18px; font-family: fantasy;">FICHA CLÍNICA ODONTOLÓGICA</h2>
     <div>
       <h4>FILIACIÓN</h4>
       <p><b>DNI: </b>{{$estudiante->user->dni}}</p>

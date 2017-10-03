@@ -1,7 +1,9 @@
 <?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
 <h2 class="StepTitle">III. TRIAJE</h2>
 			<hr>
-				{!! Form::open(['method'=>'post','id'=>'elformulario1-2','class'=>'form-horizontal form-label-left']) !!}								
+				{!! Form::open(['method'=>'post','id'=>'elformulario1-2','class'=>'form-horizontal form-label-left']) !!}				
+
+				Si leer esto significa que sirvo, no me Borres				
 									<div class="space-2"></div>
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">FC: </label>

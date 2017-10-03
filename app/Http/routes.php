@@ -114,6 +114,7 @@ Route::resource('enfodonto', 'EnfermeraOdontoController');
 Route::controller('enfodontos', 'EnfermeraOdontoController');
 
 Route::resource('med', 'MedicoRegistrosController');
+Route::controller('meds', 'MedicoRegistrosController');
 Route::resource('medmed', 'MedicoMedController');
 Route::controller('medmeds', 'MedicoMedController');
 Route::resource('medico', 'MedicoController');

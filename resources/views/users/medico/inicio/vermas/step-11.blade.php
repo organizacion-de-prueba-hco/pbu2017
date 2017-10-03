@@ -171,7 +171,7 @@
 									<div class="hr hr-dotted"></div>
 									<div align="center" ><br>
                           			<input type="hidden" name="id" value="{{$estudiante->user_id}}">
-                          			<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/enfmeds/filiacion','#elformulario1-11','#step-11')"><br><br></div>
+                          			<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/medmeds/filiacion0','#elformulario1-11','#step-11')"><br><br></div>
 
 									<div class="space-2"></div>
 								{!! Form::close() !!}

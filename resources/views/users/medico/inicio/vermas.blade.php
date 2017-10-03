@@ -20,7 +20,7 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Médico - Buscar ')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -76,17 +76,17 @@
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.medicina.inicio.vermas.step-11')
+								@include('users.medico.inicio.vermas.step-11')
 							</div>
 
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.medicina.inicio.vermas.step-22')
+								@include('users.medico.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.medicina.inicio.vermas.step-triaje')
+								@include('users.medico.inicio.vermas.step-medicina')
 							</div>
 							<div class="step-pane" data-step="4" id="step-44">
-								
+								@include('users.medico.inicio.vermas.step-odontologia')
 							</div>
 							<div class="step-pane" data-step="5" id="step-55">
 								
