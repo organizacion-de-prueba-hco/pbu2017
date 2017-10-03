@@ -248,18 +248,36 @@ class PdfController extends Controller
 
          $odontologias=CmOdontologia::find($id);
          $estudiante=Estudiante::find($odontologias->user_id);
-         $religiones=Religion::lists('religion','id');
-         $est_civils=EstCivil::lists('est_civil','id');
-         $departamentos=Departamento::lists('departamento','id');
-         $provincias=Provincia::lists('provincia','id');
-         $distritos=Distrito::lists('distrito','id');
-         $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-         $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+         //$religiones=Religion::lists('religion','id');
+         //$est_civils=EstCivil::lists('est_civil','id');
+         //$departamentos=Departamento::lists('departamento','id');
+         //$provincias=Provincia::lists('provincia','id');
+         //$distritos=Distrito::lists('distrito','id');
+         //$antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+         //$antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
             
 
          $date = Carbon::now();
          //$date = $date->format('d-m-Y');
-         $view =\View::make('pdf.cm.repor-odontologia',compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','odontologias'))->render();
+         $view =\View::make('pdf.cm.repor-odontologia',compact('estudiante','odontologias'))->render();
+         $pdf = \App::make('dompdf.wrapper');
+         $pdf->loadHTML($view);
+         //return $pdf->download($informeNutricion->titulo.'.pdf');
+         return $pdf->stream('invoiced');
+
+        }else{
+            return back()->with('naranja','Ud. no puede realizar esta acción');
+        }
+    }
+
+    public function getOdontologiatodo($id){
+        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user!='2-4-2'){
+
+         $odontologias=CmOdontologia::where('user_id',$id)->where('i_motivo_consulta','<>','')->get();
+         $estudiante=Estudiante::find($id);   
+         $date = Carbon::now();
+         //$date = $date->format('d-m-Y');
+         $view =\View::make('pdf.cm.repor-odontologia-todo',compact('estudiante','date','odontologias'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
          //return $pdf->download($informeNutricion->titulo.'.pdf');
