@@ -66,10 +66,7 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div>
-										<!--Fin modal Nuevo-->
 
-
-										<!--Modal Reportes y constancias-->
 		<div id="reportes-modal" class="modal fade" tabindex="-1">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -99,6 +96,16 @@
 						<a href="#" id="cpe" data-dismiss="modal">
 							<span class="orange">
 								<i class="ace-icon fa fa-th-large bigger-120"> Constancia por enfermedad</i>
+							</span>
+						</a><br><br><hr>
+						<a href="#" id="med" data-dismiss="modal">
+							<span class="blue">
+								<i class="ace-icon fa fa-th-large bigger-120"> Esta Ficha</i>
+							</span>
+						</a><br><br>
+						<a href="#" id="med-t" data-dismiss="modal">
+							<span class="black">
+								<i class="ace-icon fa fa-th-large bigger-120"> Toda la fichas (Historial)</i>
 							</span>
 						</a><br><br>
 					</div><br>
@@ -150,7 +157,7 @@
 							</td>
 							<td>
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a @if($med->imp_dx != '') href="#reportes-modal" @else href="{{url('medmeds/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$med->id}}')">
+									<a @if($med->imp_dx != '') href="#reportes-modal" @else href="{{url('medmeds/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$med->id}}','{{$med->user_id}}')">
 									<span class="orange" >
 										<i class="ace-icon fa fa-th-large bigger-120"></i>
 									</span>
@@ -428,16 +435,21 @@
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
 
-		function reportes($id){
+		function reportes($id,$estudiante){
 			//console.log($id);
 			$('#rm').attr({onclick: "cerrarmodal();"});
 			$('#tbc').attr({onclick: "cerrarmodal();"});
 			$('#cbs').attr({onclick: "cerrarmodal();"});
 			$('#cpe').attr({onclick: "cerrarmodal();"});
+			$('#med').attr({onclick: "cerrarmodal();"});
+			$('#med-t').attr({onclick: "cerrarmodal();"});
+
 			$("#rm").attr('href','/medmeds/descargareporte/1/'+$id);
 			$("#tbc").attr('href','/medmeds/descargareporte/2/'+$id);
 			$("#cbs").attr('href','/medmeds/descargareporte/3/'+$id);
 			$("#cpe").attr('href','/medmeds/descargareporte/4/'+$id);
+			$("#med").attr('href','/pdf/medicina/'+$id);
+			$("#med-t").attr('href','/pdf/medicinatodo/'+$estudiante);
 		}
 
 		function cerrarmodal(){

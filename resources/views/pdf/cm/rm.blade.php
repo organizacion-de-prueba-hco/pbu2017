@@ -1,4 +1,5 @@
 <html>
+  <?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($medicina->user->f_nac); ?>
   <head>
     <title>Receta Médica </title>
     <meta http-equiv="Content-Type" content="text/html;">
@@ -55,7 +56,13 @@
     <div>
       <p><b>Apellidos y Nombres: </b>{{$medicina->user->apellido_paterno.' '.$medicina->user->apellido_materno.' '.$medicina->user->nombres}}</p>
       <p><b>Código Universitario: </b>{{$medicina->user->estudiante->cod_univ}}</p>
-      <p><b>Escuela Profesional: </b>{{$medicina->user->estudiante->escuela->escuela}}</p><br>
+      <p><b>Escuela Profesional: </b>{{$medicina->user->estudiante->escuela->escuela}}</p>
+      <p><b>Edad: </b>{{Carbon\Carbon::createFromDate(
+                              $fn->format('Y'),
+                              $fn->format('m'),
+                              $fn->format('d')
+                            )->age.' Años'}}
+      </p><br>
       @if($medicina->tto_descripcion!='')
       <p><b><u>Indicaciones: </u></b></p>
       <p>{{$medicina->tto_descripcion}}</p><br>

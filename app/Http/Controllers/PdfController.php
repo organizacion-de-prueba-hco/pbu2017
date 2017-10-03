@@ -263,8 +263,8 @@ class PdfController extends Controller
          $view =\View::make('pdf.cm.repor-odontologia',compact('estudiante','odontologias'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         //return $pdf->download($informeNutricion->titulo.'.pdf');
-         return $pdf->stream('invoiced');
+         return $pdf->download('Ficha médica-'.$estudiante->cod_univ.'.pdf');
+         //return $pdf->stream('invoiced');
 
         }else{
             return back()->with('naranja','Ud. no puede realizar esta acción');
@@ -281,8 +281,8 @@ class PdfController extends Controller
          $view =\View::make('pdf.cm.repor-odontologia-todo',compact('estudiante','date','odontologias'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         //return $pdf->download($informeNutricion->titulo.'.pdf');
-         return $pdf->stream('invoiced');
+         return $pdf->download('Ficha odontológica (Historial)-'.$estudiante->cod_univ.'.pdf');
+         //return $pdf->stream('invoiced');
 
         }else{
             return back()->with('naranja','Ud. no puede realizar esta acción');
@@ -301,13 +301,30 @@ class PdfController extends Controller
          $view =\View::make('pdf.cm.repor-medicina',compact('estudiante','medicinas','antec0','antec1'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         //return $pdf->download($informeNutricion->titulo.'.pdf');
-         return $pdf->stream('invoiced');
+         return $pdf->download('Ficha médica-'.$estudiante->cod_univ.'.pdf');
+         //return $pdf->stream('invoiced');
 
         }else{
             return back()->with('naranja','Ud. no puede realizar esta acción');
         }
     }
 
+    public function getMedicinatodo($id){
+      if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user!='2-4-2'){
+      $estudiante=Estudiante::find($id); 
+      $medicinas=CmMedicina::where('user_id',$estudiante->user_id)->where('imp_dx','<>','')->get();
+      $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+      $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+      $date = Carbon::now();
+      //$date = $date->format('d-m-Y');
+      $view =\View::make('pdf.cm.repor-medicina-todo',compact('estudiante','medicinas','antec0','antec1'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      return $pdf->download('Ficha médica (Historial)-'.$estudiante->cod_univ.'.pdf');
+      //return $pdf->stream('invoiced');
 
+      }else{
+            return back()->with('naranja','Ud. no puede realizar esta acción');
+      }
+    }
 }

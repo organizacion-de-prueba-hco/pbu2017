@@ -196,14 +196,14 @@
 								<b class="arrow"></b>
 							</li>
 
-							<li class="{{$iii_ii}}">
+							<!-- <li class="{{$iii_ii}}">
 								<a href="{{url('directivotalleres/uafsm')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Reportes
 								</a>
 
 								<b class="arrow"></b>
-							</li>
+							</li> -->
 						</ul>
 					</li>
 					<li class="{{$iv}}">

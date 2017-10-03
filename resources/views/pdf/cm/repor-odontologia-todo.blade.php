@@ -1,4 +1,5 @@
 <html>
+  <?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($estudiante->user->f_nac); ?>
   <head>
     <title>Odontología - Reporte </title>
     <meta http-equiv="Content-Type" content="text/html;">
@@ -65,6 +66,12 @@
       <p><b>Estado Civil: </b>{{$estudiante->user->estcivil->est_civil}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <b>Sexo: </b>@if($estudiante->user->genero=='1')Masculino @else Femenino @endif</p>
       <p><b>Fecha de Nacimiento: </b>{{Carbon\Carbon::parse($estudiante->user->f_nac)->format('d/m/Y')}}</p>
+      <p><b>Edad: </b>{{Carbon\Carbon::createFromDate(
+                              $fn->format('Y'),
+                              $fn->format('m'),
+                              $fn->format('d')
+                            )->age.' Años'}}
+      </p>
       <p><b>Ocupación: </b>{{App\CuadroFamiliar::where('parentesco','YO')->where('user_id',$estudiante->user_id)->first()->ocupacion}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Religión: </b>{{$estudiante->user->religion->religion}}</p>
       <br>
 @foreach($odontologias as $odo)

@@ -302,6 +302,9 @@ class MedicoMedController extends Controller
         switch ($tipo) {
             case '1':
                 $recetas = MedMed::where('medicina_id',$id)->get();
+                if($recetas=='[]'){
+                   return Redirect::to('medmed')->with('azul','aún no se ha registrado ninguna receta médica'); 
+                }
                 $medicina = CmMedicina::find($id);
                 $view =  \View::make('pdf.cm.rm', compact('date','recetas','medicina'))->render();
                 $pdf = \App::make('dompdf.wrapper');
@@ -378,7 +381,7 @@ class MedicoMedController extends Controller
                $view =  \View::make('pdf.cm.enf', compact('r_enf'))->render();
                $pdf = \App::make('dompdf.wrapper');
                $pdf->loadHTML($view);
-               return $pdf->download('Constancia por Enfermedad - '.$med->user->dni.'.pdf');
+               return $pdf->download('Constancia por Enfermedad - '.$r_enf->medicina->user->dni.'.pdf');
             }else{
                 $bs=new CmReporEnfermedad;
                 $bs->medicina_id=$id;
@@ -390,7 +393,7 @@ class MedicoMedController extends Controller
                $view =  \View::make('pdf.cm.enf', compact('r_enf'))->render();
                $pdf = \App::make('dompdf.wrapper');
                $pdf->loadHTML($view);
-               return $pdf->download('Constancia por Enfermedad - '.$med->user->dni.'.pdf');
+               return $pdf->download('Constancia por Enfermedad - '.$r_enf->medicina->user->dni.'.pdf');
                 return Redirect::to('medmed');
             }
             return Input::all();
