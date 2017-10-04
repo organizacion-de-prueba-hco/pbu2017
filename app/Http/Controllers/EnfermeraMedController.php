@@ -268,4 +268,18 @@ class EnfermeraMedController extends Controller
         }
      }
     
+    public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Input::get('id-est'));        
+        $name=$user->estudiante->cod_univ.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        if($user->save()){
+             return back()->with('verde','Se actualizó foto');//redirige a enf que es donde se muestran los registros
+        }else{
+            return back()->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+        }
+      }
+     }
 }

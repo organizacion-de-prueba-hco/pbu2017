@@ -23,6 +23,15 @@
 @endsection
 @section('titulo','Inicio')
 @section('estilos')
+	<style type="text/css">
+             .thumb{
+               border: 1px solid #000;
+               margin: 10px 5px 0 0;
+               width: 100%;
+               text-align: center;
+            }
+
+   </style>
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
@@ -32,9 +41,6 @@
 </ul>
 @endsection
 @section('contenido')
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
 
 <div class="row">
 	<div class="col-xs-12">
@@ -65,12 +71,7 @@
 								<li data-step="4">
 									<span class="step">IV</span>
 									<span class="title">ODONTOLOGÍA</span>
-								</li>
-								<li data-step="5">
-									<span class="step">V</span>
-									<span class="title">REPORTES</span>
-								</li>
-								
+								</li>								
 							</ul>
 						</div>
 						<hr />
@@ -84,13 +85,10 @@
 								@include('users.enfermera.inicio.vermas.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								
+								@include('users.enfermera.inicio.vermas.step-medicina')
 							</div>
 							<div class="step-pane" data-step="4" id="step-44">
-								
-							</div>
-							<div class="step-pane" data-step="5" id="step-55">
-								
+								@include('users.enfermera.inicio.vermas.step-odontologia')
 							</div>
 							
 						</div>
@@ -110,32 +108,6 @@
 			</div><!-- /.widget-body -->
 		</div>
 	</div><!-- /.col -->
-
-	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarFotoEstudiante">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                      	{{$estudiante->user_id}}
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title">Actualizar foto</h4>
-                        </div>
-                        <div class="modal-body">                        
-                          {!! Form::open(['url' => 'estudiantes/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
-                          <div class="item form-group">
-                            <div class="col-12">
-                              <input type="file" id="files-foto" name="foto" accept="image/*"/><br>
-                              <output id="lista"><img src="{{url('imagenes/avatar/'.Auth::user()->foto)}}" width="100%"></output>
-                            </div>
-                          </div>
-                        <div class="modal-footer">
-                          <input type="submit" class="btn btn-success" value="Actualizar" >
-                        </div>
-                      {!! Form::close() !!}
-                    </div>
-                  </div>
-      </div>
-    </div>
 </div><!-- /.row -->
 @endsection
 @section('script')
@@ -179,9 +151,9 @@
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								 callback: function() {
-                					alert('Holaaa');
-            					 }
+								 // callback: function() {
+         //        					alert('Holaaa');
+         //    					 }
 							}
 						}
 					});
@@ -563,28 +535,6 @@
       });
     });
 
-//imagenes
-    //Mostrar imagenes del imput file
-    function foto(evt) {
-      var files = evt.target.files; // FileList object
-        //Obtenemos la imagen del campo "file". 
-      for (var i = 0, f; f = files[i]; i++) {         
-           //Solo admitimos imágenes.
-           if (!f.type.match('image.*')) {
-                continue;
-           }
-           var reader = new FileReader();
-           reader.onload = (function(theFile) {
-               return function(e) {
-               // Creamos la imagen.
-                      document.getElementById("lista").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-               };
-           })(f);
- 
-           reader.readAsDataURL(f);
-       }
-  	}      
-      document.getElementById('files-foto').addEventListener('change', foto, false);
 
       //Mostrar ocultar P_Otros
     function mostrarotros($id,$check){

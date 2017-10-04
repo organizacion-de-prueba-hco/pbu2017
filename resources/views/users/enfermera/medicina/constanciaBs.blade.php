@@ -26,7 +26,7 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-user-md"></i>
 	<li class="active">Medicina</li>
-	<li class="active">Descarte TBC</li>
+	<li class="active">Constancia de Buena Salud</li>
 </ul>
 @endsection
 @section('contenido')

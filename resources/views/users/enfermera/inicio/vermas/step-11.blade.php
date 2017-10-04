@@ -1,8 +1,35 @@
 <?php use Carbon\Carbon; Carbon::setLocale('es');  ?>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="Editar-FotoEstudiante">
+   <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 class="modal-title">Actualizar foto</h4>
+                        </div>
+                        <div class="modal-body">                        
+                          {!! Form::open(['url' => 'enfmeds/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          <div class="item form-group">
+                            <div class="col-12">
+                              <input type="file" id="files-foto-e" name="foto" accept="image/*"/><br>
+                              <output id="lista-e"><img src="{{url('imagenes/avatar/'.$estudiante->user->foto)}}" width="100%"></output>
+                            </div>
+                          </div>
+                        <div class="modal-footer">
+                          <input type="hidden" name="id-est" value="{{$estudiante->user_id}}">
+                          <input type="submit" class="btn btn-success" value="Actualizar" >
+                        </div>
+                      {!! Form::close() !!}
+                    </div>
+                  </div>
+   </div>
+</div>
+
 <h2 class="StepTitle">I. FILIACIÓN</h2>
 			<div align="center">
 				<a href="#" title="Clic para actualizar foto" data-toggle="modal" 
-                   data-target="#EditarFotoEstudiante" title="Editar">
+                   data-target="#Editar-FotoEstudiante" title="Editar">
 				<span class="profile-picture">
 					<img id="avatar" alt="avatar" src="{{url('imagenes/avatar/'.$estudiante->user->foto)}}" height="170px;">
 				</span>
@@ -175,3 +202,30 @@
 
 									<div class="space-2"></div>
 								{!! Form::close() !!}
+
+
+<script type="text/javascript">
+	//imagenes
+    //Mostrar imagenes del imput file
+    function foto(evt) {
+      var files = evt.target.files; // FileList object
+        //Obtenemos la imagen del campo "file". 
+      for (var i = 0, f; f = files[i]; i++) {         
+           //Solo admitimos imágenes.
+           if (!f.type.match('image.*')) {
+                continue;
+           }
+           var reader = new FileReader();
+           reader.onload = (function(theFile) {
+               return function(e) {
+               // Creamos la imagen.
+                      document.getElementById("lista-e").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+               };
+           })(f);
+ 
+           reader.readAsDataURL(f);
+       }
+  	}      
+      document.getElementById('files-foto-e').addEventListener('change', foto, false);
+
+</script>

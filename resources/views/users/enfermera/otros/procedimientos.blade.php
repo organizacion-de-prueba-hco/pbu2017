@@ -59,20 +59,26 @@
 					<div class="modal-body" align="center">
 						<div class="item form-group">
 						
-						<div class="col-md-8 col-sm-8 col-xs-8">
+						<div class="col-md-6 col-sm-6 col-xs-12">
                   	  <label>Procedimiento: </label><br>
                        <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" style="width: 100%;">
                   </div>
-
-                  <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+                  <div class="col-md-3 col-sm-3 col-xs-6" align="center">
+							<label>Consultorio: </label><br>
+							<select name="area" class="form-control">
+								<option value="0">Medicina</option>
+								<option value="1">Odontología</option>
+							</select>
+				 </div>
+                  <div class="col-md-3 col-sm-3 col-xs-6" align="center">
 							<label>Tarifa: </label><br>
-							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa" >
-						</div>
+							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa"  class="form-control">
+				 </div>
 						
 						<br>
 					</div>
 					</div>
-					<br>
+					<br><br><br><br>
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
@@ -355,25 +361,6 @@
 					$(this).closest('tr').next().toggleClass('open');
 					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
 				});
-				/***************/
-
-
-
-
-
-				/**
-				//add horizontal scrollbars to a simple table
-				$('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-				  {
-					horizontal: true,
-					styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-					size: 2000,
-					mouseWheelLock: true
-				  }
-				).css('padding-top', '12px');
-				*/
-
-
 			})
 
 		//Para que salga las letritas negras del title
@@ -385,7 +372,7 @@
 		function cargarModalEditar(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
-        console.log(">"+id);
+        //console.log(">"+id);
         var route="/enfotroproc/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();

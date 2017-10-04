@@ -245,7 +245,7 @@ class PdfController extends Controller
 
     //Centro médico
     public function getOdontologia($id){
-        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user!='2-4-2'){
+        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user=='2-4-2'){
 
          $odontologias=CmOdontologia::find($id);
          $estudiante=Estudiante::find($odontologias->user_id);
@@ -272,9 +272,9 @@ class PdfController extends Controller
     }
 
     public function getOdontologiatodo($id){
-        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user!='2-4-2'){
+        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user=='2-4-2'){
 
-         $odontologias=CmOdontologia::where('user_id',$id)->where('i_motivo_consulta','<>','')->get();
+         $odontologias=CmOdontologia::where('user_id',$id)->where('i_motivo_consulta','<>','')->orderBy('id','desc')->get();
          $estudiante=Estudiante::find($id);   
          $date = Carbon::now();
          //$date = $date->format('d-m-Y');
@@ -290,7 +290,7 @@ class PdfController extends Controller
     }
 
     public function getMedicina($id){
-        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user!='2-4-2'){
+        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-2'){
 
          $medicinas=CmMedicina::find($id);
          $estudiante=Estudiante::find($medicinas->user_id); 
@@ -310,9 +310,9 @@ class PdfController extends Controller
     }
 
     public function getMedicinatodo($id){
-      if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user!='2-4-2'){
+      if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-2'){
       $estudiante=Estudiante::find($id); 
-      $medicinas=CmMedicina::where('user_id',$estudiante->user_id)->where('imp_dx','<>','')->get();
+      $medicinas=CmMedicina::where('user_id',$estudiante->user_id)->where('imp_dx','<>','')->orderBy('id','desc')->get();
       $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
       $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
       $date = Carbon::now();
@@ -324,7 +324,7 @@ class PdfController extends Controller
       //return $pdf->stream('invoiced');
 
       }else{
-            return back()->with('naranja','Ud. no puede realizar esta acción');
+            return back()->with('naranja','no puede realizar esta acción ');
       }
     }
 }

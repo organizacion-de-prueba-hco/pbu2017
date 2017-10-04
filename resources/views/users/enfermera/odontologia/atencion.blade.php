@@ -81,8 +81,6 @@
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
 						<th class="center">Estado</th>
-						<th>Cita</th>
-						<th></th>
 					</tr>
 				</thead>
 				<?php  
@@ -96,27 +94,13 @@
 							<td> {{$med->user->nombres}}, {{$med->user->apellido_paterno.' '.$med->user->apellido_materno}}</td>
 							<td>{{$med->user->estudiante->escuela->escuela}}</td>
 							<td class="hidden-480" align="center">
-								@if($med->imp_dx != '')
+								@if($med->iv_diagnostico != '')
 								<span class="label label-sm label-success">	Atendido
 								</span>
 								@else
 								<span class="label label-sm label-warning">	Pendiente
 								</span>
 								@endif
-							</td>
-							<td align="center">
-							@if($med->cita!='0000-00-00')
-								{{$med->cita}}
-							@endif
-							</td>
-							<td>
-								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="{{route('jusuexpediente.show',$med->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-									</a>
-								</div>
 							</td>
 					</tr>
 					@endforeach
@@ -165,7 +149,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, null,null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],

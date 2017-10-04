@@ -7,14 +7,17 @@
 			 {!! Form::model($proc,['route'=>['enfotroproc.update',$proc->id],'method' => 'PUT',  'class'=>'form-horizontal form-label-left']) !!}
 				<div class="modal-body">									
 					<div class="item form-group">
-                         <div class="col-md-8 col-sm-8 col-xs-8" align="center">
-                          <label>Procedimiento</label>
-                          <input name="proc" value="{{$proc->procedimiento}}" required="required" class="form-control tamaño" min="0"  type="text" width="100%">
-                        </div>
-                        
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
+                 <div class="col-md-6 col-sm-6 col-xs-12" align="center">
+                   <label>Procedimiento</label>
+                   <input name="proc" value="{{$proc->procedimiento}}" required="required" class="form-control tamaño" min="0"  type="text" width="100%">
+                 </div>
+                     <div class="col-md-3 col-sm-3 col-xs-6" align="center">
+							<label>Consultorio: </label><br>
+							{!!Form::select('area',['0'=>'Medicina','1'=>'Odontología'],$proc->area,['required', 'class'=>'form-control'])!!}
+				 		</div>
+                        <div class="col-md-3 col-sm-3 col-xs-6" align="center">
                             <label>Tarifa</label>
-                            <input required="required" value="{{$proc->tarifa}}"  name="tar" type="number" step="any">
+                            <input required="required" value="{{$proc->tarifa}}"  name="tar" type="number" step="any" class="form-control">
                         </div>
                         
                     </div>    

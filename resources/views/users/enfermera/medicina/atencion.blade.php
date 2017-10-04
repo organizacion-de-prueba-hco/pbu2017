@@ -82,7 +82,6 @@
 						<th>Escuela</th>
 						<th class="center">Estado</th>
 						<th>Cita</th>
-						<th></th>
 					</tr>
 				</thead>
 				<?php  
@@ -108,15 +107,6 @@
 							@if($med->cita!='0000-00-00')
 								{{$med->cita}}
 							@endif
-							</td>
-							<td>
-								<div class="hidden-sm hidden-xs action-buttons">
-									<a href="{{route('jusuexpediente.show',$med->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
-									<span class="blue">
-										<i class="ace-icon fa fa-search-plus bigger-120"></i>
-									</span>
-									</a>
-								</div>
 							</td>
 					</tr>
 					@endforeach
@@ -165,7 +155,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null, null,null,
+					  null, null,null, null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],

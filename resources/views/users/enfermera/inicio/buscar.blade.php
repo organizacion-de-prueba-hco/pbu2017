@@ -46,7 +46,7 @@
 	</div>
    <div class="col-sm-6 col-sm-offset-3 col-xs-12">
     <div id="custom-search-input">
-    {!! Form::open(['url' => 'enfs/buscar', 'method' => 'POST']) !!}
+    {!! Form::open(['url' => 'enfs/buscar', 'method' => 'GET']) !!}
                 <div class="input-group col-md-12">
                 	
                     <input type="text" class="form-control input-lg" name="cod"  placeholder="Ingresar DNI o Código Universitario" style="font-family:cursive; font-size: 1.5em;" maxlength="10" autofocus/>

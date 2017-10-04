@@ -65,10 +65,6 @@
 									<span class="step">IV</span>
 									<span class="title">ODONTOLOGÍA</span>
 								</li>
-								<li data-step="5">
-									<span class="step">V</span>
-									<span class="title">REPORTES</span>
-								</li>
 								
 							</ul>
 						</div>
@@ -87,9 +83,6 @@
 							</div>
 							<div class="step-pane" data-step="4" id="step-44">
 								@include('users.medico.inicio.vermas.step-odontologia')
-							</div>
-							<div class="step-pane" data-step="5" id="step-55">
-								
 							</div>
 							
 						</div>

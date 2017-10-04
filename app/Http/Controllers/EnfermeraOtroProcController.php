@@ -88,6 +88,7 @@ class EnfermeraOtroProcController extends Controller
 
         $proc->procedimiento=$request->get('proc');
         $proc->tarifa=$request->get('tar');
+        $proc->tarifa=$request->get('area');
         //$proc->save();
         //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
         if($proc->fill(Input::all())->save()){
@@ -111,11 +112,9 @@ class EnfermeraOtroProcController extends Controller
     }
 
     public function postNuevo(Request $request){
-
-     
-
         $procedimiento=new CmProcedimiento;
         $procedimiento->procedimiento=$request->get('procedimiento');
+        $procedimiento->area=$request->get('area');
         $procedimiento->tarifa=$request->get('tarifa');
         $procedimiento->save();
         return Redirect::to('enfotroproc')->with('verde','Se registró un nuevo Procedimiento');

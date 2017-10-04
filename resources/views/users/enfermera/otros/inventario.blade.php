@@ -387,7 +387,7 @@
 		function cargarModalEditar(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
-        console.log(">"+id);
+        //console.log(">"+id);
         var route="/enfotroinv/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();

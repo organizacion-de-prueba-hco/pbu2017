@@ -16,6 +16,8 @@
 	$v='';
 	$v_i='';
 	$v_ii='';
+	$iv_iii='';
+
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
 	?>
@@ -71,7 +73,6 @@
 							<div class="step-pane active" data-step="1" id="step-11">
 								@include('users.enfermera.inicio.vermas.step-11')
 							</div>
-
 							<div class="step-pane" data-step="2" id="step-22">
 								@include('users.enfermera.inicio.vermas.step-22')
 							</div>
@@ -97,6 +98,9 @@
 		</div>
 	</div><!-- /.col -->
 </div><!-- /.row -->
+
+
+
 @endsection
 @section('script')
 		{!!Html::script('assets/js/wizard.min.js')!!}

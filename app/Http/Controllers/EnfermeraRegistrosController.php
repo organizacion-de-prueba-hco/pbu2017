@@ -15,7 +15,8 @@ use App\Departamento;
 use App\Distrito;
 use App\Provincia;
 use App\CmAntecedente;
-
+use App\CmOdontologia;
+use App\CmMedicina;
 use Redirect;
 
 class EnfermeraRegistrosController extends Controller
@@ -100,7 +101,7 @@ class EnfermeraRegistrosController extends Controller
     {
         //
     }
-    public function postBuscar(Request $request){
+    public function getBuscar(Request $request){
         $cod        = $request->get('cod');
         $estudiante = Estudiante::where('cod_univ',$cod)->first();
         if(!$estudiante){
@@ -120,15 +121,15 @@ class EnfermeraRegistrosController extends Controller
     }
 
     public function recargarFormularios($ruta,$estudiante){
-        
-            $religiones=Religion::lists('religion','id');
-            $est_civils=EstCivil::lists('est_civil','id');
-            $departamentos=Departamento::lists('departamento','id');
-            $provincias=Provincia::lists('provincia','id');
-            $distritos=Distrito::lists('distrito','id');
-            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
-        
+      $religiones=Religion::lists('religion','id');
+      $est_civils=EstCivil::lists('est_civil','id');
+      $departamentos=Departamento::lists('departamento','id');
+      $provincias=Provincia::lists('provincia','id');
+      $distritos=Distrito::lists('distrito','id');
+      $odontologias=CmOdontologia::where('user_id',$estudiante->user_id)->where('i_motivo_consulta','<>','')->get();
+      $medicinas=CmMedicina::where('user_id',$estudiante->user_id)->where('imp_dx','<>','')->get();
+      $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+      $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+      return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','odontologias','medicinas'));  
      }
 }

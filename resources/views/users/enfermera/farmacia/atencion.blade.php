@@ -67,14 +67,16 @@
 							@if($med->estado=='1')
                             {!!Form::open(['route'=>['enffarm.update', $med->id], 'method'=>'PUT'])!!} 
                               <input type="hidden" name="estado" value="0">
-                              <button class="submit btn btn-success btn-xs"" title="Clic para Desactivar" 
+                              <input type="hidden" name="oficina" value="1">
+                              <button class="submit btn btn-success btn-xs"" title="Clic para Cambiar" 
                               onclick="javascript:return conf('Desactivar');"> 
                               Atendido</button>
                             {!!Form::close() !!}
                             @else
                             {!!Form::open(['route'=>['enffarm.update', $med->id], 'method'=>'PUT'])!!} 
                               <input type="hidden" name="estado" value="1">
-                              <button class="submit btn btn-danger btn-xs"" title="Clic para Activar" 
+                              <input type="hidden" name="oficina" value="1">
+                              <button class="submit btn btn-danger btn-xs"" title="Clic para Cambiar" 
                               onclick="javascript:return conf('Activar');"> 
                               Pendiente</button>
                             {!!Form::close() !!}
