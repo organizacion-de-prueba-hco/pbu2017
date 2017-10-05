@@ -22,6 +22,15 @@
 @endsection
 @section('titulo','Medicina')
 @section('estilos')
+	<style type="text/css">
+             .thumb{
+               border: 1px solid #000;
+               margin: 10px 5px 0 0;
+               width: 100%;
+               text-align: center;
+            }
+
+   </style>
 @endsection
 @section('ruta')
 <ul class="breadcrumb">

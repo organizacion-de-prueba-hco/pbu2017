@@ -19,7 +19,7 @@ class EnfermeraOtroInvController extends Controller
     public function __construct()
     {
         $this->middleware('auth');//getDescargar
-        $this->middleware('enfermera');
+        $this->middleware('enfermera',['except' => ['index','update','edit','postNuevo'] ]);
     }
 
     /**
@@ -30,7 +30,13 @@ class EnfermeraOtroInvController extends Controller
     public function index()
     {
        $inventario=CmInventario::get();
-        return view('users.enfermera.otros.inventario',compact('inventario')); 
+       //Retorna la dirección dependiendo el usuario
+       if (Auth::user()->tipo_user=='2-4') {
+          return view('users.medico.otros.inventario',compact('inventario'));  
+       }
+       else if(Auth::user()->tipo_user=='2-4-2'){
+         return view('users.enfermera.otros.inventario',compact('inventario'));
+       }
     }
 
     /**
@@ -115,15 +121,12 @@ class EnfermeraOtroInvController extends Controller
     }
 
     public function postNuevo(Request $request){
-
-    
-
         $inventario=new CmInventario;
         $inventario->nombre=$request->get('nom');
         $inventario->descripcion=$request->get('desc');
         $inventario->cantidad=$request->get('cant');
         $inventario->save();
-        return Redirect::to('enfotroinv')->with('verde','Se registró un nuevo  artículo en el Invenario');
+        return back()->with('verde','Se registró un nuevo  artículo en el Invenario');
     }
 
 

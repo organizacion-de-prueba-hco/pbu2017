@@ -119,6 +119,7 @@ Route::resource('medmed', 'MedicoMedController');
 Route::controller('medmeds', 'MedicoMedController');
 Route::resource('medico', 'MedicoController');
 Route::controller('medicos', 'MedicoController');
+Route::controller('medfarms', 'MedicoFarmController');
 
 Route::resource('odonto', 'OdontoRegistrosController');
 Route::controller('odontos', 'OdontoRegistrosController');

@@ -30,7 +30,7 @@
     		{{$odo->odontologo->nombres.' '.$odo->odontologo->apellido_paterno.' '.$odo->odontologo->apellido_materno}}
     		 &nbsp;&nbsp;&nbsp;&nbsp;
     		<a href="{{url('pdf/odontologia',$odo->id)}}" target="_blank">
-    		<i class="menu-icon fa fa-download"></i><span class="menu-text"> Descargar este expediente</span>
+    		<i class="menu-icon fa fa-download"></i><span class="menu-text"> Descargar </span>
     		</a>
     		</b>
     	</p><br>

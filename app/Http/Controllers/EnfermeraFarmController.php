@@ -32,7 +32,7 @@ class EnfermeraFarmController extends Controller
     public function __construct()
     {
         $this->middleware('auth');//getDescargar
-        $this->middleware('enfermera');
+        $this->middleware('enfermera',['except' => ['update'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -121,7 +121,7 @@ class EnfermeraFarmController extends Controller
 
         $farmacia->estado=$request->get('estado');
         $farmacia->save();
-        return Redirect::to('enffarms/index/1'); 
+        return back(); 
         }
         else if($request->get('oficina')=='2'){
            $farmacia=CmOdoMed::find($id);
@@ -139,7 +139,7 @@ class EnfermeraFarmController extends Controller
 
         $farmacia->estado=$request->get('estado');
         $farmacia->save();
-        return Redirect::to('enffarms/index/2'); 
+        return back(); 
         }
         
     }

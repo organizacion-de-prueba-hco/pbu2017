@@ -11,6 +11,7 @@ use Auth;
 use Redirect;
 use Input;
 use App\User;
+use App\CmOdontologia;
 
 class MedicoController extends Controller
 {
@@ -123,6 +124,11 @@ class MedicoController extends Controller
             return Redirect::to('med')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
         }
       }
+     }
+
+     public function getOdontologia(){
+        $odontologia=CmOdontologia::get();
+        return view('users.medico.odontologia.atencion',compact('odontologia'));
      }
 
 }

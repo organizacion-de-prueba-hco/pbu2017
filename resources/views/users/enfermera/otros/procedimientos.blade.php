@@ -24,7 +24,7 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-user-md"></i>
+	<i class="ace-icon fa fa-plus-square"></i>
 	<li class="active">Otros</li>
 	<li class="active">Procedimiento</li>
 </ul>

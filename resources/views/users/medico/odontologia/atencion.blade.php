@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php
 	$i ='';
@@ -7,116 +7,71 @@
 	$ii_ii='';
 	$ii_iii='';
 	$ii_iv='';
-	$iii='';
-	$iii_i='';
+	$iii='active open';
+	$iii_i='active';
 	$iii_ii='';
-	$iv='active open';
+	$iv='';
 	$iv_i='';
-	$iv_ii='active';
+	$iv_ii='';
 	$v='';
 	$v_i='';
 	$v_ii='';
 	$iv_iii='';
 	?>
 @endsection
-@section('titulo','Farmacia-Inventario')
+@section('titulo','Odontología-Atención')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
-	<li class="active">Inventario</li>
+	<i class="ace-icon fa fa-heartbeat"></i>
+	<li class="active">Odontología</li>
+	<li class="active">Atención</li>
 </ul>
 @endsection
 @section('contenido')
 <div class="row">
-	<div class="col-xs-12">		
+	<div class="col-xs-12">
+
+		<div class="clearfix">
+			<div class="pull-right tableTools-container"></div>
+		</div>
+		
 		<div class="table-header">
-			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
-				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
-			</a>
-				Medicamentos &nbsp;&nbsp;&nbsp;
+			
+				Atención &nbsp;&nbsp;&nbsp;
 		</div>
-										
-
-		<!--Modal editar-inventario -->
-		<div id="editar-inventario" class="modal fade" tabindex="-1">
-		</div>
-										<!--Fin modal editar-inventario-->	
-
-
-										<!--Modal Nuevo-->
-		<div id="nuevo-inv" class="modal fade" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
-					</div>
-					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
-					<div class="modal-body">									
-					<div class="item form-group">
-                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                          <label>Medicamento</label>
-                          <input name="med" required="required" class="form-control tamaño" min="0"  type="text">
-                        </div>
-                        
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                            <label>Presentación</label>
-                            <input required="required" name="pres" type="text">
-                        </div>
-
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                            <label>Cantidad</label>
-                            <input required="required" name="cant" type="number" step="any">
-                        </div>
-                        
-                    </div> <br><br>   
-					</div>
-					<br>
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
-					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
-					</button>
-					</div>
-					{!!Form::close()!!}
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-										<!--Fin modal Nuevo-->
-										
-										<!-- div.table-responsive -->
-
-										<!-- div.dataTables_borderWrap -->
+		
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Nombre</th>
-						<th class="center">Presentación</th>
-						<th class="center">Cantidad</th>
-						<th class="center">Editar</th>
+						<th class="center">Fecha</th>
+						<th class="center">Código</th>
+						<th>Nombres y Apellidos</th>
+						<th>Escuela</th>
+						<th class="center">Estado</th>
 					</tr>
 				</thead>
-				
+				<?php  
+					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
+				?>
 				<tbody>
-					@foreach($medicamento as $med)
+					@foreach($odontologia as $med)
 						<tr>
-							<td>{{$med->medicamento}}</td>
-							<td>{{$med->presentacion}}</td>
-							<td class="center"> {{$med->cantidad}}</td>						
-							<td class="center">
-								<div class="hidden-sm hidden-xs action-buttons">
-									<a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')" data-rel="tooltip">
-									<span class="blue">
-										<i class="ace-icon fa fa-pencil bigger-130"></i>
-									</span>
-									</a>
-								</div>
-
+							<td class="center">{{$med->created_at}}</td>
+							<td class="center">{{$med->user->estudiante->cod_univ}}</td>
+							<td> {{$med->user->nombres}}, {{$med->user->apellido_paterno.' '.$med->user->apellido_materno}}</td>
+							<td>{{$med->user->estudiante->escuela->escuela}}</td>
+							<td class="hidden-480" align="center">
+								@if($med->iv_diagnostico != '')
+								<span class="label label-sm label-success">	Atendido
+								</span>
+								@else
+								<span class="label label-sm label-warning">	Pendiente
+								</span>
+								@endif
 							</td>
-							
 					</tr>
 					@endforeach
 
@@ -163,6 +118,7 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
+					  { "bSortable": null },
 					  null, null,null,
 					  { "bSortable": false }
 					],
@@ -356,24 +312,6 @@
 					$(this).closest('tr').next().toggleClass('open');
 					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
 				});
-				/***************/
-
-
-
-
-
-				/**
-				//add horizontal scrollbars to a simple table
-				$('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-				  {
-					horizontal: true,
-					styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-					size: 2000,
-					mouseWheelLock: true
-				  }
-				).css('padding-top', '12px');
-				*/
-
 
 			})
 
@@ -381,28 +319,6 @@
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
-
-
-		function cargarModalEditar(ids){
-        //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
-        var id=ids;
-        //console.log(">"+id);
-        var route="/enfinv/"+id+"/edit";
-        var data={'id':id}; 
-        var token=$("#token").val();
-        $.ajax({
-          headers:{'X-CSRF-TOKEN':token},
-          url:route,
-          type:'GET',
-
-          success: function(result){
-            //console.log(result);
-            $('#editar-inventario').html(result);
-                             
-          }                  
-        });
-      }
-
 		</script>
 
 

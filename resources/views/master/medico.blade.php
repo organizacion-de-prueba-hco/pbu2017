@@ -189,7 +189,7 @@
 
 						<ul class="submenu">
 							<li class="{{$iii_i}}">
-								<a href="{{url('directivotalleres/matriculauafsm')}}">
+								<a href="{{url('medicos/odontologia')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Estudiantes
 								</a>
@@ -218,18 +218,27 @@
 
 						<ul class="submenu">
 							<li class="{{$iv_i}}">
-								<a href="{{url('enffarm')}}">
+								<a href="{{url('medfarms/index/1')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Atención
+									Atención Medicina
 								</a>
 
 								<b class="arrow"></b>
 							</li>
 
 							<li class="{{$iv_ii}}">
-								<a href="{{url('enfainv')}}">
+								<a href="{{url('medfarms/index/2')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Inventario
+									Atención Odontología
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="{{$iv_iii}}">
+								<a href="{{url('medfarms/medicamentos')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Medicamentos
 								</a>
 
 								<b class="arrow"></b>
@@ -247,7 +256,7 @@
 
 						<ul class="submenu">
 							<li class="{{$v_i}}">
-								<a href="{{url('directivotalleres/matriculauafsm')}}">
+								<a href="{{url('enfotroinv')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Inventario
 								</a>
@@ -256,7 +265,7 @@
 							</li>
 
 							<li class="{{$v_ii}}">
-								<a href="{{url('directivotalleres/uafsm')}}">
+								<a href="{{url('enfotroproc')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Procedimientos
 								</a>

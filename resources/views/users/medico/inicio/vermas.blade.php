@@ -16,12 +16,22 @@
 	$v='';
 	$v_i='';
 	$v_ii='';
+	$iv_iii='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
 	?>
 @endsection
 @section('titulo','Médico - Buscar ')
 @section('estilos')
+	<style type="text/css">
+             .thumb{
+               border: 1px solid #000;
+               margin: 10px 5px 0 0;
+               width: 100%;
+               text-align: center;
+            }
+
+   </style>
 @endsection
 @section('ruta')
 <ul class="breadcrumb">

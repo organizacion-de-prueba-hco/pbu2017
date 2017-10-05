@@ -17,6 +17,7 @@ use App\Provincia;
 use App\CmAntecedente;
 use App\CmOdontologia;
 use App\CmMedicina;
+use Input;
 
 use Redirect;
 
@@ -86,7 +87,7 @@ class MedicoRegistrosController extends Controller
     {
         //
     }
-    public function postBuscar(Request $request){
+    public function getBuscar(Request $request){
         $cod        = $request->get('cod');
         $estudiante = Estudiante::where('cod_univ',$cod)->first();
         if(!$estudiante){
@@ -103,6 +104,20 @@ class MedicoRegistrosController extends Controller
             return $this->recargarFormularios('users.medico.inicio.vermas',$estudiante);
         }   
     }
+    public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Input::get('id-est'));        
+        $name=$user->estudiante->cod_univ.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        if($user->save()){
+             return back()->with('verde','Se actualizó foto');//redirige a enf que es donde se muestran los registros
+        }else{
+            return back()->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+        }
+      }
+     }
 
      public function recargarFormularios($ruta,$estudiante){
       $religiones=Religion::lists('religion','id');

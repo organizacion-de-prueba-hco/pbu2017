@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php
 	$i ='';
@@ -10,22 +10,22 @@
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='active open';
+	$iv='';
 	$iv_i='';
-	$iv_ii='active';
-	$v='';
-	$v_i='';
+	$iv_ii='';
+	$v='active open';
+	$v_i='active';
 	$v_ii='';
 	$iv_iii='';
 	?>
 @endsection
-@section('titulo','Farmacia-Inventario')
+@section('titulo','Otros-Inventario')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
+	<i class="ace-icon fa fa-plus-square"></i>
+	<li class="active">Otros</li>
 	<li class="active">Inventario</li>
 </ul>
 @endsection
@@ -36,12 +36,12 @@
 			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Medicamentos &nbsp;&nbsp;&nbsp;
+				Inventario &nbsp;&nbsp;&nbsp;
 		</div>
 										
-
 		<!--Modal editar-inventario -->
 		<div id="editar-inventario" class="modal fade" tabindex="-1">
+			
 		</div>
 										<!--Fin modal editar-inventario-->	
 
@@ -52,29 +52,33 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Artículo</h3>
 					</div>
-					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
-					<div class="modal-body">									
-					<div class="item form-group">
-                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                          <label>Medicamento</label>
-                          <input name="med" required="required" class="form-control tamaño" min="0"  type="text">
+					{!! Form::open(['url' => 'enfotroinvs/nuevo', 'method' => 'POST']) !!}
+					<div class="modal-body" align="center">
+						<div class="item form-group">
+						
+						<div class="col-md-4 col-sm-4 col-xs-4">
+                          <label>Nombre:<tab>	</label>
+                          <input type="text" placeholder="Nombre" class="nav-search-input" maxlength="50" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="nom" >
+									
                         </div>
-                        
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                            <label>Presentación</label>
-                            <input required="required" name="pres" type="text">
+
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                          <label>Descripción:<tab>	</label>
+                          <input type="text" placeholder="Descripción" class="nav-search-input" maxlength="80" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="desc" >
+									
                         </div>
 
                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                            <label>Cantidad</label>
-                            <input required="required" name="cant" type="number" step="any">
-                        </div>
-                        
-                    </div> <br><br>   
+							<label>Cantidad: </label>
+							<input type="number" placeholder="Cantidad" required="required" name="cant" >
+						</div>
+						<br>
 					</div>
-					<br>
+					</div>
+
+					<br><br>
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
@@ -94,27 +98,24 @@
 				<thead>
 					<tr>
 						<th class="center">Nombre</th>
-						<th class="center">Presentación</th>
-						<th class="center">Cantidad</th>
-						<th class="center">Editar</th>
+						<th class="center">Descripción</th>
+						<th>Cantidad</th>
+						<th>Editar</th>
 					</tr>
 				</thead>
 				
 				<tbody>
-					@foreach($medicamento as $med)
+					@foreach($inventario as $med)
 						<tr>
-							<td>{{$med->medicamento}}</td>
-							<td>{{$med->presentacion}}</td>
-							<td class="center"> {{$med->cantidad}}</td>						
-							<td class="center">
-								<div class="hidden-sm hidden-xs action-buttons">
-									<a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')" data-rel="tooltip">
-									<span class="blue">
-										<i class="ace-icon fa fa-pencil bigger-130"></i>
-									</span>
-									</a>
-								</div>
-
+							<td class="center">{{$med->nombre}}</td>
+							<td class="center">{{$med->descripcion}}</td>
+							<td> {{$med->cantidad}}</td>						
+							<td align="center">
+							  <div class="hidden-sm hidden-xs action-buttons">
+								<a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')" data-rel="tooltip">
+								<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
+							 </div>
 							</td>
 							
 					</tr>
@@ -387,7 +388,7 @@
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
         //console.log(">"+id);
-        var route="/enfinv/"+id+"/edit";
+        var route="/enfotroinv/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({
@@ -402,6 +403,7 @@
           }                  
         });
       }
+
 
 		</script>
 

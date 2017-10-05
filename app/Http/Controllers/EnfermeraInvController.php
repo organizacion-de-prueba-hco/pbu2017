@@ -30,7 +30,7 @@ class EnfermeraInvController extends Controller
     public function __construct()
     {
         $this->middleware('auth');//getDescargar
-        $this->middleware('enfermera');
+        $this->middleware('enfermera',['except' => ['postNuevo','update','edit'] ]);
     }
     /**
      * Display a listing of the resource.
@@ -96,18 +96,20 @@ class EnfermeraInvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $med=CmMedicamento::find($id);
+         if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user=='2-4-2'){
+            $med=CmMedicamento::find($id);
 
-        $med->medicamento=$request->get('med');
-        $med->presentacion=$request->get('pres');
-        $med->cantidad=$request->get('cant');
-        //$proc->save();
-        //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
-        if($med->fill(Input::all())->save()){
-        return Redirect::to('enfinv')->with('verde','Se actualizo el artículo del inventario');    
-    }else{
-        return Redirect::to('enfinv')->with('rojo','No se pudo actualizar, vuelva a intentar');
-    }
+            $med->medicamento=$request->get('med');
+            $med->presentacion=$request->get('pres');
+            $med->cantidad=$request->get('cant');
+            //$proc->save();
+            //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
+            if($med->fill(Input::all())->save()){
+            return back()->with('verde','Se actualizo el artículo del inventario');    
+            }else{
+                return back()->with('rojo','No se pudo actualizar, vuelva a intentar');
+            }
+        }
     }
 
     /**
@@ -123,15 +125,19 @@ class EnfermeraInvController extends Controller
 
 
 public function postNuevo(Request $request){
+    //Solo los usuarios permitidos
+        if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user=='2-4-2'){
+            $medicamento=new CmMedicamento;
+            $medicamento->medicamento=$request->get('med');
+            $medicamento->presentacion=$request->get('pres');
+            $medicamento->cantidad=$request->get('cant');
+            $medicamento->save();
+            return back()->with('verde','Se registró un nuevo  artículo en el Inventario');
+        }
+        else{
+            return back()->with('rojo','Ud. no está autorizado para realizar esta acción');
+        }
 
-    
-
-        $medicamento=new CmMedicamento;
-        $medicamento->medicamento=$request->get('med');
-        $medicamento->presentacion=$request->get('pres');
-        $medicamento->cantidad=$request->get('cant');
-        $medicamento->save();
-        return Redirect::to('enfinv')->with('verde','Se registró un nuevo  artículo en el Inventario');
     }
 
 

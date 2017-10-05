@@ -7,36 +7,54 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\CmMedicina;
+use App\Estudiante;
+use App\User;
+use App\Religion;
+use App\EstCivil;
+use App\Departamento;
+use App\Provincia;
+use App\Distrito;
+use App\CuadroFamiliar;
+use App\CmAntecedente;
 use App\CmProcedimiento;
+use App\CmMedProc;
+use App\CmMedicamento;
+use App\MedMed;
+use App\CmOdoMed;
 
 use Redirect;
 use Input;
 use Auth;
 
-class EnfermeraOtroProcController extends Controller
+class MedicoFarmController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');//getDescargar
-        $this->middleware('enfermera',['except' => ['index','edit','update','postNuevo']]);
+        $this->middleware('medico');
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getIndex($id)
     {
-        $procedimiento=CmProcedimiento::get();
-        
-        if (Auth::user()->tipo_user=='2-4') {
-            return view('users.medico.otros.procedimientos',compact('procedimiento')); 
-        }
-        else if(Auth::user()->tipo_user=='2-4-2'){
-            return view('users.enfermera.otros.procedimientos',compact('procedimiento')); 
+        if($id=='2'){
+            $medmed=CmOdoMed::get();
+            return view('users.medico.farmacia.atencion2',compact('medmed')); 
+        }else if($id=='1'){
+            $medmed=MedMed::get();
+            return view('users.medico.farmacia.atencion',compact('medmed'));  
         }else{
-            return back();
+            return back()->with('naranja','No se encontró la ruta');
         }
+        
+    }
+    public function getMedicamentos(){
+        $medicamento=CmMedicamento::get();
+        return view('users.medico.farmacia.inventario',compact('medicamento'));
     }
 
     /**
@@ -79,8 +97,7 @@ class EnfermeraOtroProcController extends Controller
      */
     public function edit($id)
     {
-        $proc = CmProcedimiento::find($id);
-        return view('users.enfermera.otros.editar-procedimiento',compact('proc'));
+        //
     }
 
     /**
@@ -92,19 +109,7 @@ class EnfermeraOtroProcController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $proc=CmProcedimiento::find($id);
-            $proc->procedimiento=$request->get('proc');
-            $proc->tarifa=$request->get('tar');
-            $proc->area=$request->get('area');
-            $proc->save();
-            //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
-            if($proc->fill(Input::all())->save()){
-                return back()->with('verde','Se actualizo el Procedimiento');    
-            }else{
-                return back()->with('rojo','No se pudo actualizar, vuelva a intentar');
-            }
-
-
+        //
     }
 
     /**
@@ -117,16 +122,4 @@ class EnfermeraOtroProcController extends Controller
     {
         //
     }
-
-    public function postNuevo(Request $request){
-        $procedimiento=new CmProcedimiento;
-        $procedimiento->procedimiento=$request->get('procedimiento');
-        $procedimiento->area=$request->get('area');
-        $procedimiento->tarifa=$request->get('tarifa');
-        $procedimiento->save();
-        return back()->with('verde','Se registró un nuevo Procedimiento');
-
-    }
-
-
 }

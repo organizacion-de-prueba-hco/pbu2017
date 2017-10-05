@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php
 	$i ='';
@@ -10,71 +10,75 @@
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
-	$iv='active open';
+	$iv='';
 	$iv_i='';
-	$iv_ii='active';
-	$v='';
+	$iv_ii='';
+	$v='active open';
 	$v_i='';
-	$v_ii='';
+	$v_ii='active';
 	$iv_iii='';
 	?>
 @endsection
-@section('titulo','Farmacia-Inventario')
+@section('titulo','Otros-Procedimiento')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-user-md"></i>
-	<li class="active">Farmacia</li>
-	<li class="active">Inventario</li>
+	<i class="ace-icon fa fa-plus-square"></i>
+	<li class="active">Otros</li>
+	<li class="active">Procedimiento</li>
 </ul>
 @endsection
 @section('contenido')
 <div class="row">
-	<div class="col-xs-12">		
+	<div class="col-xs-12">
+	
 		<div class="table-header">
-			<a href="#nuevo-inv" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
+			<a href="#nuevo-proc" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Medicamentos &nbsp;&nbsp;&nbsp;
+				Nuevo Procedimiento &nbsp;&nbsp;&nbsp;
 		</div>
-										
-
-		<!--Modal editar-inventario -->
-		<div id="editar-inventario" class="modal fade" tabindex="-1">
+		
+				<!--Modal procedimiento-->
+		<div id="editar-procedimiento" class="modal fade" tabindex="-1">
+			
 		</div>
-										<!--Fin modal editar-inventario-->	
+										<!--Fin modal procedimiento-->							
 
 
 										<!--Modal Nuevo-->
-		<div id="nuevo-inv" class="modal fade" tabindex="-1">
+		<div id="nuevo-proc" class="modal fade" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Medicamento</h3>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
 					</div>
-					{!! Form::open(['url' => 'enfinvs/nuevo', 'method' => 'POST']) !!}
-					<div class="modal-body">									
-					<div class="item form-group">
-                         <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                          <label>Medicamento</label>
-                          <input name="med" required="required" class="form-control tamaño" min="0"  type="text">
-                        </div>
-                        
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                            <label>Presentación</label>
-                            <input required="required" name="pres" type="text">
-                        </div>
-
-                        <div class="col-md-4 col-sm-4 col-xs-4" align="center">
-                            <label>Cantidad</label>
-                            <input required="required" name="cant" type="number" step="any">
-                        </div>
-                        
-                    </div> <br><br>   
+					{!! Form::open(['url' => 'enfotroprocs/nuevo', 'method' => 'POST']) !!}
+					<div class="modal-body" align="center">
+						<div class="item form-group">
+						
+						<div class="col-md-6 col-sm-6 col-xs-12">
+                  	  <label>Procedimiento: </label><br>
+                       <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" style="width: 100%;">
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-6" align="center">
+							<label>Consultorio: </label><br>
+							<select name="area" class="form-control">
+								<option value="0">Medicina</option>
+								<option value="1">Odontología</option>
+							</select>
+				 </div>
+                  <div class="col-md-3 col-sm-3 col-xs-6" align="center">
+							<label>Tarifa: </label><br>
+							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa"  class="form-control">
+				 </div>
+						
+						<br>
 					</div>
-					<br>
+					</div>
+					<br><br><br><br>
 					<div class="modal-footer">
 						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
 					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
@@ -93,30 +97,30 @@
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 				<thead>
 					<tr>
-						<th class="center">Nombre</th>
-						<th class="center">Presentación</th>
-						<th class="center">Cantidad</th>
+						<th class="center">Procedimiento</th>
+						<th class="center">Consultorio</th>
+						<th class="center">Tarifa S/</th>
 						<th class="center">Editar</th>
 					</tr>
 				</thead>
 				
 				<tbody>
-					@foreach($medicamento as $med)
+					@foreach($procedimiento as $proc)
 						<tr>
-							<td>{{$med->medicamento}}</td>
-							<td>{{$med->presentacion}}</td>
-							<td class="center"> {{$med->cantidad}}</td>						
+							<td>{{$proc->procedimiento}}</td>
+							@if($proc->area==0)
+								<td class="center">Medicina</td>
+							@else
+								<td class="center">Odontología</td>
+							@endif
+							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
 							<td class="center">
 								<div class="hidden-sm hidden-xs action-buttons">
-									<a class="green" href="#editar-inventario" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$med->id}}')" data-rel="tooltip">
-									<span class="blue">
-										<i class="ace-icon fa fa-pencil bigger-130"></i>
-									</span>
-									</a>
-								</div>
-
-							</td>
-							
+								<a class="green cnter" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')" data-rel="tooltip">
+								<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
+								</div> 
+							</td>								
 					</tr>
 					@endforeach
 
@@ -163,7 +167,8 @@
 				.DataTable( {
 					bAutoWidth: false,
 					"aoColumns": [
-					  null, null,null,
+					  { "bSortable": null },
+					  null, null,
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
@@ -356,25 +361,6 @@
 					$(this).closest('tr').next().toggleClass('open');
 					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
 				});
-				/***************/
-
-
-
-
-
-				/**
-				//add horizontal scrollbars to a simple table
-				$('#simple-table').css({'width':'2000px', 'max-width': 'none'}).wrap('<div style="width: 1000px;" />').parent().ace_scroll(
-				  {
-					horizontal: true,
-					styleClass: 'scroll-top scroll-dark scroll-visible',//show the scrollbars on top(default is bottom)
-					size: 2000,
-					mouseWheelLock: true
-				  }
-				).css('padding-top', '12px');
-				*/
-
-
 			})
 
 		//Para que salga las letritas negras del title
@@ -387,7 +373,7 @@
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
         //console.log(">"+id);
-        var route="/enfinv/"+id+"/edit";
+        var route="/enfotroproc/"+id+"/edit";
         var data={'id':id}; 
         var token=$("#token").val();
         $.ajax({
@@ -397,11 +383,15 @@
 
           success: function(result){
             //console.log(result);
-            $('#editar-inventario').html(result);
+            $('#editar-procedimiento').html(result);
                              
           }                  
         });
       }
+
+
+
+
 
 		</script>
 
