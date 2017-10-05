@@ -19,7 +19,7 @@
 	$iv_iii='';
 	?>
 @endsection
-@section('titulo','Medicina-Atención')
+@section('titulo','Odontología-Atención')
 @section('estilos')
 @endsection
 @section('ruta')

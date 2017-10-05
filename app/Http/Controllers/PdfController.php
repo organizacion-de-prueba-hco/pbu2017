@@ -263,7 +263,7 @@ class PdfController extends Controller
          $view =\View::make('pdf.cm.repor-odontologia',compact('estudiante','odontologias'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         return $pdf->download('Ficha médica-'.$estudiante->cod_univ.'.pdf');
+         return $pdf->download('Ficha odontológica-'.$estudiante->cod_univ.'.pdf');
          //return $pdf->stream('invoiced');
 
         }else{

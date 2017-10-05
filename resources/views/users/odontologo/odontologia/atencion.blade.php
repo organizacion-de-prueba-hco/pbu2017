@@ -46,12 +46,12 @@
 								<i class="ace-icon fa fa-th-large bigger-120"> Receta - Odontología</i>
 							</span>
 						</a><br><hr><br>
-						<a href="#" id="ex" data-dismiss="modal">
+						<a href="#" id="historial-o" data-dismiss="modal">
 							<span class="blue">
 								<i class="ace-icon fa fa-th-large bigger-120"> Este Expediente</i>
 							</span>
 						</a><br><br>
-						<a href="#" id="th" data-dismiss="modal">
+						<a href="#" id="historial-t" data-dismiss="modal">
 							<span class="green">
 								<i class="ace-icon fa fa-th-large bigger-120"> Todo el Historial</i>
 							</span>
@@ -108,7 +108,7 @@
 							</td>
 							<td>
 								<div class="action-buttons">
-									<a @if($odonto->i_motivo_consulta != '') href="#reportes-modal" @else href="{{url('odontodontos/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$odonto->id}}')">
+									<a @if($odonto->i_motivo_consulta != '') href="#reportes-modal" @else href="{{url('odontodontos/descargareporte',[0,0])}}" @endif data-toggle="modal" class="tooltip-info" data-rel="tooltip" title="Reportes y constancias" onclick="reportes('{{$odonto->id}}', '{{$odonto->user_id}}')">
 									<span class="orange" >
 										<i class="ace-icon fa fa-th-large bigger-120"></i>
 									</span>
@@ -386,14 +386,15 @@
 		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
 
-		function reportes($id){
+		function reportes($id,$estudiante){
 			//console.log($id);
 			$('#rm').attr({onclick: "cerrarmodal();"});
 			$('#historial-o').attr({onclick: "cerrarmodal();"});
 			$('#historial-t').attr({onclick: "cerrarmodal();"});
+
 			$("#rm").attr('href','/odontodontos/descargareporte/1/'+$id);
-			$("#historial-o").attr('href','/odontodontos/descargareporte/2/'+$id);
-			$("#historial-t").attr('href','/odontodontos/descargareporte/3/'+$id);
+			$("#historial-o").attr('href','/pdf/odontologia/'+$id);
+			$("#historial-t").attr('href','/pdf/odontologiatodo/'+$estudiante);
 		}
 
 		function cerrarmodal(){
