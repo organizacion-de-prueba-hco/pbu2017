@@ -132,4 +132,9 @@ class MedicoController extends Controller
         return view('users.medico.otros.exoneracion-pago',compact('exoneraciones'));
      }
 
+     public function getOdontologia(){
+         $odontologia=CmOdontologia::get();
+        return view('users.medico.odontologia.atencion',compact('odontologia'));
+     }
+
 }
