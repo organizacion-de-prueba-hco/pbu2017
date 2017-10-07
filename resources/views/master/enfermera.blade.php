@@ -270,6 +270,14 @@
 
 								<b class="arrow"></b>
 							</li>
+							<li class="{{$v_iii}}">
+								<a href="{{url('enfermeras/exoneracion')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Exoneración de Pago
+								</a>
+
+								<b class="arrow"></b>
+							</li>
 						</ul>
 					</li>		
 					

@@ -12,6 +12,7 @@ use Redirect;
 use Input;
 use App\User;
 use App\CmOdontologia;
+use App\ExoneracionPagoCentMed;
 
 class MedicoController extends Controller
 {
@@ -126,9 +127,9 @@ class MedicoController extends Controller
       }
      }
 
-     public function getOdontologia(){
-        $odontologia=CmOdontologia::get();
-        return view('users.medico.odontologia.atencion',compact('odontologia'));
+     public function getExoneracion(){
+        $exoneraciones=ExoneracionPagoCentMed::get();
+        return view('users.medico.otros.exoneracion-pago',compact('exoneraciones'));
      }
 
 }

@@ -44,4 +44,10 @@ class Estudiante extends Model
     public function matriculataller(){
         return $this->hasMany('App\MatriculaTaller','estudiante','user_id');
     }
+    public function psicopedagogia_sqrs(){
+        return $this->hasMany('App\PsicopedagogiaSqr','estudiante_id','user_id');
+    }
+    public function psicopedagogia_otros(){
+        return $this->hasMany('App\PsicopedagogiaOtros','estudiante_id','user_id');
+    }
 }

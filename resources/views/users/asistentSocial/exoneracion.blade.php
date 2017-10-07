@@ -25,7 +25,7 @@
 			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
 				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
 			</a>
-				Lista de Exoneraciones de Pago al Centro Mpedico &nbsp;&nbsp;&nbsp;
+				Lista de Exoneraciones de Pago al Centro Médico &nbsp;&nbsp;&nbsp;
 			
 		</div>
 										<!--Modal Nuevo-->

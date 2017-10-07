@@ -11,6 +11,7 @@ use Auth;
 use Redirect;
 use Input;
 use App\User;
+use App\ExoneracionPagoCentMed;
 
 class EnfermeraController extends Controller
 {
@@ -122,6 +123,11 @@ class EnfermeraController extends Controller
             return Redirect::to('enf')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
         }
       }
+     }
+
+     public function getExoneracion(){
+        $exoneraciones=ExoneracionPagoCentMed::get();
+        return view('users.enfermera.otros.exoneracion-pago',compact('exoneraciones'));
      }
 
 

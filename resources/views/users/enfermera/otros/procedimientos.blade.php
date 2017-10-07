@@ -16,6 +16,7 @@
 	$v='active open';
 	$v_i='';
 	$v_ii='active';
+	$v_iii='';
 	$iv_iii='';
 	?>
 @endsection
@@ -26,7 +27,7 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-plus-square"></i>
 	<li class="active">Otros</li>
-	<li class="active">Procedimiento</li>
+	<li class="active">Procedimientos</li>
 </ul>
 @endsection
 @section('contenido')

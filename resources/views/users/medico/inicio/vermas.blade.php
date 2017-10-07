@@ -16,6 +16,7 @@
 	$v='';
 	$v_i='';
 	$v_ii='';
+	$v_iii='';
 	$iv_iii='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
@@ -155,9 +156,9 @@
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								 callback: function() {
-                					alert('Holaaa');
-            					 }
+								 // callback: function() {
+         //        					alert('Holaaa');
+         //    					 }
 							}
 						}
 					});

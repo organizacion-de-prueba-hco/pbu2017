@@ -17,6 +17,7 @@
 	$v_i='';
 	$v_ii='';
 	$iv_iii='';
+	$v_iii='';
 	?>
 @endsection
 @section('titulo','Farmacia-Atención')

@@ -56,9 +56,10 @@ $fn= Carbon::parse($r_enf->medicina->user->f_nac);
     <h2 align="center" style="font-size: 20px; font-family: fantasy;">CONSTANCIA POR ENFERMEDAD</h2>
 
     <div>
-      <p>{{$r_enf->medicina->user->apellido_paterno.' '.$r_enf->medicina->user->apellido_materno.' '.$r_enf->medicina->user->nombres}} de {{Carbon::createFromDate( $fn->format('Y'),$fn->format('m'), $fn->format('d'))->age}} años de edad, identificado con el DNI N° {{$r_enf->medicina->user->dni}}; ha sido evaluado(a) en el Centro Médico de la UNHEVAL; encontrandose con el diagnóstico: </p>
-      <p>{{$r_enf->medicina->imp_dx}}</p>  
-      <p>Días de permiso : <b>{{$r_enf->periodo}} @if($r_enf->periodo==1) dia @else dias @endif</b></p><br>
+      <p>{{$r_enf->medicina->user->apellido_paterno.' '.$r_enf->medicina->user->apellido_materno.' '.$r_enf->medicina->user->nombres}} de {{Carbon::createFromDate( $fn->format('Y'),$fn->format('m'), $fn->format('d'))->age}} años de edad, identificado con el DNI N° {{$r_enf->medicina->user->dni}}; ha sido evaluado(a) en el Centro Médico de la UNHEVAL; encontrándose con el diagnóstico: </p>
+      <p>{{$r_enf->medicina->imp_dx}}</p><br>
+      <p> Fe de tratamiento médico.</p>
+      <p>Descanso médico de <b>{{$r_enf->periodo}} @if($r_enf->periodo==1) dia @else dias @endif</b> a partir de la fecha.</p><br>
       <p>Se emite el presente para los fines que requiera.</p><br>
 
 

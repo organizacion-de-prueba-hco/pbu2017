@@ -16,6 +16,7 @@
 	$v='';
 	$v_i='';
 	$v_ii='';
+	$v_iii='';
 	?>
 @endsection
 @section('titulo','Medicina-Atención')
