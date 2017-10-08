@@ -50,4 +50,7 @@ class Estudiante extends Model
     public function psicopedagogia_otros(){
         return $this->hasMany('App\PsicopedagogiaOtros','estudiante_id','user_id');
     }
+    public function psicopedagogia_atenciones(){
+        return $this->hasMany('App\PsicopedagogiaAtencion','estudiante_id','user_id');
+    }
 }

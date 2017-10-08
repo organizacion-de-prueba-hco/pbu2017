@@ -1,7 +1,10 @@
-@extends('master.servicioSocial')
+@extends('master.psico')
 @section('activacion')
 	<?php  
-		$rcMenu='active';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
+		$i ='';
+		$ii='';
+		$iii='';
+		$iv='active';
 	?>
 @endsection
 @section('titulo','Registro/Control')

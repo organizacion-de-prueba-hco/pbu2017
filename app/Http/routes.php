@@ -132,6 +132,13 @@ Route::resource('enffarm', 'EnfermeraFarmController');
 Route::controller('enffarms', 'EnfermeraFarmController');
 Route::resource('enfinv', 'EnfermeraInvController');
 Route::controller('enfinvs', 'EnfermeraInvController');
+
+//2-5 psicopedagogía
+Route::resource('psico', 'PsicoController');
+Route::controller('psicos', 'PsicoController');
+
+Route::resource('psicoinicio', 'PsicoInicioController');
+
 //enfermera/otro/inventario
 Route::resource('enfotroinv', 'EnfermeraOtroInvController');
 Route::controller('enfotroinvs', 'EnfermeraOtroInvController');

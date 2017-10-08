@@ -1,16 +1,19 @@
-@extends('master.servicioSocial')
+@extends('master.psico')
 @section('activacion')
 	<?php  
-		$rcMenu='active';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
+		$i ='';
+		$ii='';
+		$iii='active';
+		$iv='';
 	?>
 @endsection
-@section('titulo','Registro/Control')
+@section('titulo','Cuestionario')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list-alt"></i>	
-	<li class="active">Atención</li>
+	<li class="active">Cuestionario</li>
 </ul>
 @endsection
 @section('contenido')

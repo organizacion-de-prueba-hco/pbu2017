@@ -72,6 +72,10 @@ class LogController extends Controller
                     case '2-4-2':
                         return Redirect::to('enf');
                         break;
+                    case '2-5':
+                        return Redirect::to('psicoinicio');
+                        break;
+
                     case '3':
                         return Redirect::to('jufsmtaller');
                         break;

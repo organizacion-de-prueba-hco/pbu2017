@@ -41,5 +41,6 @@ class Kernel extends HttpKernel
         'enfermera' => \App\Http\Middleware\Enfermera::class,
         'medico' => \App\Http\Middleware\Medico::class,
         'odonto' => \App\Http\Middleware\Odonto::class,
+        'psico' => \App\Http\Middleware\Psicopedagoga::class,
     ];
 }
