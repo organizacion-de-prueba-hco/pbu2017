@@ -1,4 +1,4 @@
-@extends('master.odontologo')
+@extends('master.psico')
 @section('activacion')
 	<?php  
 	$i ='';
@@ -46,7 +46,7 @@
                           <h4 class="modal-title">Actualizar foto</h4>
                         </div>
                         <div class="modal-body">                        
-                          {!! Form::open(['url' => 'odontologos/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          {!! Form::open(['url' => 'psicos/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
                           <div class="item form-group">
                             <div class="col-12">
                               <input type="file" id="files-foto" name="foto" accept="image/*"/><br>
@@ -77,7 +77,7 @@
 				</a>
 			</div><hr>
 								<!-- PAGE CONTENT BEGINS -->
-	{!! Form::open(['route' => 'odontologo.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+	{!! Form::open(['route' => 'psico.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombres </label>
 
