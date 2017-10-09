@@ -59,7 +59,7 @@
             </div>
                <div class="modal-footer col-md-12">
                   <input type="hidden" name="id" id="cf_id">
-                  <input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/fichasocial/eliminarcfamiliar','#elformulario2-0','#step-22');lafuncion('/fichasocial/otrosdatossalud','#elformulario5','#step-55');">
+                  <input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/fichasocial/eliminarcfamiliar','#elformulario2-0','#step-22');lafuncion('/fichasocial/otrosdatossalud','#elformulario5','#step-55');lafuncion('/fichasocial/gastosyotrosdatos','#elformulario3-gastosyotrosdatos','#step-33');">
                   <input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/fichasocial/ecfamiliar','#elformulario2-0','#step-22');lafuncion('/fichasocial/gastosyotrosdatos','#elformulario3-gastosyotrosdatos','#step-33');lafuncion('/fichasocial/otrosdatossalud','#elformulario5','#step-55');">
                </div>
          {!! Form::close() !!}

@@ -135,7 +135,7 @@
 						<b class="arrow"></b>
 					</li>
 					<li class="{{$ii}}">
-						<a href="{{url('odontodonto')}}">
+						<a href="{{url('psicoatencion')}}">
 							<i class="menu-icon fa fa-heartbeat"></i>
 							<span class="menu-text"> Atención </span>
 						</a>

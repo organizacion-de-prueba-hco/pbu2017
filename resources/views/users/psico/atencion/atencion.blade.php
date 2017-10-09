@@ -1,225 +1,133 @@
 @extends('master.psico')
 @section('activacion')
 	<?php  
-		$i ='active';
-		$ii='';
+		$i ='';
+		$ii='active';
 		$iii='';
 		$iv='';
 	?>
 @endsection
-@section('titulo','Registro/Control')
+
+@section('titulo','Atención')
 @section('estilos')
+	<style type="text/css">
+		label{
+			font-size: 14px;
+			color: blue;
+			font-weight: bold;
+		}
+		p{
+			font-size: 15px;
+		}
+	</style>
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>	
-	<li class="active">Atención</li>
+	<i class="ace-icon fa fa-list-alt"></i>
+	<li class="active">Expediente</li>
+	<li class="active">Nuevo</li>
 </ul>
 @endsection
 @section('contenido')
-<div class="row">
-	<div class="col-xs-12">
+@if($estudiante)
+<div class="hr dotted"></div>
 
-		<div class="clearfix">
-			<div class="pull-right tableTools-container"></div>
-		</div>
-		
-		<div class="table-header">
-			<a href="#nuevo-exp" class="btn btn-success btn-xs btn-round" title="Nuevo" data-toggle="modal">
-				<i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
-			</a>
-				Registros &nbsp;&nbsp;&nbsp;
-		</div>
-										<!--Modal Nuevo-->
-		<div id="nuevo-exp" class="modal fade" tabindex="-1">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="smaller lighter blue no-margin">Nuevo Registro</h3>
-					</div>
+<?php
+    $estadoBoton = '';
+    $mensajeCabecera='';
 
-					<div class="modal-body" align="center">
-						Ingrese Código Universitario del Estudiante<br>
-						{!! Form::open(['url' => 'asrcs/nuevo', 'method' => 'POST']) !!}
-						<span class="input-icon">
-							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod-nuevo" >
-								<i class="ace-icon fa fa-search nav-search-icon"></i>
-						</span>
-						<button class="btn btn-success btn-sm btn-round submit">
-							<i class="ace-icon fa fa-plus"></i>
-						</button>
-							{!!Form::close()!!}
-							<br>
-					</div>
+?>
 
-											<!-- <div class="modal-footer">
-												<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">
-													<i class="ace-icon fa fa-times"></i>
-													Close
-												</button>
-											</div> -->
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
-										<!--Fin modal Nuevo-->
+<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
+								{!! Form::open(['route' => 'asrc.update', 'method' => 'PUT', 'class'=>'form-horizontal']) !!}
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
 
-		<div class="table-responsive">
-			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Fecha</th>
-						<th class="center">Cod. Univ</th>
-						<th>Nombres y Apellidos</th>
-						<th>Edad</th>
-						<th>Escuela</th>
-						<th class="hidden-480">Caso social / otros</th>
-						<th></th>
-					</tr>
-				</thead>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1" placeholder="Código Universitario" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->cod_univ}}">
+										</div>
+									</div>
 
-				<tbody>
-					@foreach($crs as $rc)
-						<tr>
-							<td class="center">{{$rc->created_at}}</td>
-							<td>{{$rc->user->estudiante->cod_univ}}</td>
-							<td>{{$rc->user->nombres.', '.$rc->user->apellido_paterno.' '.$rc->user->apellido_materno}}</td>
-							<td align="center">
-								<?php 
-                  				if($rc->user->f_nac!='0000-00-00'){
-                  					$fn= Carbon\Carbon::parse($rc->user->f_nac);
-                  					echo Carbon\Carbon::createFromDate(
-                  						$fn->format('Y'),
-                  						$fn->format('m'),
-                  						$fn->format('d')
-                  					)->age;
-                  				}
-                  				?> 
-							</td>
-							<td class="hidden-480">{{$rc->user->estudiante->escuela->escuela}}</td>
-							<td>{{$rc->caso_social}}
-							</td>
-							
-							<td>
-							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="{{route('asrc.show',$rc->id)}}" title="Ver más">
-									<i class="ace-icon fa fa-search-plus bigger-130"></i>
-								</a>
-							</div>
-							<div class="hidden-md hidden-lg">
-							<!--Cuando se comprime la pantalla-->
-							<div class="inline pos-rel">
-								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-								</button>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Nombres </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1-1" placeholder="Text Field" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->user->nombres}}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Apellidos </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1-1" placeholder="Text Field" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->user->apellido_paterno.' '.$estudiante->user->apellido_materno}}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Facultad </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1-1" placeholder="Text Field" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->escuela->facultad->facultad}}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Escuela </label>
+										<div class="col-sm-9">
+											<input type="text" id="form-field-1-1" placeholder="Text Field" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->escuela->escuela}}">
+										</div>
+									</div>
 
-								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-									<li>
-										<a href="{{route('asfichasocial.edit',$rc->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
-											<span class="blue">
-												<i class="ace-icon fa fa-search-plus bigger-120"></i>
-											</span>
-										</a>
-									</li>
-								</ul>
-								</div>
-							</div>
-						</td>
-					</tr>
-					@endforeach
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Telf./Cel. </label>
+										<div class="col-sm-9">
+											<input type="text" name="telefono" placeholder="N° cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Domicilio Actual:</label>
+										<div class="col-xs-12 col-sm-9">
+											<div class="clearfix">
+												{!!Form::text('domicilio', $estudiante->user->domicilio, ['class'=> 'col-xs-10 col-sm-5', 'placeholder'=>'Nombre de la calle, Av. Jr, etc'])!!}
+											</div>
+											<div class="clearfix">
+												{!!Form::text('n_domicilio', $estudiante->user->n_domicilio, ['class'=> 'col-xs-10 col-sm-5', 'placeholder'=>'Número, Lt., Mz., etc','style'=>'margin-top: 2px;'])!!}
+											</div>
+										</div>
+									</div>
 
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-@endsection
-@section('script')
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Fecha Nacimiento </label>
+										<div class="col-sm-9">
+										<input type="date" name="f_nac" value="{{$estudiante->user->f_nac}}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Caso Social </label>
+										<div class="col-sm-9">
+										{!!Form::text('caso_social',$rc->caso_social,['id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el caso social...'])!!}
+										</div>
+									</div>
 
-		<!-- page specific plugin scripts -->
-		{!!Html::script('assets/js/jquery.dataTables.min.js')!!}
-		{!!Html::script('assets/js/jquery.dataTables.bootstrap.min.js')!!}
-		{!!Html::script('assets/js/dataTables.buttons.min.js')!!}
-		{!!Html::script('assets/js/buttons.flash.min.js')!!}
-		{!!Html::script('assets/js/buttons.html5.min.js')!!}
-		{!!Html::script('assets/js/buttons.print.min.js')!!}
-		{!!Html::script('assets/js/buttons.colVis.min.js')!!}
-		{!!Html::script('assets/js/dataTables.select.min.js')!!}
-
-		<script type="text/javascript">
-		function valida(e){
-          tecla = (document.all) ? e.keyCode : e.which;
-
-          //Tecla de retroceso para borrar, siempre la permite
-          if (tecla==8){
-              return true;
-          }
-
-          // Patron de entrada, en este caso solo acepta numeros
-          patron =/[0-9]/;
-          tecla_final = String.fromCharCode(tecla);
-          return patron.test(tecla_final);
-    }
-
-			jQuery(function($) {
-				//initiate dataTables plugin
-				var myTable =
-				$('#dynamic-table')
-				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-				.DataTable( {
-					bAutoWidth: false,
-					"aoColumns": [
-					  { "bSortable": null },
-					  null, null,null,null, null, 
-					  { "bSortable": false }
-					],
-					"aaSorting": [],
+									<div class="form-group" >
+										<div class="col-12" align="center"><br>
+											<input type='hidden' value="{{$estudiante->user_id}}" name="user_id">
+											<input type='hidden' value="{{$rc->id}}" name="rc_id">
+											<a href="{{url('asrc')}}" class="btn btn-sm btn-default">
+												<i class="ace-icon fa fa-arrow-left" ></i>
+												Volver sin guardar</a> &nbsp;
+											<button type="submit" class="btn btn-sm btn-primary" {{$estadoBoton}}>
+											<i class="ace-icon fa fa-plus" ></i>
+											<span class="bigger-110">Guardar cambios </span>
+											</button>
+										</div>
+									</div>
+			                    {!! Form::close() !!}
 
 
-					select: {
-						style: 'multi'
-					}
-			    } );
+								</div><!-- PAGE CONTENT ENDS -->
+
+@else
+	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('asrc')}}">volver</a>
+@endif
 
 
-
-				$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-
-				new $.fn.dataTable.Buttons( myTable, {
-					buttons: [
-					  {
-						"extend": "colvis",
-						"text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Mostrar/Ocultar columnas</span>",
-						"className": "btn btn-white btn-primary btn-bold",
-						columns: ':not(:first):not(:last)'
-					  },
-					  {
-						"extend": "copy",
-						"text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copiar al Portapapeles</span>",
-						"className": "btn btn-white btn-primary btn-bold"
-					  },
-					  {
-						"extend": "csv",
-						"text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Exportar a CSV</span>",
-						"className": "btn btn-white btn-primary btn-bold"
-					  },
-					  {
-						"extend": "print",
-						"text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Imprimir</span>",
-						"className": "btn btn-white btn-primary btn-bold",
-						autoPrint: false,
-						message: 'Reporte'
-					  }
-					]
-				} );
-				myTable.buttons().container().appendTo( $('.tableTools-container') );
-
-				
-			})
-
-		//Para que salga las letritas negras del title
-		$(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip(); 
-		});
-		</script>
 @endsection

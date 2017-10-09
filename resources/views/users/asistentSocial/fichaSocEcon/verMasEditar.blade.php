@@ -366,6 +366,7 @@
             $('#cf_nombres').val(result.nombres);
             $('#cf_parentesco').val(result.parentesco);
             $('#cf_fecha_n').val(result.f_nac);
+            $('#cf_dni').val(result.dni);
             $("#cf_instruccion option[value='"+ result.grado_instrucion +"']").attr("selected",true);
             // $("#e_estado option[value='"+ result.estado +"']").attr("selected",true);
             $('#cf_ocupacion').val(result.ocupacion);

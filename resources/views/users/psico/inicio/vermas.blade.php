@@ -1,6 +1,6 @@
-@extends('master.odontologo')
+@extends('master.psico')
 @section('activacion')
-	<?php  
+	<?php
 	$i ='active';
 	$ii='';
 	$iii='';
@@ -9,17 +9,25 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('titulo','Ficha Socio Económica')
+@section('title','Inicio-Buscar estudiante')
 @section('estilos')
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-home"></i>	
-	<li class="active">Inicio</li>
-	<li class="active">Buscar Estudiantes</li>	
+	<li class="active">Inicio</li>	
+	<li class="active">Ficha socio Económica</li>
 </ul>
 @endsection
 @section('contenido')
+@include('master.mensajes')
+@include('users.psico.inicio.vermas.editar-cfamiliar')
+@include('users.psico.inicio.vermas.nuevo-cfamiliar')
+@include('users.psico.inicio.vermas.editar-ltrabajosf')
+@include('users.psico.inicio.vermas.editar-foto')
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarIfamiliar"></div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="NuevoDsalud"></div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="EditarDatoSalud"></div>
 
 <div class="row">
 	<div class="col-xs-12">
@@ -28,7 +36,16 @@
 		<div class="hr hr-18 hr-double dotted"></div>
 		<div class="widget-box">
 			<div class="widget-header widget-header-blue widget-header-flat">
-				<h4 class="widget-title lighter">Datos del Estudiante</h4>
+				<h4 class="widget-title lighter">Ficha Socio Económica</h4>
+
+				<div class="widget-toolbar">
+					<label>
+						<a href="{{url('pdf/fs',$user->id)}}" title="Descargar como PDF" target="_black"><small class="green">
+							<i class="ace-icon fa fa-file-pdf-o"></i>	
+							<b>PDF</b></small>
+						</a>
+					</label>
+				</div>
 			</div>
 			<div class="widget-body">
 				<div class="widget-main">
@@ -37,30 +54,40 @@
 							<ul class="steps">
 								<li data-step="1" class="active">
 									<span class="step">I</span>
-									<span class="title">FILIACIÓN</span>
+									<span class="title">DATOS GENERALES DEL ALUMNO </span>
 								</li>
 								<li data-step="2">
 									<span class="step">II</span>
-									<span class="title">ANTECEDENTES</span>
+									<span class="title">CUADRO FAMILIAR </span>
 								</li>
 								<li data-step="3">
 									<span class="step">III</span>
-									<span class="title">ODONTOLOGÍA</span>
-								</li>								
+									<span class="title">SITUACIÓN ECONÓMICA FAMILIAR</span>
+								</li>
+								<li data-step="4">
+									<span class="step">IV</span>
+									<span class="title">DATOS DE VIVIENDA</span>
+								</li>
+								
 							</ul>
 						</div>
 						<hr />
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.odontologo.inicio.vermas.step-11')
+								@include('users.psico.inicio.vermas.formularios.step-11')
 							</div>
+
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.odontologo.inicio.vermas.step-22')
+								@include('users.psico.inicio.vermas.formularios.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.odontologo.inicio.vermas.step-33')
+								@include('users.psico.inicio.vermas.formularios.step-33')
 							</div>
+							<div class="step-pane" data-step="4" id="step-44">
+								@include('users.psico.inicio.vermas.formularios.step-44')
+							</div>
+							
 						</div>
 					</div>
 					<hr />
@@ -116,14 +143,12 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Imprimir!</h3><br><i>Ud. Puede descargar este documento en formato PDF</i>", 
+						message: "<h3>¡Gracias! ¡Su información se ha guardado correctamente!</h3><br> <i>Recuerde descargar la ficha Socio Económica en formato PDF</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								 // callback: function() {
-         //        					alert('Holaaa');
-         //    					 }
+								"href" : "aaaaaa"
 							}
 						}
 					});
@@ -316,7 +341,7 @@
       function cargarModalCfamiliar(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
-        var route="/fichasocial/cfamiliar/"+id;
+        var route="/psicoinicios/cfamiliar/"+id;
             //console.log(id);
         var data={'id':id}; 
         var token=$("#token").val();
@@ -329,6 +354,7 @@
             $('#cf_nombres').val(result.nombres);
             $('#cf_parentesco').val(result.parentesco);
             $('#cf_fecha_n').val(result.f_nac);
+            $('#cf_dni').val(result.dni);
             $("#cf_instruccion option[value='"+ result.grado_instrucion +"']").attr("selected",true);
             // $("#e_estado option[value='"+ result.estado +"']").attr("selected",true);
             $('#cf_ocupacion').val(result.ocupacion);
@@ -340,7 +366,7 @@
       function cargarModaLtrabajosf(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
-        var route="/fichasocial/ltrabajosf/"+id;
+        var route="/psicoinicios/ltrabajosf/"+id;
             //console.log(id);
         var data={'id':id}; 
         var token=$("#token").val();
@@ -361,7 +387,7 @@
       function cargarModalIfamiliar(ids){
         //var route="http://localhost/tutoria/public/admin/edtutor/"+id;
         var id=ids;
-        var route="/fichasocial/ingresofamiliar/"+id;
+        var route="/psicoinicios/ingresofamiliar/"+id;
         //console.log('El id es: '+id);
         var data={'id':id}; 
         var token=$("#token").val();
@@ -405,25 +431,6 @@
       		//$('#div-especifiquen').hide();
       		 $('#div-especifiquen').addClass('hidden');
     	}
-  	  }
-  	  function cargarNuevoDsalud($id){
-        var route="/fichasocial/nuevodsalud/"+$id;
-        
-        $.ajax({
-          url:route,
-          success: function(result){ 
-              $('#NuevoDsalud').html(result);
-          }                  
-        });
-  	  }
-  	  function editarDsalud($id){
-        var route="/fichasocial/vistaeditardsalud/"+$id;
-        $.ajax({
-          url:route,
-          success: function(result){ 
-              $('#EditarDatoSalud').html(result);
-          }                  
-        });
   	  }
 //FIN Formularios-------------------- step--------------------------
 
@@ -527,22 +534,6 @@
        }
   	}      
       document.getElementById('files-foto').addEventListener('change', foto, false);
-
-      //Mostrar ocultar P_Otros
-    function mostrarotros($id,$check){
-    	var elementId=$id;
-    	var checkbox=$check;
-    	//console.log(elementId+checkbox);
-    	if ($(checkbox).prop('checked')) {
-          	document.getElementById(elementId).style.visibility='visible';
-
-        }
-        else {
-          	$('#'+elementId).val('');
-           	document.getElementById(elementId).style.visibility='hidden';
-        }
-    }
-
 </script>
 
 @endsection

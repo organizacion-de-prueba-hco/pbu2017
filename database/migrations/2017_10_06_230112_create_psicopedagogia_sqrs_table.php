@@ -50,7 +50,7 @@ class CreatePsicopedagogiaSqrsTable extends Migration
             $table->string('conclusiones');
             $table->timestamps();
 
-            $table->foreign('estudiante_id')->references('user_id')->on('estudiante')->onDelete('cascade');
+            $table->foreign('estudiante_id')->references('user_id')->on('estudiantes')->onDelete('cascade');
         });
     }
 

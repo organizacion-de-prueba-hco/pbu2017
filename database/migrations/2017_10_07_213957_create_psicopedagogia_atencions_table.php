@@ -18,7 +18,7 @@ class CreatePsicopedagogiaAtencionsTable extends Migration
             $table->string('motivo');
             $table->timestamps();
 
-            $table->foreign('estudiante_id')->references('user_id')->on('estudiante')->onDelete('cascade');
+            $table->foreign('estudiante_id')->references('user_id')->on('estudiantes')->onDelete('cascade');
         });
     }
 

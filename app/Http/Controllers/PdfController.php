@@ -170,10 +170,19 @@ class PdfController extends Controller
                          '3'=>'Tierra',
                          '4'=>'Otros');
         $egresoFamiliar=EgresoFamiliar::where('user_id',$id)->first();
+
         $datoSalud= Cuadrofamiliar::join('datos_saluds','datos_saluds.miembro_familiar','=','cuadro_familiars.id')->where('cuadro_familiars.user_id',$id)->select('datos_saluds.id as idsalud','cuadro_familiars.parentesco as parentesco','cuadro_familiars.nombres as nombresp','datos_saluds.*')->get();
         $fichasocial=FichaSocial::where('expediente_id',$id)->first();
 
-        $view =  \View::make('pdf.fs', compact('user','date','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso','datoSalud','fichasocial'))->render();
+        //Solo la asistenta social puede ver completo, los demas no ven los datos de salud
+        if (Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-1') {
+           $rutaPdf='pdf.fs';
+        }
+        else{
+            $rutaPdf='pdf.fs2';  //PDF incompleto 
+        }
+
+        $view =  \View::make($rutaPdf, compact('user','date','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso','datoSalud','fichasocial'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         //return $pdf->download($informeNutricion->titulo.'.pdf');

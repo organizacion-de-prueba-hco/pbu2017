@@ -7,7 +7,7 @@
       )->age;
 ?>
   <head>
-    <title>Declaración Jurada </title>
+    <title>Ficha Social </title>
     <meta http-equiv="Content-Type" content="text/html;">
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
