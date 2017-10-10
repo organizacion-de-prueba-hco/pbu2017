@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PsicopedagogiaSqr extends Model
 {
-	 protected $table = 'psicopedagogias_sqrs';
+	 protected $table = 'psicopedagogia_sqrs';
      protected $fillable = [
             'estudiante_id',
             'n',
@@ -28,7 +28,7 @@ class PsicopedagogiaSqr extends Model
             'p_xvi',
             'p_xvii',
             'p_xviii',
-            'p_xvix',
+            'p_xix',
             'p_xx',
             'p_xxi',
             'p_xxii',

@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\PsicopedagogiaAtencion;
+use App\Estudiante;
+use App\User;
+
+use Redirect;
 
 class PsicoAtencionController extends Controller
 {
@@ -43,9 +47,36 @@ class PsicoAtencionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function postNuevo(Request $request)
+    {
+        $cod        = $request->get('cod-nuevo');
+        $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
+        return view('users.psico.atencion.nuevo', compact('estudiante'));
+    }
+
     public function store(Request $request)
     {
-        //
+        $user=User::find($request->get('user_id'));
+        $user->domicilio=$request->get('domicilio');
+        $user->n_domicilio=$request->get('n_domicilio');
+        $user->f_nac=$request->get('f_nac');
+        $user->telefono=$request->get('telefono');
+        $user->save();
+
+        $rs=new PsicopedagogiaAtencion;
+        $rs->estudiante_id=$request->get('user_id');
+        $rs->motivo=$request->get('motivo');
+        if($rs->save()){
+            return Redirect::to('psicoatencion')->with('verde','Se registro correctamente');
+        }else{
+            return Redirect::to('psicoatencion')->with('rojo','Algo salió mal, intente nuevamente');
+        }        
     }
 
     /**
@@ -56,7 +87,12 @@ class PsicoAtencionController extends Controller
      */
     public function show($id)
     {
-        //
+        $rc=PsicopedagogiaAtencion::find($id);
+        if (!$rc) {
+            return back()->with('rojo','ID de estudiante no identificado');
+        }
+        $estudiante=Estudiante::find($rc->estudiante_id);
+        return view('users.psico.atencion.ver-mas', compact('rc','estudiante'));
     }
 
     /**
@@ -79,7 +115,21 @@ class PsicoAtencionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::find($request->get('user_id'));
+        $user->domicilio=$request->get('domicilio');
+        $user->n_domicilio=$request->get('n_domicilio');
+        $user->f_nac=$request->get('f_nac');
+        $user->telefono=$request->get('telefono');
+        $user->save();
+
+        $rs=PsicopedagogiaAtencion::find($request->get('rc_id'));
+        $rs->estudiante_id=$request->get('user_id');
+        $rs->motivo=$request->get('motivo');
+        if($rs->save()){
+            return Redirect::to('psicoatencion')->with('verde','Se registro correctamente');
+        }else{
+            return Redirect::to('psicoatencion')->with('rojo','Algo salió mal, intente nuevamente');
+        }
     }
 
     /**

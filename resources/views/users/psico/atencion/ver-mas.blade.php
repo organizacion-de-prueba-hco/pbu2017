@@ -1,10 +1,13 @@
-@extends('master.servicioSocial')
+@extends('master.psico')
 @section('activacion')
 <?php  
-		$rcMenu='active';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
+		$i ='';
+		$ii='active';
+		$iii='';
+		$iv='';
 	?>
 @endsection
-@section('titulo','Nuevo Expediente')
+@section('titulo','Actualizar registro')
 @section('estilos')
 	<style type="text/css">
 		label{
@@ -19,8 +22,8 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>
-	<li class="active">Expediente</li>
+	<i class="ace-icon fa fa-heartbeat"></i>
+	<li class="active">Atención</li>
 	<li class="active">Nuevo</li>
 </ul>
 @endsection
@@ -37,7 +40,7 @@
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
-								{!! Form::open(['route' => 'asrc.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+								{!! Form::open(['route' => 'psicoatencion.update', 'method' => 'PUT', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
 
@@ -70,6 +73,13 @@
 											<input type="text" id="form-field-1-1" placeholder="Text Field" class="col-xs-10 col-sm-5" disabled="true" value="{{$estudiante->escuela->escuela}}">
 										</div>
 									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Telf./Cel. </label>
+										<div class="col-sm-9">
+											<input type="text" name="telefono" placeholder="N° cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
+										</div>
+									</div>
 									
 									<div class="form-group">
 										<label class="control-label col-xs-12 col-sm-3 no-padding-right">Domicilio Actual:</label>
@@ -78,15 +88,8 @@
 												{!!Form::text('domicilio', $estudiante->user->domicilio, ['class'=> 'col-xs-10 col-sm-5', 'placeholder'=>'Nombre de la calle, Av. Jr, etc'])!!}
 											</div>
 											<div class="clearfix">
-												{!!Form::text('n_domicilio', $estudiante->user->n_domicilio, ['required','class'=> 'col-xs-10 col-sm-5', 'placeholder'=>'Número, Lt., Mz., etc','style'=>'margin-top: 2px;'])!!}
+												{!!Form::text('n_domicilio', $estudiante->user->n_domicilio, ['class'=> 'col-xs-10 col-sm-5', 'placeholder'=>'Número, Lt., Mz., etc','style'=>'margin-top: 2px;'])!!}
 											</div>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Telf./Cel. </label>
-										<div class="col-sm-9">
-											<input name="telefono" type="text" placeholder="N° cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
 										</div>
 									</div>
 
@@ -97,18 +100,22 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Caso Social </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Motivo de Visita </label>
 										<div class="col-sm-9">
-										{!!Form::text('caso_social',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el caso social...'])!!}
+										{!!Form::text('motivo',$rc->motivo,['id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el motivo de visita...'])!!}
 										</div>
 									</div>
 
 									<div class="form-group" >
-										<div class="col-sm-6">
+										<div class="col-12" align="center"><br>
 											<input type='hidden' value="{{$estudiante->user_id}}" name="user_id">
-											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" {{$estadoBoton}}>
+											<input type='hidden' value="{{$rc->id}}" name="rc_id">
+											<a href="{{url('psicoatencion')}}" class="btn btn-sm btn-default">
+												<i class="ace-icon fa fa-arrow-left" ></i>
+												Volver sin guardar</a> &nbsp;
+											<button type="submit" class="btn btn-sm btn-primary" {{$estadoBoton}}>
 											<i class="ace-icon fa fa-plus" ></i>
-											<span class="bigger-110">Registrar </span>
+											<span class="bigger-110">Guardar cambios </span>
 											</button>
 										</div>
 									</div>
@@ -118,7 +125,7 @@
 								</div><!-- PAGE CONTENT ENDS -->
 
 @else
-	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('asrc')}}">volver</a>
+	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('psicoatencion')}}">volver</a>
 @endif
 
 

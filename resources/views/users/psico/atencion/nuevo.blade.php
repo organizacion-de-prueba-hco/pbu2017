@@ -1,10 +1,13 @@
-@extends('master.servicioSocial')
+@extends('master.psico')
 @section('activacion')
 <?php  
-		$rcMenu='active';$a=''; $b='';$c=''; $c1='';$c2='';$c3='';$c4='';$d=''; $d1=''; $d2=''; $d3=''; $d4='';$e='';
+		$i ='';
+		$ii='active';
+		$iii='';
+		$iv='';
 	?>
 @endsection
-@section('titulo','Nuevo Expediente')
+@section('titulo','Nueva Atención')
 @section('estilos')
 	<style type="text/css">
 		label{
@@ -19,8 +22,8 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>
-	<li class="active">Expediente</li>
+	<i class="ace-icon fa fa-heartbeat"></i>
+	<li class="active">Atención</li>
 	<li class="active">Nuevo</li>
 </ul>
 @endsection
@@ -37,7 +40,7 @@
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
-								{!! Form::open(['route' => 'asrc.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+								{!! Form::open(['route' => 'psicoatencion.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Código Universitario </label>
 
@@ -86,7 +89,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Telf./Cel. </label>
 										<div class="col-sm-9">
-											<input name="telefono" type="text" placeholder="N° cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
+											<input name="telefono" type="text" placeholder="N° Telf./Cel" class="col-xs-10 col-sm-5" required="true" value="{{$estudiante->user->telefono}}">
 										</div>
 									</div>
 
@@ -97,9 +100,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Caso Social </label>
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Motivo de visita </label>
 										<div class="col-sm-9">
-										{!!Form::text('caso_social',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el caso social...'])!!}
+										{!!Form::text('motivo',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el motivo de visita...'])!!}
 										</div>
 									</div>
 
@@ -118,7 +121,7 @@
 								</div><!-- PAGE CONTENT ENDS -->
 
 @else
-	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('asrc')}}">volver</a>
+	<h3>¡Error! <span> El Código ingresado no existe</span></h3><a href="{{url('psicoatencion')}}">volver</a>
 @endif
 
 

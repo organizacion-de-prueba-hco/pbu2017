@@ -34,7 +34,7 @@ class CreatePsicopedagogiaSqrsTable extends Migration
             $table->string('p_xvi');
             $table->string('p_xvii');
             $table->string('p_xviii');
-            $table->string('p_xvix');
+            $table->string('p_xix');
             $table->string('p_xx');
             $table->string('p_xxi');
             $table->string('p_xxii');

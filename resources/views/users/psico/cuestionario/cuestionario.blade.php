@@ -7,13 +7,25 @@
 		$iv='';
 	?>
 @endsection
-@section('titulo','Cuestionario')
+
+@section('titulo','Atención')
 @section('estilos')
+	<style type="text/css">
+		label{
+			font-size: 14px;
+			color: blue;
+			font-weight: bold;
+		}
+		p{
+			font-size: 15px;
+		}
+	</style>
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>	
-	<li class="active">Cuestionario</li>
+	<i class="ace-icon fa fa-list"></i>
+	<li class="active">Expediente</li>
+	<li class="active">Nuevo</li>
 </ul>
 @endsection
 @section('contenido')
@@ -41,7 +53,7 @@
 
 					<div class="modal-body" align="center">
 						Ingrese Código Universitario del Estudiante<br>
-						{!! Form::open(['url' => 'asrcs/nuevo', 'method' => 'POST']) !!}
+						{!! Form::open(['url' => 'psicosqrs/nuevo', 'method' => 'POST']) !!}
 						<span class="input-icon">
 							<input type="number" placeholder="Buscar ..." class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="cod-nuevo" >
 								<i class="ace-icon fa fa-search nav-search-icon"></i>
@@ -71,9 +83,9 @@
 						<th>Fecha</th>
 						<th class="center">Cod. Univ</th>
 						<th>Nombres y Apellidos</th>
-						<th>Edad</th>
 						<th>Escuela</th>
-						<th class="hidden-480">Caso social / otros</th>
+						<th class="hidden-480">N°</th>
+						<th>Estado</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -82,48 +94,26 @@
 					@foreach($crs as $rc)
 						<tr>
 							<td class="center">{{$rc->created_at}}</td>
-							<td>{{$rc->user->estudiante->cod_univ}}</td>
-							<td>{{$rc->user->nombres.', '.$rc->user->apellido_paterno.' '.$rc->user->apellido_materno}}</td>
-							<td align="center">
-								<?php 
-                  				if($rc->user->f_nac!='0000-00-00'){
-                  					$fn= Carbon\Carbon::parse($rc->user->f_nac);
-                  					echo Carbon\Carbon::createFromDate(
-                  						$fn->format('Y'),
-                  						$fn->format('m'),
-                  						$fn->format('d')
-                  					)->age;
-                  				}
-                  				?> 
+							<td>{{$rc->estudiante->cod_univ}}</td>
+							<td>{{$rc->estudiante->user->nombres.', '.$rc->estudiante->user->apellido_paterno.' '.$rc->estudiante->user->apellido_materno}}</td>
+							<td class="hidden-480">{{$rc->estudiante->escuela->escuela}}</td>
+							<td>{{$rc->n}}</td>
+							<td class="hidden-480" align="center">
+								@if($rc->obs != '' && $rc->conclusiones != '')
+									<span class="label label-sm label-success">Atendido</span>
+								@else
+									<span class="label label-sm label-warning">Pendiente</span>
+								@endif
 							</td>
-							<td class="hidden-480">{{$rc->user->estudiante->escuela->escuela}}</td>
-							<td>{{$rc->caso_social}}
-							</td>
-							
 							<td>
-							<div class="hidden-sm hidden-xs action-buttons">
-								<a class="blue" href="{{route('asrc.show',$rc->id)}}" title="Ver más">
+							<div class=" action-buttons">
+								
+
+								<a class="blue" href="{{route('psicoatencion.show',$rc->id)}}" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
 							</div>
-							<div class="hidden-md hidden-lg">
-							<!--Cuando se comprime la pantalla-->
-							<div class="inline pos-rel">
-								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-								</button>
-
-								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-									<li>
-										<a href="{{route('asfichasocial.edit',$rc->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
-											<span class="blue">
-												<i class="ace-icon fa fa-search-plus bigger-120"></i>
-											</span>
-										</a>
-									</li>
-								</ul>
-								</div>
-							</div>
+							
 						</td>
 					</tr>
 					@endforeach

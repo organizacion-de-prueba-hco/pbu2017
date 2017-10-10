@@ -139,7 +139,11 @@ Route::controller('psicos', 'PsicoController');
 Route::resource('psicoinicio', 'PsicoInicioController');
 Route::controller('psicoinicios', 'PsicoInicioController');
 Route::resource('psicoatencion', 'PsicoAtencionController');
-
+Route::controller('psicoatencions', 'PsicoAtencionController');
+Route::resource('psicosqr', 'PsicoSqrController');
+Route::controller('psicosqrs', 'PsicoSqrController');
+Route::resource('psicotro', 'PsicoOtrosController');
+Route::controller('psicotros', 'PsicoOtrosController');
 //enfermera/otro/inventario
 Route::resource('enfotroinv', 'EnfermeraOtroInvController');
 Route::controller('enfotroinvs', 'EnfermeraOtroInvController');

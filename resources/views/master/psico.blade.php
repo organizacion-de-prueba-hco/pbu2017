@@ -128,7 +128,7 @@
 
 				<ul class="nav nav-list">
 					<li class="{{$i}}">
-						<a href="{{url('odonto')}}">
+						<a href="{{url('psicoinicio')}}">
 							<i class="menu-icon fa fa-home"></i>
 							<span class="menu-text"> Inicio </span>
 						</a>
@@ -142,7 +142,7 @@
 						<b class="arrow"></b>
 					</li>
 					<li class="{{$iii}}">
-						<a href="{{url('odontodonto')}}">
+						<a href="{{url('psicosqr')}}">
 							<i class="menu-icon fa fa fa-list"></i>
 							<span class="menu-text"> Cuestionario SQR </span>
 						</a>
