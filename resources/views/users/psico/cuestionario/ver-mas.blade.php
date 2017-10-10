@@ -7,7 +7,7 @@
 		$iv='';
 	?>
 @endsection
-@section('titulo','Nuevo Cuestionario')
+@section('titulo','Actualizar Cuestionario')
 @section('estilos')
 	<style type="text/css">
 		label{
@@ -24,7 +24,7 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list"></i>
 	<li class="active">Cuestionario</li>
-	<li class="active">Nuevo</li>
+	<li class="active">Actualizar</li>
 </ul>
 @endsection
 @section('contenido')
@@ -40,7 +40,10 @@
 <div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 								<h3 style="color: red; margin-left: 10em; padding-bottom: 5px;">{{$mensajeCabecera}}</h3>
-								{!! Form::open(['route' => 'psicosqr.store', 'method' => 'POST', 'class'=>'form-horizontal']) !!}
+								{!! Form::open(['route' => ['psicosqr.update',$srq->id],  'method' => 'PUT', 'class'=>'form-horizontal']) !!}
+								<div class="col-md-offset-9 col-sm-offset-9">
+								<label><span style="background-color:yellow; padding: 3px;">PSIC - {{$srq->id}} </span></label>
+								</div>
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> DNI </label>
 
@@ -141,7 +144,8 @@
 													<td>01</td>
 													<td>¿Tiene frecuentes dolores de cabeza?</td>
 													<td class="center"><label>
-														<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_i">
+														<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_i=='1') checked="true" @endif>
 														<span class="lbl middle"></span>
 														</label>
 													</td>
@@ -150,7 +154,8 @@
 													<td>02</td>
 													<td>¿Tiene mal apetito?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_ii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"   
+														@if($srq->p_ii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -159,7 +164,8 @@
 													<td>03</td>
 													<td>¿Duerme mal?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_iii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_iii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -168,7 +174,8 @@
 													<td>04</td>
 													<td>¿Se asusta con facilidad?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_iv">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_iv=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -177,7 +184,8 @@
 													<td>05</td>
 													<td>¿Sufre de temblor de manos?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_v">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_v=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -186,7 +194,8 @@
 													<td>06</td>
 													<td>¿Se siente nervioso o tenso?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_vi">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_vi=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -195,7 +204,8 @@
 													<td>07</td>
 													<td>¿Sufre de mala digestión?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_vii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_vii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -204,7 +214,8 @@
 													<td>08</td>
 													<td>¿Tiene dificultades para  pensar con claridad?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_viii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_viii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -213,7 +224,8 @@
 													<td>09</td>
 													<td>¿Se siente triste?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_ix">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_ix=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -222,7 +234,8 @@
 													<td>10</td>
 													<td>¿Llora usted con mucha frecuencia?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_x">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_x=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -231,7 +244,8 @@
 													<td>11</td>
 													<td>¿Tiene dificultad en disfrutar sus actividades diarias?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xi">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xi=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -240,7 +254,8 @@
 													<td>12</td>
 													<td>¿Tiene dificultad para tomar decisiones?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -249,7 +264,8 @@
 													<td>13</td>
 													<td>¿Tiene dificultad en hacer su trabajo y/o Estudios? <br>(¿sufre usted con su trabajo y/o estudios?)</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xiii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xiii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -258,7 +274,8 @@
 													<td>14</td>
 													<td>¿Es incapaz de desempeñar un papel útil en su vida?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xiv">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xiv=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -267,7 +284,8 @@
 													<td>15</td>
 													<td>¿Ha perdido interés en las cosas que usualmente hacía?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xv">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xv=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -276,7 +294,8 @@
 													<td>16</td>
 													<td>¿Siente que usted es una persona inútil?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xvi">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xvi=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -285,7 +304,8 @@
 													<td>17</td>
 													<td>¿Ha tenido la idea de acabar con su vida?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xvii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xvii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -294,7 +314,8 @@
 													<td>18</td>
 													<td>¿Se siente cansado todo el tiempo?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xviii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xviii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -303,7 +324,8 @@
 													<td>19</td>
 													<td>¿Tiene sensaciones desagradables en su estómago?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xix">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xix=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -312,7 +334,8 @@
 													<td>20</td>
 													<td>¿Se cansa con facilidad?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xx">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xx=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -321,7 +344,8 @@
 													<td>21</td>
 													<td>¿Siente usted que alguien ha tratado de herirlo en alguna forma? <br>Ejm: pensar que alguien conspira contra usted, que alguien intenta dañarle, etc.</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxi">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxi=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -330,7 +354,8 @@
 													<td>22</td>
 													<td>¿Usted se considera una persona mucho más importante que los demás?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -339,7 +364,8 @@
 													<td>23</td>
 													<td>¿Ha notado interferencias o algo raro en su pensamiento? <br>Ejm. Oír voces, ver cosas que otras personas no pueden ver ni oír, etc.</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxiii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxiii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -348,7 +374,8 @@
 													<td>24</td>
 													<td>¿Oye voces sin saber de dónde vienen o que otras personas no pueden oír?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxiv">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxiv=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -357,7 +384,8 @@
 													<td>25</td>
 													<td>¿Ha tenido convulsiones, ataques o caídas al suelo, con movimientos de brazos y piernas;<br> con mordedura de la lengua o pérdida del conocimiento?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxv">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxv=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -366,7 +394,8 @@
 													<td>26</td>
 													<td>¿Alguna vez le ha parecido a su familia, sus amigos, su médico o a su sacerdote<br> que usted estaba bebiendo demasiado licor?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxvi">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxvi=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -375,7 +404,8 @@
 													<td>27</td>
 													<td>¿Alguna vez ha querido dejar de beber, pero no ha podido?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxvii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxvii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -384,7 +414,8 @@
 													<td>28</td>
 													<td>¿Ha tenido alguna vez dificultades en el trabajo (o estudio) a causa de la bebida,<br> como beber en el trabajo o en el colegio, o faltar a ellos?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxviii">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxviii=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -393,7 +424,8 @@
 													<td>29</td>
 													<td>¿Ha estado en riñas o lo han detenido estando borracho?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxix">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxix=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -402,7 +434,8 @@
 													<td>30</td>
 													<td>¿Le ha parecido alguna vez que usted bebía demasiado?</td>
 													<td class="center"><label>
-													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1" name="p_xxx">
+													<input id="id-button-borders" type="checkbox" class="ace ace-switch ace-switch-5" value="1"  
+														@if($srq->p_xxx=='1') checked="true" @endif>
 													<span class="lbl middle"></span>
 													</label>
 													</td>
@@ -415,7 +448,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Observaciones </label>
 										<div class="col-sm-9">
-											<textarea  placeholder="Describir aquí..." class="col-sm-9"  name="obs"></textarea>
+											<textarea  placeholder="Describir aquí..." class="col-sm-9"  name="obs" required="true">{{$srq->obs}}</textarea>
 											
 										</div>
 									</div>
@@ -423,7 +456,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Conclusiones </label>
 										<div class="col-sm-9">
-											<textarea  placeholder="Describir aquí..." class="col-sm-9"  name="conclusiones"></textarea>
+											<textarea  placeholder="Describir aquí..." class="col-sm-9"  name="conclusiones" required="true">{{$srq->conclusiones}}</textarea>
 											
 										</div>
 									</div>
@@ -433,7 +466,7 @@
 											<input type='hidden' value="{{$estudiante->user_id}}" name="estudiante_id">
 											<button type="submit" class="width-35 pull-right btn btn-sm btn-primary col-xs-10 col-sm-5" {{$estadoBoton}}>
 											<i class="ace-icon fa fa-plus" ></i>
-											<span class="bigger-110">Registrar </span>
+											<span class="bigger-110">Actualizar</span>
 											</button>
 										</div>
 									</div>

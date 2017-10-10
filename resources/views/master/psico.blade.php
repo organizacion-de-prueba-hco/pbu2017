@@ -144,7 +144,7 @@
 					<li class="{{$iii}}">
 						<a href="{{url('psicosqr')}}">
 							<i class="menu-icon fa fa fa-list"></i>
-							<span class="menu-text"> Cuestionario SQR </span>
+							<span class="menu-text"> Cuestionario SRQ </span>
 						</a>
 						<b class="arrow"></b>
 					</li>	

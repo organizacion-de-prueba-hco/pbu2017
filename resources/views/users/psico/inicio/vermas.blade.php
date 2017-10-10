@@ -60,14 +60,7 @@
 									<span class="step">II</span>
 									<span class="title">CUADRO FAMILIAR </span>
 								</li>
-								<li data-step="3">
-									<span class="step">III</span>
-									<span class="title">SITUACIÓN ECONÓMICA FAMILIAR</span>
-								</li>
-								<li data-step="4">
-									<span class="step">IV</span>
-									<span class="title">DATOS DE VIVIENDA</span>
-								</li>
+								
 								
 							</ul>
 						</div>
@@ -81,12 +74,7 @@
 							<div class="step-pane" data-step="2" id="step-22">
 								@include('users.psico.inicio.vermas.formularios.step-22')
 							</div>
-							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.psico.inicio.vermas.formularios.step-33')
-							</div>
-							<div class="step-pane" data-step="4" id="step-44">
-								@include('users.psico.inicio.vermas.formularios.step-44')
-							</div>
+							
 							
 						</div>
 					</div>

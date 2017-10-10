@@ -102,7 +102,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Motivo de visita </label>
 										<div class="col-sm-9">
-										{!!Form::text('motivo',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el motivo de visita...'])!!}
+										{!!Form::textarea('motivo',null,['required','id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el motivo de visita...'])!!}
 										</div>
 									</div>
 

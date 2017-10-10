@@ -29,7 +29,7 @@
 	<div class="row">
 	<div class="col-sm-6 col-sm-offset-3 col-xs-12">
 		<div align="right">
-    		<h1 class=text-center id="nombre-titulo"> Ficha Socio Económica</h1>
+    		<h1 class=text-center id="nombre-titulo">Psicopedagogía</h1><br>
     		<h3 style="margin-top: -10px; margin-bottom: -10px"><i>Buscar estudiante...</i></h3>
     	</div><br><hr>
 	</div>

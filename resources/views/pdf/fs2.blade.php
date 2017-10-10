@@ -7,7 +7,7 @@
       )->age;
 ?>
   <head>
-    <title>Ficha Social </title>
+    <title>Tamizaje Psicológico </title>
     <meta http-equiv="Content-Type" content="text/html;">
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -64,7 +64,7 @@
   </div>
   <div id="content" style="margin-left: 30px; margin-right: 30px;">
 
-    <h2 align="center" style="font-size: 20px; font-family: fantasy;"><u><br>FICHA SOCIO ECONÓMICA</u><br></h2>
+    <h2 align="center" style="font-size: 20px; font-family: fantasy;"><u><br>TAMIZAJE PSICOLÓGICO</u><br></h2>
 
       <h4 class="titulo-fs">I.- DATOS GENERALES DEL ALUMNO</h4>
       <div class="contenido-fs">
@@ -193,172 +193,7 @@
       <p class="texto-fs"><b>b) Trato con tus padres: </b>{{$TratoPadres[$user->estudiante->trato_padres]}}</p>
     </div>
     <br>
-    <h4 class="titulo-fs">III.- SITUACIÓN ECONÓMICA FAMILIAR</h4>
-    <p class="texto-fs"><b>3.1. <u>Ingreso Mensual</u></b></p>
-      <div class="contenido-fs">
-        <table style="margin-left: 15px;" border=1 cellspacing=0 cellpadding=2 bordercolor="666633">
-          <thead>
-            <tr>
-              <th class="tth">Pariente</th>
-              <th class="tth">Sueldo o Salario</th>
-              <th class="tth">Honorario Profesional</th>
-              <th class="tth">Pensión por viudez</th>
-              <th class="tth">Empresa o negocio</th>
-              <th class="tth">Sub total</th>
-            </tr>
-          </thead>
-          <tbody><?php $cont=0; ?>
-            <?php $itotal=0; ?>
-              @foreach($cfamiliares as $if)
-            <?php $cont++;
-                  $subtotal=$if->sueldo+$if->honorario+$if->pension+$if->empresa; ?>
-                  <tr style="margin-left: 5px; border: 1px solid black;">
-                     <td><b>{{$if->parentesco}}</b> ({{$if->nombres}})</td>
-                     <td align="center">{{$if->sueldo}}</td>
-                     <td align="center">{{$if->honorario}}</td>
-                     <td align="center">{{$if->pension}}</td>
-                     <td align="center">{{$if->empresa}}</td>
-                     <td align="center">{{$subtotal}}</td>
-                  </tr>
-                     <?php $itotal=$itotal+$subtotal;?>
-                  @endforeach()
-              @if($cont==0)
-              <tr>
-                <td >.</td><td></td><td></td><td></td><td></td><td></td>
-              </tr>
-              @endif
-          </tbody>
-        </table>
-        <div align="right">=> 
-          <span style="padding: 4px;"><b>Total: S/ {{$itotal}} </b></span>
-        </div>
-
-      <p class="texto-fs"><b>3.2. <u>Lugar de trabajo:</u></b></p>
-      <table style="margin-left: 15px;" border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
-          <thead>
-            <tr>
-              <th class="tth">Pariente</th>
-              <th class="tth">Lugar de trabajo</th>
-              <th class="tth">Fecha de Inicio</th>
-              <th class="tth">Fecha de término</th>
-            </tr>
-          </thead>
-          <tbody><?php $cont=0; ?>
-            <?php $itotal=0; ?>
-              @foreach($cfamiliares as $if)
-                  <?php $subtotal=$if->sueldo+$if->honorario+$if->pension+$if->empresa; 
-                    if ($subtotal==0) {
-                      continue;
-                    }
-                    $cont++;
-                  ?>
-                  <tr >
-                     <td><b>{{$if->parentesco}}</b> ({{$if->nombres}})</td>
-                     <td>{{$if->lugar_trabajo}}</td>
-                     <td>{{$if->trabajo_inicio}}</td>
-                     <td>{{$if->trabajo_fin}}</td>
-                  </tr>
-                  @endforeach()
-              @if($cont==0)
-              <tr>
-                <td >.</td><td></td><td></td><td></td>
-              </tr>
-              @endif
-          </tbody>
-        </table><br>
-      <p class="texto-fs"><b>3.3. <u>Quién cubre sus Gastos personales:</u></b></p>
-      <p class="texto-fs">{{$cubreGastos[$user->estudiante->cubre_gastos]}}</p><br>
-      
-      <p class="texto-fs"><b>3.4. <u>Egreso Familiar</u></b></p>
-      <table style="margin-left: 15px;" border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
-          <thead>
-            <tr>
-              <th class="tth">Concepto / Egreso</th>
-              <th class="tth">Monto S/</th>
-              <th class="tth">Concepto / Egreso</th>
-              <th class="tth">Monto S/</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr >
-                <td>Alquiler de vivienda</td>
-                <td align="center">{{$egresoFamiliar->a}}</td>
-                <td>Seguro Integral de Salud (SIS)</td>
-                <td align="center">{{$egresoFamiliar->h}}</td>
-              </tr>
-              <tr >
-                <td>Luz</td>
-                <td align="center">{{$egresoFamiliar->b}}</td>
-                <td>ESSALUD Independiente</td>
-                <td align="center">{{$egresoFamiliar->i}}</td>
-              </tr>
-              <tr >
-                <td>Agua</td>
-                <td align="center">{{$egresoFamiliar->c}}</td>
-                <td>Gasolina (caso de tener movilidad)</td>
-                <td align="center">{{$egresoFamiliar->j}}</td>
-              </tr>
-              <tr >
-                <td>Teléfono</td>
-                <td align="center">{{$egresoFamiliar->d}}</td>
-                <td>Gas</td>
-                <td align="center">{{$egresoFamiliar->k}}</td>
-              </tr>
-              <tr >
-                <td>Cable</td>
-                <td align="center">{{$egresoFamiliar->e}}</td>
-                <td>Periódicos, revistas</td>
-                <td align="center">{{$egresoFamiliar->l}}</td>
-              </tr>
-              <tr >
-                <td>Internet</td>
-                <td align="center">{{$egresoFamiliar->f}}</td>
-                <td>Estudio de Idiomas</td>
-                <td align="center">{{$egresoFamiliar->m}}</td>
-              </tr>
-              <tr >
-                <td>Alimentación</td>
-                <td align="center">{{$egresoFamiliar->g}}</td>
-                <td>Estudios Informáticos</td>
-                <td align="center">{{$egresoFamiliar->n}}</td>
-              </tr>
-          </tbody>
-        </table>
-        <?php $etotal= $egresoFamiliar->a+$egresoFamiliar->b+$egresoFamiliar->c+$egresoFamiliar->d+$egresoFamiliar->e+$egresoFamiliar->f+$egresoFamiliar->g+$egresoFamiliar->h+$egresoFamiliar->i+$egresoFamiliar->j+$egresoFamiliar->k+$egresoFamiliar->l+$egresoFamiliar->m+$egresoFamiliar->n;?>
-        <div align="right">=> 
-          <span style="padding: 4px;"><b>Total: S/ {{$etotal}} </b></span>
-        </div><br>
-    </div>
-
-    <h4 class="titulo-fs">IV.- DATOS DE VIVIENDA</h4>
-      <div class="contenido-fs">
-        <p class="texto-fs"><b>a) Vivienda: </b>{{$vivienda[$user->vivienda]}}</p>
-        <p class="texto-fs"><b>b) Material de construcción: </b>{{$material[$user->material_vivienda]}} <b> - N° ambientes: </b>{{$user->n_ambientes}}</p>
-        <p class="texto-fs"><b>c) Techo: </b>{{$techo[$user->techo_vivienda]}}</p>
-        <p class="texto-fs"><b>d) Piso: </b>{{$piso[$user->piso_vivienda]}}</p>
-        <p class="texto-fs"><b>e) Servicios Básicos: </b></p>
-              <ul style="margin-top: -0; margin-left: 60px;">
-              @if($user->servicio_agua=='1')
-                <li>Agua</li>
-              @endif
-              @if($user->servicio_luz=='1')
-                <li>Luz</li>
-              @endif
-              @if($user->servicio_desague=='1')
-                <li>Incompletos</li>
-              @endif
-              @if($user->servicio_incompletos=='1')
-                <li>Incompletos</li>
-              @endif
-              @if($user->servicio_letrinas=='1')
-                <li>Letrinas</li>
-              @endif
-              @if($user->servicio_otros=='1')
-                <li>Otros</li>
-              @endif
-              </ul>
-      </div>
-   
+       
     <br>
     <p>Nota.- Declaro que la información antes detallada es verás, sometiéndome en caso de falsedad a las normas vigentes. </p>
     <?php 

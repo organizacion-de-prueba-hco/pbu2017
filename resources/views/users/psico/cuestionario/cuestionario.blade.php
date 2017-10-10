@@ -8,7 +8,7 @@
 	?>
 @endsection
 
-@section('titulo','Atención')
+@section('titulo','Cuestionario')
 @section('estilos')
 	<style type="text/css">
 		label{
@@ -24,8 +24,7 @@
 @section('ruta')
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-list"></i>
-	<li class="active">Expediente</li>
-	<li class="active">Nuevo</li>
+	<li class="active">Cuestionario</li>
 </ul>
 @endsection
 @section('contenido')
@@ -84,6 +83,7 @@
 						<th class="center">Cod. Univ</th>
 						<th>Nombres y Apellidos</th>
 						<th>Escuela</th>
+						<th>Cód SQR</th>
 						<th class="hidden-480">N°</th>
 						<th>Estado</th>
 						<th></th>
@@ -94,11 +94,12 @@
 					@foreach($crs as $rc)
 						<tr>
 							<td class="center">{{$rc->created_at}}</td>
-							<td>{{$rc->estudiante->cod_univ}}</td>
+							<td class="center">{{$rc->estudiante->cod_univ}}</td>
 							<td>{{$rc->estudiante->user->nombres.', '.$rc->estudiante->user->apellido_paterno.' '.$rc->estudiante->user->apellido_materno}}</td>
 							<td class="hidden-480">{{$rc->estudiante->escuela->escuela}}</td>
-							<td>{{$rc->n}}</td>
-							<td class="hidden-480" align="center">
+							<td class="hidden-480 center">PSIC - {{$rc->id}}</td>
+							<td class="center">{{$rc->n}}</td>
+							<td class="hidden-480 center">
 								@if($rc->obs != '' && $rc->conclusiones != '')
 									<span class="label label-sm label-success">Atendido</span>
 								@else
@@ -107,9 +108,10 @@
 							</td>
 							<td>
 							<div class=" action-buttons">
-								
-
-								<a class="blue" href="{{route('psicoatencion.show',$rc->id)}}" title="Ver más">
+								<a class="orange" href="{{route('psicosqr.show',$rc->id)}}" title="Descargar PDF">
+									<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
+								</a>
+								<a class="blue" href="{{route('psicosqr.show',$rc->id)}}" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
 							</div>
@@ -160,7 +162,7 @@
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
-					  null, null,null,null, null, 
+					  null, null,null,null, null, null, 
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
@@ -170,8 +172,6 @@
 						style: 'multi'
 					}
 			    } );
-
-
 
 				$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 

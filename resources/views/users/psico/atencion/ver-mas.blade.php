@@ -24,7 +24,7 @@
 <ul class="breadcrumb">
 	<i class="ace-icon fa fa-heartbeat"></i>
 	<li class="active">Atención</li>
-	<li class="active">Nuevo</li>
+	<li class="active">Actualizar</li>
 </ul>
 @endsection
 @section('contenido')
@@ -102,7 +102,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> Motivo de Visita </label>
 										<div class="col-sm-9">
-										{!!Form::text('motivo',$rc->motivo,['id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el motivo de visita...'])!!}
+										{!!Form::textarea('motivo',$rc->motivo,['id'=>'obs','class'=>'col-xs-10 col-sm-5','placeholder' => 'Describa aquí el motivo de visita...'])!!}
 										</div>
 									</div>
 
@@ -115,7 +115,7 @@
 												Volver sin guardar</a> &nbsp;
 											<button type="submit" class="btn btn-sm btn-primary" {{$estadoBoton}}>
 											<i class="ace-icon fa fa-plus" ></i>
-											<span class="bigger-110">Guardar cambios </span>
+											<span class="bigger-110">Guardar cambios</span>
 											</button>
 										</div>
 									</div>
