@@ -122,7 +122,7 @@
 
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<b>Psicologa</b>
+						<b>Psicóloga</b>
 					</div>
 				</div><!-- /.sidebar-shortcuts -->
 
@@ -149,7 +149,7 @@
 						<b class="arrow"></b>
 					</li>	
 					<li class="{{$iv}}">
-						<a href="{{url('odontodonto')}}">
+						<a href="{{url('psicotro')}}">
 							<i class="menu-icon fa fa-plus-square"></i>
 							<span class="menu-text"> Otros </span>
 						</a>

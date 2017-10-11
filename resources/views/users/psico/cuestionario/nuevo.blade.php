@@ -132,8 +132,8 @@
 											<thead>
 												<tr>
 													<th>N°</th>
-													<th class="center">Pregunta</th>
-													<th class="center">Respuesta<br>YES ( si ) - NO</th>
+													<th class="center">PREGUNTAS</th>
+													<th class="center">RESPUESTAS<br>YES ( si ) - NO</th>
 												</tr>
 											</thead>
 											<tbody>

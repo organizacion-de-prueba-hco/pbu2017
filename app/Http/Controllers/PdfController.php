@@ -25,6 +25,7 @@ use App\Distrito;
 use App\Provincia;
 use App\Departamento;
 use App\CmMedicina;
+use App\PsicopedagogiaSqr;
 
 use Auth;
 class PdfController extends Controller
@@ -335,5 +336,16 @@ class PdfController extends Controller
       }else{
             return back()->with('naranja','no puede realizar esta acción ');
       }
+    }
+
+    public function getSrq($id){
+      $srq=PsicopedagogiaSqr::find($id);
+      $date = Carbon::now();
+      $date = $date->format('d-m-Y');
+      $view =\View::make('pdf.srq',compact('date','srq'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      //return $pdf->download('Ficha médica (Historial)-'.$estudiante->cod_univ.'.pdf');
+      return $pdf->stream('invoiced');
     }
 }

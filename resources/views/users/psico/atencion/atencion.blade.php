@@ -84,7 +84,7 @@
 						<th>Nombres y Apellidos</th>
 						<th>Edad</th>
 						<th>Escuela</th>
-						<th class="hidden-480">Caso social / otros</th>
+						<th class="hidden-480">Motivo</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -112,29 +112,12 @@
 							</td>
 							
 							<td>
-							<div class="hidden-sm hidden-xs action-buttons">
+							<div class="action-buttons">
 								<a class="blue" href="{{route('psicoatencion.show',$rc->id)}}" title="Ver más">
 									<i class="ace-icon fa fa-search-plus bigger-130"></i>
 								</a>
 							</div>
-							<div class="hidden-md hidden-lg">
-							<!--Cuando se comprime la pantalla-->
-							<div class="inline pos-rel">
-								<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
-									<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-								</button>
-
-								<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-									<li>
-										<a href="{{route('asfichasocial.edit',$rc->id)}}" class="tooltip-info" data-rel="tooltip" title="Ver más">
-											<span class="blue">
-												<i class="ace-icon fa fa-search-plus bigger-120"></i>
-											</span>
-										</a>
-									</li>
-								</ul>
-								</div>
-							</div>
+							
 						</td>
 					</tr>
 					@endforeach

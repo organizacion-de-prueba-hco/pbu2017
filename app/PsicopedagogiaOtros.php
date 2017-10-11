@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PsicopedagogiaOtros extends Model
 {
-   protected $table = 'psicopedagogias_otros';
+   protected $table = 'psicopedagogia_otros';
    protected $fillable = [
            'estudiante_id','n', 't_ansiedad', 't_inteligencia',   't_personalidad' 
     ];

@@ -108,7 +108,7 @@
 							</td>
 							<td>
 							<div class=" action-buttons">
-								<a class="orange" href="{{route('psicosqr.show',$rc->id)}}" title="Descargar PDF">
+								<a class="orange" href="{{url('pdf/srq',$rc->id)}}" title="Descargar PDF" target="_blank">
 									<i class="ace-icon fa fa-file-pdf-o bigger-130"></i>
 								</a>
 								<a class="blue" href="{{route('psicosqr.show',$rc->id)}}" title="Ver más">

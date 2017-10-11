@@ -57,7 +57,7 @@ class PsicoAtencionController extends Controller
              $estudiante = Estudiante::find($user->id);
           }
         }
-        return view('users.psico.atencion.nuevo', compact('estudiante'));
+        return view('users.psico.otros.nuevo', compact('estudiante'));
     }
 
     public function store(Request $request)
@@ -126,7 +126,7 @@ class PsicoAtencionController extends Controller
         $rs->estudiante_id=$request->get('user_id');
         $rs->motivo=$request->get('motivo');
         if($rs->save()){
-            return Redirect::to('psicoatencion')->with('verde','Se registro correctamente');
+            return Redirect::to('psicoatencion')->with('verde','Se actualizó correctamente');
         }else{
             return Redirect::to('psicoatencion')->with('rojo','Algo salió mal, intente nuevamente');
         }
