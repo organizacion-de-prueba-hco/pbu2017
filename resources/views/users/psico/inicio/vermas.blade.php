@@ -9,7 +9,7 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Inicio-Buscar estudiante')
+@section('titulo','Inicio-Buscar estudiante')
 @section('estilos')
 @endsection
 @section('ruta')
@@ -20,7 +20,6 @@
 </ul>
 @endsection
 @section('contenido')
-@include('master.mensajes')
 @include('users.psico.inicio.vermas.editar-cfamiliar')
 @include('users.psico.inicio.vermas.nuevo-cfamiliar')
 @include('users.psico.inicio.vermas.editar-ltrabajosf')

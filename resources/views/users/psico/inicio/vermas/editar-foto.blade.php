@@ -19,7 +19,7 @@
                           <h4 class="modal-title">Actualizar foto del estudiante</h4>
                         </div>
                         <div class="modal-body">                        
-                          {!! Form::open(['url' => '/psicoinicios/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
+                          {!! Form::open(['url' => 'psicoinicios/foto','method'=>'post', 'class'=>'form-horizontal form-label-left','enctype'=>'multipart/form-data']) !!}
                           <div class="item form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <input type="file" id="files-foto" name="foto" accept="image/*"/><br>

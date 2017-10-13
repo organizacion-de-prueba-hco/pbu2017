@@ -338,7 +338,22 @@ class PdfController extends Controller
       }
     }
 
-    public function getSrq($id){
+    public function getSrq($id,$cod){
+      $srq=PsicopedagogiaSqr::find($id);
+      if($srq->estudiante->cod_univ!=$cod){
+        return back()->with('rojo','no puede realizar esta acción ');
+      }
+      $date = Carbon::now();
+      $date = $date->format('d-m-Y');
+      $view =\View::make('pdf.srq',compact('date','srq'))->render();
+      $pdf = \App::make('dompdf.wrapper');
+      $pdf->loadHTML($view);
+      //return $pdf->download('Ficha médica (Historial)-'.$estudiante->cod_univ.'.pdf');
+      return $pdf->stream('invoiced');
+    }
+    
+    public function getEstudiantesrq($id,$cod){
+
       $srq=PsicopedagogiaSqr::find($id);
       $date = Carbon::now();
       $date = $date->format('d-m-Y');

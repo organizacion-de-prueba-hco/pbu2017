@@ -12,7 +12,7 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-list-alt"></i>	
+	<i class="ace-icon fa fa-plus-square"></i>	
 	<li class="active">Otros</li>
 </ul>
 @endsection

@@ -172,7 +172,7 @@ class PsicoInicioController extends Controller
 
       $colegios=Colegio::find($colegio->id);
       $colegios->fill(Input::all())->save();
-        return $this->recargarFormularios('users.psico.inicio.vermas.formularios.step-11',$estudiante);
+        return $this->recargarFormularios('users.psico.inicio.vermas.formularios.step-11',Input::get('id'));
     }
 
     public function postRelacionesfamiliares(){
@@ -346,5 +346,20 @@ class PsicoInicioController extends Controller
         $fichasocial=FichaSocial::where('expediente_id',$id)->first();
         
         return view($ruta, compact('user','departamentos','provincias','distritos','religiones','est_civils','tipoColegios','cfamiliares','instruccion','TipoFamilias','TratoPadres','cubreGastos','egresoFamiliar','vivienda','material','techo','piso','datoSalud','fichasocial')); 
+     }
+
+     public function postFoto(){
+      $file = Input::file('foto');
+      if(!empty($file)){
+        $user=User::find(Input::get('id'));        
+        $name=$user->estudiante->cod_univ.'.png';
+        $file->move('imagenes/avatar', $name);
+        $user->foto=$name;
+        if($user->save()){
+             return back()->with('verde','Se actualizó foto');//redirige a enf que es donde se muestran los registros
+        }else{
+            return back()->with('rojo','No se pudo guardar la foto, vuelva a intentar');
+        }
+      }
      }
 }

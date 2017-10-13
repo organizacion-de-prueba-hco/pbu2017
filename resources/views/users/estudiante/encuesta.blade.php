@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Servicio Univ :: @yield('titulo')</title>
+		<title>Bienestar Universitario - UNHEVAL</title>
 		<link rel="icon" type="image/png" href="{{url('imagenes/unheval-logo.png')}}" />
 
 		<meta name="description" content="" />

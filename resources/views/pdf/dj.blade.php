@@ -33,8 +33,9 @@
       <tr align="left">
         <td><img src="imagenes/unheval-logo.png" height="70px" class="h-img"></td>
         <td align="center">
-          <h3 style="font-size: 18px; margin-bottom:0;">UNIVERSIDAD NACIONAL "HERMILIO VALDIZÁN"</h3>
-          <p style="margin-bottom:0;"><b>BIENESTAR UNIVERSITARIO</b></p>
+          <h3 style="font-size: 15px; margin-bottom:0;">UNIVERSIDAD NACIONAL "HERMILIO VALDIZÁN" - HUÁNUCO</h3>
+          <p style="margin-bottom:0; font-size: 22px;"><b>DIRECCIÓN DE BIENESTAR UNIVERSITARIO</b></p>
+          <p style="margin-bottom:0;"><b>SERVICIO SOCIAL</b></p>
         </td>
       <td align="right"><img src="imagenes/unheval-logo.png" height="60px;" class="h-img"></td>
       </tr>
@@ -58,14 +59,14 @@
       <p>Domiciliado en {{$dj->cuadrofamiliar->user->domicilio.' '.$dj->cuadrofamiliar->user->n_domicilio}}</p>
       <p>Distrito: {{$dj->distrit->distrito}}, Provincia: {{$dj->distrit->provincia->provincia}}, Departamento: {{$dj->distrit->provincia->departamento->departamento}}</p>
       <br>
-      <p>En mi condición de Alumno(a) que cursa estudios Universitarios en la UNHEVAL Escuela Profesional de {{$dj->cuadrofamiliar->user->estudiante->escuela->escuela}} en {{$dj->cuadrofamiliar->user->estudiante->anio_estudio}} año.</p><br>
+      <p>En mi condición de Alumno(a) que cursa estudios Universitarios en la UNHEVAL Escuela Profesional de {{$dj->cuadrofamiliar->user->estudiante->escuela->escuela}} en {{$dj->cuadrofamiliar->user->estudiante->anio_estudio}}° año.</p><br>
 
       <p>DECLARO BAJO JURAMENTO: </p>
       <P>Tener un trabajo independiente en la cual desempeño como {{$dj->desempenio_como}}, percibiendo un haber mensual de S/ {{$dj->haber_mensual}} y teniendo una carga familiar de {{$dj->n_hijos}} hijos menores en edad escolar. Me solvento mensualmente con S/ {{$dj->apoyo_mensual}}. Para mis gastos de estudio, alimentación y alquiler de cuarto.</P>
       <p>Así mismo debo manifestarle que tengo otros gastos como {{$dj->otros_gastos}}.</p><br>
       <p>En caso de falsedad me someto a las sanciones correspondiete a Ley.</p>
       <div align="right"><br><br><br><br>
-      <p><i>Huánuco {{$dj->created_at->format('d')}} de 
+      <p><i>Pillco Marca, {{$dj->created_at->format('d')}} de 
         <?php 
         switch($dj->created_at->format('F')) {
           case "January":  $month = "Enero"; break;
@@ -95,14 +96,14 @@
       <p>Domiciliado en {{$dj->cuadrofamiliar->residencia}}</p>
       <p>Distrito: {{$dj->distrit->distrito}}, Provincia: {{$dj->distrit->provincia->provincia}}, Departamento: {{$dj->distrit->provincia->departamento->departamento}}</p>
       <br>
-      <p>En mi condición de {{$dj->cuadrofamiliar->parentesco}} del Alumno(a) {{$dj->cuadrofamiliar->user->nombres.' '.$dj->cuadrofamiliar->user->apellido_paterno.' '.$dj->cuadrofamiliar->user->apellido_materno}} que Cursa estudios Universitarios en la UNHEVAL Escuela Profesional de {{$dj->cuadrofamiliar->user->estudiante->escuela->escuela}} en {{$dj->cuadrofamiliar->user->estudiante->anio_estudio}} año.</p><br>
+      <p>En mi condición de {{$dj->cuadrofamiliar->parentesco}} del Alumno(a) {{$dj->cuadrofamiliar->user->nombres.' '.$dj->cuadrofamiliar->user->apellido_paterno.' '.$dj->cuadrofamiliar->user->apellido_materno}} que Cursa estudios Universitarios en la UNHEVAL Escuela Profesional de {{$dj->cuadrofamiliar->user->estudiante->escuela->escuela}} en {{$dj->cuadrofamiliar->user->estudiante->anio_estudio}}° año.</p><br>
 
       <p>DECLARO BAJO JURAMENTO: </p>
-      <P>Tener un trabajo independiente en la cual desempeño como {{$dj->desempenio_como}}, percibiendo un haber mensual de S/ {{$dj->haber_mensual}} y teniendo una carga familiar de {{$dj->n_hijos}} hijos menores en edad escolar. Apoyo a mi hijo/tutorando en forma mensual con S/ {{$dj->apoyo_mesual}}. Para los gastos de estudio, alimentación y alquiler de cuarto.</P>
+      <P>Tener un trabajo independiente en la cual desempeño como {{$dj->desempenio_como}}, percibiendo un haber mensual de S/ {{$dj->haber_mensual}} y teniendo una carga familiar de {{$dj->n_hijos}} hijos menores en edad escolar. Apoyo a mi hijo/tutorando en forma mensual con S/ {{$dj->apoyo_mensual}}. Para los gastos de estudio, alimentación y alquiler de cuarto.</P>
       <p>Así mismo debo manifestarle que tiene otros gastos como {{$dj->otros_gastos}}.</p><br>
       <p>En caso de falsedad me someto a las sanciones correspondiete a Ley.</p>
       <div align="right"><br><br><br><br>
-      <p><i>Huánuco {{$dj->created_at->format('d')}} de 
+      <p><i>Pillco Marca, {{$dj->created_at->format('d')}} de 
         <?php 
         switch($dj->created_at->format('F')) {
           case "January":  $month = "Enero"; break;

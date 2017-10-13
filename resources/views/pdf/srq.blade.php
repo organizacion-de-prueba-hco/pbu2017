@@ -80,29 +80,29 @@
       <p><b>Código Universitario: </b>{{$srq->estudiante->cod_univ}}</p>
       <p><b>Con quiénes vive: </b>
               @if($srq->estudiante->user->vc_padre=='1')
-                Padre 
+                Padre  
               @endif
               @if($srq->estudiante->user->vc_madre=='1')
-                Madre 
+                - Madre 
               @endif 
               @if($srq->estudiante->user->vc_hermano=='1')
-                Hermano 
+                - Hermano  
               @endif
               @if($srq->estudiante->user->vc_conyugue=='1')
-                Conyugue 
+                - Conyugue  
               @endif
               @if($srq->estudiante->user->vc_pension=='1')
-                Pension 
+                - Pension 
               @endif
               @if($srq->estudiante->user->vc_otros=='1')
-                Otros 
+                - Otros 
               @endif
         </p>
         <p>
           <b>Modalidad de Ingreso a la UNHEVAL: </b>{{$srq->estudiante->m_ingreso->modalidad}}
         </p>
         <p>
-          <b>N° de teléfono: </b>{{$srq->telefono}}
+          <b>N° de teléfono: </b>{{$srq->estudiante->user->telefono}}
         </p>
       
       </div>

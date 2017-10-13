@@ -79,6 +79,7 @@ Route::resource('nutriajuste', 'NutriController');
 
 //Estudiante
 Route::resource('encuesta', 'EstudiantencuestaController');
+Route::controller('psicopedagogia', 'EstudiantencuestaController');
 
 
 //JUAFSM = 3
@@ -144,6 +145,9 @@ Route::resource('psicosqr', 'PsicoSqrController');
 Route::controller('psicosqrs', 'PsicoSqrController');
 Route::resource('psicotro', 'PsicoOtrosController');
 Route::controller('psicotros', 'PsicoOtrosController');
+    //Cuestionario
+        #en la parte de Estudiante (arriba)
+
 //enfermera/otro/inventario
 Route::resource('enfotroinv', 'EnfermeraOtroInvController');
 Route::controller('enfotroinvs', 'EnfermeraOtroInvController');

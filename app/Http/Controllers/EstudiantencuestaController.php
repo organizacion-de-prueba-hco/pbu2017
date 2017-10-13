@@ -11,7 +11,9 @@ use App\Estudiante;
 use Redirect;
 use App\Expediente;
 use App\Encuesta;
+use App\User;
 use App\Estudiantencuesta;
+use App\PsicopedagogiaSqr;
 use Input;
 
 class EstudiantencuestaController extends Controller
@@ -126,6 +128,95 @@ class EstudiantencuestaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //Cuestionario SRQ de psicopedagogía
+    public function getCuestionario()
+    {
+        return view('users.estudiante.cuestionario_srq.login');
+    }
+    public function postCuestionarioinicio(Request $request)
+    {
+        //return $request->get('usuario').' <> '.$request->get('f_nac');
+        $estudiante=Estudiante::join('users','users.id','=','estudiantes.user_id')
+        ->where('estudiantes.cod_univ',$request->get('usuario'))
+        ->where('users.f_nac',$request->get('f_nac'))
+        ->where('users.estado_activo','1')
+        ->select('estudiantes.*')->first();
+        
+
+        if(!$estudiante){
+               return Redirect::to('psicopedagogia/cuestionario')
+                                ->with('rojo', 'Los datos ingresados no son válidos 1');
+        }
+
+        $respuestas= array('1' => 'Exelente',
+                           '2' =>'Muy Bueno',
+                           '3' =>'Bueno',
+                           '4' =>'Regular',
+                           '5' =>'Malo');
+        $crs=PsicopedagogiaSqr::where('estudiante_id',$estudiante->user_id)->get();
+        return view('users.estudiante.cuestionario_srq.cuestionario',compact('estudiante','respuestas','crs'));
+    }
+
+    public function postCuestionarionuevo(Request $request)
+    {
+        $cod        = $request->get('cod-nuevo');
+        $estudiante = Estudiante::where('cod_univ', $cod)->first();
+        if(!$estudiante){
+          $user = User::where('users.dni', $cod)->where('tipo_user','5')->first();
+          if($user){
+             $estudiante = Estudiante::find($user->id);
+          }
+        }
+        return view('users.estudiante.cuestionario_srq.nuevo', compact('estudiante'));
+    }
+    //cuestionarioregistrarnuevo
+    public function postCuestionarioregistrarnuevo(Request $request)
+    {
+        //return $request->get('estudiante_id');
+        $user=User::find($request->get('estudiante_id'));
+        $user->domicilio=$request->get('domicilio');
+        $user->n_domicilio=$request->get('n_domicilio');
+        $user->telefono=$request->get('telefono');
+        $user->save();
+
+        //Encuesta
+        $sqr=new PsicopedagogiaSqr;
+            $sqr_n=PsicopedagogiaSqr::where('estudiante_id',$request->get('estudiante_id'))
+                                                                  ->orderBy('id','desc')->first();
+
+        if($sqr_n){ $n=$sqr_n->n+1;}   else{$n=1;}
+        $sqr->n=$n;
+        $sqr->fill($request->all());
+        
+        if($sqr->save()){
+           
+           //No podemos usar el Redirec así que escribimos todo el código de CuestionarioInicio
+            $estudiante=Estudiante::join('users','users.id','=','estudiantes.user_id')
+            ->where('estudiantes.user_id',$user->id)
+            ->where('users.f_nac',$user->f_nac)
+            ->where('users.estado_activo','1')
+            ->select('estudiantes.*')->first();
+            
+
+            if(!$estudiante){
+                   return Redirect::to('psicopedagogia/cuestionario')
+                                    ->with('rojo', 'Los datos ingresados no son válidos 1');
+            }
+
+            $respuestas= array('1' => 'Exelente',
+                               '2' =>'Muy Bueno',
+                               '3' =>'Bueno',
+                               '4' =>'Regular',
+                               '5' =>'Malo');
+            $crs=PsicopedagogiaSqr::where('estudiante_id',$estudiante->user_id)->get();
+            return view('users.estudiante.cuestionario_srq.cuestionario',compact('estudiante','respuestas','crs'))->with('verde','Se registro correctamente');
+         //
+        }else{
+            return Redirect::to('psicopedagogia/cuestionario')
+                                                        ->with('rojo','Algo salió mal, intente nuevamente');
+        } 
     }
 
 }

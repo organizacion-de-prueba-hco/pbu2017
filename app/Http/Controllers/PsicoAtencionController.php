@@ -57,7 +57,7 @@ class PsicoAtencionController extends Controller
              $estudiante = Estudiante::find($user->id);
           }
         }
-        return view('users.psico.otros.nuevo', compact('estudiante'));
+        return view('users.psico.atencion.nuevo', compact('estudiante'));
     }
 
     public function store(Request $request)

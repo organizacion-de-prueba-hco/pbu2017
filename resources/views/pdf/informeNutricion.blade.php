@@ -33,8 +33,8 @@
       <tr align="left">
         <td><img src="imagenes/unheval-logo.png" height="70px" class="h-img"></td>
         <td align="center">
-          <h3 style="font-size: 18px; margin-bottom:0;">UNIVERSIDAD NACIONAL "HERMILIO VALDIZÁN"</h3>
-          <p style="margin-bottom:0;"><b>BIENESTAR UNIVERSITARIO</b></p>
+          <h3 style="font-size: 15px; margin-bottom:0;">UNIVERSIDAD NACIONAL "HERMILIO VALDIZÁN" - HUÁNUCO</h3>
+          <p style="margin-bottom:0; font-size: 22px;"><b>DIRECCIÓN DE BIENESTAR UNIVERSITARIO</b></p>
           <p style="font-size: 15px;margin-bottom:0;"><b>Informe - Personal de Nutrición</b></p>
         </td>
       <td align="right"><img src="imagenes/unheval-logo.png" height="60px;" class="h-img"></td>
