@@ -24,7 +24,8 @@ class CmMedicina extends Model
     'triaje_imc',
     'imp_dx',
     'tto_descripcion',
-    'cita'
+    'cita',
+    'ex_aux'
     ];
 
 

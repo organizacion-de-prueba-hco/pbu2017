@@ -210,7 +210,7 @@ class MedicoMedController extends Controller
         $consulta->fill(Input::all())->save();
         $estudiante=Estudiante::find(Input::get('user_id'));
         $medicina=CmMedicina::find(Input::get('medicina_id'));
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
 
     public function getCprocedimientos($id){ //Cargar procedimientos al modalActualizar
@@ -221,14 +221,14 @@ class MedicoMedController extends Controller
         $consulta->fill(Input::all())->save();
         $estudiante=Estudiante::find(Input::get('user_id'));
         $medicina=CmMedicina::find($consulta->medicina_id);
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
     public function postEprocedimientos(){//Eliminar
         $consulta=CmMedProc::find(Input::get('id'));
         $estudiante=Estudiante::find(Input::get('user_id'));
         $medicina=CmMedicina::find($consulta->medicina_id);
         CmMedProc::destroy(Input::get('id'));
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
 
     public function postMedicamentos(){
@@ -236,7 +236,7 @@ class MedicoMedController extends Controller
         $consulta->fill(Input::all())->save();
         $estudiante=Estudiante::find(Input::get('user_id'));
         $medicina=CmMedicina::find(Input::get('medicina_id'));
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
     public function getCmedicamentos($id){ //Cargar Medicamentos al modalActualizar
         return MedMed::find($id);
@@ -247,7 +247,7 @@ class MedicoMedController extends Controller
         $consulta->fill(Input::all())->save();
         $estudiante=Estudiante::find(Input::get('user_id'));
         $medicina=CmMedicina::find($consulta->medicina_id);
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
     public function postEmedicamentos(){//Eliminar
 
@@ -255,7 +255,7 @@ class MedicoMedController extends Controller
         $estudiante=Estudiante::find(Input::get('user_id'));
         $medicina=CmMedicina::find($consulta->medicina_id);
         MedMed::destroy(Input::get('m_id'));
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
 
     public function postEf(){//Eliminar

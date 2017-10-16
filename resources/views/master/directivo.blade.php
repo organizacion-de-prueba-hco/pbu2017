@@ -120,13 +120,18 @@
 
 				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<b>Directivo</b>
+						<b>
+						@if(Auth::user()->tipo_user=='0') Administrador
+						@else Directivo @endif
+						</b>
 					</div>
 				</div><!-- /.sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
 					<li class="{{$enc}}">
-						<a href="{{url('directivoencuesta')}}">
+						<a href=
+							@if(Auth::user()->tipo_user=='0') "{{url('suencuesta')}}" 
+							@else "{{url('directivoencuesta')}}" @endif>
 							<i class="menu-icon fa fa-list-alt"></i>
 							<span class="menu-text"> Encuestas </span>
 						</a>
@@ -181,13 +186,13 @@
 								<b class="arrow"></b>
 							</li>
 							<li class="{{$usu_sp}}">
-								<a href="">
+								<a href="{{url('directivousus/psico')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Servicio Psicopedagogía
 								</a>
 								<b class="arrow"></b>
 							</li>
-							<li class="">
+							<li class="{{$usu_e}}">
 								<a href="#" class="dropdown-toggle">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Centro Médico
@@ -196,26 +201,26 @@
 								<b class="arrow"></b>
 								<ul class="submenu nav-show">
 									<li class="{{$usu_e_a}}">
-										<a href="#">
+										<a href="{{url('directivousus/cmmedicina')}}">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Medicina
 										</a>
 										<b class="arrow"></b>
 									</li>
 									<li class="{{$usu_e_b}}">
-										<a href="#">
+										<a href="{{url('directivousus/cmodontologia')}}">
 											<i class="menu-icon fa fa-caret-right"></i>
-											Farmacia
+											Odontología
 										</a>
 										<b class="arrow"></b>
 									</li>
-									<li class="{{$usu_e_c}}">
+									<!-- <li class="{{$usu_e_c}}">
 										<a href="#">
 											<i class="menu-icon fa fa-caret-right"></i>
 											Topico
 										</a>
 										<b class="arrow"></b>
-									</li>
+									</li> -->
 									
 								</ul>
 							</li>
@@ -283,8 +288,8 @@
 						</ul>
 					</li>
 					
-					<li class="">
-						<a href="#">
+					<li class="{{$search}}">
+						<a href="">
 							<i class="menu-icon fa fa-search"></i>
 							<span class="menu-text"> Buscar estudiante </span>
 						</a>

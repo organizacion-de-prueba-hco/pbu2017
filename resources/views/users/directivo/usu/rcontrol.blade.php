@@ -19,6 +19,8 @@ $uafsm_b='';
 $ufc='';
 $ufc_a='';
 $ufc_b='';
+$usu_e='';
+$search='';
 ?>
 @endsection
 @section('titulo','Registro/Control')
@@ -29,7 +31,7 @@ $ufc_b='';
 
 	<i class="ace-icon fa fa-users"></i>
 	<li class="active">U. Serv Univ</li>
-	<li class="active"><i class="ace-icon fa fa-list-alt"></i> Registro / Control</li>
+	<li class="active"><i class="ace-icon fa fa-list-alt"></i> Servicio Social: Registro / Control</li>
 </ul>
 @endsection
 @section('contenido')

@@ -20,7 +20,8 @@ $uafsm_b='';
 $ufc='active open';
 $ufc_a='';
 $ufc_b='active';
-
+$usu_e='';
+$search='';
 ?>
 @endsection
 @section('titulo','Reportes')

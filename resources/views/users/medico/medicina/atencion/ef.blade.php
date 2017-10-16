@@ -70,7 +70,7 @@
 						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Indicaciones</label>
 						<div class="col-xs-12 col-sm-9">
 							<div class="clearfix">
-								<input type="text" class="col-xs-12 col-sm-6" name="indicaciones" id="m_indicaciones" style='width: 100%;'/>
+								<input type="text" class="col-xs-12 col-sm-6" name="indicaciones" id="m_indicaciones" style='width: 100%;' placeholder="Opcional" />
 							</div>
 						</div>
 					</div>
@@ -81,8 +81,8 @@
 		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
 		            	<input type="hidden" name="m_id"  id="m_id">
 		            	
-		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/emedicamentos','#modal-amedicamentos','#step-44');">
-		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/amedicamentos','#modal-amedicamentos','#step-44')">
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/emedicamentos','#modal-amedicamentos','#div-de-tablas');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/amedicamentos','#modal-amedicamentos','#div-de-tablas')">
 		            	</div>
 		         	</div>
 		         </div>
@@ -129,7 +129,7 @@
 						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Indicaciones</label>
 						<div class="col-xs-12 col-sm-9">
 							<div class="clearfix">
-								<input type="text" min="1" class="col-xs-12 col-sm-6" name="indicaciones" style='width: 100%;'/>
+								<input type="text" min="1" class="col-xs-12 col-sm-6" name="indicaciones" style='width: 100%;' placeholder="Opcional" />
 							</div>
 						</div>
 					</div>
@@ -139,7 +139,7 @@
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="medicina_id" value="{{$medicina->id}}">
 		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
-		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/medicamentos','#modal-medicamentos','#step-44')">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/medicamentos','#modal-medicamentos','#div-de-tablas')">
 		            	</div>
 		         	</div>
 		         </div>
@@ -185,8 +185,8 @@
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
 		            	<input type="hidden" name="id" id="c_id" value="">
-		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/eprocedimientos','#modal-aprocedimiento','#step-44');">
-		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/aprocedimientos','#modal-aprocedimiento','#step-44')">
+		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/eprocedimientos','#modal-aprocedimiento','#div-de-tablas');">
+		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/aprocedimientos','#modal-aprocedimiento','#div-de-tablas')">
 		            	</div>
 		         	</div>
                </div>
@@ -230,7 +230,7 @@
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="medicina_id" value="{{$medicina->id}}">
 		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
-		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/procedimientos','#modal-procedimientos','#step-44')">
+		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/procedimientos','#modal-procedimientos','#div-de-tablas')">
 		            	</div>
 		         	</div>
 		         </div>

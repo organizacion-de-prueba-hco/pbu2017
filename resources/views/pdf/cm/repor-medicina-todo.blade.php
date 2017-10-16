@@ -227,6 +227,10 @@
          @endforeach
          </tbody>
     </table><br>
+     @if($med->ex_aux != '')
+      <p><b>Examen Auxiliar: </b>{{$med->ex_aux}}</p>
+    @endif 
+
     @if($med->cita != '0000-00-00')
       <p><b>PRÓXIMA CITA: </b>{{$med->cita}}</p>
     @endif  

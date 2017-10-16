@@ -191,7 +191,7 @@ class NutriInformeController extends Controller
     }
     public function getOuser(){        
         switch (Auth::user()->tipo_user) {
-            case '0': $carpeta='super';  break;
+            case '0':
             case '1': $carpeta='directivo.usu';  break;
             case '2': $carpeta='jusu';  break;
             case '2-1': $carpeta='asistentSocial';  break;

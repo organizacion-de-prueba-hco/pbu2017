@@ -15,6 +15,9 @@ use App\CantidadBecas;
 use App\ControlRegistro;
 use App\ExoneracionPagoCentMed;
 use App\Recibo;
+use App\PsicopedagogiaAtencion;
+use App\CmMedicina;
+use App\CmOdontologia;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
@@ -123,6 +126,18 @@ class DirectivousuController extends Controller
     public function getExoneracion(){
         $exoneraciones=ExoneracionPagoCentMed::get();
         return view('users.directivo.usu.exoneracion',compact('exoneraciones'));
-        $crs=ExoneracionPagoCent::get();
+        //$crs=ExoneracionPagoCent::get();
+    }
+    public function getPsico(){
+        $crs=PsicopedagogiaAtencion::get();
+        return view('users.directivo.usu.psico',compact('crs'));
+    }
+    public function getCmmedicina(){
+        $medicina=CmMedicina::get();
+        return view('users.directivo.usu.cmMedicina',compact('medicina'));
+    }
+    public function getCmodontologia(){
+        $odontologia=CmOdontologia::get();
+        return view('users.directivo.usu.cmOdontologia',compact('odontologia'));
     }
 }

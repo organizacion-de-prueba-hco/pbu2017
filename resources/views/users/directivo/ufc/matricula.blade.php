@@ -20,6 +20,8 @@ $uafsm_b='';
 $ufc='active open';
 $ufc_a='active';
 $ufc_b='';
+$usu_e='';
+$search='';
 
 ?>
 @endsection

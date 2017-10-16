@@ -22,7 +22,7 @@
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('title','Ficha Socio Económica')
+@section('titulo','Nuevo')
 @section('estilos')
 @endsection
 @section('ruta')

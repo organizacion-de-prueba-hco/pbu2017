@@ -1,22 +1,27 @@
 @extends('master.superAdmin')
 @section('activacion')
 	<?php
-$oa = 'active';
-$a  = '';
-$b  = '';
-$c  = '';
-$c1 = '';
-$c2 = '';
-$c3 = '';
-$c4 = '';
-$d  = '';
-$d1 = '';
-$d2 = '';
-$d3 = '';
-$d4 = '';
-$e  = '';
-$enc = '';
-$nbecas='';
+$enc='';
+$usu='';
+$usu_a='';
+$usu_b='';
+$usu_c='';
+$usu_d='';
+$usu_as='';
+$usu_sp='';
+$usu_exo='';
+$usu_e_a='';
+$usu_e_b='';
+$usu_e_c='';
+$search='';
+$uafsm='';
+$uafsm_a='';
+$uafsm_b='';
+$ufc='';
+$ufc_a='e';
+$ufc_b='';
+$usu_e='';
+$search='';
 ?>
 @endsection
 @section('titulo','Expedientes')

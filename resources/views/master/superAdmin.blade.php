@@ -133,37 +133,274 @@
 						</a>
 						<b class="arrow"></b>
 					</li>
-					<li class="{{$oa}}">
-						<a href="{{url('jusuexpediente')}}">
-							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Comensales </span>
+					<li class="{{$usuarios}}">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> Usuarios </span>
+							<b class="arrow fa fa-angle-down"></b>
 						</a>
+
 						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="{{$usuarios_a}}">
+								<a href="{{url('directivotalleres/matriculaufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Directivos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="{{$usuarios_b}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Jef. U.A.F.M
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_c}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Jef. U.F.C
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_d}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Jef. U.S.U
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_e}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cent Méd: Méd
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_f}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cent Méd: Odont
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_g}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Cent Méd: Enf
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_h}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Asist. Social
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_i}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Psicopedagogía
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_j}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Psicopedagogía
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_k}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Comedor
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usuarios_l}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Nutricionista
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
 					</li>
-					<li class="{{$nbecas}}">
-						<a href="{{url('jusunbecas')}}">
-							<i class="menu-icon fa fa-th-large "></i>
-							<span class="menu-text"> N° Becas </span>
+					<!-- <li class="active open"> -->
+					<li class="{{$usu}}">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text"> U. Serv Univ </span>
+
+							<b class="arrow fa fa-angle-down"></b>
 						</a>
 						<b class="arrow"></b>
-					</li>
-					<li class="{{$a}}">
-						<a href="asfichasocial">
-							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> Ficha Socio Econ. </span>
-						</a>
-						<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="{{$usu_a}}">
+								<a href="{{url('directivousus/comensales')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Comensales
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usu_b}}">
+								<a href="{{url('nutriformes/ouser')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Informes Nutricion
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li class="{{$usu_c}}">
+								<a href="{{url('directivousus/nbecas')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									N° Becas
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="{{$usu_d}}">
+								<a href="{{url('directivousus/exoneracion')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Exon. Pago Cent Med
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usu_as}}">
+								<a href="{{url('directivousus/asocial')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Asistencia Social
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usu_sp}}">
+								<a href="{{url('directivousus/psico')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Servicio Psicopedagogía
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="{{$usu_e}}">
+								<a href="#" class="dropdown-toggle">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Centro Médico
+									<b class="arrow fa fa-angle-down"></b>
+								</a>
+								<b class="arrow"></b>
+								<ul class="submenu nav-show">
+									<li class="{{$usu_e_a}}">
+										<a href="{{url('directivousus/cmmedicina')}}">
+											<i class="menu-icon fa fa-caret-right"></i>
+											Medicina
+										</a>
+										<b class="arrow"></b>
+									</li>
+									<li class="{{$usu_e_b}}">
+										<a href="{{url('directivousus/cmodontologia')}}">
+											<i class="menu-icon fa fa-caret-right"></i>
+											Odontología
+										</a>
+										<b class="arrow"></b>
+									</li>
+									<!-- <li class="{{$usu_e_c}}">
+										<a href="#">
+											<i class="menu-icon fa fa-caret-right"></i>
+											Topico
+										</a>
+										<b class="arrow"></b>
+									</li> -->
+									
+								</ul>
+							</li>
+
+						</ul>
 					</li>
 
+					<li class="{{$uafsm}}">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-futbol-o"></i>
+							<span class="menu-text"> U. Act Física Mental </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="{{$uafsm_a}}">
+								<a href="{{url('directivotalleres/matriculauafsm')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Estudiantes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="{{$uafsm_b}}">
+								<a href="{{url('directivotalleres/uafsm')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Reportes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li class="{{$ufc}}">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-tachometer"></i>
+							<span class="menu-text"> U. Form Cultural </span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="{{$ufc_a}}">
+								<a href="{{url('directivotalleres/matriculaufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Estudiantes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="{{$ufc_b}}">
+								<a href="{{url('directivotalleres/ufc')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Reportes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
 					
-					<li class="{{$e}}">
-						<a href="asexpagocentmed">
-							<i class="menu-icon fa fa-medkit"></i>
-							<span class="menu-text"> Exon. Pago Cent Med </span>
+					<li class="{{$search}}">
+						<a href="">
+							<i class="menu-icon fa fa-search"></i>
+							<span class="menu-text"> Buscar estudiante </span>
 						</a>
-
 						<b class="arrow"></b>
-					</li>
+					</li>			
+					
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

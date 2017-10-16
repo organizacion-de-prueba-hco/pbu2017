@@ -20,7 +20,8 @@ $uafsm_b='';
 $ufc='';
 $ufc_a='';
 $ufc_b='';
-
+$usu_e='';
+$search='';
 ?>
 @endsection
 @section('titulo','Matrícula')

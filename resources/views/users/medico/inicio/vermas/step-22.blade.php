@@ -104,7 +104,7 @@
 								</label><br>
 
 								<label>
-									<input name="p_otros_0" id="p_otros_0" class="ace" type="checkbox" value="1"
+									<input name="p_otros_0" class="ace" id="p_otros_0" type="checkbox" value="1"
 										@if($antec0->p_otros=='1')
                 						checked="checked"
               						@endif

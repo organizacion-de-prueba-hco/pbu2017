@@ -522,15 +522,24 @@
               					/>
 									<span class="lbl"> Lengua </span> &nbsp;
 								</label><br>
+
 								<label>
-									<input name="iii_b_f" value="1" class="ace" type="checkbox"
+									<input name="iii_b_f" class="ace" id="p_otros_3" type="checkbox" value="1" 
 										@if($medicina->iii_b_f=='1')
                 						checked="checked"
-              						@endif
+                					@endif
+                						onclick="mostrarotros('p_otros_desc_3','#p_otros_3')"
+              						
               					/>
 									<span class="lbl"> Otros </span> &nbsp;
 								</label><br>
-								<input type="text" class="ace" name="p_otros" id="p_otros_desc_1" class="col-12" value="{{$antec1->p_otros_desc}}"><br>
+								<label 
+										 @if($medicina->iii_b_otros == '')
+											style="visibility:hidden"
+										 @endif
+								>
+								<input type="text" class="ace" name="iii_b_otros" id="p_otros_desc_3" class="col-12" value="{{$medicina->iii_b_otros}}">
+								</label><br>
 						</div>
 					</div>
 					<div class="space-2"></div><hr>
