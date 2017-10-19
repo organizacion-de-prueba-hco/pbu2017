@@ -279,6 +279,13 @@
 								<b class="arrow"></b>
 							</li>
 						</ul>
+					</li>
+					<li class="{{$vi}}">
+						<a href="{{url('enfermeras/noestudiantes')}}">
+							<i class="menu-icon fa fa-user-times"></i>
+							<span class="menu-text"> No estudiantes </span>
+						</a>
+						<b class="arrow"></b>
 					</li>		
 					
 				</ul><!-- /.nav-list -->

@@ -18,6 +18,7 @@
 	$v_ii='active';
 	$v_iii='';
 	$iv_iii='';
+	$vi='';
 	?>
 @endsection
 @section('titulo','Otros-Procedimiento')

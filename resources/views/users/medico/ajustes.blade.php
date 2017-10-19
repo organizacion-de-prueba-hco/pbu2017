@@ -13,10 +13,12 @@ $iii_ii='';
 $iv='';
 $iv_i='';
 $iv_ii='';
+$iv_iii='';
 $v='';
 $v_i='';
 $v_ii='';
 $v_iii='';
+$vi='';
 ?>
 @endsection
 @section('titulo','Nuevo Expediente')

@@ -18,6 +18,7 @@
 	$v_i='';
 	$v_ii='';
 	$v_iii='';
+	$vi='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
 	?>

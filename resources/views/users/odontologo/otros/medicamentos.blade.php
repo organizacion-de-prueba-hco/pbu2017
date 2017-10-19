@@ -7,6 +7,7 @@
 	$iii_i='active';
 	$iii_ii='';
 	$iii_iii='';
+	$iv='';
 	?>
 @endsection
 @section('titulo','Farmacia-Inventario')

@@ -104,7 +104,7 @@
 									<div class="space-2"></div>
 
 									<div class="form-group">
-										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Estado Civil: {{$estudiante->user->est_civil_id}}</label>
+										<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Estado Civil: </label>
 										<div class="col-xs-12 col-sm-9">
 											<div class="clearfix">
 												{!!Form::select('est_civil_id',$est_civils,$estudiante->user->est_civil_id,['required', 'class'=>'col-xs-12 col-sm-6' ,'disabled'=>'true'])!!}

@@ -7,6 +7,7 @@
 	$iii_i='';
 	$iii_ii='';
 	$iii_iii='';
+	$iv='';
 	?>
 @endsection
 @section('titulo','Medicina-Atención')

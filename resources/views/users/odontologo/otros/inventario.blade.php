@@ -7,6 +7,7 @@
 	$iii_i='';
 	$iii_ii='';
 	$iii_iii='active';
+	$iv='';
 	?>
 @endsection
 @section('titulo','Otros-Inventario')

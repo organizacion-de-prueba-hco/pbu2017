@@ -111,10 +111,11 @@ class DirectivoController extends Controller
       if(!empty($file)){
         $user=User::find(Auth::user()->id);        
         $name=$user->dni.'.png';
+        \File::delete('imagenes/avatar/'.$name);
         $file->move('imagenes/avatar', $name);
         $user->foto=$name;
         if($user->save()){
-             return Redirect::to('directivoajuste')->with('verde','Se actulizó foto');     
+             return Redirect::to('directivoajuste')->with('verde','Se actualizó foto');     
         }else{
             return Redirect::to('directivoajuste')->with('rojo','No se pudo guardar la foto, vuelva a intentar');
         }

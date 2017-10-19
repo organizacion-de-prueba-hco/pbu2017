@@ -272,7 +272,7 @@
 
 								<b class="arrow"></b>
 							</li>
-							<li class="{{$v_ii}}">
+							<li class="{{$v_iii}}">
 								<a href="{{url('medicos/exoneracion')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Exoneración de Pago
@@ -281,7 +281,14 @@
 								<b class="arrow"></b>
 							</li>
 						</ul>
-					</li>		
+					</li>	
+					<li class="{{$vi}}">
+						<a href="{{url('medicos/noestudiantes')}}">
+							<i class="menu-icon fa fa-user-times"></i>
+							<span class="menu-text"> No estudiantes </span>
+						</a>
+						<b class="arrow"></b>
+					</li>	
 					
 				</ul><!-- /.nav-list -->
 

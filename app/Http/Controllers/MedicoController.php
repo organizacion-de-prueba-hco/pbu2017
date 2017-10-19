@@ -6,7 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\CmMedicamento;
+use App\CmProcedimiento;
+use App\CmInventario;
+use App\NoEstudiante;
+use App\Departamento;
+use App\Distrito;
+use App\Provincia;
+use App\CuadroFamiliar;
+use App\EgresoFamiliar;
+use App\CmAntecedente;
+use App\Religion;
+use App\EstCivil;
 use Auth;
 use Redirect;
 use Input;
@@ -136,5 +147,63 @@ class MedicoController extends Controller
          $odontologia=CmOdontologia::get();
         return view('users.medico.odontologia.atencion',compact('odontologia'));
      }
+     //------------------------ No Estudiantes
+     public function getNoestudiantes(){
+        $noEstudiantes=NoEstudiante::get();
+        $usuario = array('1' => 'Ingresante','2'=>'Docente','3'=>'Administrativo','4'=>'Público');
+        $religiones=Religion::lists('religion','id');
+        $est_civils=EstCivil::lists('est_civil','id');
+        $departamentos=Departamento::lists('departamento','id');
+        $provincias=Provincia::lists('provincia','id');
+        $distritos=Distrito::lists('distrito','id');
+        //return $noEstudiantes;
+        return view('users.medico.noEstudiantes.noEstudiante',compact('noEstudiantes','usuario','religiones','est_civils','departamentos','provincias','distritos'));
+    }
+    public function postNoestudiantesnuevo(){
+         //Que no exiata el DNI
+      $consulta=User::where('dni',Input::get('dni'))->first();
+      if($consulta){
+         return Redirect('medicos/noestudiantes')
+            ->with('rojo','DNI ('.$consulta->dni.') duplicado. El usuario ya está registrado');
+      }
+        $user=new User;
+        $user->fill(Input::all());
+        $user->email=Input::get('dni').'@mail.com';
+        $user->tipo_user='6';
+        if($user->save()){
+            $ultimoUsuarioRegistrado=User::where('tipo_user','6')->orderBy('id','desc')->first();
+                $cfamiliar=new CuadroFamiliar;
+                $cfamiliar->user_id=$ultimoUsuarioRegistrado->id;
+                $cfamiliar->nombres='Estudiante';
+                $cfamiliar->parentesco='YO';
+                $cfamiliar->save();
+
+                $efamiliar=new EgresoFamiliar;
+                $efamiliar->user_id=$ultimoUsuarioRegistrado->id;
+                $efamiliar->save();
+
+                //Crear nuevos antecedentes de los médics
+                $antecedentes = new CmAntecedente;
+                $antecedentes->user_id=$ultimoUsuarioRegistrado->id;
+                $antecedentes->tipo='0'; //YO
+                $antecedentes->save();
+
+                $antecedentes = new CmAntecedente;
+                $antecedentes->user_id=$ultimoUsuarioRegistrado->id;
+                $antecedentes->tipo='1'; //Pariente
+                $antecedentes->save();
+
+            //Para la tabla No Estudiante   
+                  $noEst=new NoEstudiante;
+                  $noEst->user_id=$ultimoUsuarioRegistrado->id;
+                  $noEst->usuario_descripcion=Input::get('usuario_descripcion');
+                  $noEst->usuario=Input::get('usuario');
+                  $noEst->save();
+
+        }else {
+           return Redirect('medicos/noestudiantes')->with('rojo','No se registró correctamente');
+        }
+        return Redirect('medicos/noestudiantes')->with('verde','Se registró correctamente');
+    }
 
 }

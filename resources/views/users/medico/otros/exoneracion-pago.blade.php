@@ -1,4 +1,4 @@
-@extends('master.enfermera')
+@extends('master.medico')
 @section('activacion')
 	<?php  
 	$i ='';
@@ -18,6 +18,7 @@
 	$v_ii='';
 	$v_iii='active';
 	$iv_iii='';
+	$vi='';
 	?>
 @endsection
 @section('titulo','Exoneración')

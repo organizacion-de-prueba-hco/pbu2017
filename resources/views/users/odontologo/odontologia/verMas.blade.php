@@ -9,6 +9,7 @@
 	$iii_iii='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
+	$iv='';
 	?>
 @endsection
 @section('titulo','Ficha Socio Económica')

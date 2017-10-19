@@ -7,6 +7,7 @@
 	$iii_i='';
 	$iii_ii='active';
 	$iii_iii='';
+	$iv='';
 	?>
 @endsection
 @section('titulo','Otros-Procedimiento')
