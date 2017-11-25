@@ -133,8 +133,14 @@ class MedicoMedController extends Controller
     }
 
     public function getNuevo(Request $request){
+        $cod        = $request->get('cod');
 
-       $cod        = $request->get('cod');
+        //Primero vemos si es No Estudiante
+        $user = User::where('dni',$cod)->first();
+        if($user){
+            return $this->recargarFormularios0no('users.medico.medicina.atencion2.nuevo',$user);
+        }
+        
         $estudiante = Estudiante::where('cod_univ',$cod)->first();
         if(!$estudiante){
           $user = User::where('dni', $cod)->first();
@@ -266,15 +272,26 @@ class MedicoMedController extends Controller
     }
 
     public function recargarFormularios0($ruta,$estudiante){
-            $religiones=Religion::lists('religion','id');
-            $est_civils=EstCivil::lists('est_civil','id');
-            $departamentos=Departamento::lists('departamento','id');
-            $provincias=Provincia::lists('provincia','id');
-            $distritos=Distrito::lists('distrito','id');
-            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+         $religiones=Religion::lists('religion','id');
+         $est_civils=EstCivil::lists('est_civil','id');
+         $departamentos=Departamento::lists('departamento','id');
+         $provincias=Provincia::lists('provincia','id');
+         $distritos=Distrito::lists('distrito','id');
+         $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
+         $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
             return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
+     }
+     public function recargarFormularios0no($ruta,$user){
+         $religiones=Religion::lists('religion','id');
+         $est_civils=EstCivil::lists('est_civil','id');
+         $departamentos=Departamento::lists('departamento','id');
+         $provincias=Provincia::lists('provincia','id');
+         $distritos=Distrito::lists('distrito','id');
+         $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+         $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
+         $usuario = array('1' => 'Ingresante','2'=>'Docente','3'=>'Administrativo','4'=>'Público');
+            return view($ruta, compact('user','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','usuario'));
      }
 
      public function recargarFormularios($ruta,$estudiante,$medicina){

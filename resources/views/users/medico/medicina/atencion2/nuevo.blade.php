@@ -1,30 +1,31 @@
 @extends('master.medico')
 @section('activacion')
 	<?php  
-	$i ='active';
-	$ii='';
+	$i ='';
+	$ii='active open';
 	$ii_i='';
 	$ii_ii='';
 	$ii_iii='';
 	$ii_iv='';
-	$ii_v='';
+	$ii_v='active';
+	
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
 	$iv='';
 	$iv_i='';
 	$iv_ii='';
+	$iv_iii='';
 	$v='';
 	$v_i='';
 	$v_ii='';
 	$v_iii='';
-	$iv_iii='';
 	$vi='';
 		use Carbon\Carbon;
 		Carbon::setLocale('es');
 	?>
 @endsection
-@section('titulo','Médico - Buscar ')
+@section('titulo','Medicina')
 @section('estilos')
 	<style type="text/css">
              .thumb{
@@ -38,9 +39,10 @@
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
-	<i class="ace-icon fa fa-home"></i>	
-	<li class="active">Inicio</li>
-	<li class="active">Buscar Estudiantes</li>	
+	<i class="ace-icon fa fa-user-md"></i>
+	<li class="active">Medicina</li>
+	<li class="active">Atención</li>
+	<li class="active">Nuevo</li>	
 </ul>
 @endsection
 @section('contenido')
@@ -55,7 +57,7 @@
 		<div class="hr hr-18 hr-double dotted"></div>
 		<div class="widget-box">
 			<div class="widget-header widget-header-blue widget-header-flat">
-				<h4 class="widget-title lighter">Datos del Estudiante</h4>
+				<h4 class="widget-title lighter">Datos del No Estudiante</h4>
 			</div>
 			<div class="widget-body">
 				<div class="widget-main">
@@ -72,30 +74,21 @@
 								</li>
 								<li data-step="3">
 									<span class="step">III</span>
-									<span class="title">MEDICINA</span>
-								</li>
-								<li data-step="4">
-									<span class="step">IV</span>
-									<span class="title">ODONTOLOGÍA</span>
-								</li>
-								
+									<span class="title">TRIAJE</span>
+								</li>								
 							</ul>
 						</div>
 						<hr />
 
 						<div class="step-content pos-rel">
 							<div class="step-pane active" data-step="1" id="step-11">
-								@include('users.medico.inicio.vermas.step-11')
+								@include('users.medico.medicina.atencion2.registro.step-11')
 							</div>
-
 							<div class="step-pane" data-step="2" id="step-22">
-								@include('users.medico.inicio.vermas.step-22')
+								@include('users.medico.medicina.atencion2.registro.step-22')
 							</div>
 							<div class="step-pane" data-step="3" id="step-33">
-								@include('users.medico.inicio.vermas.step-medicina')
-							</div>
-							<div class="step-pane" data-step="4" id="step-44">
-								@include('users.medico.inicio.vermas.step-odontologia')
+								@include('users.medico.medicina.atencion2.registro.step-triaje')
 							</div>
 							
 						</div>
@@ -153,14 +146,14 @@
 				//})
 				.on('finished.fu.wizard', function(e) {
 					bootbox.dialog({
-						message: "<h3>¡Su información se ha guardado correctamente!</h3><br><i>Puede descargar reportes de medicina y odontología PDF</i>", 
+						message: "<h3>¡Ya casi ha terminado!</h3><br><i>para terminar recuerde presionar el botón azul \'Enviar datos\'</i>", 
 						buttons: {
 							"success" : {
 								"label" : "OK",
 								"className" : "btn-sm btn-primary",
-								 // callback: function() {
-         //        					alert('Holaaa');
-         //    					 }
+								 callback: function() {
+                					//alert('Holaaa');
+            					 }
 							}
 						}
 					});
@@ -333,6 +326,7 @@
         var token=$("#token").val(); //El token solo en casos del tipo POST
         var route = $laruta; //Esta ruta dirige al store, y xq no se confunde con el index? x el POST y los datos que recibe
         //console.log("Encuesta:"+$('#encuesta').val()+" <> Pregunta:"+$('#pregunta').val());
+        console.log($($elformulario).serialize());
         $.ajax({
           headers:{'X-CSRF-TOKEN':token}, 
           data:  $($elformulario).serialize(),

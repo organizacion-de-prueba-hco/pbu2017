@@ -175,6 +175,7 @@ class MedicoController extends Controller
                 $cfamiliar=new CuadroFamiliar;
                 $cfamiliar->user_id=$ultimoUsuarioRegistrado->id;
                 $cfamiliar->nombres='Estudiante';
+                $cfamiliar->ocupacion=Input::get('ocupacion');
                 $cfamiliar->parentesco='YO';
                 $cfamiliar->save();
 

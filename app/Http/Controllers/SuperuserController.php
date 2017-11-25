@@ -124,9 +124,10 @@ class SuperuserController extends Controller
                      continue;
                   }
                 //---------- Si existe el DNI (ingresante) a Estudiante
-                  $sensorUser=User::where('dni',$value->dni)->first();
+                  $sensorUser=User::where('dni',$value->dni)->where('dni','<>','--------')->first();
                 if($sensorUser){
-                  $usuario=User::find($sensorEstudiante->user_id);
+                  //echo $sensorUser; continue;
+                  $usuario=User::find($sensorUser->id);
                   $usuario->apellido_paterno=$value->paterno;
                   $usuario->apellido_materno=$value->materno;
                   $usuario->nombres=$value->nombres;
@@ -255,7 +256,7 @@ class SuperuserController extends Controller
 
                   //Colegio del estudiante
                     $colegio=new Colegio;
-                    $colegio->estudiante_id=$userID->id;
+                    $colegio->estudiante_id=$userID;
                     if($value->cole!=''){
                        $colegio->v_colegio=$value->cole;
                     }
