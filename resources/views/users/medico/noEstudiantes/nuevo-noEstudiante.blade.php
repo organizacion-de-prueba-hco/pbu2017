@@ -73,7 +73,7 @@
 						<label class="control-label col-xs-12 col-sm-3 no-padding-right">Domicilio Actual</label>
 						<div class="col-xs-12 col-sm-9">
 							<div class="clearfix">
-								{!!Form::text('domicilio', null, ['class'=> 'form-control', 'placeholder'=>'Nombre de la calle, Av. Jr, etc'])!!}
+								{!!Form::text('dom', null, ['class'=> 'form-control', 'placeholder'=>'Nombre de la calle, Av. Jr, etc'])!!}
 							</div>
 							<div class="clearfix">
 								{!!Form::text('n_domicilio', null, ['class'=> 'form-control', 'placeholder'=>'Número, Lt., Mz., etc','style'=>'margin-top: 2px;'])!!}

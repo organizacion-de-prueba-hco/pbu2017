@@ -456,44 +456,19 @@ class JusuExpedienteController extends Controller
          });
       })->export('xls');
     }
-    public function postAsistenciaxd(Request $request){
-
-      $inicio=$request->get('inicio');
-      $fin=$request->get('fin'); //Como el sistema compara con las horas(fin seria 00:00:00) y no cogerá la fecha actual. No sirve poner '<=', mejor aumentamos un día con PHP y ponemos '<'
-      $fin = date("Y-m-d",strtotime($fin."+ 1 days"));
-      //echo "Inicio: ".$inicio.'<br> FIN: '.$fin;
-      //-----------------------------------------------------
-      $comensales=Expediente::where('estado','1')->where('caso_especial','!=','0')->orderBy('caso_especial')->get();
-      foreach ($comensales as $value) {
-      $asist=ComedorAsistencia::where('created_at','>=',$inicio)
-                                ->where('created_at','<',$fin)
-                                      ->where('expediente_id',$value->expediente)
-                                      ->where('asistencia','1')->get();
-        //echo $value->expediente.' : '.$value->estudiante->user->nombres.' ->'.$asist;
-        foreach ($asist as $key => $as) {
-          echo "<br>".$as->created_at;
-        }
-      }
-
-    }
     public function postAsistencia(Request $request){
-
       $inicio=$request->get('inicio');
-      $fin_i=$request->get('fin'); //Como el sistema compara con las horas(fin seria 00:00:00) y no cogerá la fecha actual. No sirve poner '<=', mejor aumentamos un día con PHP y ponemos '<'
-      $fin = date("Y-m-d",strtotime($fin_i."+ 1 days")); //Le sumamos un día
-      
-      Excel::create('Reporte de Asistencia ', function($excel) use($inicio,$fin,$fin_i){
+      $fin=$request->get('fin');
+      Excel::create('Reporte de Asistencia ', function($excel) use($inicio,$fin){
 
-        $excel->sheet('Comensales CE', function($sheet) use($inicio,$fin,$fin_i){
+        $excel->sheet('Comensales CE', function($sheet) use($inicio,$fin){
           //----------DATOS----------------
-             //$comensales=Expediente::where('estado','1')->where('caso_especial','<>','0')->get();
+            $comensales=Expediente::where('estado','1')->where('caso_especial','<>','0')->get();
           //----------Fin DATOS----------------
           // Cabecera
            $sheet->mergeCells('B1:K1');
            
-           $sheet->row(1, array('','Reporte de Asistencia CE del '.$inicio.' al '.$fin_i));
-            
-
+           $sheet->row(1, array('','Reporte de Asistencia CE del '.$inicio.' al '.$fin));
            $sheet->appendRow(2, array(' ','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','CE','N° Asistencias', 'N° Faltas'));
             //Estilos
               $sheet->cells('B1:K2', function($cells) {
@@ -515,21 +490,13 @@ class JusuExpedienteController extends Controller
            
             foreach ($comensales as $c) { $fila++;
               $asist=ComedorAsistencia::where('created_at','>=',$inicio)
-                                      ->where('created_at','<',$fin) //cogerá datos <= aa:mm:dd 23:59:59
+                                      ->where('created_at','<=',$fin)
                                       ->where('expediente_id',$c->expediente)
                                       ->where('asistencia','1')->count();
               $falt=ComedorAsistencia::where('created_at','>=',$inicio)
                                       ->where('created_at','<=',$fin)
                                       ->where('expediente_id',$c->expediente)
                                       ->where('asistencia','0')->count();
-                //Aquí modificamos dependiendo del usuario, solo los edministrativos podrán ver el dato real
-                if(!(Auth::user()->tipo_user=='0'||Auth::user()->tipo_user=='1')){
-                  if ($falt>=8) {
-                    $diferencia=$falt-8;
-                    $asist=$asist+$diferencia;
-                    $falt=$falt-$diferencia;
-                  }
-                }
               $sheet->appendRow($fila, array(' ',$fila-2,$c->estudiante->escuela->facultad->facultad,
                                                          $c->estudiante->escuela->escuela,
                                                          $c->estudiante->cod_univ,
@@ -568,14 +535,15 @@ class JusuExpedienteController extends Controller
 
           // Fin de Cuerpo
         });
-        $excel->sheet('Comensales A B C', function($sheet) use($inicio,$fin,$fin_i){
+
+        $excel->sheet('Comensales A B C', function($sheet) use($inicio,$fin){
           //----------DATOS----------------
             $comensales=Expediente::where('estado','1')->where('caso_especial','0')->get();
           //----------Fin DATOS----------------
           // Cabecera
            $sheet->mergeCells('B1:K1');
            
-           $sheet->row(1, array('','Reporte de Asistencia de los Comensales del '.$inicio.' al '.$fin_i));
+           $sheet->row(1, array('','Reporte de Asistencia de los Comensales del '.$inicio.' al '.$fin));
            $sheet->appendRow(2, array(' ','N°','Facultad','Escuela Académica','Código Universitario','Apellido Paterno','Apellido Materno','Nombres','Beca','N° Asistencias', 'N° Faltas'));
             //Estilos
               $sheet->cells('B1:K2', function($cells) {
@@ -595,22 +563,13 @@ class JusuExpedienteController extends Controller
            $comensales=Expediente::where('estado','1')->where('caso_especial','0')->orderBy('tipo_beca')->get();
             foreach ($comensales as $c) { $fila++;
               $asist=ComedorAsistencia::where('created_at','>=',$inicio)
-                                      ->where('created_at','<',$fin) //cogerá datos <= aa:mm:dd 23:59:59
+                                      ->where('created_at','<=',$fin)
                                       ->where('expediente_id',$c->expediente)
                                       ->where('asistencia','1')->count();
               $falt=ComedorAsistencia::where('created_at','>=',$inicio)
-                                      ->where('created_at','<',$fin)
+                                      ->where('created_at','<=',$fin)
                                       ->where('expediente_id',$c->expediente)
                                       ->where('asistencia','0')->count();
-
-              //Aquí modificamos dependiendo del usuario, solo los edministrativos podrán ver el dato real
-                if(!(Auth::user()->tipo_user=='0'||Auth::user()->tipo_user=='1')){
-                  if ($falt>=8) {
-                    $diferencia=$falt-8;
-                    $asist=$asist+$diferencia;
-                    $falt=$falt-$diferencia;
-                  }
-                }
               $sheet->appendRow($fila, array(' ',$fila-2,$c->estudiante->escuela->facultad->facultad,
                                                          $c->estudiante->escuela->escuela,
                                                          $c->estudiante->cod_univ,
@@ -649,7 +608,6 @@ class JusuExpedienteController extends Controller
 
           // Fin de Cuerpo
         });
-        
       })->export('xls');
     
 

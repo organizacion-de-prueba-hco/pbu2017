@@ -7,7 +7,6 @@
 	$ii_ii='';
 	$ii_iii='';
 	$ii_iv='';
-	$ii_v='';
 	$iii='';
 	$iii_i='';
 	$iii_ii='';
@@ -199,18 +198,18 @@
 
 		<script type="text/javascript">
 		function valida(e){
-		  tecla = (document.all) ? e.keyCode : e.which;
+          tecla = (document.all) ? e.keyCode : e.which;
 
-		  //Tecla de retroceso para borrar, siempre la permite
-		  if (tecla==8){
-			  return true;
-		  }
+          //Tecla de retroceso para borrar, siempre la permite
+          if (tecla==8){
+              return true;
+          }
 
-		  // Patron de entrada, en este caso solo acepta numeros
-		  patron =/[0-9]/;
-		  tecla_final = String.fromCharCode(tecla);
-		  return patron.test(tecla_final);
-	}
+          // Patron de entrada, en este caso solo acepta numeros
+          patron =/[0-9]/;
+          tecla_final = String.fromCharCode(tecla);
+          return patron.test(tecla_final);
+    }
 
 			jQuery(function($) {
 				//initiate dataTables plugin
@@ -228,8 +227,8 @@
 
 
 					//"bProcessing": true,
-					//"bServerSide": true,
-					//"sAjaxSource": "http://127.0.0.1/table.php"	,
+			        //"bServerSide": true,
+			        //"sAjaxSource": "http://127.0.0.1/table.php"	,
 
 					//,
 					//"sScrollY": "200px",
@@ -247,7 +246,7 @@
 					select: {
 						style: 'multi'
 					}
-				} );
+			    } );
 
 
 
@@ -437,7 +436,7 @@
 
 		//Para que salga las letritas negras del title
 		$(document).ready(function(){
-			$('[data-toggle="tooltip"]').tooltip(); 
+		    $('[data-toggle="tooltip"]').tooltip(); 
 		});
 
 		function reportes($id,$estudiante){

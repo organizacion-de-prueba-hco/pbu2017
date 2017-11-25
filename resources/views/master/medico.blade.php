@@ -147,14 +147,7 @@
 							<li class="{{$ii_i}}">
 								<a href="{{url('medmed')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Atención - Estudiante
-								</a>
-								<b class="arrow"></b>
-							</li>
-							<li class="{{$ii_v}}">
-								<a href="{{url('medmed')}}">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Atención - No Estudiante
+									Atención
 								</a>
 								<b class="arrow"></b>
 							</li>
