@@ -57,9 +57,9 @@
 					@foreach($medmed as $med)
 						<tr>
 							<td class="center">{{$med->created_at}}</td>
-							<td class="center">{{$med->cmmedicina->user->estudiante->cod_univ}}</td>
+							<td class="center">{{$med->cmmedicina->user->dni}}</td>
 							<td> {{$med->cmmedicina->user->apellido_paterno.' '.$med->cmmedicina->user->apellido_materno.' '.$med->cmmedicina->user->nombres}}</td>
-							<td>{{$med->cmmedicina->user->estudiante->escuela->escuela}}</td>
+							<td></td>
 							<td>{{$med->medicamento->medicamento.' - '.$med->medicamento->presentacion}}</td>
 							
 							<td class="center">

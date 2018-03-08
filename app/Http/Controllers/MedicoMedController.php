@@ -45,8 +45,24 @@ class MedicoMedController extends Controller
      */
     public function index()
     {
-        $medicina=CmMedicina::get();
-        return view('users.medico.medicina.atencion',compact('medicina'));
+        //$medicina=CmMedicina::get();
+        //return view('users.medico.medicina.atencion',compact('medicina'));
+    }
+    public function getInicio($tipo)
+    {
+        if($tipo=='estudiante'){
+            $medicina=CmMedicina::join('users','users.id','=','cm_medicinas.user_id')
+                                ->where('users.tipo_user','5')
+                                ->select('cm_medicinas.*')->get(); 
+            $ruta='users.medico.medicina.atencion-estudiante';   
+        }else if('no-estudiante'){
+            $medicina=CmMedicina::join('users','users.id','=','cm_medicinas.user_id')
+                                ->where('users.tipo_user','!=','5')
+                                ->select('cm_medicinas.*')->get(); 
+            $ruta='users.medico.medicina.atencion-nestudiante';
+        }else{ return back();}
+        
+        return view($ruta,compact('medicina'));
     }
 
     /**
@@ -78,24 +94,14 @@ class MedicoMedController extends Controller
      */
     public function show($id)
     {
-
         $medicina = CmMedicina::find($id);
-        $cod=$medicina->user->estudiante->cod_univ;
-
-        $estudiante = Estudiante::where('cod_univ',$cod)->first();
-        if(!$estudiante){
-          $user = User::where('dni', $cod)->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
+        //verificamos que exista el expdiente de Méd
+        //return $medicina;
+        if($medicina==''){
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun usuario');
         }
-
-        if(!$estudiante){
-            return Redirect::to('medmed')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
-        }else{
-            //return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',Input::get('user_id'));
-            return $this->recargarFormularios('users.medico.medicina.atencion.ef',$estudiante,$medicina);
-        }
+         $user = User::where('id',$medicina->user_id)->first();
+         return $this->recargarFormularios('users.medico.medicina.atencion.ef',$user,$medicina);   
     }
 
     /**
@@ -133,27 +139,24 @@ class MedicoMedController extends Controller
     }
 
     public function getNuevo(Request $request){
-        $cod        = $request->get('cod');
 
-        //Primero vemos si es No Estudiante
-        $user = User::where('dni',$cod)->first();
-        if($user){
-            return $this->recargarFormularios0no('users.medico.medicina.atencion2.nuevo',$user);
-        }
-        
-        $estudiante = Estudiante::where('cod_univ',$cod)->first();
-        if(!$estudiante){
-          $user = User::where('dni', $cod)->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
-        }
-
-        if(!$estudiante){
-            return Redirect::to('medmed')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+        $cod = $request->get('cod');
+        //Identificamos si el $cod es un DNI o Cod universitario
+        if (strlen($cod)=='8') {
+            $user= User::where('dni',$cod)->first();
+        }else if(strlen($cod)=='10'){
+            $user= User::join('estudiantes','estudiantes.user_id','=','users.id')
+                     ->where('estudiantes.cod_univ',$cod)
+                     ->select('users.*')->first();
         }else{
-            return $this->recargarFormularios0('users.medico.medicina.atencion.nuevo',$estudiante);
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
         }
+
+        //verificamos si existe el usuario
+        if(!$user){
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+        }
+        return $this->recargarFormularios0('users.medico.medicina.atencion.nuevo',$user);
     }
 
     public function postFiliacion0(){
@@ -169,10 +172,9 @@ class MedicoMedController extends Controller
       $ocupacion->save();
       //$opinion->fill(Input::all())->save();
 
-      return $this->recargarFormularios0('users.medico.inicio.registro.step-11',$estudiante);
+      return $this->recargarFormularios0('users.medico.inicio.registro.step-11',$user);
     }
     public function postAntecedentes0(){
-      //return "Holitas...";
       for ($i=0; $i <=1 ; $i++) { 
          $id=Input::get('id'.$i);
          $antec=CmAntecedente::find($id);
@@ -192,31 +194,38 @@ class MedicoMedController extends Controller
          $antec->qx=Input::get('qx_'.$i);
          $antec->save();
       }
-      $estudiante=Estudiante::find(Input::get('id'));
-      return $this->recargarFormularios0('users.medico.inicio.registro.step-22',$estudiante);
+      $user=User::find(Input::get('id'));
+      return $this->recargarFormularios0('users.medico.inicio.registro.step-22',$user);
     }
 
     public function postTriaje(){
       //return Input::all();
       $triaje=new CmMedicina;
       $triaje->fill(Input::all())->save();
-      return Redirect('medmed')->with('verde','Se registró correctamente la atención');
+      $tipo = CmMedicina::find($triaje->id)->user->tipo_user;
+      if($tipo=='5'){
+         $ruta='medmeds/inicio/estudiante';
+      }else{
+         $ruta='medmeds/inicio/no-estudiante';
+      }
+      //User::join('cm_medicinas','cm_medicina.user_id','=','users.id')->where('cm_medicinas.id');
+      return Redirect($ruta)->with('verde','Se registró correctamente la atención');
     }
     public function postActualizartriaje(){
-      //return Input::all();
+      //return "Input::all()";
       $medicina=CmMedicina::find(Input::get('id'));
-      $estudiante=Estudiante::find($medicina->user_id);
+      $user=User::find($medicina->user_id);
       $medicina->fill(Input::all())->save();
       $medicina=CmMedicina::find(Input::get('id'));
-      return $this->recargarFormularios('users.medico.inicio.vermas.step-actualizartriaje',$estudiante,$medicina);
+      return $this->recargarFormularios('users.medico.inicio.vermas.step-actualizartriaje', $user,$medicina);
     }
 
     public function postProcedimientos(){
         $consulta=new CmMedProc;
         $consulta->fill(Input::all())->save();
-        $estudiante=Estudiante::find(Input::get('user_id'));
+        $user=User::find(Input::get('user_id'));
         $medicina=CmMedicina::find(Input::get('medicina_id'));
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$user,$medicina);
     }
 
     public function getCprocedimientos($id){ //Cargar procedimientos al modalActualizar
@@ -225,9 +234,9 @@ class MedicoMedController extends Controller
     public function postAprocedimientos(){//Actualizar
         $consulta=CmMedProc::find(Input::get('id'));
         $consulta->fill(Input::all())->save();
-        $estudiante=Estudiante::find(Input::get('user_id'));
+        $user=User::find(Input::get('user_id'));
         $medicina=CmMedicina::find($consulta->medicina_id);
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$user,$medicina);
     }
     public function postEprocedimientos(){//Eliminar
         $consulta=CmMedProc::find(Input::get('id'));
@@ -240,9 +249,9 @@ class MedicoMedController extends Controller
     public function postMedicamentos(){
         $consulta=new MedMed;
         $consulta->fill(Input::all())->save();
-        $estudiante=Estudiante::find(Input::get('user_id'));
+        $user=User::find(Input::get('user_id'));
         $medicina=CmMedicina::find(Input::get('medicina_id'));
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$user,$medicina);
     }
     public function getCmedicamentos($id){ //Cargar Medicamentos al modalActualizar
         return MedMed::find($id);
@@ -251,9 +260,9 @@ class MedicoMedController extends Controller
 
         $consulta=MedMed::find(Input::get('m_id'));
         $consulta->fill(Input::all())->save();
-        $estudiante=Estudiante::find(Input::get('user_id'));
+        $user=User::find(Input::get('user_id'));
         $medicina=CmMedicina::find($consulta->medicina_id);
-        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
+        return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$user,$medicina);
     }
     public function postEmedicamentos(){//Eliminar
 
@@ -264,22 +273,28 @@ class MedicoMedController extends Controller
         return $this->recargarFormularios('users.medico.inicio.vermas.step-ef-tablas',$estudiante,$medicina);
     }
 
+    //Registrar -Actualizar Examen físico
     public function postEf(){//Eliminar
-        
         $consulta=CmMedicina::find(Input::get('m_id'));
         $consulta->fill(Input::all())->save();
-        return Redirect::to('medmed')->with('verde','Se registró atención correctamente');
+        $tipo = $consulta->user->tipo_user;
+         if($tipo=='5'){
+            $ruta='medmeds/inicio/estudiante';
+         }else{
+            $ruta='medmeds/inicio/no-estudiante';
+         }
+        return Redirect::to($ruta)->with('verde','Se registró atención correctamente');
     }
 
-    public function recargarFormularios0($ruta,$estudiante){
+    public function recargarFormularios0($ruta,$user){
          $religiones=Religion::lists('religion','id');
          $est_civils=EstCivil::lists('est_civil','id');
          $departamentos=Departamento::lists('departamento','id');
          $provincias=Provincia::lists('provincia','id');
          $distritos=Distrito::lists('distrito','id');
-         $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-         $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
+         $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+         $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
+            return view($ruta, compact('user','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
      }
      public function recargarFormularios0no($ruta,$user){
@@ -294,7 +309,7 @@ class MedicoMedController extends Controller
             return view($ruta, compact('user','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','usuario'));
      }
 
-     public function recargarFormularios($ruta,$estudiante,$medicina){
+     public function recargarFormularios($ruta,$user,$medicina){
             $religiones=Religion::lists('religion','id');
             $est_civils=EstCivil::lists('est_civil','id');
             $departamentos=Departamento::lists('departamento','id');
@@ -302,11 +317,11 @@ class MedicoMedController extends Controller
             $distritos=Distrito::lists('distrito','id');
             $procedimientos=CmProcedimiento::where('area','0')->lists('procedimiento','id');
             $medicamentos=CmMedicamento::get();
-            $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-            $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+            $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+            $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
             $mps=CmMedProc::where('medicina_id',$medicina->id)->get();
             $mms=MedMed::where('medicina_id',$medicina->id)->get();
-            return view($ruta, compact('estudiante','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));  
+            return view($ruta, compact('user','medicina','religiones','est_civils','departamentos','provincias','distritos','procedimientos','medicamentos','antec1','antec0','mps','mms'));  
      }
 
      public function getDescargareporte($tipo, $id){

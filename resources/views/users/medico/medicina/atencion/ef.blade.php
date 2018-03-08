@@ -26,6 +26,22 @@
 @endsection
 @section('titulo','Atención')
 @section('estilos')
+<style type="text/css">
+	label{
+			font-size: 14px;
+			color: blue;
+			font-weight: bold;
+		}
+		p{
+			font-size: 15px;
+		}
+		.thumb{
+               border: 1px solid #000;
+               margin: 10px 5px 0 0;
+               width: 100%;
+               text-align: center;
+            }
+</style>
 @endsection
 @section('ruta')
 <ul class="breadcrumb">
@@ -80,7 +96,7 @@
 					<div class="modal-footer">
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="hidden" name="m_id"  id="m_id">
 		            	
 		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/emedicamentos','#modal-amedicamentos','#div-de-tablas');">
@@ -140,7 +156,7 @@
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="medicina_id" value="{{$medicina->id}}">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/medicamentos','#modal-medicamentos','#div-de-tablas')">
 		            	</div>
 		         	</div>
@@ -185,7 +201,7 @@
                <div class="modal-footer">
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="hidden" name="id" id="c_id" value="">
 		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/medmeds/eprocedimientos','#modal-aprocedimiento','#div-de-tablas');">
 		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/medmeds/aprocedimientos','#modal-aprocedimiento','#div-de-tablas')">
@@ -231,7 +247,7 @@
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="medicina_id" value="{{$medicina->id}}">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/medmeds/procedimientos','#modal-procedimientos','#div-de-tablas')">
 		            	</div>
 		         	</div>
@@ -250,7 +266,7 @@
 		<div class="hr hr-18 hr-double dotted"></div>
 		<div class="widget-box">
 			<div class="widget-header widget-header-blue widget-header-flat">
-				<h4 class="widget-title lighter">Datos del Estudiante</h4>
+				<h4 class="widget-title lighter">Datos del paciente</h4>
 			</div>
 			<div class="widget-body">
 				<div class="widget-main">
@@ -729,27 +745,27 @@
     });
 
 //imagenes
-    //Mostrar imagenes del imput file
-    function foto(evt) {
-      var files = evt.target.files; // FileList object
-        //Obtenemos la imagen del campo "file". 
-      for (var i = 0, f; f = files[i]; i++) {         
-           //Solo admitimos imágenes.
-           if (!f.type.match('image.*')) {
-                continue;
-           }
-           var reader = new FileReader();
-           reader.onload = (function(theFile) {
-               return function(e) {
-               // Creamos la imagen.
-                      document.getElementById("lista").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-               };
-           })(f);
+   //  //Mostrar imagenes del imput file
+   //  function foto(evt) {
+   //    var files = evt.target.files; // FileList object
+   //      //Obtenemos la imagen del campo "file". 
+   //    for (var i = 0, f; f = files[i]; i++) {         
+   //         //Solo admitimos imágenes.
+   //         if (!f.type.match('image.*')) {
+   //              continue;
+   //         }
+   //         var reader = new FileReader();
+   //         reader.onload = (function(theFile) {
+   //             return function(e) {
+   //             // Creamos la imagen.
+   //                 document.getElementById("lista").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+   //             };
+   //         })(f);
  
-           reader.readAsDataURL(f);
-       }
-  	}      
-      document.getElementById('files-foto').addEventListener('change', foto, false);
+   //         reader.readAsDataURL(f);
+   //     }
+  	// }      
+   //    document.getElementById('files-foto').addEventListener('change', foto, false);
 
       //Mostrar ocultar P_Otros
     function mostrarotros($id,$check){

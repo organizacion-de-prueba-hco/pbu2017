@@ -1,6 +1,6 @@
 
 <h2>
-	<a href="{{url('pdf/medicinatodo',$estudiante->user_id)}}">
+	<a href="{{url('pdf/medicinatodo',$user->id)}}">
     	<i class="menu-icon fa fa-download"></i><span class="menu-text"> Descargar Todo</span>
     </a>
 </h2>

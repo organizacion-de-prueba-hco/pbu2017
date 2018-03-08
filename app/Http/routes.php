@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,6 +15,16 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     //return view('welcome');
     return view('login');
+});
+
+Route::get('miruta', function () {
+    //$expedientes = Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
+                               //->join('users','users.id','=','estudiantes.user_id')
+                               //->where('users.estado_activo','1')
+                               //->where('expedientes.caso_especial')
+                               //->select('expedientes.*')->get();
+    //return $expedientes;
+     
 });
 
 Route::resource('log', 'LogController');

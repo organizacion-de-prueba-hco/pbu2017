@@ -88,27 +88,31 @@ class MedicoRegistrosController extends Controller
         //
     }
     public function getBuscar(Request $request){
-        $cod        = $request->get('cod');
-        $estudiante = Estudiante::where('cod_univ',$cod)->first();
-        if(!$estudiante){
-          $user = User::where('dni', $cod)->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
+        $cod = $request->get('cod');
+        //Identificamos si el $cod es un DNI o Cod universitario
+        if (strlen($cod)=='8') {
+            $user= User::where('dni',$cod)->first();
+        }else if(strlen($cod)=='10'){
+            $user= User::join('estudiantes','estudiantes.user_id','=','users.id')
+                     ->where('estudiantes.cod_univ',$cod)
+                     ->select('users.*')->first();
+        }else{
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
         }
 
-        if(!$estudiante){
-            return Redirect::to('med')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
-        }else{
-            //return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',Input::get('user_id'));
-            return $this->recargarFormularios('users.medico.inicio.vermas',$estudiante);
-        }   
+        //verificamos si existe el usuario
+        if(!$user){
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+        }
+        return $this->recargarFormularios('users.medico.inicio.vermas',$user);
+        
     }
     public function postFoto(){
+
       $file = Input::file('foto');
       if(!empty($file)){
         $user=User::find(Input::get('id-est'));        
-        $name=$user->estudiante->cod_univ.'.png';
+        $name=$user->dni.'.png';
         $file->move('imagenes/avatar', $name);
         $user->foto=$name;
         if($user->save()){
@@ -119,16 +123,17 @@ class MedicoRegistrosController extends Controller
       }
      }
 
-     public function recargarFormularios($ruta,$estudiante){
+     public function recargarFormularios($ruta,$user){
       $religiones=Religion::lists('religion','id');
       $est_civils=EstCivil::lists('est_civil','id');
       $departamentos=Departamento::lists('departamento','id');
       $provincias=Provincia::lists('provincia','id');
       $distritos=Distrito::lists('distrito','id');
-      $odontologias=CmOdontologia::where('user_id',$estudiante->user_id)->where('i_motivo_consulta','<>','')->get();
-      $medicinas=CmMedicina::where('user_id',$estudiante->user_id)->where('imp_dx','<>','')->get();
-      $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-      $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-      return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','odontologias','medicinas'));  
+      $odontologias=CmOdontologia::where('user_id',$user->id)
+                                     ->where('i_motivo_consulta','<>','')->get();
+      $medicinas=CmMedicina::where('user_id',$user->id)->where('imp_dx','<>','')->get();
+      $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+      $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
+      return view($ruta, compact('user','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0','odontologias','medicinas'));  
      }
 }

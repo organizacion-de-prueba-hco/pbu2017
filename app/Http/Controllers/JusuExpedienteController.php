@@ -13,6 +13,8 @@ use App\Recibo;
 use Redirect;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
+use DB;
+use Yajra\Datatables\Facades\Datatables;
 
 class JusuExpedienteController extends Controller
 {
@@ -28,14 +30,26 @@ class JusuExpedienteController extends Controller
      */
     public function index()
     {
-      $expedientes = Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
+      //$expediente=Expediente::all()->take(10);
+        return view('users.jusu.expediente');
+    }
+    public function getMostrartablas(){
+      $expedientes=Expediente::join('estudiantes','estudiantes.user_id','=','expedientes.expediente')
                                ->join('users','users.id','=','estudiantes.user_id')
+                               ->join('escuelas','estudiantes.escuela_id','=','escuelas.id')
                                ->where('users.estado_activo','1')
                                //->where('expedientes.caso_especial')
-                               ->select('expedientes.*')->get();
-        return view('users.jusu.expediente', compact('expedientes'));
-    }
+                               ->select(
+                                'estudiantes.cod_univ',
+                                DB::raw('CONCAT( users.nombres," ",users.apellido_paterno," ",users.apellido_materno) AS nombres'),
+                                'escuelas.escuela AS escuela',
+                                'expedientes.caso_especial AS caso_esp',
+                                'expedientes.tipo_beca',
+                                'expedientes.estado','expedientes.expediente'
+                                )->get();
 
+    return Datatables::of($expedientes)->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -524,8 +538,8 @@ class JusuExpedienteController extends Controller
                                       ->where('asistencia','0')->count();
                 //Aquí modificamos dependiendo del usuario, solo los edministrativos podrán ver el dato real
                 if(!(Auth::user()->tipo_user=='0'||Auth::user()->tipo_user=='1')){
-                  if ($falt>=8) {
-                    $diferencia=$falt-8;
+                  if ($falt>=5) {
+                    $diferencia=$falt-5;
                     $asist=$asist+$diferencia;
                     $falt=$falt-$diferencia;
                   }
@@ -605,8 +619,8 @@ class JusuExpedienteController extends Controller
 
               //Aquí modificamos dependiendo del usuario, solo los edministrativos podrán ver el dato real
                 if(!(Auth::user()->tipo_user=='0'||Auth::user()->tipo_user=='1')){
-                  if ($falt>=8) {
-                    $diferencia=$falt-8;
+                  if ($falt>=5) {
+                    $diferencia=$falt-5;
                     $asist=$asist+$diferencia;
                     $falt=$falt-$diferencia;
                   }

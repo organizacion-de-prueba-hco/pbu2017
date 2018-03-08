@@ -300,18 +300,18 @@ class PdfController extends Controller
     }
 
     public function getMedicina($id){
+        //----------------------------------------
         if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-2'){
 
          $medicinas=CmMedicina::find($id);
-         $estudiante=Estudiante::find($medicinas->user_id); 
-         $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-         $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+         $antec0=CmAntecedente::where('user_id',$medicinas->user_id)->where('tipo','0')->first();
+         $antec1=CmAntecedente::where('user_id',$medicinas->user_id)->where('tipo','1')->first();
          $date = Carbon::now();
          //$date = $date->format('d-m-Y');
-         $view =\View::make('pdf.cm.repor-medicina',compact('estudiante','medicinas','antec0','antec1'))->render();
+         $view =\View::make('pdf.cm.repor-medicina',compact('medicinas','antec0','antec1'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         return $pdf->download('Ficha médica-'.$estudiante->cod_univ.'.pdf');
+         return $pdf->download('Ficha médica-'.$medicinas->user->dni.'.pdf');
          //return $pdf->stream('invoiced');
 
         }else{

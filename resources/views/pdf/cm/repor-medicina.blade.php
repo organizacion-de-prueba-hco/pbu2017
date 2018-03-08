@@ -1,7 +1,7 @@
 <html>
-   <?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($estudiante->user->f_nac); ?>
+   <?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($medicinas->user->f_nac); ?>
   <head>
-    <title>Medicina - Reporte </title>
+    
     <meta http-equiv="Content-Type" content="text/html;">
     <meta charset="utf-8">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -63,9 +63,13 @@
     <div>
       <h4>I. FILIACIÓN</h4>
       <p><b>DNI: </b>{{$medicinas->user->dni}}</p>
+      @if($medicinas->user->tipo_user=='5')
       <p><b>Código Universitario: </b>{{$medicinas->user->estudiante->cod_univ}}</p>
+      @endif
       <p><b>Apellidos y Nombres: </b>{{$medicinas->user->apellido_paterno.' '.$medicinas->user->apellido_materno.' '.$medicinas->user->nombres}}</p>
+      @if($medicinas->user->tipo_user=='5')
       <p><b>Escuela Profesional: </b>{{$medicinas->user->estudiante->escuela->escuela}}</p>
+      @endif
       <p><b>Dirección: </b>{{$medicinas->user->domicilio.' '.$medicinas->user->domicilio_n}}</p>
       <p><b>Lugar de Nacimiento: </b>{{$medicinas->user->distrito_naci->distrito.' - '.$medicinas->user->distrito_naci->provincia->provincia.' - '.$medicinas->user->distrito_naci->provincia->departamento->departamento}}</p>
       <p><b>Estado Civil: </b>{{$medicinas->user->estcivil->est_civil}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -83,6 +87,17 @@
 
       <h4>II. ANTECEDENTES</h4>
       <p><b>a) Personal:</b></p>
+      @if($antec0->c_alcohol=='1' || 
+          $antec0->c_droga=='1' || 
+          $antec0->c_tabaco=='1' || 
+          $antec0->c_cafe=='1' || 
+          $antec0->p_hepatitis=='1' || 
+          $antec0->p_tifoidea=='1' || 
+          $antec0->p_tbc=='1' || 
+          $antec0->p_hta=='1' || 
+          $antec0->p_dm=='1' || 
+          $antec0->p_asma=='1' || 
+          $antec0->p_otros=='1')
       <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
       <thead>
         <tr>
@@ -116,8 +131,22 @@
         </tr>
       </tbody>
     </table><br>
+    @else 
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;Ninguno</p>
+    @endif
 
     <p><b>b) Familiar:</b></p>
+    @if($antec0->c_alcohol=='1' || 
+          $antec1->c_droga=='1' || 
+          $antec1->c_tabaco=='1' || 
+          $antec1->c_cafe=='1' || 
+          $antec1->p_hepatitis=='1' || 
+          $antec1->p_tifoidea=='1' || 
+          $antec1->p_tbc=='1' || 
+          $antec1->p_hta=='1' || 
+          $antec1->p_dm=='1' || 
+          $antec1->p_asma=='1' || 
+          $antec1->p_otros=='1')
     <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
       <thead>
         <tr>
@@ -151,6 +180,10 @@
         </tr>
       </tbody>
     </table><br>
+    @else 
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;Ninguno</p>
+    @endif
+    
     <br><hr class="separador">
     <h4>III. EXAMEN FÍSICO</h4>
     <p>

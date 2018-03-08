@@ -44,7 +44,7 @@
 	<div class="col-sm-6 col-sm-offset-3 col-xs-12">
 		<div align="right">
     		<h1 class=text-center id="nombre-titulo"> Centro Médico</h1>
-    		<h3 style="margin-top: -10px; margin-bottom: -10px"><i>Buscar estudiante...</i></h3>
+    		<h3 style="margin-top: -10px; margin-bottom: -10px"><i>Buscar expediente...</i></h3>
     	</div><br><hr>
 	</div>
    <div class="col-sm-6 col-sm-offset-3 col-xs-12">

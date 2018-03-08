@@ -145,14 +145,14 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="{{$ii_i}}">
-								<a href="{{url('medmed')}}">
+								<a href="{{url('medmeds/inicio','estudiante')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Atención - Estudiante
 								</a>
 								<b class="arrow"></b>
 							</li>
 							<li class="{{$ii_v}}">
-								<a href="{{url('medmed')}}">
+								<a href="{{url('medmeds/inicio','no-estudiante')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Atención - No Estudiante
 								</a>
