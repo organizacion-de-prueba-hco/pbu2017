@@ -1,5 +1,5 @@
 <html>
-<?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($estudiante->user->f_nac); ?>
+<?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($user->f_nac); ?>
   <head>
     <title>Medicina - Reporte </title>
     <meta http-equiv="Content-Type" content="text/html;">
@@ -59,27 +59,42 @@
 
     <div>
       <h4>I. FILIACIÓN</h4>
-      <p><b>DNI: </b>{{$estudiante->user->dni}}</p>
-      <p><b>Código Universitario: </b>{{$estudiante->cod_univ}}</p>
-      <p><b>Apellidos y Nombres: </b>{{$estudiante->user->apellido_paterno.' '.$estudiante->user->apellido_materno.' '.$estudiante->user->nombres}}</p>
-      <p><b>Escuela Profesional: </b>{{$estudiante->escuela->escuela}}</p>
-      <p><b>Dirección: </b>{{$estudiante->user->domicilio.' '.$estudiante->user->domicilio_n}}</p>
-      <p><b>Lugar de Nacimiento: </b>{{$estudiante->user->distrito_naci->distrito.' - '.$estudiante->user->distrito_naci->provincia->provincia.' - '.$estudiante->user->distrito_naci->provincia->departamento->departamento}}</p>
-      <p><b>Estado Civil: </b>{{$estudiante->user->estcivil->est_civil}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <b>Sexo: </b>@if($estudiante->user->genero=='1')Masculino @else Femenino @endif</p>
+      <p><b>DNI: </b>{{$user->dni}}</p>
+      @if($user->tipo_user=='5')
+      <p><b>Código Universitario: </b>{{$user->estudiante->cod_univ}}</p>
+      @endif
+      <p><b>Apellidos y Nombres: </b>{{$user->apellido_paterno.' '.$user->apellido_materno.' '.$user->nombres}}</p>
+       @if($user->tipo_user=='5')
+      <p><b>Escuela Profesional: </b>{{$user->estudiante->escuela->escuela}}</p>
+       @endif
+      <p><b>Dirección: </b>{{$user->domicilio.' '.$user->domicilio_n}}</p>
+      <p><b>Lugar de Nacimiento: </b>{{$user->distrito_naci->distrito.' - '.$user->distrito_naci->provincia->provincia.' - '.$user->distrito_naci->provincia->departamento->departamento}}</p>
+      <p><b>Estado Civil: </b>{{$user->estcivil->est_civil}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <b>Sexo: </b>@if($user->genero=='1')Masculino @else Femenino @endif</p>
       <p><b>Edad: </b>{{Carbon\Carbon::createFromDate(
                               $fn->format('Y'),
                               $fn->format('m'),
                               $fn->format('d')
                             )->age.' Años'}}
       </p> 
-      <p><b>Fecha de Nacimiento: </b>{{Carbon\Carbon::parse($estudiante->user->f_nac)->format('d/m/Y')}}</p>
-      <p><b>Ocupación: </b>{{App\CuadroFamiliar::where('parentesco','YO')->where('user_id',$estudiante->user_id)->first()->ocupacion}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Religión: </b>{{$estudiante->user->religion->religion}}</p><br>
+      <p><b>Fecha de Nacimiento: </b>{{Carbon\Carbon::parse($user->f_nac)->format('d/m/Y')}}</p>
+      <p><b>Ocupación: </b>{{App\CuadroFamiliar::where('parentesco','YO')->where('user_id',$user->id)->first()->ocupacion}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Religión: </b>{{$user->religion->religion}}</p><br>
       
       <hr class="separador">
 
       <h4>II. ANTECEDENTES</h4>
       <p><b>a) Personal:</b></p>
+      @if($antec0->c_alcohol=='1' || 
+          $antec0->c_droga=='1' || 
+          $antec0->c_tabaco=='1' || 
+          $antec0->c_cafe=='1' || 
+          $antec0->p_hepatitis=='1' || 
+          $antec0->p_tifoidea=='1' || 
+          $antec0->p_tbc=='1' || 
+          $antec0->p_hta=='1' || 
+          $antec0->p_dm=='1' || 
+          $antec0->p_asma=='1' || 
+          $antec0->p_otros=='1')
       <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
       <thead>
         <tr>
@@ -113,8 +128,22 @@
         </tr>
       </tbody>
     </table><br>
-
+     @else 
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;Ninguno</p>
+    @endif
+    
     <p><b>b) Familiar:</b></p>
+    @if($antec0->c_alcohol=='1' || 
+          $antec1->c_droga=='1' || 
+          $antec1->c_tabaco=='1' || 
+          $antec1->c_cafe=='1' || 
+          $antec1->p_hepatitis=='1' || 
+          $antec1->p_tifoidea=='1' || 
+          $antec1->p_tbc=='1' || 
+          $antec1->p_hta=='1' || 
+          $antec1->p_dm=='1' || 
+          $antec1->p_asma=='1' || 
+          $antec1->p_otros=='1')
     <table border=1 cellspacing=0 cellpadding=2 bordercolor="666633" width="100%">
       <thead>
         <tr>
@@ -148,6 +177,9 @@
         </tr>
       </tbody>
     </table><br>
+     @else 
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;Ninguno</p>
+    @endif
     
     <h4>III. EXAMEN FÍSICO</h4>
    @foreach($medicinas as $med)

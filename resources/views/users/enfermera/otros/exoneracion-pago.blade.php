@@ -135,6 +135,8 @@
 				$('#dynamic-table')
 				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 				.DataTable( {
+					"language":{"url":'{!! asset('/assets/js/latino.json') !!}'},
+					"order": [[ 0, "desc" ]],
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },

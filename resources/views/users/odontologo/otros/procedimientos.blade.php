@@ -31,8 +31,49 @@
 				Nuevo Procedimiento &nbsp;&nbsp;&nbsp;
 		</div>
 		
-				
+		<!--Modal procedimiento-->
+		<div id="editar-procedimiento" class="modal fade" tabindex="-1">
+			
+		</div>
 										<!--Fin modal procedimiento-->							
+
+
+										<!--Modal Nuevo-->
+		<div id="nuevo-proc" class="modal fade" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h3 class="smaller lighter blue no-margin">Registrar Nuevo Procedimiento</h3>
+					</div>
+					{!! Form::open(['url' => 'enfotroprocs/nuevo', 'method' => 'POST']) !!}
+					<div class="modal-body" align="center">
+						<div class="item form-group">
+						
+						<div class="col-md-9 col-sm-9 col-xs-12">
+                  	  <label>Procedimiento: </label><br>
+                       <input type="text" placeholder="Procedimiento" class="nav-search-input"  required="required" name="procedimiento" style="width: 100%;">
+                  </div>
+                  <input type="hidden" name="area" value="1">
+                  <div class="col-md-3 col-sm-3 col-xs-6" align="center">
+							<label>Tarifa: </label><br>
+							<input type="number" step="any" placeholder="Tarifa (S/)" required="required" name="tarifa"  class="form-control">
+				 </div>
+						
+						<br>
+					</div>
+					</div>
+					<br><br><br><br>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-sm btn-success" value="Nuevo">
+					<button class="btn btn-sm btn-danger pull-right" data-dismiss="modal">Cancelar
+					</button>
+					</div>
+					{!!Form::close()!!}
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+										<!--Fin modal Nuevo-->						
 
 		<div class="table-responsive">
 			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
@@ -41,6 +82,7 @@
 						<th class="center">Procedimiento</th>
 						<th class="center">Consultorio</th>
 						<th class="center">Tarifa S/</th>
+						<th class="center">Acciones</th>
 					</tr>
 				</thead>
 				
@@ -54,6 +96,15 @@
 								<td class="center">Odontología</td>
 							@endif
 							<td class="center">{{ number_format($proc->tarifa, 2, ".", ".")  }}</td>
+							<td class="center">
+								@if($proc->area=='1')
+								<div class="hidden-sm hidden-xs action-buttons">
+								<a class="green cnter" href="#editar-procedimiento" data-toggle="modal" title="Editar" onclick="cargarModalEditar('{{$proc->id}}')" data-rel="tooltip">
+								<i class="ace-icon fa fa-pencil bigger-130"></i>
+								</a>
+								</div> 
+								@endif
+							</td>
 														
 					</tr>
 					@endforeach

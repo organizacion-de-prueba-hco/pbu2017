@@ -14,7 +14,7 @@
                           <div class="item form-group">
                             <div class="col-12">
                               <input type="file" id="files-foto-e" name="foto" accept="image/*"/><br>
-                              <output id="lista-e"><img src="{{url('imagenes/avatar/'.$user->foto)}}" width="100%"></output>
+                              <output id="lista-e"><img src="{{url('/imagenes/avatar/'.$user->foto)}}" width="100%"></output>
                             </div>
                           </div>
                           </div>

@@ -14,7 +14,7 @@
 
     </style>
 <h2>
-	<a href="{{url('pdf/odontologiatodo',$estudiante->user_id)}}">
+	<a href="{{url('pdf/odontologiatodo',$user->id)}}">
     	<i class="menu-icon fa fa-download"></i><span class="menu-text"> Descargar Todo</span>
     </a>
 </h2>

@@ -258,24 +258,12 @@ class PdfController extends Controller
         if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user=='2-4-2'){
 
          $odontologias=CmOdontologia::find($id);
-         $estudiante=Estudiante::find($odontologias->user_id);
-         //$religiones=Religion::lists('religion','id');
-         //$est_civils=EstCivil::lists('est_civil','id');
-         //$departamentos=Departamento::lists('departamento','id');
-         //$provincias=Provincia::lists('provincia','id');
-         //$distritos=Distrito::lists('distrito','id');
-         //$antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-         //$antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-            
-
          $date = Carbon::now();
          //$date = $date->format('d-m-Y');
-         $view =\View::make('pdf.cm.repor-odontologia',compact('estudiante','odontologias'))->render();
+         $view =\View::make('pdf.cm.repor-odontologia',compact('user','odontologias'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         return $pdf->download('Ficha odontológica-'.$estudiante->cod_univ.'.pdf');
-         //return $pdf->stream('invoiced');
-
+         return $pdf->download('Ficha odontológica-'.$odontologias->user->dni.'.pdf');
         }else{
             return back()->with('naranja','Ud. no puede realizar esta acción');
         }
@@ -285,13 +273,13 @@ class PdfController extends Controller
         if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-1' || Auth::user()->tipo_user=='2-4-2'){
 
          $odontologias=CmOdontologia::where('user_id',$id)->where('i_motivo_consulta','<>','')->orderBy('id','desc')->get();
-         $estudiante=Estudiante::find($id);   
+         $user=User::find($id);   
          $date = Carbon::now();
          //$date = $date->format('d-m-Y');
-         $view =\View::make('pdf.cm.repor-odontologia-todo',compact('estudiante','date','odontologias'))->render();
+         $view =\View::make('pdf.cm.repor-odontologia-todo',compact('user','date','odontologias'))->render();
          $pdf = \App::make('dompdf.wrapper');
          $pdf->loadHTML($view);
-         return $pdf->download('Ficha odontológica (Historial)-'.$estudiante->cod_univ.'.pdf');
+         return $pdf->download('Ficha odontológica (Historial)-'.$user->dni.'.pdf');
          //return $pdf->stream('invoiced');
 
         }else{
@@ -321,16 +309,16 @@ class PdfController extends Controller
 
     public function getMedicinatodo($id){
       if(Auth::user()->tipo_user=='0' || Auth::user()->tipo_user=='2-4' || Auth::user()->tipo_user=='2-4-2'){
-      $estudiante=Estudiante::find($id); 
-      $medicinas=CmMedicina::where('user_id',$estudiante->user_id)->where('imp_dx','<>','')->orderBy('id','desc')->get();
-      $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-      $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
+      $user=User::find($id); 
+      $medicinas=CmMedicina::where('user_id',$user->id)->where('imp_dx','<>','')->orderBy('id','desc')->get();
+      $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+      $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
       $date = Carbon::now();
       //$date = $date->format('d-m-Y');
-      $view =\View::make('pdf.cm.repor-medicina-todo',compact('estudiante','medicinas','antec0','antec1'))->render();
+      $view =\View::make('pdf.cm.repor-medicina-todo',compact('user','medicinas','antec0','antec1'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->loadHTML($view);
-      return $pdf->download('Ficha médica (Historial)-'.$estudiante->cod_univ.'.pdf');
+      return $pdf->download('Ficha médica (Historial)-'.$user->dni.'.pdf');
       //return $pdf->stream('invoiced');
 
       }else{

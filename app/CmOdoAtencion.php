@@ -11,7 +11,8 @@ class CmOdoAtencion extends Model
     'odontologia_id',
     'procedimiento_id',
     'obs',
-    'prox_cita'
+    'prox_cita',
+    'created_at'
     ];
 
     public function cmprocedimiento(){

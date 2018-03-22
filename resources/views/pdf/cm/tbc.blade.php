@@ -55,9 +55,10 @@
 
     <div>
       <p><b>Apellidos y Nombres: </b>{{$r_tbc->medicina->user->apellido_paterno.' '.$r_tbc->medicina->user->apellido_materno.' '.$r_tbc->medicina->user->nombres}}</p>
+      @if($r_tbc->medicina->user->tipo_user=='5')
       <p><b>Código Universitario: </b>{{$r_tbc->medicina->user->estudiante->cod_univ}}</p>
       <p><b>Escuela Profesional: </b>{{$r_tbc->medicina->user->estudiante->escuela->escuela}}</p>
-      <p><b>Facultad: </b>{{$r_tbc->medicina->user->estudiante->escuela->facultad->facultad}}</p>
+      <p><b>Facultad: </b>{{$r_tbc->medicina->user->estudiante->escuela->facultad->facultad}}</p>@endif
       <?php $fn= Carbon::parse($r_tbc->medicina->user->f_nac); ?>
       <p><b>Edad: </b>{{Carbon::createFromDate(
                               $fn->format('Y'),

@@ -63,7 +63,7 @@
 						
 						<div class="col-md-6 col-sm-6 col-xs-12">
                   	  <label>Procedimiento: </label><br>
-                       <input type="text" placeholder="Procedimiento" class="nav-search-input" maxlength="10" required="required" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="procedimiento" style="width: 100%;">
+                       <input type="text" placeholder="Procedimiento" class="nav-search-input"  required="required" name="procedimiento" style="width: 100%;">
                   </div>
                   <div class="col-md-3 col-sm-3 col-xs-6" align="center">
 							<label>Consultorio: </label><br>
@@ -167,6 +167,8 @@
 				$('#dynamic-table')
 				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 				.DataTable( {
+					"language":{"url":'{!! asset('/assets/js/latino.json') !!}'},
+					
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
@@ -174,23 +176,6 @@
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
-
-
-					//"bProcessing": true,
-			        //"bServerSide": true,
-			        //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-					//,
-					//"sScrollY": "200px",
-					//"bPaginate": false,
-
-					//"sScrollX": "100%",
-					//"sScrollXInner": "120%",
-					//"bScrollCollapse": true,
-					//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-					//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-					//"iDisplayLength": 50
 
 
 					select: {

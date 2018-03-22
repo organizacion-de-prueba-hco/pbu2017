@@ -27,6 +27,8 @@ use App\InformeNutricion;
 use App\CmReporTbc;
 use App\CmReporBsalud;
 use App\CmReporEnfermedad;
+use DB;
+use Yajra\Datatables\Facades\Datatables;
 
 use Redirect;
 use Input;
@@ -37,7 +39,7 @@ class EnfermeraOdontoController extends Controller
     public function __construct()
     {
         $this->middleware('auth');//getDescargar
-        $this->middleware('enfermera');
+        $this->middleware('enfermera',['except' => ['getInicio']]);
     }
     /**
      * Display a listing of the resource.
@@ -48,6 +50,19 @@ class EnfermeraOdontoController extends Controller
     {   //return "Hola";
         $odontologia=CmOdontologia::get();
         return view('users.enfermera.odontologia.atencion',compact('odontologia'));
+    }
+    public function getInicio()
+    {
+        $consulta=CmOdontologia::join('users','users.id','=','cm_odontologias.user_id')
+         ->select(
+         'cm_odontologias.id',
+         'cm_odontologias.created_at AS fecha',
+         'users.dni','users.id AS user_id','users.tipo_user AS tipo',
+         DB::raw('CONCAT( users.nombres," ",users.apellido_paterno," ", 
+         users.apellido_materno) AS nombres'),
+         'cm_odontologias.iv_diagnostico AS dx', 'cm_odontologias.i_motivo_consulta AS mc')->get();
+
+        return Datatables::of($consulta)->make(true);
     }
 
     /**
@@ -117,37 +132,29 @@ class EnfermeraOdontoController extends Controller
     }
     public function getNuevo(Request $request){
 
-       $cod        = $request->get('cod');
-        $estudiante = Estudiante::where('cod_univ',$cod)->first();
-        if(!$estudiante){
-          $user = User::where('dni', $cod)->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
-        }
-
-        if(!$estudiante){
-            return Redirect::to('enfmed')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+        $cod = $request->get('cod');
+        //Identificamos si el $cod es un DNI o Cod universitario
+        if (strlen($cod)=='8') {
+            $user= User::where('dni',$cod)->first();
+        }else if(strlen($cod)=='10'){
+            $user= User::join('estudiantes','estudiantes.user_id','=','users.id')
+                     ->where('estudiantes.cod_univ',$cod)
+                     ->select('users.*')->first();
         }else{
-            //return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',Input::get('user_id'));
-            return $this->recargarFormularios('users.enfermera.odontologia.atencion.nuevo',$estudiante);
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
         }
+         //verificamos si existe el usuario
+        if(!$user){
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+        }
+         return $this->recargarFormularios('users.enfermera.odontologia.atencion.nuevo',$user);
     }
 
     public function postFiliacion(){
-      //return "Holitas...";
       $user=User::find(Input::get('id'));
+      return $user;
       $user->fill(Input::all())->save();
-      $estudiante=Estudiante::find(Input::get('id'));
-
-      $cfamiliar=CuadroFamiliar::where('nombres','Estudiante')->where('parentesco','YO')->where('user_id',Input::get('id'))->first();
-
-      $ocupacion=CuadroFamiliar::find($cfamiliar->id);
-      $ocupacion->ocupacion=Input::get('ocupacion');
-      $ocupacion->save();
-      //$opinion->fill(Input::all())->save();
-
-      return $this->recargarFormularios('users.enfermera.odontologia.atencion.nuevo.step-11',$estudiante);
+      return $this->recargarFormularios('users.enfermera.odontologia.atencion.nuevo.step-11',$user);
     }
 
     public function postAntecedentes(){
@@ -176,15 +183,15 @@ class EnfermeraOdontoController extends Controller
       return $this->recargarFormularios('users.enfermera.odontologia.atencion.nuevo.step-22',$estudiante);
     }
 
-    public function recargarFormularios($ruta,$estudiante){
+    public function recargarFormularios($ruta,$user){
         $religiones=Religion::lists('religion','id');
         $est_civils=EstCivil::lists('est_civil','id');
         $departamentos=Departamento::lists('departamento','id');
         $provincias=Provincia::lists('provincia','id');
         $distritos=Distrito::lists('distrito','id');
-        $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-        $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-        return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
+        $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+        $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
+        return view($ruta, compact('user','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
      }
 
@@ -192,6 +199,6 @@ class EnfermeraOdontoController extends Controller
       //return Input::all();
       $registrar=new CmOdontologia;
       $registrar->fill(Input::all())->save();
-      return Redirect('enfodonto')->with('verde','Se registró correctamente la atención');
+      return Redirect('enfodonto')->with('verde','Se registró correctamente una nueva atención');
     }
 }

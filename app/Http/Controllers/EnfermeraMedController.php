@@ -26,6 +26,8 @@ use App\InformeNutricion;
 use App\CmReporTbc;
 use App\CmReporBsalud;
 use App\CmReporEnfermedad;
+use DB;
+use Yajra\Datatables\Facades\Datatables;
 
 use Redirect;
 use Input;
@@ -48,7 +50,19 @@ class EnfermeraMedController extends Controller
         $medicina=CmMedicina::get();
         return view('users.enfermera.medicina.atencion',compact('medicina'));
     }
+    public function getInicio()
+    {
+        $expedientes=CmMedicina::join('users','users.id','=','cm_medicinas.user_id')
+                               ->select(
+                                 'cm_medicinas.id',
+                                 'cm_medicinas.created_at AS fecha',
+                                'users.dni','users.id AS user_id','users.tipo_user AS tipo',
+                                DB::raw('CONCAT( users.nombres," ",users.apellido_paterno," ",users.apellido_materno) AS nombres'),
+                                'cm_medicinas.imp_dx','cm_medicinas.cita'
+                                )->get();
 
+    return Datatables::of($expedientes)->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -117,28 +131,29 @@ class EnfermeraMedController extends Controller
 
     public function getNuevo(Request $request){
 
-       $cod        = $request->get('cod');
-        $estudiante = Estudiante::where('cod_univ',$cod)->first();
-        if(!$estudiante){
-          $user = User::where('dni', $cod)->first();
-          if($user){
-             $estudiante = Estudiante::find($user->id);
-          }
-        }
-
-        if(!$estudiante){
-            return Redirect::to('enfmed')->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+       $cod = $request->get('cod');
+        //Identificamos si el $cod es un DNI o Cod universitario
+        if (strlen($cod)=='8') {
+            $user= User::where('dni',$cod)->first();
+        }else if(strlen($cod)=='10'){
+            $user= User::join('estudiantes','estudiantes.user_id','=','users.id')
+                     ->where('estudiantes.cod_univ',$cod)
+                     ->select('users.*')->first();
         }else{
-            //return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',Input::get('user_id'));
-            return $this->recargarFormularios('users.enfermera.medicina.atencion.nuevo',$estudiante);
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
         }
+         //verificamos si existe el usuario
+        if(!$user){
+            return back()->with('rojo','Los datos ingresados no pertenecen a ningun estudiante');
+        }
+            return $this->recargarFormularios('users.enfermera.medicina.atencion.nuevo',$user);
+        
     }
 
     public function postFiliacion(){
       //return "Holitas...";
       $user=User::find(Input::get('id'));
       $user->fill(Input::all())->save();
-      $estudiante=Estudiante::find(Input::get('id'));
 
       $cfamiliar=CuadroFamiliar::where('nombres','Estudiante')->where('parentesco','YO')->where('user_id',Input::get('id'))->first();
 
@@ -147,7 +162,7 @@ class EnfermeraMedController extends Controller
       $ocupacion->save();
       //$opinion->fill(Input::all())->save();
 
-      return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',$estudiante);
+      return $this->recargarFormularios('users.enfermera.inicio.vermas.step-11',$user);
     }
     public function postAntecedentes(){
       //return "Holitas...";
@@ -171,26 +186,26 @@ class EnfermeraMedController extends Controller
          $antec->save();
 
       }
-      $estudiante=Estudiante::find(Input::get('id'));
-      return $this->recargarFormularios('users.enfermera.inicio.vermas.step-22',$estudiante);
+      $user=User::find(Input::get('id'));
+      return $this->recargarFormularios('users.enfermera.inicio.vermas.step-22',$user);
     }
 
     public function postTriaje(){
       //return Input::all();
       $triaje=new CmMedicina;
       $triaje->fill(Input::all())->save();
-      return Redirect('enfmed')->with('verde','Se registró correctamente la atención');
+      return Redirect('enfmed')->with('verde','Se registró una nueva atención');
     }
 
-     public function recargarFormularios($ruta,$estudiante){
+     public function recargarFormularios($ruta,$user){
         $religiones=Religion::lists('religion','id');
         $est_civils=EstCivil::lists('est_civil','id');
         $departamentos=Departamento::lists('departamento','id');
         $provincias=Provincia::lists('provincia','id');
         $distritos=Distrito::lists('distrito','id');
-        $antec0=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','0')->first();
-        $antec1=CmAntecedente::where('user_id',$estudiante->user_id)->where('tipo','1')->first();
-        return view($ruta, compact('estudiante','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
+        $antec0=CmAntecedente::where('user_id',$user->id)->where('tipo','0')->first();
+        $antec1=CmAntecedente::where('user_id',$user->id)->where('tipo','1')->first();
+        return view($ruta, compact('user','religiones','est_civils','departamentos','provincias','distritos','antec1','antec0'));
         
      }
      //TABLAS DE REPORTE
@@ -272,7 +287,7 @@ class EnfermeraMedController extends Controller
       $file = Input::file('foto');
       if(!empty($file)){
         $user=User::find(Input::get('id-est'));        
-        $name=$user->estudiante->cod_univ.'.png';
+        $name=$user->dni.'.png';
         $file->move('imagenes/avatar', $name);
         $user->foto=$name;
         if($user->save()){

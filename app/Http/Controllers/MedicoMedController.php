@@ -26,6 +26,8 @@ use App\InformeNutricion;
 use App\CmReporTbc;
 use App\CmReporBsalud;
 use App\CmReporEnfermedad;
+use DB;
+use Yajra\Datatables\Facades\Datatables;
 
 use Redirect;
 use Input;
@@ -45,24 +47,22 @@ class MedicoMedController extends Controller
      */
     public function index()
     {
-        //$medicina=CmMedicina::get();
-        //return view('users.medico.medicina.atencion',compact('medicina'));
+
+        $medicina=CmMedicina::get();
+        return view('users.medico.medicina.atencion',compact('medicina'));
     }
-    public function getInicio($tipo)
+    public function getInicio()
     {
-        if($tipo=='estudiante'){
-            $medicina=CmMedicina::join('users','users.id','=','cm_medicinas.user_id')
-                                ->where('users.tipo_user','5')
-                                ->select('cm_medicinas.*')->get(); 
-            $ruta='users.medico.medicina.atencion-estudiante';   
-        }else if('no-estudiante'){
-            $medicina=CmMedicina::join('users','users.id','=','cm_medicinas.user_id')
-                                ->where('users.tipo_user','!=','5')
-                                ->select('cm_medicinas.*')->get(); 
-            $ruta='users.medico.medicina.atencion-nestudiante';
-        }else{ return back();}
-        
-        return view($ruta,compact('medicina'));
+        $expedientes=CmMedicina::join('users','users.id','=','cm_medicinas.user_id')
+                               ->select(
+                                 'cm_medicinas.id',
+                                 'cm_medicinas.created_at AS fecha',
+                                'users.dni','users.id AS user_id','users.tipo_user AS tipo',
+                                DB::raw('CONCAT( users.nombres," ",users.apellido_paterno," ",users.apellido_materno) AS nombres'),
+                                'cm_medicinas.imp_dx','cm_medicinas.cita'
+                                )->get();
+
+    return Datatables::of($expedientes)->make(true);
     }
 
     /**
@@ -203,13 +203,9 @@ class MedicoMedController extends Controller
       $triaje=new CmMedicina;
       $triaje->fill(Input::all())->save();
       $tipo = CmMedicina::find($triaje->id)->user->tipo_user;
-      if($tipo=='5'){
-         $ruta='medmeds/inicio/estudiante';
-      }else{
-         $ruta='medmeds/inicio/no-estudiante';
-      }
+      
       //User::join('cm_medicinas','cm_medicina.user_id','=','users.id')->where('cm_medicinas.id');
-      return Redirect($ruta)->with('verde','Se registró correctamente la atención');
+      return Redirect("medmed")->with('verde','Se registró correctamente la atención');
     }
     public function postActualizartriaje(){
       //return "Input::all()";
@@ -278,12 +274,8 @@ class MedicoMedController extends Controller
         $consulta=CmMedicina::find(Input::get('m_id'));
         $consulta->fill(Input::all())->save();
         $tipo = $consulta->user->tipo_user;
-         if($tipo=='5'){
-            $ruta='medmeds/inicio/estudiante';
-         }else{
-            $ruta='medmeds/inicio/no-estudiante';
-         }
-        return Redirect::to($ruta)->with('verde','Se registró atención correctamente');
+         
+        return Redirect::to("medmed")->with('verde','Se registró atención correctamente');
     }
 
     public function recargarFormularios0($ruta,$user){

@@ -1,5 +1,5 @@
 <html>
-  <?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($estudiante->user->f_nac); ?>
+  <?php Carbon\Carbon::setLocale('es'); $fn= Carbon\Carbon::parse($odontologias->user->f_nac); ?>
   <head>
     <title>Odontología - Reporte </title>
     <meta http-equiv="Content-Type" content="text/html;">

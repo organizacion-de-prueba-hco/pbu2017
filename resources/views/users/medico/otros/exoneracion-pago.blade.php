@@ -136,6 +136,7 @@
 				$('#dynamic-table')
 				//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
 				.DataTable( {
+					"language":{"url":'{!! asset('/assets/js/latino.json') !!}'},
 					bAutoWidth: false,
 					"aoColumns": [
 					  { "bSortable": null },
@@ -143,16 +144,31 @@
 					  { "bSortable": false }
 					],
 					"aaSorting": [],
-
-
-					select: {
-						style: 'multi'
-					}
 			    } );
+			    $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 
-
-
-	
+				new $.fn.dataTable.Buttons( myTable, {
+					buttons: [
+					  {
+						"extend": "copy",
+						"text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copiar al Portapapeles</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "csv",
+						"text": "<i class='fa fa-download bigger-110 green' title='descargar'></i> <span class='hidden'>Exportar a CSV</span>",
+						"className": "btn btn-white btn-primary btn-bold"
+					  },
+					  {
+						"extend": "print",
+						"text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Imprimir</span>",
+						"className": "btn btn-white btn-primary btn-bold",
+						autoPrint: false,
+						message: 'Reporte'
+					  }
+					]
+				} );
+				myTable.buttons().container().appendTo( $('.tableTools-container') );
 
 
 			})

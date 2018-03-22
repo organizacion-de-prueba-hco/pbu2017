@@ -25,7 +25,7 @@
 						</div>
 									
 									<div align="center" ><br>
-                          			<input type="hidden" name="user_id" value="{{$estudiante->user->id}}">
+                          			<input type="hidden" name="user_id" value="{{$user->id}}">
                           			<input type="hidden" name="odontologo_id" value="1">
                           			<input type="submit" value="Enviar datos" class="btn btn-info"><br><br></div>
 

@@ -53,7 +53,7 @@
 												<input type="text" class="col-xs-12 col-sm-6" placeholder="Descripción del Tratamiento" name="tto_descripcion" value="{{$medicina->tto_descripcion}}" />
 											</div>
 									<div id="div-de-tablas">
-										@include('users.medico.inicio.verMas.step-ef-tablas')	
+										@include('users.medico.inicio.vermas.step-ef-tablas')	
 									</div>
 										</div>
 									</div>

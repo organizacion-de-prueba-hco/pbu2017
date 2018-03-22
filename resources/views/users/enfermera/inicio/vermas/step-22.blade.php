@@ -278,7 +278,7 @@
 
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-12" align="center">
-            	<input type="hidden" name="id" value="{{$estudiante->user_id}}">
+            	<input type="hidden" name="id" value="{{$user->id}}">
             	<input type="hidden" name="id0" value="{{$antec0->id}}">
             	<input type="hidden" name="id1" value="{{$antec1->id}}">
             	<input type="submit" value="Actualizar" class="btn btn-info" onclick="lafuncion('/enfmeds/antecedentes','#elformulario1-2','#step-22')">

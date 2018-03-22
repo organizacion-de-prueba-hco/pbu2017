@@ -145,19 +145,19 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="{{$ii_i}}">
-								<a href="{{url('medmeds/inicio','estudiante')}}">
+								<a href="{{url('medmed')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Atención - Estudiante
+									Atención 
 								</a>
 								<b class="arrow"></b>
 							</li>
-							<li class="{{$ii_v}}">
+							{{-- <li class="{{$ii_v}}">
 								<a href="{{url('medmeds/inicio','no-estudiante')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Atención - No Estudiante
 								</a>
 								<b class="arrow"></b>
-							</li>
+							</li> --}}
 							<li class="{{$ii_ii}}">
 								<a href="{{url('medmeds/tablatbc')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -198,7 +198,7 @@
 							<li class="{{$iii_i}}">
 								<a href="{{url('medicos/odontologia')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Estudiantes
+									Atención
 								</a>
 
 								<b class="arrow"></b>

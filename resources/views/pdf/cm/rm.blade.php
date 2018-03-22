@@ -55,8 +55,10 @@
 
     <div>
       <p><b>Apellidos y Nombres: </b>{{$medicina->user->apellido_paterno.' '.$medicina->user->apellido_materno.' '.$medicina->user->nombres}}</p>
+      @if($medicina->user->tipo_user=='5')
       <p><b>Código Universitario: </b>{{$medicina->user->estudiante->cod_univ}}</p>
       <p><b>Escuela Profesional: </b>{{$medicina->user->estudiante->escuela->escuela}}</p>
+      @endif
       <p><b>Edad: </b>{{Carbon\Carbon::createFromDate(
                               $fn->format('Y'),
                               $fn->format('m'),

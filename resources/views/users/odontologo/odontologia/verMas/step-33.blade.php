@@ -533,13 +533,19 @@
               					/>
 									<span class="lbl"> Otros </span> &nbsp;
 								</label><br>
-								<label 
+								<label class="control-label col-xs-12 col-sm-3 no-padding-right"
 										 @if($medicina->iii_b_otros == '')
 											style="visibility:hidden"
 										 @endif
 								>
-								<input type="text" class="ace" name="iii_b_otros" id="p_otros_desc_3" class="col-12" value="{{$medicina->iii_b_otros}}">
-								</label><br>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-xs-12 col-sm-9">
+							<div class="clearfix">
+								<textarea  name="iii_b_otros" id="p_otros_desc_3"  class="col-sm-12" placeholder="Puede user este espacio para detallar el gráfico 3.3-a" rows="4">{{$medicina->iv_diagnostico}}{{$medicina->iii_b_otros}}</textarea>
+							</div>
 						</div>
 					</div>
 					<div class="space-2"></div><hr>
@@ -556,7 +562,7 @@
 						@include('users.odontologo.odontologia.verMas.step-33-tablas')	
 					</div>
 									<div align="center" ><br>
-                          			<input type="hidden" name="user_id" value="{{$estudiante->user->id}}">
+                          			<input type="hidden" name="user_id" value="{{$user->id}}">
                           			<input type="hidden" name="odontologo_id" value="{{Auth::user()->id}}">
                           			<input type="hidden" name="o_id" value="{{$medicina->id}}">
                           			<input type="submit" value="Enviar datos" class="btn btn-info"><br><br></div>

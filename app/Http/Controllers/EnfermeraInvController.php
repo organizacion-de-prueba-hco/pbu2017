@@ -105,7 +105,7 @@ class EnfermeraInvController extends Controller
             //$proc->save();
             //return Redirect::to('enfotroproc')->with('verde','Se actualizo el Procedimiento');
             if($med->fill(Input::all())->save()){
-            return back()->with('verde','Se actualizo el artículo del inventario');    
+            return back()->with('verde','Se actualizo correctamente');    
             }else{
                 return back()->with('rojo','No se pudo actualizar, vuelva a intentar');
             }

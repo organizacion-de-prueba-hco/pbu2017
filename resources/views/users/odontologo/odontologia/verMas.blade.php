@@ -57,7 +57,7 @@
                <div class="modal-footer">
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="hidden" name="id" id="c_id" value="">
 		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/odontodontos/eprocedimientos','#modal-aprocedimiento','#div-de-tablas');">
 		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/odontodontos/aprocedimientos','#modal-aprocedimiento','#div-de-tablas')">
@@ -103,7 +103,7 @@
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="odontologia_id" value="{{$medicina->id}}">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/odontodontos/procedimientos','#modal-procedimientos','#div-de-tablas')">
 		            	</div>
 		         	</div>
@@ -159,7 +159,7 @@
 					<div class="modal-footer">
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="hidden" name="m_id"  id="m_id">
 		            	
 		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/odontodontos/emedicamentos','#modal-amedicamentos','#div-de-tablas');">
@@ -219,7 +219,7 @@
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="odontologia_id" value="{{$medicina->id}}">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/odontodontos/medicamentos','#modal-medicamentos','#div-de-tablas')">
 		            	</div>
 		         	</div>
@@ -273,7 +273,7 @@
                <div class="modal-footer">
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="hidden" name="id" id="a_id" value="">
 		            	<input type="button" class="btn btn-danger" value="Eliminar" data-dismiss="modal" onclick="lafuncion('/odontodontos/eatenciones','#modal-aatencion','#div-de-tablas');">
 		            	<input type="button" class="btn btn-success" value="Actualizar" data-dismiss="modal" onclick="lafuncion('/odontodontos/aatenciones','#modal-aatencion','#div-de-tablas')">
@@ -328,7 +328,7 @@
                	<div class="form-group">
 							<div class="col-xs-12 col-sm-12">
 		            	<input type="hidden" name="odontologia_id" value="{{$medicina->id}}">
-		            	<input type="hidden" name="user_id" value="{{$estudiante->user_id}}">
+		            	<input type="hidden" name="user_id" value="{{$user->id}}">
 		            	<input type="button" class="btn btn-success" value="Agregar" data-dismiss="modal" onclick="lafuncion('/odontodontos/atenciones','#modal-atenciones','#div-de-tablas')">
 		            	</div>
 		         	</div>

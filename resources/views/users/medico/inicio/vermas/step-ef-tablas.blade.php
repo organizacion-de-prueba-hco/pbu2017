@@ -24,9 +24,6 @@
 						<th></th>
 					</tr>
 				</thead>
-				<?php  
-					$ce = array('0' => 'Ninguno','1'=>'Victima de Violencia Política','2'=>'Consejo Universitario','3'=>'Asamblea Universitaria','4'=>'Deportista Calificado' );
-				?>
 				<tbody>
 					@foreach($mps as $mp)
 						<tr>
